@@ -4,8 +4,15 @@ import { Provider } from 'react-redux'
 
 import store from './init/store';
 import Viewport from './viewport/viewport'
+import initBattleCombatants from './battle/init-battle-combatants'
 
 var RootComponent = React.createClass({
+
+    componentWillMount() {
+        /* B4 demo only. */
+        //Seed the battle
+        initBattleCombatants();
+    },
 
     render() {
         return (

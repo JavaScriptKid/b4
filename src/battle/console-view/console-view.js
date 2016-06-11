@@ -4,6 +4,7 @@ import CombatantCard from './combatant-card'
 
 @connect((state, props) => {
     return {
+        combatantIds: Object.keys(state.battle.combatants)
     }
 })
 
@@ -11,9 +12,9 @@ class ConsoleView extends React.Component {
 
     render() {
 
-        const combatantCards = ["id1", "id2"].map(cId => {
+        const combatantCards = this.props.combatantIds.map(cId => {
             return (
-                <CombatantCard combatantId={cId} />
+                <CombatantCard key={cId} combatantId={cId} />
             )
         });
 
