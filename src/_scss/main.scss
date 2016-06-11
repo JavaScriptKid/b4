@@ -1,0 +1,35 @@
+@import '_reset';
+* {
+    box-sizing:border-box;
+}
+
+
+html, body {
+    height:100%;
+    font-family: "Source Code Pro", monospace;
+}
+
+#app-root {
+    height: 100%;
+}
+
+
+.ui-wrapper {
+    height: 100%;
+    overflow: hidden;
+}
+
+.viewport {
+    //background:#ccc;
+    background: url(/dist/images/screenshot.png) no-repeat no-repeat;
+    background-size: cover;
+    position:relative;
+    margin: 0 auto;
+    top:50%;
+    transform: translateY(-50%);
+    width:176px; /* init */
+    height:112px; /* init */
+    overflow:hidden;
+}
+
+@import 'battle-console-view';
