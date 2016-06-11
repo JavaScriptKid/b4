@@ -21,6 +21,38 @@ class CombatantCard extends React.Component {
     }
 
 
+    renderStatsInfo() {
+        return (
+            <div>
+                <div>Stats</div>
+                <div>
+                    <label>HP</label>
+                    <span>?</span>
+                </div>
+                <div>
+                    <label>PP</label>
+                    <span>?</span>
+                </div>
+                <div>
+                    <label>Atk</label>
+                    <span>?</span>
+                </div>
+                <div>
+                    <label>Def</label>
+                    <span>?</span>
+                </div>
+                <div>
+                    <label>Spec</label>
+                    <span>?</span>
+                </div>
+                <div>
+                    <label>Spd</label>
+                    <span>?</span>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         const model = this.props.combatant;
         return (
@@ -64,6 +96,7 @@ class CombatantCard extends React.Component {
                             <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/jessie-blue.svg">Marie</option>
                         </select>
                     </div>
+                    {this.renderStatsInfo()}
                 </div>
             </div>
         );
