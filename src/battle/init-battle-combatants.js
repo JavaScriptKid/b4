@@ -10,14 +10,20 @@ export default function() {
         name: "Some Dude A",
         level: 3,
         class: "ninja",
-        skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg"
+        skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
+        upgrades: [
+            { libraryId: "laptop-upgrade_001", isEnabled: true },
+            { libraryId: "laptop-upgrade_002", isEnabled: true },
+            { libraryId: "laptop-upgrade_003", isEnabled: true } /* can be disabled by special attacks? */
+        ]
     };
 
     combatants[makeId('combatant')] = {
         name: "Some Dude B",
         level: 3,
         class: "captain",
-        skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg"
+        skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
+        upgrades: []
     };
 
 

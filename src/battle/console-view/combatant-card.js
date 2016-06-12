@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 import {getClassStatsByLevel} from '../get-class-stats-by-level'
+import CombatantUpgradeList from './combatant-upgrade-list'
 
 @connect((state, props) => {
 
@@ -50,11 +51,11 @@ class CombatantCard extends React.Component {
                 <div>Stats</div>
                 <div>
                     <label>HP</label>
-                    <span>{stats.hp}</span> <span>{this.renderDiff(stats.hp, opponentStats.hp)}</span>
+                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
                 </div>
                 <div>
                     <label>PP</label>
-                    <span>{stats.pp}</span> <span>{this.renderDiff(stats.pp, opponentStats.pp)}</span>
+                    <span>{stats.maxPp}</span> <span>{this.renderDiff(stats.maxPp, opponentStats.maxPp)}</span>
                 </div>
                 <div>
                     <label>Atk</label>
@@ -121,6 +122,7 @@ class CombatantCard extends React.Component {
                         </select>
                     </div>
                     {this.renderStatsInfo()}
+                    <CombatantUpgradeList combatantId={this.props.combatantId} />
                 </div>
             </div>
         );

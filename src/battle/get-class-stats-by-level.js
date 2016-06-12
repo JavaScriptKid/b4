@@ -9,8 +9,8 @@ export function getClassStatsByLevel(characterClass="", level=1) {
     const arrayIndex = level - 1; /* Stat array[0] = level 1 */
 
     return {
-        hp: classModel.hpGrowthPattern[arrayIndex],
-        pp: classModel.ppGrowthPattern[arrayIndex],
+        maxHp: classModel.hpGrowthPattern[arrayIndex],
+        maxPp: classModel.ppGrowthPattern[arrayIndex],
         atk: classModel.atkGrowthPattern[arrayIndex],
         def: classModel.defGrowthPattern[arrayIndex],
         spec: classModel.specGrowthPattern[arrayIndex],
