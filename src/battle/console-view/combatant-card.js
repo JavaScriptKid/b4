@@ -4,6 +4,7 @@ import {setCombatantValue} from '../../redux-action-creators/battle-action-creat
 import {getClassStatsByLevel} from '../get-class-stats-by-level'
 import CombatantUpgradeList from './combatant-upgrade-list'
 import Frameworks from '../../_data/_frameworks'
+import {getAlignmentByUpgrades} from '../get-alignment-by-upgrades'
 
 @connect((state, props) => {
 
@@ -82,12 +83,8 @@ class CombatantCard extends React.Component {
 
     renderAlignmentInfo() {
         /* TEMPORARY */
-        const stats = {
-            maxHp: 2
-        };
-        const opponentStats = {
-            maxHp: 2
-        };
+        const stats = getAlignmentByUpgrades(this.props.combatant.upgrades);
+        const opponentStats = getAlignmentByUpgrades( this.props.opponentCombatant.upgrades );
         return (
             <div>
                 <div className="combatant-card-section-label">
@@ -99,7 +96,7 @@ class CombatantCard extends React.Component {
                         return (
                             <div key={frameworkId}>
                                 <label className="label-long">{model.name}</label>
-                                <span>0</span> <span>{this.renderDiff(0, 0)}</span>
+                                <span>{stats[model.playerProperty]}</span> <span>{this.renderDiff(stats[model.playerProperty], opponentStats[model.playerProperty])}</span>
                             </div>
                         )
                     })

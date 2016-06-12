@@ -1,22 +1,30 @@
 const frameworkSchema = {
-    name: "someFrameworkName"
+    name: "someFrameworkName",
+    playerProperty: ""
 };
 
 export default {
     "F1": {
         ...frameworkSchema,
-        name: "Palm"
+        name: "Palm",
+        playerProperty: "f1Alignment"
     },
     "F2": {
         ...frameworkSchema,
-        name: "EndGame"
+        name: "EndGame",
+        playerProperty: "f2Alignment"
+
     },
     "F3": {
         ...frameworkSchema,
-        name: "edjKase"
+        name: "edjKase",
+        playerProperty: "f3Alignment"
+
     },
     "F4": {
         ...frameworkSchema,
-        name: "Vector"
+        name: "Vector",
+        playerProperty: "f4Alignment"
+
     }
 }
