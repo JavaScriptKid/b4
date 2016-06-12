@@ -30,7 +30,7 @@ class CombatantCard extends React.Component {
 
     renderDiff(figA, figB) {
         if (figA > figB) {
-            return <span style={{color:"#29C09E"}}>(+{figA-figB})</span>
+            return <span style={{color:"#29C09E"}}>(+{figA - figB})</span>
         }
         return null;
     }
@@ -48,7 +48,9 @@ class CombatantCard extends React.Component {
 
         return (
             <div>
-                <div>Stats</div>
+                <div className="combatant-card-section-label">
+                    Stats
+                </div>
                 <div>
                     <label>HP</label>
                     <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
@@ -77,6 +79,93 @@ class CombatantCard extends React.Component {
         )
     }
 
+    renderAlignmentInfo() {
+        /* TEMPORARY */
+        const stats = {
+            maxHp: 2
+        };
+        const opponentStats = {
+            maxHp: 2
+        };
+        return (
+            <div>
+                <div className="combatant-card-section-label">
+                    Alignment
+                </div>
+                <div>
+                    <label>F1</label>
+                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
+                </div>
+                <div>
+                    <label>F2</label>
+                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
+                </div>
+                <div>
+                    <label>F3</label>
+                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
+                </div>
+                <div>
+                    <label>F4</label>
+                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
+                </div>
+            </div>
+        )
+    }
+
+
+    renderCharacterInfo() {
+        const model = this.props.combatant;
+        return (
+            <div className="combatant-card-section">
+                <div className="combatant-card-section-label">
+                    Character
+                </div>
+                <div>
+                    <label>Name</label>
+                    <input onChange={::this.handleChange} value={model.name} ref="name"/>
+                </div>
+                <div>
+                    <label>Level</label>
+                    <select onChange={::this.handleChange} value={model.level} ref="level">
+                        {
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+                                16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30].map(level => {
+                                return <option value={level} key={level}>{level}</option>
+                            })
+                        }
+                    </select>
+                </div>
+                <div>
+                    <label>Class</label>
+                    <select onChange={::this.handleChange} value={model.class} ref="class">
+                        <option value="ninja">Ninja</option>
+                        <option value="monk">Monk</option>
+                        <option value="captain">Captain</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Skin</label>
+                    <select ref="skin" value={model.skin} onChange={::this.handleChange}>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg">svJacob
+                        </option>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-blonde.svg">Punky
+                        </option>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg">Travis
+                        </option>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew.svg">Drew</option>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-orange.svg">Berg
+                        </option>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/jessie.svg">Jessie
+                        </option>
+                        <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/jessie-blue.svg">Marie
+                        </option>
+                    </select>
+                </div>
+            </div>
+        )
+    }
+
+
     render() {
         const model = this.props.combatant;
         return (
@@ -85,46 +174,23 @@ class CombatantCard extends React.Component {
                     <div className="combatant-image" style={{backgroundImage: `url(${model.skin})`}}></div>
                 </div>
                 <div>
-                    <div>Character</div>
-                    <div>
-                        <label>Name</label>
-                        <input onChange={::this.handleChange} value={model.name} ref="name" />
+                    <div className="combatant-card-section">
+                        {this.renderCharacterInfo()}
                     </div>
-                    <div>
-                        <label>Level</label>
-                        <select onChange={::this.handleChange} value={model.level} ref="level">
-                            {
-                                [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-                                    16,17,18,19,20,21,22,23,24,25,26,27,28,29,30].map(level => {
-                                    return <option value={level} key={level}>{level}</option>
-                                })
-                            }
-                        </select>
+                    <div className="combatant-card-section _flex-row _flex-row-top">
+                        <div className="_c50">
+                            {this.renderStatsInfo()}
+                        </div>
+                        <div className="_c50">
+                            {this.renderAlignmentInfo()}
+                        </div>
                     </div>
-                    <div>
-                        <label>Class</label>
-                        <select onChange={::this.handleChange} value={model.class} ref="class">
-                            <option value="ninja">Ninja</option>
-                            <option value="monk">Monk</option>
-                            <option value="captain">Captain</option>
-                        </select>
+                    <div className="combatant-card-section">
+                        <div className="combatant-card-section-label">Upgrades</div>
+                        <CombatantUpgradeList combatantId={this.props.combatantId}/>
                     </div>
-                    <div>
-                        <label>Skin</label>
-                        <select ref="skin" value={model.skin} onChange={::this.handleChange}>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg">svJacob</option>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-blonde.svg">Punky</option>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg">Travis</option>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew.svg">Drew</option>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-orange.svg">Berg</option>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/jessie.svg">Jessie</option>
-                            <option value="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/jessie-blue.svg">Marie</option>
-                        </select>
-                    </div>
-                    {this.renderStatsInfo()}
-                    <CombatantUpgradeList combatantId={this.props.combatantId} />
                 </div>
-            </div>
+            </div >
         );
     }
 }

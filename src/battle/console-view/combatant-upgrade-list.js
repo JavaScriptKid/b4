@@ -38,7 +38,6 @@ class CombatantUpgradeList extends React.Component {
         });
         return (
            <div>
-               <div>Upgrades</div>
                <div>
                    {upgradeList}
                </div>
@@ -70,8 +69,8 @@ class CombatantUpgrade extends React.Component {
     render() {
         const model = LaptopUpgrades[this.props.libraryId];
         return (
-            <div>
-                <span>{model.name}</span>
+            <div className="_flex-row upgrade-row">
+                <div>{model.name}</div>
                 <button onClick={::this.handleRemove}>Remove</button>
             </div>
         )

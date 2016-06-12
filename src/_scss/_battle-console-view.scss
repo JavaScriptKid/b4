@@ -1,5 +1,17 @@
 .b4 {
 
+    ._flex-row {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        &._flex-row-top {
+            align-items: flex-start;
+        }
+    }
+    ._c50 {
+        width: calc(50% - 1em);
+    }
+
     .wrap {
         width:100%;
         max-width:1100px;
@@ -33,6 +45,15 @@
             flex:1;
         }
     }
+    .combatant-card-section +.combatant-card-section {
+        margin-top:1em;
+    }
+
+    .combatant-card-section-label {
+        text-transform: uppercase;
+        margin-bottom:0.3em;
+    }
+
     .combatant-image {
         position: relative;
         background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg);
@@ -69,6 +90,19 @@
     label {
         display:inline-block;
         width:60px;
+    }
+
+    .upgrade-row {
+        border:1px solid #ccc;
+        border-bottom:0;
+        padding: 0.5em 1em;
+        font-size:0.7em;
+        &:last-of-type {
+            border-bottom: 1px solid #ccc;
+        }
+        button {
+            font-size:0.7em;
+        }
     }
 
 }
