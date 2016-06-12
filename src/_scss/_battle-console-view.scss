@@ -90,6 +90,9 @@
     label {
         display:inline-block;
         width:60px;
+        &.label-long {
+            width:85px;
+        }
     }
 
     .upgrade-row {

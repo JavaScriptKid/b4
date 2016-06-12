@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 import {getClassStatsByLevel} from '../get-class-stats-by-level'
 import CombatantUpgradeList from './combatant-upgrade-list'
+import Frameworks from '../../_data/_frameworks'
 
 @connect((state, props) => {
 
@@ -92,22 +93,17 @@ class CombatantCard extends React.Component {
                 <div className="combatant-card-section-label">
                     Alignment
                 </div>
-                <div>
-                    <label>F1</label>
-                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
-                </div>
-                <div>
-                    <label>F2</label>
-                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
-                </div>
-                <div>
-                    <label>F3</label>
-                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
-                </div>
-                <div>
-                    <label>F4</label>
-                    <span>{stats.maxHp}</span> <span>{this.renderDiff(stats.maxHp, opponentStats.maxHp)}</span>
-                </div>
+                {
+                    Object.keys(Frameworks).map(frameworkId => {
+                        const model = Frameworks[frameworkId];
+                        return (
+                            <div key={frameworkId}>
+                                <label className="label-long">{model.name}</label>
+                                <span>0</span> <span>{this.renderDiff(0, 0)}</span>
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }
