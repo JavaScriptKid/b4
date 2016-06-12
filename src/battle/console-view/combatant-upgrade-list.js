@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
+import LaptopUpgrades from '../../_data/_laptop-upgrades'
 
 
 @connect((state, props) => {
@@ -19,6 +20,16 @@ class CombatantUpgradeList extends React.Component {
         })
     }
 
+    handleAdd(id) {
+        setCombatantValue(this.props.combatantId, {
+            upgrades: [
+                ...this.props.combatant.upgrades,
+                { libraryId: this.refs.adder.value, isEnabled: true }
+            ]
+        });
+        this.refs.adder.value = "";
+    }
+
     render() {
         const upgradeList = this.props.combatant.upgrades.map((u,i) => {
             return (
@@ -31,6 +42,18 @@ class CombatantUpgradeList extends React.Component {
                <div>
                    {upgradeList}
                </div>
+               <div>
+                   <select onChange={::this.handleAdd} ref="adder">
+                        <option value="">Add Upgrade...</option>
+                        { Object.keys(LaptopUpgrades).map( libraryId => {
+                            return (
+                                <option value={libraryId} key={libraryId}>
+                                    {LaptopUpgrades[libraryId].name}
+                                </option>
+                            )
+                        })}
+                   </select>
+               </div>
            </div>
         );
     }
@@ -38,7 +61,6 @@ class CombatantUpgradeList extends React.Component {
 
 export default CombatantUpgradeList;
 
-import LaptopUpgrades from '../../_data/_laptop-upgrades'
 class CombatantUpgrade extends React.Component {
 
     handleRemove() {
