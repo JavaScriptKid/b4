@@ -8,14 +8,14 @@ export default function() {
 
     combatants[makeId('combatant')] = {
         name: "Some Dude A",
-        level: 1,
+        level: 3,
         class: "ninja",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg"
     };
 
     combatants[makeId('combatant')] = {
         name: "Some Dude B",
-        level: 1,
+        level: 3,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg"
     };

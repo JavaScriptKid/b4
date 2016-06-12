@@ -1,11 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
-
+import {getClassStatsByLevel} from '../get-class-stats-by-level'
 
 @connect((state, props) => {
+
+    //assumes only 2 combatants
+    const otherCombatantId = Object.keys(state.battle.combatants).find(id => {
+        return id != props.combatantId
+    });
+
     return {
-        combatant: state.battle.combatants[props.combatantId] || {}
+        combatant: state.battle.combatants[props.combatantId] || {},
+        opponentCombatant: state.battle.combatants[otherCombatantId] || {}
     }
 })
 
@@ -20,34 +27,50 @@ class CombatantCard extends React.Component {
         });
     }
 
+    renderDiff(figA, figB) {
+        if (figA > figB) {
+            return <span style={{color:"#29C09E"}}>(+{figA-figB})</span>
+        }
+        return null;
+    }
 
     renderStatsInfo() {
+        const stats = getClassStatsByLevel(
+            this.props.combatant.class,
+            this.props.combatant.level
+        );
+
+        const opponentStats = getClassStatsByLevel(
+            this.props.opponentCombatant.class,
+            this.props.opponentCombatant.level
+        );
+
         return (
             <div>
                 <div>Stats</div>
                 <div>
                     <label>HP</label>
-                    <span>?</span>
+                    <span>{stats.hp}</span> <span>{this.renderDiff(stats.hp, opponentStats.hp)}</span>
                 </div>
                 <div>
                     <label>PP</label>
-                    <span>?</span>
+                    <span>{stats.pp}</span> <span>{this.renderDiff(stats.pp, opponentStats.pp)}</span>
                 </div>
                 <div>
                     <label>Atk</label>
-                    <span>?</span>
+                    <span>{stats.atk}</span> <span>{this.renderDiff(stats.atk, opponentStats.atk)}</span>
                 </div>
                 <div>
                     <label>Def</label>
-                    <span>?</span>
+                    <span>{stats.def}</span> <span>{this.renderDiff(stats.def, opponentStats.def)}</span>
                 </div>
                 <div>
                     <label>Spec</label>
-                    <span>?</span>
+                    <span>{stats.spec}</span> <span>{this.renderDiff(stats.spec, opponentStats.spec)}</span>
                 </div>
                 <div>
                     <label>Spd</label>
-                    <span>?</span>
+                    <span>{stats.spd}</span> <span>{this.renderDiff(stats.spd, opponentStats.spd)}</span>
                 </div>
             </div>
         )
@@ -68,9 +91,10 @@ class CombatantCard extends React.Component {
                     </div>
                     <div>
                         <label>Level</label>
-                        <select onChange={::this.handleChange} ref="level">
+                        <select onChange={::this.handleChange} value={model.level} ref="level">
                             {
-                                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(level => {
+                                [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+                                    16,17,18,19,20,21,22,23,24,25,26,27,28,29,30].map(level => {
                                     return <option value={level} key={level}>{level}</option>
                                 })
                             }
@@ -79,9 +103,9 @@ class CombatantCard extends React.Component {
                     <div>
                         <label>Class</label>
                         <select onChange={::this.handleChange} value={model.class} ref="class">
-                            <option>Ninja</option>
-                            <option>Monk</option>
-                            <option>Captain</option>
+                            <option value="ninja">Ninja</option>
+                            <option value="monk">Monk</option>
+                            <option value="captain">Captain</option>
                         </select>
                     </div>
                     <div>

@@ -40,11 +40,29 @@ var grow = function(initialValue, growthPattern) {
 export default {
     "ninja": {
         ...ClassSchema,
-        hpGrowthPattern: Presets.standardHp,
-        ppGrowthPattern: [2], //finish filling these out...
-        atkGrowthPattern: [2],
-        defGrowthPattern: [2],
-        specGrowthPattern: [2],
-        spdGrowthPattern: [2],
+        hpGrowthPattern: grow(20, Presets.standardHp),
+        ppGrowthPattern: grow(15, Presets.standardHp),
+        atkGrowthPattern: grow(10, Presets.fastStat),
+        defGrowthPattern: grow(10, Presets.slowStat),
+        specGrowthPattern: grow(10, Presets.standardStat),
+        spdGrowthPattern: grow(10, Presets.slowStat)
+    },
+    "monk": {
+        ...ClassSchema,
+        hpGrowthPattern: grow(20, Presets.standardHp),
+        ppGrowthPattern: grow(15, Presets.fastHp),
+        atkGrowthPattern: grow(10, Presets.slowStat),
+        defGrowthPattern: grow(10, Presets.fastStat),
+        specGrowthPattern: grow(10, Presets.fastStat),
+        spdGrowthPattern: grow(10, Presets.slowStat)
+    },
+    "captain": {
+        ...ClassSchema,
+        hpGrowthPattern: grow(20, Presets.fastHp),
+        ppGrowthPattern: grow(15, Presets.standardHp),
+        atkGrowthPattern: grow(10, Presets.slowStat),
+        defGrowthPattern: grow(10, Presets.fastStat),
+        specGrowthPattern: grow(10, Presets.standardStat),
+        spdGrowthPattern: grow(10, Presets.standardStat)
     }
 };
