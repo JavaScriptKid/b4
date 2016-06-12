@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 import {getClassStatsByLevel} from '../get-class-stats-by-level'
-import CombatantUpgradeList from './combatant-upgrade-list'
+import CombatantLaptopUpgradeList from './combatant-laptop-upgrade-list'
+import CharacterUpgradeChecklist from './combatant-character-upgrade-checklist'
 import Frameworks from '../../_data/_frameworks'
 import {getAlignmentByUpgrades} from '../get-alignment-by-upgrades'
 
@@ -179,8 +180,12 @@ class CombatantCard extends React.Component {
                         </div>
                     </div>
                     <div className="combatant-card-section">
-                        <div className="combatant-card-section-label">Upgrades</div>
-                        <CombatantUpgradeList combatantId={this.props.combatantId}/>
+                        <div className="combatant-card-section-label">Laptop Upgrades</div>
+                        <CombatantLaptopUpgradeList combatantId={this.props.combatantId}/>
+                    </div>
+                    <div className="combatant-card-section">
+                        <div className="combatant-card-section-label">Character Upgrade</div>
+                        <CharacterUpgradeChecklist combatantId={this.props.combatantId}/>
                     </div>
                 </div>
             </div >

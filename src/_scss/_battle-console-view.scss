@@ -9,7 +9,7 @@
         }
     }
     ._c50 {
-        width: calc(50% - 1em);
+        width: calc(50%);
     }
 
     .wrap {
@@ -91,7 +91,7 @@
         display:inline-block;
         width:60px;
         &.label-long {
-            width:85px;
+            width:80px;
         }
     }
 
