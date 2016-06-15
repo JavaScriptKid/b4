@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CharacterUpgrades from '../../_data/_character-upgrades'
+import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 
 @connect((state, props) => {
     return {
@@ -9,10 +10,6 @@ import CharacterUpgrades from '../../_data/_character-upgrades'
 })
 
 class CharacterUpgradeChecklist extends React.Component {
-
-    handleUpgradeChange() {
-        console.log('asd')
-    }
 
     render() {
         const upgrades = Object.keys(CharacterUpgrades).map((upgradeId, i) => {
@@ -24,12 +21,14 @@ class CharacterUpgradeChecklist extends React.Component {
             });
 
             return (
-                <div key={i}>
-                    {model.name}
-                    <input onChange={::this.handleUpgradeChange}
-                           checked={isChecked} type="checkbox"
-                    />
-                </div>
+                <CharacterUpgradeCheckbox
+                    key={i}
+                    isChecked={isChecked ? true : false}
+                    name={model.name}
+                    upgradeId={upgradeId}
+                    combatantId={this.props.combatantId}
+                    characterUpgrades={this.props.combatant.characterUpgrades}
+                />
             )
         });
 
@@ -40,5 +39,36 @@ class CharacterUpgradeChecklist extends React.Component {
         )
     }
 }
-
 export default CharacterUpgradeChecklist;
+
+
+class CharacterUpgradeCheckbox extends React.Component {
+    handleUpgradeChange() {
+        if (this.props.isChecked) {
+            /* Remove one that was checked */
+            setCombatantValue( this.props.combatantId, {
+                characterUpgrades: this.props.characterUpgrades.filter( u => {
+                    return u.libraryId != this.props.upgradeId
+                })
+            });
+            return
+        }
+        /* Add one that was not checked */
+        setCombatantValue( this.props.combatantId, {
+            characterUpgrades: [
+                ...this.props.characterUpgrades,
+                { libraryId: this.props.upgradeId }
+            ]
+        });
+    }
+    render() {
+        return (
+            <div>
+                {this.props.name}
+                <input ref="checkbox" onChange={::this.handleUpgradeChange}
+                       checked={this.props.isChecked} type="checkbox"
+                />
+            </div>
+        )
+    }
+}
