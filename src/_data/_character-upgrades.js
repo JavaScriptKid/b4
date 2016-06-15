@@ -40,7 +40,7 @@ export default {
     "character-upgrade-004-ii": { //TODO
         ...upgradeSchema,
         name: "1 Extra Item",
-        description: "Bring an item to battle"
+        description: "Bring an extra item to battle"
     },
 
     /* Danger Meter */
