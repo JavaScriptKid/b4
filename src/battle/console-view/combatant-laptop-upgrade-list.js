@@ -14,7 +14,7 @@ class CombatantUpgradeList extends React.Component {
 
     handleRemove(index) {
         setCombatantValue(this.props.combatantId, {
-            upgrades: this.props.combatant.upgrades.filter((u,i) => {
+            laptopUpgrades: this.props.combatant.laptopUpgrades.filter((u,i) => {
                 return i != index
             })
         })
@@ -22,8 +22,8 @@ class CombatantUpgradeList extends React.Component {
 
     handleAdd(id) {
         setCombatantValue(this.props.combatantId, {
-            upgrades: [
-                ...this.props.combatant.upgrades,
+            laptopUpgrades: [
+                ...this.props.combatant.laptopUpgrades,
                 { libraryId: this.refs.adder.value, isEnabled: true }
             ]
         });
@@ -31,7 +31,7 @@ class CombatantUpgradeList extends React.Component {
     }
 
     render() {
-        const upgradeList = this.props.combatant.upgrades.map((u,i) => {
+        const upgradeList = this.props.combatant.laptopUpgrades.map((u,i) => {
             return (
                 <CombatantUpgrade key={i} handleRemove={::this.handleRemove} listIndex={i} libraryId={u.libraryId} />
             )

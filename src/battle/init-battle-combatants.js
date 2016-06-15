@@ -11,10 +11,13 @@ export default function() {
         level: 3,
         class: "ninja",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
-        upgrades: [
+        laptopUpgrades: [
             { libraryId: "laptop-upgrade_001", isEnabled: true },
             { libraryId: "laptop-upgrade_002", isEnabled: true },
             { libraryId: "laptop-upgrade_003", isEnabled: true } /* can be disabled by special attacks? */
+        ],
+        characterUpgrades: [
+            { libraryId: "character-upgrade-001-i" }
         ]
     };
 
@@ -23,7 +26,11 @@ export default function() {
         level: 3,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
-        upgrades: []
+        laptopUpgrades: [],
+        characterUpgrades: [
+            {libraryId: "character-upgrade-005-i"},
+            {libraryId: "character-upgrade-005-ii"}
+        ]
     };
 
 

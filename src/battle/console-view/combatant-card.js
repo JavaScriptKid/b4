@@ -84,8 +84,8 @@ class CombatantCard extends React.Component {
 
     renderAlignmentInfo() {
         /* TEMPORARY */
-        const stats = getAlignmentByUpgrades(this.props.combatant.upgrades);
-        const opponentStats = getAlignmentByUpgrades( this.props.opponentCombatant.upgrades );
+        const stats = getAlignmentByUpgrades(this.props.combatant.laptopUpgrades);
+        const opponentStats = getAlignmentByUpgrades( this.props.opponentCombatant.laptopUpgrades );
         return (
             <div>
                 <div className="combatant-card-section-label">

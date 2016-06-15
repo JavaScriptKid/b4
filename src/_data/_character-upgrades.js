@@ -1,4 +1,3 @@
-
 const upgradeSchema = {
     name: "insertNameHere",
     description: "insertDescriptionHere"
@@ -32,7 +31,7 @@ export default {
         ...upgradeSchema,
         name: "1 Extra Attack",
         description: "Bring an extra attack to battle"
-    }
+    },
     "character-upgrade-004-i": {
         ...upgradeSchema,
         name: "1 Extra Item",
