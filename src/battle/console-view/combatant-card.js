@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
-import {getClassStatsByLevel} from '../get-class-stats-by-level'
+import {getCombatantStats} from '../get-combatant-stats'
 import CombatantLaptopUpgradeList from './combatant-laptop-upgrade-list'
 import CharacterUpgradeChecklist from './combatant-character-upgrade-checklist'
 import Frameworks from '../../_data/_frameworks'
@@ -39,15 +39,8 @@ class CombatantCard extends React.Component {
     }
 
     renderStatsInfo() {
-        const stats = getClassStatsByLevel(
-            this.props.combatant.class,
-            this.props.combatant.level
-        );
-
-        const opponentStats = getClassStatsByLevel(
-            this.props.opponentCombatant.class,
-            this.props.opponentCombatant.level
-        );
+        const stats = getCombatantStats(this.props.combatant);
+        const opponentStats = getCombatantStats(this.props.opponentCombatant);
 
         return (
             <div>

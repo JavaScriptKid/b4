@@ -1,4 +1,4 @@
-import Classes from '../_data/_classes'
+import Classes from '../../_data/_classes'
 
 export function getClassStatsByLevel(characterClass="", level=1) {
 
