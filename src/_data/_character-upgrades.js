@@ -15,7 +15,7 @@ export default {
         name: "Battery Lord II",
         description: "Gain 2 extra HP points for every level earned"
     },
-    "character-upgrade-002": { //TODO
+    "character-upgrade-002": { /* Implemented! */
         ...upgradeSchema,
         name: "Swordsman",
         description: "Gain an extra Attack point for every level earned"

@@ -8,14 +8,13 @@ export function getCombatantStats(combatant={}) {
     return {
         maxHp: applyHealthUpgrades(stats.maxHp, combatant),
         maxPp: stats.maxPp,
-        atk: stats.atk,
+        atk: applyAttackUpgrades(stats.atk, combatant),
         def: stats.def,
         spec: stats.spec,
         spd: stats.spd
     }
 
 }
-
 
 
 var hasUpgrade = function(libraryId="", dataset=[]) {
@@ -36,6 +35,18 @@ var applyHealthUpgrades = function(initialValue=0, combatant={}) {
     }
     if (firstHealthUpgrade && secondHealthUpgrade) {
         value = parseInt(value) + ( parseInt(combatant.level) * 2 );
+    }
+
+    return value;
+};
+
+/* Attack Upgrade */
+var applyAttackUpgrades = function(initialValue=0, combatant={}) {
+    var value = initialValue;
+    const firstAttackUpgrade = hasUpgrade("character-upgrade-002", combatant.characterUpgrades);
+
+    if (firstAttackUpgrade) {
+        value = parseInt(value) + ( parseInt(combatant.level) );
     }
 
     return value;
