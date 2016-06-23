@@ -7,6 +7,7 @@ const mockCurrentUser = {
 
 const store = createStore({
     battle: {
+        devTimeTravelTurn: 0,
         viewMode: "console" //"console" || "battle"
     },
     map: {

@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
+//TRYING SOMETHING
+import {battle} from './redux-reducers/battle-reducer'
+
 import store from './init/store';
 import Viewport from './viewport/viewport'
 import initBattleCombatants from './battle/init-battle-combatants'
@@ -12,6 +15,23 @@ var RootComponent = React.createClass({
         /* B4 demo only. */
         //Seed the battle
         initBattleCombatants();
+
+        console.log(store.getState().battle.viewMode);
+
+        const nextState = battle( store.getState().battle, {
+            type: "SET_BATTLE_VALUE",
+            payload: {
+                changes: {
+                    viewMode: "something else"
+                }
+            }
+        })
+
+        console.log(nextState)
+        console.log(store.getState().battle.viewMode);
+
+
+
     },
 
     render() {

@@ -1,19 +1,23 @@
 export default {
     name: "",
     description: "",
-    animation: "tada",
+
+    messageTemplate: [
+        "MESSAGE:[FAST]{casterName} used {actionName}!",
+        "ANIMATION:tada"
+    ],
 
 
     //Cost
     ppCost: 0,
 
-    //Combatant Stats /* rolls will affect these too */
+    //Combatant Stats
     affectTargetHpPoints: 0,
     affectTargetHpPointsByPercent: 0,
     affectTargetAttackPoints: 0,
     affectTargetDefensePoints: 0,
     affectTargetSpeedPoints: 0,
-    affectTargetEfficiencyPoints: 0,
+    affectTargetSpecialPoints: 0,
     affectTargetAccuracyPoints: 0,
 
     affectCasterHpPoints: 0,
@@ -21,7 +25,7 @@ export default {
     affectCasterAttackPoints: 0,
     affectCasterDefensePoints: 0,
     affectCasterSpeedPoints: 0,
-    affectCasterEfficiencyPoints: 0,
+    affectCasterSpecialPoints: 0,
     affectCasterAccuracyPoints: 0,
 
     //Item stats
@@ -44,12 +48,7 @@ export default {
     targetResistanceNeeded: 0, /* target needs defense roll higher than this (?), or it will fail */
 
     //Turn status
-    repetitions: [], /* [1, 4*/
+    repetitions: [], /* [1, 4]*/
     speedModifier: 0,
     accuracyModifier: 0,
-
-    //Natural
-    isNaturalStatusEvent: false,
-    submittedByStatus: null
-
 }
