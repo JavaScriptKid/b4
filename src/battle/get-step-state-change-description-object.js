@@ -8,9 +8,9 @@ export default function(action, casterState, targetState) {
         if (action.repetitions.length) {
             //Do the roll [x,x] amount of times
             changes.repetitionsCount = 5;
-            changes.changeCasterHp = 45;
+            changes.affectCasterHp = -45;
         } else {
-            changes.changeCasterHp = targetState.hp - action.affectTargetHpPoints; //Should be a proper roll?
+            changes.affectCasterHp = action.affectTargetHpPoints * -1; //Should be a proper roll?
         }
 
     }

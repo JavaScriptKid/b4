@@ -15,7 +15,7 @@ describe('Regular attacks', () => {
             hp: 100
         };
 
-        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).changeCasterHp )
+        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).affectCasterHp )
     });
 
     it('describes repetitions', () => {
@@ -32,6 +32,6 @@ describe('Regular attacks', () => {
         };
 
         assert.isDefined( getStepChangeDescriptionObject(action, caster, target).repetitionsCount )
-        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).changeCasterHp )
+        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).affectCasterHp )
     });
 });
