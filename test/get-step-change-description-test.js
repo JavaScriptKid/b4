@@ -18,6 +18,20 @@ describe('PP Changes', () => {
     });
 });
 
+describe('Missing', () => {
+    it('adds a property for missing', () => {
+
+        const action = {
+            ...BattleActionSchema
+        };
+        const caster = {
+        };
+        const target = {};
+
+        assert.isDefined(getStepChangeDescriptionObject(action, caster, target).didActionMiss)
+    });
+});
+
 
 describe('Regular attacks', () => {
     it('describes hp being changed', () => {
