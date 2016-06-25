@@ -18,14 +18,26 @@ describe('PP Changes', () => {
     });
 });
 
+describe('Super Charged', () => {
+    it('adds a property for being Super Charged', () => {
+
+        const action = {
+            ...BattleActionSchema
+        };
+        const caster = {};
+        const target = {};
+
+        assert.isDefined(getStepChangeDescriptionObject(action, caster, target).isSuperCharged)
+    });
+});
+
 describe('Missing', () => {
     it('adds a property for missing', () => {
 
         const action = {
             ...BattleActionSchema
         };
-        const caster = {
-        };
+        const caster = {};
         const target = {};
 
         assert.isDefined(getStepChangeDescriptionObject(action, caster, target).didActionMiss)
@@ -40,8 +52,7 @@ describe('Regular attacks', () => {
             ...BattleActionSchema,
             affectTargetHpPoints: 10
         };
-        const caster = {
-        };
+        const caster = {};
         const target = {
             hp: 100
         };
@@ -56,8 +67,7 @@ describe('Regular attacks', () => {
             affectTargetHpPoints: 2,
             repetitions: [2,5]
         };
-        const caster = {
-        };
+        const caster = {};
         const target = {
             hp: 100
         };
