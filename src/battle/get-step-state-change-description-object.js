@@ -1,20 +1,14 @@
+import {getRegularAttackChanges} from './calculations/regular-attack'
+import {getStatusChanges} from './calculations/change-status'
+import {getPpChanges} from './calculations/change-pp'
+
 export default function(action, casterState, targetState) {
     let changes = {};
 
     /* Build up an object full of descriptive properties */
-
-    if (action.affectTargetHpPoints > 0) {
-
-        if (action.repetitions.length) {
-            //Do the roll [x,x] amount of times
-            changes.repetitionsCount = 5;
-            changes.affectCasterHp = -45;
-        } else {
-            changes.affectCasterHp = action.affectTargetHpPoints * -1; //Should be a proper roll?
-        }
-
-    }
-
+    changes = getPpChanges(action, casterState, targetState, changes);
+    changes = getRegularAttackChanges(action, casterState, targetState, changes);
+    changes = getStatusChanges(action, casterState, targetState, changes);
 
     return {
         ...changes

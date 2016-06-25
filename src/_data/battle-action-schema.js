@@ -39,7 +39,7 @@ export default {
     protectCasterFromStatuses: [],
     clearCasterStatuses: [],
 
-    affectTargetStatus: "normal",
+    affectTargetStatus: null, //"normal", "memory-leak", "lag", "fury", "zen", "fire
     statusTurnCount: [], /* [min, max] */
 
     //Theft
