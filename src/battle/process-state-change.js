@@ -1,27 +1,27 @@
-/* THIS IS EXPERIMENTAL AND I'LL PROBABLY NOT DO IT. */
-export function getStateFromChanges(initialState, orderOfChanges) {
-
-    //var result = {};
-    //
-    //orderOfChanges.forEach(changes => {
-    //    result = {
-    //        ...result,
-    //        ...changes
-    //    }
-    //
-    //});
-    //
-    //return result;
-
-    return [initialState, ...orderOfChanges].reduce((a,b) => {
-        const next = {
-            ...a,
-            ...b
-        };
-        return next;
-    });
-
-}
+///* THIS IS EXPERIMENTAL AND I'LL PROBABLY NOT DO IT. */
+//export function getStateFromChanges(initialState, orderOfChanges) {
+//
+//    //var result = {};
+//    //
+//    //orderOfChanges.forEach(changes => {
+//    //    result = {
+//    //        ...result,
+//    //        ...changes
+//    //    }
+//    //
+//    //});
+//    //
+//    //return result;
+//
+//    return [initialState, ...orderOfChanges].reduce((a,b) => {
+//        const next = {
+//            ...a,
+//            ...b
+//        };
+//        return next;
+//    });
+//
+//}
 
 function getRolloutStep(thisAction={}, state={}) { //"Calculations"
     // state = { combatantA: {}, combatantB: {} }

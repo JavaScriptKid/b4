@@ -2,12 +2,6 @@ export default {
     name: "",
     description: "",
 
-    messageTemplate: [
-        "MESSAGE:[FAST]{casterName} used {actionName}!",
-        "ANIMATION:tada"
-    ],
-
-
     //Cost
     ppCost: 0,
 
@@ -51,4 +45,11 @@ export default {
     repetitions: [], /* [1, 4]*/
     speedModifier: 0,
     accuracyModifier: 0,
+
+    getRolloutOutput: function(properties={}) {
+        return [
+            `MESSAGE:${properties.playerName} did something.`,
+            `ANIMATION:${properties.animationName}`
+        ]
+    }
 }

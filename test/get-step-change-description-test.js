@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import getStepChangeDescriptionObject from '../src/battle/get-step-state-change-description-object'
-import BattleActionSchema from '../src/_data/battle-action-schema'
+import BattleActionSchema from '../src/_data/battle-actions/battle-action-schema'
 
 describe('PP Changes', () => {
     it('reduces the caster\'s PP by the correct amount', () => {

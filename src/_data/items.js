@@ -1,4 +1,4 @@
-import actionSchema from './battle-action-schema'
+import actionSchema from './battle-actions/battle-action-schema'
 
 const itemSchema = {
     sellValue: 0,
