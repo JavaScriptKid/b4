@@ -1,0 +1,16 @@
+.battle-arena {
+    height: 100%;
+    width:100%;
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/stars.png") repeat repeat,
+                    linear-gradient(-180deg, #9EB7D0 0%, #7C989D 100%);
+
+    .battle-message-box {
+        height:33.3%;
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        color: #fff;
+        background:#111;
+    }
+}

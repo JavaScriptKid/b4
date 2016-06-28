@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import resizer from './resizer'
 import BattleConsoleView from '../battle/console-view/console-view'
+import BattleArenaView from '../battle/arena-view/arena-view'
 
 @connect((state, props) => {
     return {
@@ -31,7 +32,7 @@ class Viewport extends React.Component {
         return (
             <div className="ui-wrapper">
                 <div style={viewportStyle} className={`viewport viewport-${this.props.vpWidth}`}>
-                    Game Frame
+                    <BattleArenaView />
                 </div>
             </div>
         );
