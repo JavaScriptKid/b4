@@ -8,7 +8,7 @@ export function nextStateFromDescription(dObj, currentState) {
     nextState[dObj.targetId] = {};
 
 
-    //Properties
+    /* Properties */
     [
         //Pp
         {forId: dObj["casterId"], descriptionProp: "affectCasterPp", stateProp: "pp", addToOld: true},
