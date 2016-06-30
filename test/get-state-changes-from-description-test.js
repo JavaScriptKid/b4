@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-import { nextStateFromDescription } from '../src/battle/get-next-state-from-description';
+import { getStateChangesFromDescription } from '../src/battle/get-state-changes-from-description';
 
-describe('getNextStateFromDescription', () => {
+describe('getStateChangesFromDescription', () => {
     it('generates new state for hp and pp changes', () => {
 
         const descriptionObject = {
@@ -19,7 +19,7 @@ describe('getNextStateFromDescription', () => {
             }
         };
 
-        assert.deepEqual( nextStateFromDescription(descriptionObject, state), {
+        assert.deepEqual( getStateChangesFromDescription(descriptionObject, state), {
             "a": {
                 hp: 2
             },
@@ -49,7 +49,7 @@ describe('getNextStateFromDescription', () => {
             }
         };
 
-        assert.deepEqual( nextStateFromDescription(descriptionObject, state), {
+        assert.deepEqual( getStateChangesFromDescription(descriptionObject, state), {
             "a": {
                 status: "lag"
             },

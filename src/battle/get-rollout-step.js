@@ -1,7 +1,7 @@
 import Actions from '../_data/battle-actions'
 import {CombatantModel} from './combatant-model'
 import {getStepDescriptionObject} from './get-step-description-object'
-import {nextStateFromDescription} from './get-next-state-from-description'
+import {stateChangesFromDescription} from './get-state-changes-from-description'
 import {getStepOutput} from './get-step-output'
 
 export function getRolloutStep(subaction, state) {
@@ -11,7 +11,9 @@ export function getRolloutStep(subaction, state) {
 
     const stepDescriptionObject = getStepDescriptionObject(action, casterModel, targetModel);
     const stepOutput = getStepOutput(action, casterModel, targetModel, stepDescriptionObject);
-    const nextState = nextStateFromDescription(stepDescriptionObject, state);
+    const nextState = stateChangesFromDescription(stepDescriptionObject, state);
+
+
 
     return {
         nextState: nextState,

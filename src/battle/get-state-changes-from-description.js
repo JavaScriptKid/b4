@@ -1,6 +1,6 @@
 /* Take in the changes from description, and figure out the redux-friendly state changes */
 
-export function nextStateFromDescription(dObj, currentState) {
+export function getStateChangesFromDescription(dObj, currentState) {
 
     var nextState = {};
 
