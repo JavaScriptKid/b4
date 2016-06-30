@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import getStepChangeDescriptionObject from '../src/battle/get-step-state-change-description-object'
+import {getStepDescriptionObject} from '../src/battle/get-step-description-object'
 import BattleActionSchema from '../src/_data/battle-actions/battle-action-schema'
 
 describe('PP Changes', () => {
@@ -14,7 +14,7 @@ describe('PP Changes', () => {
         };
         const target = {};
 
-        assert.equal(getStepChangeDescriptionObject(action, caster, target).affectCasterPp, 20)
+        assert.equal(getStepDescriptionObject(action, caster, target).affectCasterPp, 20)
     });
 });
 
@@ -27,7 +27,7 @@ describe('Super Charged', () => {
         const caster = {};
         const target = {};
 
-        assert.isDefined(getStepChangeDescriptionObject(action, caster, target).isSuperCharged)
+        assert.isDefined(getStepDescriptionObject(action, caster, target).isSuperCharged)
     });
 });
 
@@ -40,7 +40,7 @@ describe('Missing', () => {
         const caster = {};
         const target = {};
 
-        assert.isDefined(getStepChangeDescriptionObject(action, caster, target).didActionMiss)
+        assert.isDefined(getStepDescriptionObject(action, caster, target).didActionMiss)
     });
 });
 
@@ -57,7 +57,7 @@ describe('Regular attacks', () => {
             hp: 100
         };
 
-        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).affectTargetHp )
+        assert.isDefined( getStepDescriptionObject(action, caster, target).affectTargetHp )
     });
 
     it('describes repetitions', () => {
@@ -72,8 +72,8 @@ describe('Regular attacks', () => {
             hp: 100
         };
 
-        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).repetitionsCount )
-        assert.isDefined( getStepChangeDescriptionObject(action, caster, target).affectTargetHp )
+        assert.isDefined( getStepDescriptionObject(action, caster, target).repetitionsCount )
+        assert.isDefined( getStepDescriptionObject(action, caster, target).affectTargetHp )
     });
 });
 
@@ -87,6 +87,6 @@ describe('Status Changes', () => {
         const caster = {};
         const target = {};
 
-        assert.isDefined(getStepChangeDescriptionObject(action, caster, target).affectTargetStatus)
+        assert.isDefined(getStepDescriptionObject(action, caster, target).affectTargetStatus)
     });
 });

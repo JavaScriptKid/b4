@@ -46,10 +46,17 @@ export default {
     speedModifier: 0,
     accuracyModifier: 0,
 
-    getRolloutOutput: function(properties={}) {
-        return [
-            `MESSAGE:${properties.playerName} did something.`,
-            `ANIMATION:${properties.animationName}`
-        ]
-    }
+    //getRolloutOutput: function(properties={}) {
+    //    return [
+    //        `MESSAGE:${properties.playerName} did something.`,
+    //        `ANIMATION:${properties.animationName}`
+    //    ]
+    //}
+
+    customSuccessStep: null, //function,
+    customMissStep: null, //function,
+    customFailStep: null, //function,
+
+
+
 }

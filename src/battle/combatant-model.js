@@ -1,4 +1,4 @@
-export function combatantModel(combatantState={}) {
+export function CombatantModel(combatantState={}) {
     return {
         ...combatantState,
         accuracyRoll: (90 + combatantState.accuracyModifier), /* should be 0 to 100 after modifiers */
