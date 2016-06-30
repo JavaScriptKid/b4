@@ -1,8 +1,11 @@
 import Actions from '../_data/battle-actions'
 import {CombatantModel} from './combatant-model'
 import {getStepDescriptionObject} from './get-step-description-object'
-import {stateChangesFromDescription} from './get-state-changes-from-description'
+import {getStateChangesFromDescription} from './get-state-changes-from-description'
+import {getMergedCombatantState} from './get-merged-combatant-state'
+
 import {getStepOutput} from './get-step-output'
+
 
 export function getRolloutStep(subaction, state) {
     const action = Actions[subaction.actionId];
@@ -11,12 +14,11 @@ export function getRolloutStep(subaction, state) {
 
     const stepDescriptionObject = getStepDescriptionObject(action, casterModel, targetModel);
     const stepOutput = getStepOutput(action, casterModel, targetModel, stepDescriptionObject);
-    const nextState = stateChangesFromDescription(stepDescriptionObject, state);
+    const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state);
 
-
-
+    
     return {
-        nextState: nextState,
+        nextState: getMergedCombatantState(stateChanges, state),
         rolloutSteps: stepOutput
     }
 
