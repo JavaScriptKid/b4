@@ -6,7 +6,8 @@ import LaptopUpgrades from '../../_data/_laptop-upgrades'
 
 @connect((state, props) => {
     return {
-        combatant: state.battle.combatants[props.combatantId] || {}
+        //combatant: state.battle.combatants[props.combatantId] || {}
+        combatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[props.combatantId] || {},
     }
 })
 

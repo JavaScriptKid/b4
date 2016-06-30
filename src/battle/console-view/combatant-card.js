@@ -10,13 +10,17 @@ import {getAlignmentByUpgrades} from '../get-alignment-by-upgrades'
 @connect((state, props) => {
 
     //assumes only 2 combatants
-    const otherCombatantId = Object.keys(state.battle.combatants).find(id => {
+    const otherCombatantId = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants).find(id => {
         return id != props.combatantId
     });
 
     return {
-        combatant: state.battle.combatants[props.combatantId] || {},
-        opponentCombatant: state.battle.combatants[otherCombatantId] || {}
+        //combatant: state.battle.combatants[props.combatantId] || {},
+        //opponentCombatant: state.battle.combatants[otherCombatantId] || {}
+
+        combatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[props.combatantId] || {},
+        opponentCombatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[otherCombatantId] || {},
+
     }
 })
 

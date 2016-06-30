@@ -8,6 +8,14 @@ const mockCurrentUser = {
 const store = createStore({
     battle: {
         devTimeTravelTurn: 0,
+        history: [
+            /*
+            {
+                cloudQueue: [],
+                combatants: {}
+            }
+            */
+        ],
         viewMode: "console" //"console" || "battle"
     },
     map: {

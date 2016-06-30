@@ -4,7 +4,7 @@ import CombatantCard from './combatant-card'
 
 @connect((state, props) => {
     return {
-        combatantIds: Object.keys(state.battle.combatants)
+        combatantIds: Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants)
     }
 })
 

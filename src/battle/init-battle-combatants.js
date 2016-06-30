@@ -27,7 +27,7 @@ export default function() {
 
     combatants[makeId('combatant')] = {
         ...initialCombatantProperties,
-        
+
         name: "Some Dude B",
         level: 3,
         class: "captain",
@@ -42,8 +42,13 @@ export default function() {
 
     /* Fresh kickoff of battle */
     setBattleValue({
-        combatants: {
-            ...combatants
-        }
+        history: [
+            {
+                cloudQueue: [],
+                combatants: {
+                    ...combatants
+                }
+            }
+        ]
     })
 }

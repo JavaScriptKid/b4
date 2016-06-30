@@ -6,6 +6,8 @@ describe('Integration', () => {
     it('can can go from submissions to rollout queue', () => {
         initBattleCombatants();
         const state = store.getState().battle;
+
+
         console.log(state)
     });
 });

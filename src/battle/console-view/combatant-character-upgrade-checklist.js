@@ -5,7 +5,8 @@ import {setCombatantValue} from '../../redux-action-creators/battle-action-creat
 
 @connect((state, props) => {
     return {
-        combatant: state.battle.combatants[props.combatantId] || {}
+        //combatant: state.battle.combatants[props.combatantId] || {}
+        combatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[props.combatantId] || {},
     }
 })
 
