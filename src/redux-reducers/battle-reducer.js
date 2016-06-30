@@ -14,7 +14,7 @@ export function battle(state = {}, action) {
                 ...action.payload.changes
             });
 
-            
+            /* Apply changes only to `combatants` in most recent history entry */
             return {
                 ...state,
                 history: [
