@@ -9,20 +9,23 @@ describe('Integration', () => {
         const timeIndex = store.getState().battle.devTimeTravelTurn;
         const combatants = { ...history[timeIndex].combatants};
 
+        const player1Id = Object.keys(combatants)[0];
+        const player2Id = Object.keys(combatants)[1];
+
         const submissions = [
             {
-                casterId: Object.keys(combatants)[0],
-                targetId: Object.keys(combatants)[1],
+                casterId: player1Id,
+                targetId: player2Id,
                 actionId: "attack-001-a"
             },
             {
-                casterId: Object.keys(combatants)[1],
-                targetId: Object.keys(combatants)[0],
+                casterId: player2Id,
+                targetId: player1Id,
                 actionId: "attack-002-a"
             }
         ];
 
-        console.log(combatants)
-        console.log(submissions)
+        console.log(combatants);
+        console.log(submissions);
     });
 });

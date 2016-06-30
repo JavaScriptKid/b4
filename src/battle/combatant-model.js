@@ -5,6 +5,10 @@ export function CombatantModel(combatantState={}) {
         attackRating: (combatantState.attackStatPoints + combatant.attackModifier),
         defenseRating: (combatantState.defenseStatPoints + combatant.defenseModifier),
         isDead: (combatantState.hp <= 0),
-        isAlive: (combatantState.hp > 0)
+        isAlive: (combatantState.hp > 0),
+
+        speedRoll: function(externalSpeedModification=0) {
+            return combatantState.speedStatPoints + combatantState.speedModifier + externalSpeedModification
+        }
     }
 }
