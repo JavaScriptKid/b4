@@ -6,13 +6,24 @@ export function battle(state = {}, action) {
             return setValue(state, action.payload.changes);
 
         case "MERGE_COMBATANT":
-            const node = editNode(state.combatants, action.payload.key, {
+
+            const currentHistory = [...state.history];
+            const lastEntry = currentHistory[ currentHistory.length - 1];
+
+            const node = editNode(lastEntry.combatants, action.payload.key, {
                 ...action.payload.changes
             });
 
+            
             return {
                 ...state,
-                combatants: node
+                history: [
+                    ...currentHistory.filter(i => { return i < (currentHistory.length-1) }),
+                    {
+                        cloudQueue: lastEntry.cloudQueue,
+                        combatants: {...node}
+                    }
+                ]
             };
 
         default:
