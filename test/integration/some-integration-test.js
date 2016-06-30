@@ -2,6 +2,7 @@ import {assert} from 'chai'
 import store from '../../src/init/store'
 import initBattleCombatants from '../../src/battle/init-battle-combatants'
 import { SubmissionModel } from '../../src/battle/submissions/submission-utilities'
+import { executeTurn } from '../../src/battle/execute-turn'
 
 
 /* These functions require environmental data */
@@ -26,20 +27,23 @@ describe('Integration', () => {
 
     it('can can go from submissions to rollout queue', () => {
 
-        const submissions = [
+        const submissions = [ /* Submission models */
             {
                 casterId: player1Id,
                 targetId: player2Id,
-                actionId: "attack-001-a"
+                actionId: "attack-001-a",
+                speedRoll: 3
             },
             {
                 casterId: player2Id,
                 targetId: player1Id,
-                actionId: "attack-002-a"
+                actionId: "attack-002-a",
+                speedRoll: 99
             }
         ];
 
-        // console.log(combatants);
-        // console.log(submissions);
+        const result = executeTurn(submissions);
+        console.log(result)
+
     });
 });

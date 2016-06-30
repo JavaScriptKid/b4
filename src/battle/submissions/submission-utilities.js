@@ -25,7 +25,6 @@ export function SubmissionModel(actionId="", casterId="", targetId="") {
 }
 
 
-
 /**
  * =getOrderedActionsFromSubmissions
  * Returns new array sorted by speedRoll
