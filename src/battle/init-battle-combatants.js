@@ -1,4 +1,6 @@
 import { setBattleValue } from '../redux-action-creators/battle-action-creators'
+import initialCombatantProperties from './initial-combatant-properties'
+
 import makeId from '../helpers/make-id'
 
 
@@ -7,6 +9,8 @@ export default function() {
     var combatants = {};
 
     combatants[makeId('combatant')] = {
+        ...initialCombatantProperties,
+
         name: "Some Dude A",
         level: 3,
         class: "ninja",
@@ -22,6 +26,8 @@ export default function() {
     };
 
     combatants[makeId('combatant')] = {
+        ...initialCombatantProperties,
+        
         name: "Some Dude B",
         level: 3,
         class: "captain",
