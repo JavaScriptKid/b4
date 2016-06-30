@@ -1,16 +1,30 @@
 import {assert} from 'chai'
 import store from '../../src/init/store'
 import initBattleCombatants from '../../src/battle/init-battle-combatants'
+import { SubmissionModel } from '../../src/battle/submissions/submission-utilities'
 
+
+/* These functions require environmental data */
 describe('Integration', () => {
-    it('can can go from submissions to rollout queue', () => {
-        initBattleCombatants();
-        const history = store.getState().battle.history;
-        const timeIndex = store.getState().battle.devTimeTravelTurn;
-        const combatants = { ...history[timeIndex].combatants};
 
-        const player1Id = Object.keys(combatants)[0];
-        const player2Id = Object.keys(combatants)[1];
+    initBattleCombatants();
+    var history = store.getState().battle.history;
+    var timeIndex = store.getState().battle.devTimeTravelTurn;
+    var combatants = { ...history[timeIndex].combatants};
+
+    var player1Id = Object.keys(combatants)[0];
+    var player2Id = Object.keys(combatants)[1];
+
+
+    describe('Submission model', () => {
+        it('turns a submission data and adds Speed Roll', () => {
+            const result = SubmissionModel("attack-002-a", player1Id, player2Id);
+            assert.isDefined(result.speedRoll);
+        });
+    });
+
+
+    it('can can go from submissions to rollout queue', () => {
 
         const submissions = [
             {
@@ -25,7 +39,7 @@ describe('Integration', () => {
             }
         ];
 
-        console.log(combatants);
-        console.log(submissions);
+        // console.log(combatants);
+        // console.log(submissions);
     });
 });
