@@ -45,5 +45,7 @@ describe('Integration', () => {
         const result = executeTurn(submissions);
         console.log(result)
 
+        assert.equal("the test is finished","true")
+
     });
 });
