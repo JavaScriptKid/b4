@@ -6,6 +6,7 @@ import {getMergedCombatantState} from './get-merged-combatant-state'
 import {getUpdatedCloudQueue} from './get-updated-cloud-queue'
 
 import {getStepOutput} from './get-step-output'
+import {getDeadCombatantId} from './get-dead-combatant-id'
 
 
 export function getRolloutStep(subaction, state) {
@@ -16,8 +17,10 @@ export function getRolloutStep(subaction, state) {
 
     /* -- Bouncer -- */
     /* cancel if caster is dead, unless this is the "die" action */
-    if (subaction.actionId != "natural-death-a" && (casterModel.isDead || targetModel.isDead)) {
-        return null;
+    if (getDeadCombatantId(state)) {
+        if (subaction.actionId != "natural-death-a") {
+            return null;
+        }
     }
 
 

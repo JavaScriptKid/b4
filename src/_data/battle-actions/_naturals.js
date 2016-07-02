@@ -12,5 +12,22 @@ export default {
                 }
             ]
         }
+    },
+    "natural-memory-leak-a": {
+        ...actionSchema,
+        animation: "sick-shake",
+        affectTargetHpPointsByPercent: -0.03,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name} is hurt by the memory leak`]
+                }
+            ]
+        }
     }
 }

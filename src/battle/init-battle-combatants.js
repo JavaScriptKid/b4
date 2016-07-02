@@ -17,7 +17,8 @@ export default function() {
         id: id1,
         name: "Jacob",
         level: 3,
-        hp: 30,
+        hp: 48,
+        status: "memory-leak",
         class: "ninja",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
         laptopUpgrades: [

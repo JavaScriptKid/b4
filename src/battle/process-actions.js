@@ -1,4 +1,6 @@
 import {getRolloutStep} from './get-rollout-step'
+import {getDeadCombatantId} from './get-dead-combatant-id'
+
 export function processActions(actionQueue=[], initialState={}) {
 
     /* Set up initial Turn history and helpers */
@@ -40,7 +42,7 @@ export function processActions(actionQueue=[], initialState={}) {
                 addStepLogToRolloutHistory(rolloutStep.steps);
 
                 /* Check if this rollout was the death of a character */
-                const deathId = combatantHasDied(rolloutStep.nextState);
+                const deathId = getDeadCombatantId(rolloutStep.nextState);
                 if (deathId) {
                     const deathSubAction = {
                         casterId: deathId,
@@ -78,28 +80,12 @@ export function getSubactions(action, combatantState) {
         return [
             action,
             {
-
                 casterId: action.casterId,
-                targetId: action.targetId,
-                actionId: "natural-memoryleak-a" //TODO: make this a real action
+                targetId: action.casterId,
+                actionId: "natural-memory-leak-a"
             }
         ]
     }
 
     return [action];
-}
-
-
-/**
- * Return combatantId who has died
- */
-function combatantHasDied(newState) {
-    var death = Object.keys(newState.combatants).map(cId => {
-        const model = newState.combatants[cId];
-        return model.hp <= 0 ? cId : null
-    }).find(d => {
-        return Boolean(d)
-    });
-    return death ? death : null;
-
 }
