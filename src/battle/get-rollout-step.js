@@ -41,7 +41,7 @@ export function getRolloutStep(subaction, state) {
         nextState: nextState,
         steps: [
             ...stepOutput,
-            {type: "stateChange", newState: nextState} //The views should dispatch this
+            {type: "stateChange", newState: nextState} //The view clickthrough should dispatch this
         ]
     }
 

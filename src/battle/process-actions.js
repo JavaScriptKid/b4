@@ -87,5 +87,17 @@ export function getSubactions(action, combatantState) {
         ]
     }
 
+    /* Case 2: suffering from fire */
+    if (combatantState.status == "fire") {
+        return [
+            action,
+            {
+                casterId: action.casterId,
+                targetId: action.casterId,
+                actionId: "natural-fire-a"
+            }
+        ]
+    }
+
     return [action];
 }

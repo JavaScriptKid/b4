@@ -16,7 +16,7 @@ export default {
     "natural-memory-leak-a": {
         ...actionSchema,
         animation: "sick-shake",
-        affectTargetHpPointsByPercent: -0.03,
+        affectTargetHpPointsByPercent: -0.07,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
                 {
@@ -26,6 +26,23 @@ export default {
                 {
                     type: "message",
                     content: [`${casterModel.name} is hurt by the memory leak`]
+                }
+            ]
+        }
+    },
+    "natural-fire-a": {
+        ...actionSchema,
+        animation: "sick-shake",
+        affectTargetHpPointsByPercent: -0.20,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`[FAST]${casterModel.name}'s laptop is burning in fire`]
                 }
             ]
         }

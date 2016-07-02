@@ -50,8 +50,8 @@ export default {
  TODO: Clean
 
  NATURALS
- TODO: DEATH
- TODO: MEMORY LEAK
+ // DEATH
+ // MEMORY LEAK
  TODO: FIRE
  TODO: LAGGING OUT
  */
