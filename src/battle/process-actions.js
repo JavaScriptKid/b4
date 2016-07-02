@@ -15,7 +15,10 @@ export function processActions(actionQueue=[], initialState={}) {
     /* Rollout history */
     var rolloutStepHistory = [];
     var addStepLogToRolloutHistory = function(newStep=[]) {
-        rolloutStepHistory.push(newStep);
+        rolloutStepHistory = [
+            ...rolloutStepHistory,
+            ...newStep
+        ]
     };
 
     /* Begin the loop */
@@ -37,6 +40,7 @@ export function processActions(actionQueue=[], initialState={}) {
 
     });
 
+    /* Return the next state after these actions */
     return {
         rolloutSteps: rolloutStepHistory,
         nextState: getLatestState()

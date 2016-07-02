@@ -14,8 +14,6 @@ export function getRegularAttackChanges(action, casterState, targetState, curren
 
     }
 
-    console.log(changes)
-
     return {
         ...currentChanges,
         ...changes

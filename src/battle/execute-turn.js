@@ -25,5 +25,8 @@ export function executeTurn(submissionModels=[]) {
     /* 2. processActions() ? */
     //------------------------
     const result = processActions(actionQueue, lastHistoryEntry);
+
+    /* Return the final result that will go into global state history */
+    /* This can be clicked through by the client */
     return result;
 }

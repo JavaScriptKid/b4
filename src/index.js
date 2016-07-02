@@ -39,7 +39,7 @@ var RootComponent = React.createClass({
         ];
 
         /* RUN A FEW TURNS */
-        [1,2,3,4,5,6,7,8].forEach(i => {
+        [1].forEach(i => {
             const result = executeTurn(submissions);
             console.log(result);
             //FOR NOW

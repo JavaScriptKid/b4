@@ -22,11 +22,6 @@ export function getRolloutStep(subaction, state) {
         combatants: stateChanges
     }, state);
 
-
-    console.log(nextState.combatants[subaction.casterId].hp);
-    console.log(nextState.combatants[subaction.targetId].hp);
-    console.log('---')
-
     return {
         nextState: nextState,
         steps: stepOutput
