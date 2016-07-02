@@ -14,7 +14,7 @@ import {setBattleValue} from '../../redux-action-creators/battle-action-creators
 class TurnControls extends React.Component {
 
     componentDidMount() {
-        //this.runTurn();
+        this.runTurn();
     }
 
     runTurn(count=1) {

@@ -4,7 +4,7 @@ export function getPpChanges(action, casterState, targetState, currentChanges) {
 
     if (action.ppCost) {
         //Some sort of defense roll?
-        changes["affectCasterPp"] = casterState.pp - action.ppCost;
+        changes["affectCasterPp"] = action.ppCost * -1; //wording is a little different, but easier to digest
     }
 
     return {
