@@ -7,13 +7,16 @@ import {getUpdatedCloudQueue} from './get-updated-cloud-queue'
 
 import {getStepOutput} from './get-step-output'
 import {getDeadCombatantId} from './get-dead-combatant-id'
-
+import {getReplacedActionIdMiddleware} from './get-replaced-action-id'
 
 export function getRolloutStep(subaction, state) {
 
-    const action = Actions[subaction.actionId];
+
     const casterModel = new CombatantModel(state.combatants[subaction.casterId]);
     const targetModel = new CombatantModel(state.combatants[subaction.targetId]);
+
+    const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel)
+    const action = Actions[actionId];
 
     /* -- Bouncer -- */
     /* cancel if caster is dead, unless this is the "die" action */
@@ -22,6 +25,8 @@ export function getRolloutStep(subaction, state) {
             return null;
         }
     }
+
+
 
 
 

@@ -14,17 +14,23 @@ export function executeTurn(submissionModels=[]) {
     //------------------------
     const lastHistoryEntry = store.getState().battle.history[store.getState().battle.history.length-1];
     const actionQueue = [
-        ...extractQueuedSubmissions(lastHistoryEntry.cloudQueue), //Need a test that proves this adds these
+        ...extractQueuedSubmissions(lastHistoryEntry.cloudQueue),
         ...getOrderedActionsFromSubmissions(submissionModels)
     ];
-    
-    setBattleValue({ /* Remove this turn from the queue */
-        queueCloud: removeQueueSlot( store.getState().battle.queueCloud )
-    });
+
+    const historyWithUpdatedQueue = {
+        cloudQueue: removeQueueSlot( lastHistoryEntry.cloudQueue ),
+        combatants: {...lastHistoryEntry.combatants }
+    }; /* Make version of state with updated Queue to use as initialState in processActions */
+
+
+    //console.log(lastHistoryEntry)
+    //console.log(historyWithUpdatedQueue)
+
 
     /* 2. processActions() ? */
     //------------------------
-    const result = processActions(actionQueue, lastHistoryEntry);
+    const result = processActions(actionQueue, historyWithUpdatedQueue);
 
     /* Return the final result that will go into global state history */
     /* This can be clicked through by the client */

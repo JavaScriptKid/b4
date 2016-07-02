@@ -46,5 +46,17 @@ export default {
                 }
             ]
         }
+    },
+    "natural-lag-a": {
+        ...actionSchema,
+        ppCost: 0,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} is lagging too much to attack`]
+                }
+            ]
+        }
     }
 }

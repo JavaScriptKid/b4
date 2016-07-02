@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {executeTurn} from '../execute-turn'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
-
+import {addQueuedSubmissions} from '../cloud-queue'
 
 @connect((state, props) => {
     return {
@@ -14,6 +14,28 @@ import {setBattleValue} from '../../redux-action-creators/battle-action-creators
 class TurnControls extends React.Component {
 
     componentDidMount() {
+
+        // Just testing the cloudQueue here. Delete all this:
+        const combs = this.props.history[ this.props.history.length-1 ].combatants;
+        const player1Id = Object.keys(combs)[0];
+        const player2Id = Object.keys(combs)[1];
+        const initialQueue = addQueuedSubmissions([], {
+            casterId: player1Id,
+            targetId: player2Id,
+            actionId: "attack-001-a",
+        }, 2);
+
+        const alteredFirstHistory = {
+            ...this.props.history[ this.props.history.length-1 ],
+            cloudQueue: initialQueue
+        };
+
+
+        setBattleValue({
+            history: [alteredFirstHistory]
+        });
+
+        //
         this.runTurn();
     }
 
