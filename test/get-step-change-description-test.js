@@ -10,11 +10,10 @@ describe('PP Changes', () => {
             ppCost: 10
         };
         const caster = {
-            pp: 30
         };
         const target = {};
 
-        assert.equal(getStepDescriptionObject(action, caster, target).affectCasterPp, 20)
+        assert.equal(getStepDescriptionObject(action, caster, target).affectCasterPp, -10)
     });
 });
 
