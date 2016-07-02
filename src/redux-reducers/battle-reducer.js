@@ -13,6 +13,7 @@ export function battle(state = {}, action) {
             const node = editNode(lastEntry.combatants, action.payload.key, {
                 ...action.payload.changes
             });
+            
 
             /* Apply changes only to `combatants` in most recent history entry */
             return {

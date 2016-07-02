@@ -17,7 +17,7 @@ export function getRolloutStep(subaction, state) {
     const stepOutput = getStepOutput(action, casterModel, targetModel, stepDescriptionObject);
     const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state.combatants);
 
-    console.log(stepDescriptionObject)
+    //console.log(stepDescriptionObject)
 
     const nextState = getMergedCombatantState({
         cloudQueue: [], /* TODO: how do cloud changes get merged into nextState? */
