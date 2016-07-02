@@ -4,15 +4,23 @@
 */
 
 export function getMergedCombatantState(nextStateChanges, currentState) {
-    var nextState = {};
 
-    Object.keys(currentState).forEach(key => {
-        nextState[key] = {
-            ...currentState[key],
-            ...nextStateChanges[key],
+    var nextCombatants = {};
+
+    Object.keys(currentState.combatants).forEach(key => {
+        nextCombatants[key] = {
+            ...currentState.combatants[key],
+            ...nextStateChanges.combatants[key],
         }
     });
 
-    return nextState;
+    return {
+        ...currentState,
+        ...nextStateChanges,
+        combatants: {
+            ...currentState.combatants,
+            ...nextCombatants
+        }
+    };
 
 }

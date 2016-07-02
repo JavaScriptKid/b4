@@ -8,9 +8,13 @@ export default function() {
 
     var combatants = {};
 
-    combatants[makeId('combatant')] = {
+    const id1 = makeId('combatant');
+    const id2 = makeId('combatant');
+
+    combatants[id1] = {
         ...initialCombatantProperties,
 
+        id: id1,
         name: "Some Dude A",
         level: 3,
         class: "ninja",
@@ -25,9 +29,10 @@ export default function() {
         ]
     };
 
-    combatants[makeId('combatant')] = {
+    combatants[id2] = {
         ...initialCombatantProperties,
 
+        id: id2,
         name: "Some Dude B",
         level: 3,
         class: "captain",

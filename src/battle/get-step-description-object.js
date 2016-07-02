@@ -11,6 +11,8 @@ import {getSuperCharged} from './calculations/super-charge'
 export function getStepDescriptionObject(action, casterModel, targetModel) {
     let changes = {};
 
+
+
     /* Build up an object full of descriptive properties */
     changes = getSuperCharged(action, casterModel, targetModel, changes);
     changes = getPpChanges(action, casterModel, targetModel, changes);

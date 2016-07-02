@@ -2,6 +2,8 @@
 
 export function getStateChangesFromDescription(dObj, currentState) {
 
+
+
     var nextState = {};
 
     nextState[dObj.casterId] = {};

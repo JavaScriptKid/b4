@@ -2,18 +2,19 @@ export function getRegularAttackChanges(action, casterState, targetState, curren
 
     let changes = {};
 
-    if (action.affectTargetHpPoints > 0 || action.affectTargetHpPointsByPercent > 0) {
+    if (action.affectTargetHpPoints != 0 || action.affectTargetHpPointsByPercent > 0) {
 
         if (action.repetitions.length) {
             //Do the roll [x,x] amount of times
             changes["repetitionsCount"] = 5;
             changes["affectTargetHp"] = -45;
         } else {
-            changes["affectTargetHp"] = action.affectTargetHpPoints * -1; //Should be a proper roll?
-
+            changes["affectTargetHp"] = action.affectTargetHpPoints; //Should be a proper roll?
         }
 
     }
+
+    console.log(changes)
 
     return {
         ...currentChanges,

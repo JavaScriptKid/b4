@@ -8,18 +8,28 @@ import {getStepOutput} from './get-step-output'
 
 
 export function getRolloutStep(subaction, state) {
+
     const action = Actions[subaction.actionId];
-    const casterModel = new CombatantModel(subaction.casterId);
-    const targetModel = new CombatantModel(subaction.targetId);
+    const casterModel = new CombatantModel(state.combatants[subaction.casterId]);
+    const targetModel = new CombatantModel(state.combatants[subaction.targetId]);
 
     const stepDescriptionObject = getStepDescriptionObject(action, casterModel, targetModel);
     const stepOutput = getStepOutput(action, casterModel, targetModel, stepDescriptionObject);
-    const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state);
+    const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state.combatants);
 
-    
+    const nextState = getMergedCombatantState({
+        cloudQueue: [], /* TODO: how do cloud changes get merged into nextState? */
+        combatants: stateChanges
+    }, state);
+
+
+    console.log(nextState.combatants[subaction.casterId].hp);
+    console.log(nextState.combatants[subaction.targetId].hp);
+    console.log('---')
+
     return {
-        nextState: getMergedCombatantState(stateChanges, state),
-        rolloutSteps: stepOutput
+        nextState: nextState,
+        steps: stepOutput
     }
 
 }
