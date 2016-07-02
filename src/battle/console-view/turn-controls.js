@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-
 import {executeTurn} from '../execute-turn'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 
@@ -10,12 +8,13 @@ import {setBattleValue} from '../../redux-action-creators/battle-action-creators
     return {
         history: state.battle.history,
         turnRolloutHistoryEntries: state.battle.turnRolloutHistoryEntries,
+        devTimeTravelTurn: state.battle.devTimeTravelTurn
     }
 })
 class TurnControls extends React.Component {
 
     componentDidMount() {
-        this.runTurn();
+        //this.runTurn();
     }
 
     runTurn(count=1) {
@@ -41,7 +40,6 @@ class TurnControls extends React.Component {
         /* RUN A COUNT # OF TURNS TODO - only does 1 right now */
         [1].forEach(i => {
             const result = executeTurn(submissions);
-            console.log(result);
             //FOR NOW
             setBattleValue({
                 history: [
@@ -50,8 +48,12 @@ class TurnControls extends React.Component {
                 ],
                 turnRolloutHistoryEntries: [
                     ...this.props.turnRolloutHistoryEntries,
-                    result.rolloutSteps
-                ]
+                    {
+                        turnId: this.props.turnRolloutHistoryEntries.length,
+                        steps:result.rolloutSteps
+                    }
+                ],
+                devTimeTravelTurn: this.props.devTimeTravelTurn+1
             })
         });
     }

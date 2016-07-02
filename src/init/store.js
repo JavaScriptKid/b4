@@ -17,7 +17,7 @@ const store = createStore({
             */
         ],
         turnRolloutHistoryEntries: [
-
+            { turnId: 0, steps: [] }
         ],
         viewMode: "console" //"console" || "battle"
     },

@@ -11,15 +11,20 @@ var getMissStep = function(action, actionDescription) {
     if (typeof action.customMissStep === "function") {
         return action.customMissStep();
     }
-    return [
-        useMessage,
-        {
-            type: "message",
-            content: [
-                "but it missed!"
-            ]
-        }
-    ]
+
+    if (actionDescription.didActionMiss) {
+        return [
+            useMessage,
+            {
+                type: "message",
+                content: [
+                    "but it missed!"
+                ]
+            }
+        ]
+    }
+
+    return null;
 };
 
 
@@ -31,7 +36,8 @@ export function getStepOutput(action, casterModel, targetModel, actionDescriptio
     return [
         useMessage,
         {
-            type: "animation"
+            type: "animation",
+            animationName: action.animation
         }
     ]
 

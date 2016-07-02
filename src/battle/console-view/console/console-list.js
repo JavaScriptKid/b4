@@ -13,9 +13,9 @@ class ConsoleList extends React.Component {
         return (
             <div>
                 {
-                    this.props.turnRolloutHistoryEntries.reverse().map((entry, i) => {
+                    this.props.turnRolloutHistoryEntries.map((entry, i) => {
                         return <ConsoleListTurn key={i} turnId={i} model={entry} />
-                    })
+                    }).reverse()
                 }
             </div>
         )

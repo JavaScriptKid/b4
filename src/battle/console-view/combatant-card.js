@@ -35,6 +35,29 @@ class CombatantCard extends React.Component {
         });
     }
 
+    renderStatus() {
+        const me = this.props.combatant;
+        return (
+            <div>
+                <div className="combatant-card-section-label">
+                    Stats
+                </div>
+                <div>
+                    <label>HP</label>
+                    <span>{me.hp}</span>/<span>{me.maxHp}</span>
+                </div>
+                <div>
+                    <label>PP</label>
+                    <span>{me.pp}</span>/<span>{me.maxPp}</span>
+                </div>
+                <div>
+                    <label>DM</label>
+                    <span>?</span>/<span>100</span>
+                </div>
+            </div>
+        )
+    }
+
     renderDiff(figA, figB) {
         if (figA > figB) {
             return <span style={{color:"#29C09E"}}>(+{figA - figB})</span>
@@ -167,6 +190,9 @@ class CombatantCard extends React.Component {
                 <div>
                     <div className="combatant-card-section">
                         {this.renderCharacterInfo()}
+                    </div>
+                    <div className="combatant-card-section">
+                        {this.renderStatus()}
                     </div>
                     <div className="combatant-card-section _flex-row _flex-row-top">
                         <div className="_c50">

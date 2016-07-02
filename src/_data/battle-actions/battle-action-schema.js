@@ -1,6 +1,8 @@
 export default {
     name: "",
     description: "",
+    animation: "tada",
+
 
     //Cost
     ppCost: 0,
