@@ -13,13 +13,18 @@ export function battle(state = {}, action) {
             const node = editNode(lastEntry.combatants, action.payload.key, {
                 ...action.payload.changes
             });
-            
+
 
             /* Apply changes only to `combatants` in most recent history entry */
+
+            const unTouchedHistoryLog = currentHistory.filter((d,i) => {
+                return i < (currentHistory.length-1);
+            });
+
             return {
                 ...state,
                 history: [
-                    ...currentHistory.filter(i => { return i < (currentHistory.length-1) }),
+                    ...unTouchedHistoryLog,
                     {
                         cloudQueue: lastEntry.cloudQueue,
                         combatants: {...node}
