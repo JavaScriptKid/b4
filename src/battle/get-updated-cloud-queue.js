@@ -8,7 +8,7 @@ import {addQueuedSubmissions} from './cloud-queue'
 export function getUpdatedCloudQueue(descriptionObject, currentQueue) {
 
 
-    if (descriptionObject.addActionToCloudQueue) { //This property needs to exist to add stuff
+    if (descriptionObject.addActionToCloudQueue.length > 0) { //This property needs to exist to add stuff
         const action = { //TODO: temporary hard coding, should read from dObj.addActionToCloudQueue
             casterId: descriptionObject.casterId,
             targetId: descriptionObject.targetId,
