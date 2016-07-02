@@ -1,11 +1,12 @@
 import normalAttacks from './battle-actions/_normal-attacks'
+import naturals from './battle-actions/_naturals'
 
 export default {
     /* Attacks */
-    ...normalAttacks
+    ...normalAttacks,
     //...specialAttacks,
     //...itemActions,
-    //...naturals
+    ...naturals
 }
 /*
  TODO: TODO: Insult
@@ -47,4 +48,10 @@ export default {
  TODO: Deadline
  TODO: Redirect
  TODO: Clean
+
+ NATURALS
+ TODO: DEATH
+ TODO: MEMORY LEAK
+ TODO: FIRE
+ TODO: LAGGING OUT
  */

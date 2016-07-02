@@ -14,6 +14,14 @@ export function getRolloutStep(subaction, state) {
     const casterModel = new CombatantModel(state.combatants[subaction.casterId]);
     const targetModel = new CombatantModel(state.combatants[subaction.targetId]);
 
+    /* -- Bouncer -- */
+    /* cancel if caster is dead, unless this is the "die" action */
+    if (subaction.actionId != "natural-death-a" && (casterModel.isDead || targetModel.isDead)) {
+        return null;
+    }
+
+
+
     const stepDescriptionObject = getStepDescriptionObject(action, casterModel, targetModel);
     const stepOutput = getStepOutput(action, casterModel, targetModel, stepDescriptionObject);
     const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state.combatants);

@@ -15,7 +15,7 @@ var getMissStep = function(action, casterModel, targetModel, actionDescription) 
     if (actionDescription.didActionMiss) {
 
         if (typeof action.customMissStep === "function") {
-            return action.customMissStep();
+            return action.customMissStep(action, casterModel, targetModel, actionDescription);
         }
         return [
             getUseMessage(),
@@ -36,7 +36,7 @@ var getFailStep = function(action, casterModel, targetModel, actionDescription) 
     /* If actionDescription has FAIL property, check for a custom return or use default */
     if (actionDescription.didActionFail) {
         if (typeof action.customFailStep === "function") {
-            return action.customFailStep();
+            return action.customFailStep(action, casterModel, targetModel, actionDescription);
         }
 
         return [
@@ -56,7 +56,7 @@ var getFailStep = function(action, casterModel, targetModel, actionDescription) 
 
 var getSuccessStep = function(action, casterModel, targetModel, actionDescription) {
     if (typeof action.customSuccessStep === "function") {
-        return action.customSuccessStep();
+        return action.customSuccessStep(action, casterModel, targetModel, actionDescription);
     }
 
     return [
