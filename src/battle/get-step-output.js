@@ -1,20 +1,24 @@
-const useMessage = {
-    type: "message",
-    content: [
-        "{casterName} used ",
-        "@@pause_300@@",
-        "[FAST]{actionName}!"
-    ]
+const getUseMessage = function(action, casterModel, targetModel, actionDescription) {
+    return {
+        type: "message",
+        content: [
+            `${casterModel.name} used `,
+            "@@pause_300@@",
+            `[FAST]${action.name}!`
+        ]
+    }
 };
 
-var getMissStep = function(action, actionDescription) {
-    if (typeof action.customMissStep === "function") {
-        return action.customMissStep();
-    }
+var getMissStep = function(action, casterModel, targetModel, actionDescription) {
 
+    /* If actionDescription has MISS property, check for a custom return or use default */
     if (actionDescription.didActionMiss) {
+
+        if (typeof action.customMissStep === "function") {
+            return action.customMissStep();
+        }
         return [
-            useMessage,
+            getUseMessage(),
             {
                 type: "message",
                 content: [
@@ -23,76 +27,58 @@ var getMissStep = function(action, actionDescription) {
             }
         ]
     }
+    /* Did not miss, carry on! */
+    return null;
+};
 
+var getFailStep = function(action, casterModel, targetModel, actionDescription) {
+
+    /* If actionDescription has FAIL property, check for a custom return or use default */
+    if (actionDescription.didActionFail) {
+        if (typeof action.customFailStep === "function") {
+            return action.customFailStep();
+        }
+
+        return [
+            getUseMessage(action, casterModel, targetModel),
+            {
+                type: "message",
+                content: [
+                    "but it failed."
+                ]
+            }
+        ]
+    }
+    /* Did not fail, carry on! */
     return null;
 };
 
 
-export function getStepOutput(action, casterModel, targetModel, actionDescription) {
-
-
-    /* FOR NOW */
+var getSuccessStep = function(action, casterModel, targetModel, actionDescription) {
+    if (typeof action.customSuccessStep === "function") {
+        return action.customSuccessStep();
+    }
 
     return [
-        useMessage,
+        getUseMessage(action, casterModel, targetModel),
         {
             type: "animation",
             animationName: action.animation
         }
     ]
-
-
-
-
-    let result = getMissStep(action);
-    if (!result) {
-        result = getFailStep(action, actionDescription);
-    }
-    if (!result) {
-        result = action.getSuccessStep(action, actionDescription);
-    }
-    return result;
 };
 
 
 
-//    "theStandard": [
-//        useMessage,
-//        {
-//            type: "animation",
-//            animationName: "{animationName}", /* Idk how this should be passed in. Probably not as a string template like this */
-//            data: {}
-//        },
-//        {
-//            type: "stateChange",
-//            //?
-//        }
-//    ],
-//    "theExtra": [
-//        useMessage,
-//        {
-//            type: "animation",
-//            animationName: "{animationName}", /* Idk how this should be passed in. Probably not as a string template like this */
-//            data: {}
-//        },
-//        {
-//            type: "stateChange",
-//            //?
-//        },
-//        {
-//            type: "message",
-//            content: [
-//                "Some other line of text. It hit 3 times?!"
-//            ]
-//        }
-//    ],
-//    "theMiss": [
-//        useMessage,
-//        {
-//            type: "message",
-//            content: [
-//                "[FAST]but it missed!"
-//            ]
-//        }
-//    ]
-//}
+export function getStepOutput(action, casterModel, targetModel, actionDescription) {
+    
+    /* FOR NOW */
+    let result = getMissStep(action, casterModel, targetModel, actionDescription);
+    if (!result) {
+        result = getFailStep(action, casterModel, targetModel, actionDescription);
+    }
+    if (!result) {
+        result = getSuccessStep(action, casterModel, targetModel, actionDescription);
+    }
+    return result;
+}

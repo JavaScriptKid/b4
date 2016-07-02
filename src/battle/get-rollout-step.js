@@ -22,6 +22,7 @@ export function getRolloutStep(subaction, state) {
         combatants: stateChanges
     }, state);
 
+
     return {
         nextState: nextState,
         steps: stepOutput
