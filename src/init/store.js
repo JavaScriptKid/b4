@@ -16,6 +16,9 @@ const store = createStore({
             }
             */
         ],
+        turnRolloutHistoryEntries: [
+
+        ],
         viewMode: "console" //"console" || "battle"
     },
     map: {
