@@ -2,7 +2,7 @@ import { assert } from 'chai'
 import {
     removeQueueSlot,
     addQueuedSubmissions,
-    extractQueuedSubmissions } from '../src/battle/event-loop/cloud-queue'
+    extractQueuedSubmissions } from '../src/battle/cloud-queue'
 
 describe(`removeQueueSlot`, () => {
     it (`returns a copy of the array without the first entry`, () => {

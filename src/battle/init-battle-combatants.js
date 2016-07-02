@@ -15,7 +15,7 @@ export default function() {
         ...initialCombatantProperties,
 
         id: id1,
-        name: "Some Dude A",
+        name: "Jacob",
         level: 3,
         class: "ninja",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
@@ -33,7 +33,7 @@ export default function() {
         ...initialCombatantProperties,
 
         id: id2,
-        name: "Some Dude B",
+        name: "Travis",
         level: 3,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",

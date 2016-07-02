@@ -6,9 +6,6 @@ import ConsoleList from './console/console-list'
 
 @connect((state, props) => {
 
-    console.log(state.battle.devTimeTravelTurn);
-    console.log(state.battle.history);
-
     return {
         combatantIds: Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants)
     }

@@ -1,6 +1,6 @@
 import store from '../../src/init/store'
 import {getOrderedActionsFromSubmissions} from '../../src/battle/submissions/submission-utilities'
-import {extractQueuedSubmissions, removeQueueSlot} from '../../src/battle/event-loop/cloud-queue'
+import {extractQueuedSubmissions, removeQueueSlot} from './cloud-queue'
 import {setBattleValue} from '../redux-action-creators/battle-action-creators'
 import {processActions} from './process-actions'
 
