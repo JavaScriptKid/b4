@@ -14,15 +14,6 @@ var getMissStep = function(action, actionDescription) {
     return [
         useMessage,
         {
-            type: "stateChange",
-            combatantChanges: { //example
-                "comb01": {
-                    pp: 45
-                }
-            }
-
-        },
-        {
             type: "message",
             content: [
                 "but it missed!"
@@ -33,6 +24,20 @@ var getMissStep = function(action, actionDescription) {
 
 
 export function getStepOutput(action, casterModel, targetModel, actionDescription) {
+
+
+    /* FOR NOW */
+
+    return [
+        useMessage,
+        {
+            type: "animation"
+        }
+    ]
+
+
+
+
     let result = getMissStep(action);
     if (!result) {
         result = getFailStep(action, actionDescription);
