@@ -18,6 +18,9 @@ class ConsoleListTurn extends React.Component {
         if (step.type == "animation") {
             return `[Animation: ${step.animationName}]`
         }
+        if (step.type == "stateChange") {
+            return `___{State Change}___`
+        }
     }
 
     render() {

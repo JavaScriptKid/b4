@@ -39,7 +39,10 @@ export function getRolloutStep(subaction, state) {
 
     return {
         nextState: nextState,
-        steps: stepOutput
+        steps: [
+            ...stepOutput,
+            {type: "stateChange", newState: nextState} //The views should dispatch this
+        ]
     }
 
 }
