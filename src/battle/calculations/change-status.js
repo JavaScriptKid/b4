@@ -3,8 +3,8 @@ export function getStatusChanges(action, casterState, targetState, currentChange
     let changes = {};
 
     if (action.affectTargetStatus) {
-        if (targetState.status == "normal") {
 
+        if (targetState.status == "normal") {
             //Some sort of defense roll?
             changes["affectTargetStatus"] = validateNewValue(action.affectTargetStatus, targetState);
         } else {

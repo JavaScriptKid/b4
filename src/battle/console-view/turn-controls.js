@@ -4,6 +4,7 @@ import {executeTurn} from '../execute-turn'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 import {addQueuedSubmissions} from '../cloud-queue'
 
+import {getSmartAttack} from '../combatants/enemy-ai'
 
 @connect((state, props) => {
     return {
@@ -15,29 +16,7 @@ import {addQueuedSubmissions} from '../cloud-queue'
 class TurnControls extends React.Component {
 
     componentDidMount() {
-
-        // Just testing the cloudQueue here. Delete all this:
-        const combs = this.props.history[ this.props.history.length-1 ].combatants;
-        const player1Id = Object.keys(combs)[0];
-        const player2Id = Object.keys(combs)[1];
-        //const initialQueue = addQueuedSubmissions([], {
-        //    casterId: player1Id,
-        //    targetId: player1Id,
-        //    actionId: "natural-recover-lag",
-        //}, 2);
-
-        const alteredFirstHistory = {
-            ...this.props.history[ this.props.history.length-1 ],
-            cloudQueue: [] //initialQueue
-        };
-
-
-        setBattleValue({
-            history: [alteredFirstHistory]
-        });
-
-        //
-        this.runTurn();
+        //this.runTurn();
     }
 
     runTurn(count=1) {
@@ -46,18 +25,12 @@ class TurnControls extends React.Component {
         const player1Id = Object.keys(combs)[0];
         const player2Id = Object.keys(combs)[1];
         const submissions = [ /* Submission models */
-            {
-                casterId: player1Id,
-                targetId: player2Id,
-                actionId: "attack-001-a",
-                speedRoll: 5
-            },
-            {
-                casterId: player2Id,
-                targetId: player1Id,
-                actionId: "attack-special-001-a",
-                speedRoll: 4
-            }
+            getSmartAttack(
+                combs[player1Id], combs[player2Id], {}
+            ),
+            getSmartAttack(
+                combs[player2Id], combs[player1Id], {}
+            )
         ];
 
         /* RUN A COUNT # OF TURNS TODO - only does 1 right now */

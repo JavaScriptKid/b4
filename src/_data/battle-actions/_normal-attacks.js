@@ -15,13 +15,7 @@ export default {
         animation: "shootingStar",
         description: "Chops the enemy to bits.",
         affectTargetHpPoints: -5,
-        ppCost: 3,
-        //getRolloutOutput: function(properties={}) {
-        //    return [
-        //        `MESSAGE:${properties.playerName} used Slice!`,
-        //        `ANIMATION:${properties.animationName}`
-        //    ]
-        //}
+        ppCost: 3
     },
 
     /* Slice mk II */
@@ -40,6 +34,7 @@ export default {
         description: "Chops the enemy to bits. May lower enemy defense on impact.",
         affectTargetHpPoints: -13,
         ppCost: 6,
+        //TODO
         affectTargetDefensePoints: {percentChance: 33.3, affectValue: -2}  /* MIGHT do this. 1/3 chance */
     },
 
@@ -70,6 +65,7 @@ export default {
         name: "Preloaded mk II",
         description: "Fastest loader of them all. Reduces enemy speed.",
         affectTargetHpPoints: -14,
+        //TODO
         affectTargetSpeedPoints: {percentChance: 33.3, affectValue: -3}, /* MIGHT do this. 1/3 chance */
         speedModifier: 10,
         ppCost: 9

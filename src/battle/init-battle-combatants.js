@@ -3,6 +3,15 @@ import initialCombatantProperties from './initial-combatant-properties'
 
 import makeId from '../helpers/make-id'
 
+//Dev only: seed these characters with all possible attacks
+import normalAttacks from '../_data/battle-actions/_normal-attacks'
+import specialAttacks from '../_data/battle-actions/_special-attacks'
+
+const allAttacks = [
+    ...Object.keys(normalAttacks),
+    ...Object.keys(specialAttacks)
+];
+
 
 export default function() {
 
@@ -21,6 +30,9 @@ export default function() {
         status: "normal",
         class: "ninja",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
+
+        attacks: [ ...allAttacks],
+
         laptopUpgrades: [
             { libraryId: "laptop-upgrade_001", isEnabled: true },
             { libraryId: "laptop-upgrade_002", isEnabled: true },
@@ -39,6 +51,9 @@ export default function() {
         level: 3,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
+
+        attacks: [ ...allAttacks],
+
         laptopUpgrades: [],
         characterUpgrades: [
             {libraryId: "character-upgrade-005-i"},
