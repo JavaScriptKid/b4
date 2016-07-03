@@ -8,7 +8,8 @@ export function getReplacedActionIdMiddleware(originalActionId="", casterModel={
     /* Filter for non-replaceable actions */
     //TODO: Items should not be replaceable. Add in the Item keys to the filter list?
     if ([
-        "natural-death-a"
+        "natural-death-a",
+        "natural-recover-lag"
     ].indexOf(originalActionId) > -1) {
         return originalActionId;
     }

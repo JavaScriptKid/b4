@@ -18,6 +18,7 @@ export function getRolloutStep(subaction, state) {
     const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel)
     const action = Actions[actionId];
 
+
     /* -- Bouncer -- */
     /* cancel if caster is dead, unless this is the "die" action */
     if (getDeadCombatantId(state)) {
@@ -25,8 +26,6 @@ export function getRolloutStep(subaction, state) {
             return null;
         }
     }
-
-
 
 
 

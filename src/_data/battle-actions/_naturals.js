@@ -16,6 +16,7 @@ export default {
     "natural-memory-leak-a": {
         ...actionSchema,
         animation: "sick-shake",
+        dependentOnCasterStatus: "memory-leak",
         affectTargetHpPointsByPercent: -0.07,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
@@ -33,6 +34,7 @@ export default {
     "natural-fire-a": {
         ...actionSchema,
         animation: "sick-shake",
+        dependentOnCasterStatus: "fire",
         affectTargetHpPointsByPercent: -0.20,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
@@ -55,6 +57,25 @@ export default {
                 {
                     type: "message",
                     content: [`${casterModel.name} is lagging too much to attack`]
+                }
+            ]
+        }
+    },
+    "natural-recover-lag": {
+        ...actionSchema,
+        ppCost: 0,
+        animation: "tada",
+        dependentOnCasterStatus: "lag",
+        affectCasterStatus: ["lag", "normal"], /* If lag, change to normal" */
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s lagging has ended!`]
                 }
             ]
         }

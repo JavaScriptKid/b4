@@ -21,8 +21,8 @@ class TurnControls extends React.Component {
         const player2Id = Object.keys(combs)[1];
         const initialQueue = addQueuedSubmissions([], {
             casterId: player1Id,
-            targetId: player2Id,
-            actionId: "attack-001-a",
+            targetId: player1Id,
+            actionId: "natural-recover-lag",
         }, 2);
 
         const alteredFirstHistory = {

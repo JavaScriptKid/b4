@@ -29,14 +29,18 @@ export default {
     itemMalfunctionChance: 0,
 
     //statuses
-    protectTargetFromStatuses: [],
-    clearTargetStatuses: [],
+
+    //protectTargetFromStatuses: [],
+    //clearTargetStatuses: [],
 
     protectCasterFromStatuses: [],
     clearCasterStatuses: [],
 
     affectTargetStatus: null, //"normal", "memory-leak", "lag", "fury", "zen", "fire
+    affectCasterStatus: null, //"normal", "memory-leak", "lag", "fury", "zen", "fire
     statusTurnCount: [], /* [min, max] */
+    dependentOnCasterStatus: null,
+    dependentOnTargetStatus: null,
 
     //Theft
     theftQuantity: 0,

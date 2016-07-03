@@ -73,7 +73,19 @@ export function processActions(actionQueue=[], initialState={}) {
 /**
  * Include extra stuff that happen before or after the intent
  */
+
+import Actions from '../_data/battle-actions'
 export function getSubactions(action, combatantState) {
+
+
+    /* Part time bouncer: cancel this attack and it's additional sub actions if the status is not relevant */
+    /* Cancel if move is dependent on status.
+    EX: don't recover from lag if you're not lagging, and don't get the memory-leak penalty when using the recover action */
+    const actionModel = Actions[action.actionId];
+    if (actionModel.dependentOnCasterStatus && actionModel.dependentOnCasterStatus != combatantState.status) {
+        return [];
+    }
+
 
     /* Case 1: suffering from a memory leak */
     if (combatantState.status == "memory-leak") {

@@ -54,6 +54,10 @@ class CombatantCard extends React.Component {
                     <label>DM</label>
                     <span>?</span>/<span>100</span>
                 </div>
+                <div>
+                    <label>Sts</label>
+                    <span>{me.status}</span>
+                </div>
             </div>
         )
     }
