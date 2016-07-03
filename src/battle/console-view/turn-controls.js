@@ -4,6 +4,7 @@ import {executeTurn} from '../execute-turn'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 import {addQueuedSubmissions} from '../cloud-queue'
 
+
 @connect((state, props) => {
     return {
         history: state.battle.history,
@@ -19,15 +20,15 @@ class TurnControls extends React.Component {
         const combs = this.props.history[ this.props.history.length-1 ].combatants;
         const player1Id = Object.keys(combs)[0];
         const player2Id = Object.keys(combs)[1];
-        const initialQueue = addQueuedSubmissions([], {
-            casterId: player1Id,
-            targetId: player1Id,
-            actionId: "natural-recover-lag",
-        }, 2);
+        //const initialQueue = addQueuedSubmissions([], {
+        //    casterId: player1Id,
+        //    targetId: player1Id,
+        //    actionId: "natural-recover-lag",
+        //}, 2);
 
         const alteredFirstHistory = {
             ...this.props.history[ this.props.history.length-1 ],
-            cloudQueue: initialQueue
+            cloudQueue: [] //initialQueue
         };
 
 
@@ -49,13 +50,13 @@ class TurnControls extends React.Component {
                 casterId: player1Id,
                 targetId: player2Id,
                 actionId: "attack-001-a",
-                speedRoll: 3
+                speedRoll: 5
             },
             {
                 casterId: player2Id,
                 targetId: player1Id,
-                actionId: "attack-002-a",
-                speedRoll: 99
+                actionId: "attack-special-001-a",
+                speedRoll: 4
             }
         ];
 

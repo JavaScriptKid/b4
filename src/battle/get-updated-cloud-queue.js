@@ -3,19 +3,23 @@
  * Return the new version of cloud queue with stuff added
  */
 
+import {getRandomInt} from '../helpers/numbers-helper'
 
 import {addQueuedSubmissions} from './cloud-queue'
 export function getUpdatedCloudQueue(descriptionObject, currentQueue) {
 
 
-    if (descriptionObject.addActionToCloudQueue.length > 0) { //This property needs to exist to add stuff
-        const action = { //TODO: temporary hard coding, should read from dObj.addActionToCloudQueue
-            casterId: descriptionObject.casterId,
-            targetId: descriptionObject.targetId,
-            actionId: "attack-001-a"
-        };
+    if (descriptionObject.addActionToCloudQueue.length > 0) {
 
-        return addQueuedSubmissions(currentQueue, action, 1); //TODO: temporary hard the number, should read from dObj.addActionToCloudQueue
+        var queue = [...currentQueue];
+        descriptionObject.addActionToCloudQueue.forEach(a => {
+            /*
+                a.action = { casterId, targetId, actionId },
+                a.turnRange = [min,max]
+            */
+            queue = addQueuedSubmissions(queue, a.action, getRandomInt(a.turnRange[0], a.turnRange[1]) )
+        });
+        return queue;
     }
 
     return currentQueue;

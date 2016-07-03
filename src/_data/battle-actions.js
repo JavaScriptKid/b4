@@ -1,10 +1,11 @@
 import normalAttacks from './battle-actions/_normal-attacks'
+import specialAttacks from './battle-actions/_special-attacks'
 import naturals from './battle-actions/_naturals'
 
 export default {
     /* Attacks */
     ...normalAttacks,
-    //...specialAttacks,
+    ...specialAttacks,
     //...itemActions,
     ...naturals
 }
@@ -43,7 +44,7 @@ export default {
  TODO: Fury
  TODO: -Come out of Fury
  TODO: Throttle
- TODO: DDoS
+ // TODO: DDoS
  TODO: Rsync
  TODO: Deadline
  TODO: Redirect
@@ -53,5 +54,6 @@ export default {
  // DEATH
  // MEMORY LEAK
  // FIRE
- TODO: LAGGING OUT
+ // LAGGING OUT
+ // Recover from LAGGING OUT
  */
