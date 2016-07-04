@@ -30,8 +30,8 @@ export default {
  TODO: Curl Mk II
  TODO: Curl Mk III
  TODO: Steal-and-Use (needs a name)
- TODO: Promise
- TODO: -Promise resolve
+ // TODO: Promise
+ // TODO: -Promise resolve
  TODO: Promise Mk II
  TODO: Promise Mk III
  TODO: Garbage Jammer

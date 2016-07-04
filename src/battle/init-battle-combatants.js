@@ -4,12 +4,13 @@ import initialCombatantProperties from './initial-combatant-properties'
 import makeId from '../helpers/make-id'
 
 //Dev only: seed these characters with all possible attacks
-import normalAttacks from '../_data/battle-actions/_normal-attacks'
-import specialAttacks from '../_data/battle-actions/_special-attacks'
+//import normalAttacks from '../_data/battle-actions/_normal-attacks'
+//import specialAttacks from '../_data/battle-actions/_special-attacks'
 
 const allAttacks = [
-    ...Object.keys(normalAttacks),
-    ...Object.keys(specialAttacks)
+    "attack-001-a",
+    "attack-002-a",
+    "attack-008-a",
 ];
 
 

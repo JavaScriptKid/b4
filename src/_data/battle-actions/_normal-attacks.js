@@ -69,5 +69,71 @@ export default {
         affectTargetSpeedPoints: {percentChance: 33.3, affectValue: -3}, /* MIGHT do this. 1/3 chance */
         speedModifier: 10,
         ppCost: 9
+    },
+
+
+
+
+    /* PROMISE */
+    "attack-008-a": {
+        ...attackSchema,
+        name: "Promise",
+        description: "Send an attack in the air to strike later",
+        affectTargetHpPoints: -5,
+        speedModifier: 0,
+        ppCost: 9,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                { //copy of "use" message
+                    type: "message",
+                    content: [
+                        `${casterModel.name} used `,
+                        "@@pause_300@@",
+                        `[FAST]${action.name}!`
+                    ]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`A promise flew up into the air!`]
+                }
+            ]
+        },
+        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    action: {
+                        casterId: currentChanges.casterId,
+                        targetId: currentChanges.targetId,
+                        actionId: "attack-008-a-resolve"
+                    },
+                    turnRange: [2, 5]
+                }
+            ]
+        }
+    },
+    "attack-008-a-resolve": {
+        ...attackSchema,
+        name: "(Promise: resolve)",
+        description: "",
+        affectTargetHpPoints: -25,
+        speedModifier: 0,
+        ppCost: 0,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                type: "message",
+                    content: [`${casterModel.name}'s Promise resolved!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation
+                }
+            ]
+        }
     }
+
 }
