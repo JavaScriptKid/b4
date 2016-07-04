@@ -7,16 +7,9 @@ export function getStatusChanges(action, casterState, targetState, currentChange
 
 
     if (action.affectTargetStatus) {
-
-        if (targetState.status == "normal") {
+       // if (targetState.status == "normal") {
             //Some sort of defense roll?
             changes["affectTargetStatus"] = validateNewValue(action.affectTargetStatus, targetState);
-        }
-        //else {
-        //    /* Fail if target status is normal */
-        //    if (action.canFail) {
-        //        changes["didActionFail"] = true;
-        //    }
         //}
     }
 
