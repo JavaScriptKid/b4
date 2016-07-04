@@ -1,12 +1,13 @@
 import normalAttacks from './battle-actions/_normal-attacks'
 import specialAttacks from './battle-actions/_special-attacks'
+import itemActions from './battle-actions/_items'
 import naturals from './battle-actions/_naturals'
 
 export default {
     /* Attacks */
     ...normalAttacks,
     ...specialAttacks,
-    //...itemActions,
+    ...itemActions,
     ...naturals
 }
 /*

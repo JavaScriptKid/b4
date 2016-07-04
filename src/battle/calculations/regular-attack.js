@@ -22,6 +22,18 @@ export function getRegularAttackChanges(action, casterState, targetState, curren
 
     }
 
+
+    /* HP RECOVERY */
+    if (action.affectCasterHpPoints > 0) {
+        const maxHp = casterState.maxHp;
+        const hp = casterState.hp;
+        const gain = ( hp + action.affectCasterHpPoints > maxHp )
+            ? (maxHp - hp)
+            : action.affectCasterHpPoints;
+
+        changes["affectCasterHp"] = gain
+    }
+
     return {
         ...currentChanges,
         ...changes

@@ -98,7 +98,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`A promise flew up into the air!`]
+                    content: [`A promise flew into the air!`]
                 }
             ]
         },
