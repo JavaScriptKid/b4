@@ -15,6 +15,9 @@ export default {
         description: "Causes opponent to lag out",
         ppCost: 6,
         affectTargetStatus: ["normal", "lag"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.status != "normal"
+        },
         getFollowupActions: function (action, casterState, targetState, currentChanges) {
             return [
                 {

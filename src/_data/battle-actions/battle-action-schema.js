@@ -56,6 +56,10 @@ export default {
     customMissStep: null, //function,
     customFailStep: null, //function,
 
+    getFail: function() {
+        return false
+    },
+
     getFollowupActions: function() {
         return [
         /*{

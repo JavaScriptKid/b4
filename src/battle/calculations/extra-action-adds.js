@@ -2,8 +2,12 @@ export function getExtraActionAdds(action, casterState, targetState, currentChan
 
     let changes = {};
 
-    changes["addActionToCloudQueue"] = action.getFollowupActions(action, casterState, targetState, currentChanges);
-    // []
+    if (!currentChanges.didActionFail) {
+        /* This property must exist ([]) */
+        changes["addActionToCloudQueue"] = action.getFollowupActions(action, casterState, targetState, currentChanges);
+    } else {
+        changes["addActionToCloudQueue"] = [];
+    }
 
     return {
         ...currentChanges,

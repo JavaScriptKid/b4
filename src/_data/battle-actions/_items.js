@@ -22,6 +22,9 @@ export default {
         name: "Network Reset Code",
         description: "Fixes lagging",
         affectCasterStatus: ["lag", "normal"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status != "lag"
+        },
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
                 getItemUseMessage(action, casterModel, targetModel, actionDescription),

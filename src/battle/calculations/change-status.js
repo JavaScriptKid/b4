@@ -2,21 +2,28 @@ export function getStatusChanges(action, casterState, targetState, currentChange
 
     let changes = {};
 
+    /* Check for fail */
+    changes["didActionFail"] = action.getFail(action, casterState, targetState, currentChanges);
+
+
     if (action.affectTargetStatus) {
 
         if (targetState.status == "normal") {
             //Some sort of defense roll?
             changes["affectTargetStatus"] = validateNewValue(action.affectTargetStatus, targetState);
-        } else {
-            /* Fail if target status is normal */
-            changes["didActionFail"] = true;
         }
+        //else {
+        //    /* Fail if target status is normal */
+        //    if (action.canFail) {
+        //        changes["didActionFail"] = true;
+        //    }
+        //}
     }
 
     if (action.affectCasterStatus) {
-        //Some sort of defense roll?
         changes["affectCasterStatus"] = validateNewValue(action.affectCasterStatus, casterState);
     }
+
 
     /* Remove null keys after validation */
     for (var key in changes) {
