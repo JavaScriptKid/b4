@@ -1,3 +1,5 @@
+import Actions from '../_data/battle-actions'
+
 /**
  * Replace action with an alternate action based on status
  * EX: lagging out
@@ -15,7 +17,8 @@ export function getReplacedActionIdMiddleware(originalActionId="", casterModel={
     }
 
     //Replace logic
-    if (casterModel.status == "lag") {
+    const actionModel = Actions[originalActionId];
+    if (casterModel.status == "lag" && actionModel.type != "Item") {
         return "natural-lag-a";
     }
 

@@ -4,7 +4,7 @@ import {CombatantModel} from '../combatant-model'
 import {randomFromArray} from '../../helpers/random-from-array'
 
 
-export function getSmartAttack(casterState, targetState, aiProperties={}) {
+export function getSmartAttack(casterState, targetState, aiProperties={}, useDirectActionId=null) {
     /* TODO: build out this function to provide smart attack choice based on caster/target state and aiProperties */
     //-------------------------
 
@@ -14,7 +14,7 @@ export function getSmartAttack(casterState, targetState, aiProperties={}) {
 
     const casterModel = new CombatantModel( casterState );
 
-    const actionId = randomFromArray(casterModel.attacks);
+    const actionId = useDirectActionId ? useDirectActionId : randomFromArray(casterModel.attacks);
     const action = Actions[actionId];
 
     return {

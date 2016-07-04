@@ -5,6 +5,7 @@ import {setBattleValue} from '../../redux-action-creators/battle-action-creators
 import {addQueuedSubmissions} from '../cloud-queue'
 
 import {getSmartAttack} from '../combatants/enemy-ai'
+import Actions from '../../_data/battle-actions'
 
 @connect((state, props) => {
     return {
@@ -24,12 +25,17 @@ class TurnControls extends React.Component {
         const combs = this.props.history[ this.props.history.length-1 ].combatants;
         const player1Id = Object.keys(combs)[0];
         const player2Id = Object.keys(combs)[1];
+
+
+        const actionid1 = this.refs.player1select.value == "random" ? null : this.refs.player1select.value;
+        const actionid2 = this.refs.player2select.value == "random" ? null : this.refs.player2select.value;
+
         const submissions = [ /* Submission models */
             getSmartAttack(
-                combs[player1Id], combs[player2Id], {}
+                combs[player1Id], combs[player2Id], {}, actionid1
             ),
             getSmartAttack(
-                combs[player2Id], combs[player1Id], {}
+                combs[player2Id], combs[player1Id], {}, actionid2
             )
         ];
 
@@ -58,10 +64,36 @@ class TurnControls extends React.Component {
         this.runTurn();
     }
 
+    renderActions() {
+        return Object.keys(Actions).map(actionId => {
+
+            const model = Actions[actionId];
+            const itemLabel = model.type == "Item" ? "ITEM: " : "";
+
+           return <option key={actionId} value={actionId}>{itemLabel}{model.name}</option>
+        });
+    }
+
     render() {
         return (
            <div>
                <button onClick={::this.handleClick}>Run Turn</button>
+               <div>
+                   <span>
+                       C1
+                       <select ref="player1select">
+                           <option value="random">(random attack)</option>
+                           {this.renderActions()}
+                       </select>
+                   </span>
+                   <span>
+                       C2
+                       <select ref="player2select">
+                           <option value="random">(random attack)</option>
+                           {this.renderActions()}
+                       </select>
+                   </span>
+               </div>
            </div>
         );
     }
