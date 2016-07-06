@@ -75,5 +75,68 @@ export default {
                 }
             ]
         }
+    },
+
+    /* Thrash */
+    "attack-special-003-a": {
+        ...specialAttackSchema,
+        name: "Thrash",
+        description: "Causes a memory leak and gradual burning",
+        ppCost: 10,
+        affectTargetStatus: ["normal", "memory-leak"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.status != "normal"
+        },
+        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    action: {
+                        targetId: currentChanges.targetId,
+                        casterId: currentChanges.targetId,
+                        actionId: "attack-special-003-a-catchfire"
+                    },
+                    turnRange: [2, 2]
+                }
+            ]
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${targetState.name} has a memory leak!`
+                    ]
+                },
+                {
+                    type: "message",
+                    content: [
+                        `${targetState.name}'s laptop is getting uncomfortably warm`
+                    ]
+                }
+            ]
+        }
+    },
+    "attack-special-003-a-catchfire": {
+        ...specialAttackSchema,
+        name: "(Thrash: catch fire)",
+        description: "",
+        ppCost: 0,
+        dependentOnStatus: "memory-leak",
+        affectTargetStatus: ["memory-leak", "fire"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.status != "memory-leak"
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    type: "message",
+                    content: [
+                        `[FAST]${targetState.name}'s laptop `,
+                        `[FAST]CAUGHT ON FIRE`
+                    ]
+                }
+            ]
+        }
     }
 }
