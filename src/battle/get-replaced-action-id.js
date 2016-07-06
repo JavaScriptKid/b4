@@ -8,7 +8,6 @@ import Actions from '../_data/battle-actions'
 export function getReplacedActionIdMiddleware(originalActionId="", casterModel={}) {
 
     /* Filter for non-replaceable actions */
-    //TODO: Items should not be replaceable. Add in the Item keys to the filter list?
     if ([
         "natural-death-a",
         "attack-008-a-resolve", //promise resolve
