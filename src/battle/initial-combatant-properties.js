@@ -13,6 +13,8 @@ export default {
         // { libraryId: "character-upgrade-001-i" }
     ],
 
+    items: [],
+
     ///////////////////////////////////
 
     hp: 50,

@@ -64,17 +64,31 @@ class TurnControls extends React.Component {
         this.runTurn();
     }
 
-    renderActions() {
-        return Object.keys(Actions).map(actionId => {
+    renderActions(combId) {
+        const combs = this.props.history[ this.props.history.length-1 ].combatants;
+        const model = combs[combId];
+
+        const options = [
+            ...model.attacks,
+            ...model.items
+        ];
+
+        return options.map((actionId, i) => {
 
             const model = Actions[actionId];
             const itemLabel = model.type == "Item" ? "ITEM: " : "";
 
-           return <option key={actionId} value={actionId}>{itemLabel}{model.name}</option>
+            return <option key={i} value={actionId}>{itemLabel}{model.name}</option>
         });
+
     }
 
     render() {
+
+        const combs = this.props.history[ this.props.history.length-1 ].combatants;
+        const player1Id = Object.keys(combs)[0];
+        const player2Id = Object.keys(combs)[1];
+
         return (
            <div>
                <button onClick={::this.handleClick}>Run Turn</button>
@@ -83,14 +97,14 @@ class TurnControls extends React.Component {
                        C1
                        <select ref="player1select">
                            <option value="random">(random attack)</option>
-                           {this.renderActions()}
+                           {this.renderActions(player1Id)}
                        </select>
                    </span>
                    <span>
                        C2
                        <select ref="player2select">
                            <option value="random">(random attack)</option>
-                           {this.renderActions()}
+                           {this.renderActions(player2Id)}
                        </select>
                    </span>
                </div>
