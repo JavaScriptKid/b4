@@ -35,7 +35,7 @@ export default {
  // TODO: -Promise resolve
  TODO: Promise Mk II
  TODO: Promise Mk III
- TODO: Garbage Jammer
+ // TODO: Garbage Jammer
  TODO: Thrash
  TODO: -Thrash: Catch on Fire
  TODO: Repeat

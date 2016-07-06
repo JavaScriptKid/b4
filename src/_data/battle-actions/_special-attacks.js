@@ -54,7 +54,7 @@ export default {
         }
     },
 
-    /* DDoS */
+    /* Garbage Jammer */
     "attack-special-002-a": {
         ...specialAttackSchema,
         name: "Garbage Jammer",
