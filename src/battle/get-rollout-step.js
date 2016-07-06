@@ -29,6 +29,11 @@ export function getRolloutStep(subaction, state) {
             return null;
         }
     }
+    /* cancel if this was supposed to be a memory leak, but caster no longer has memory leak */
+    /* cancel if this was supposed to be recovering from lag, but caster no longer is lagging */
+    if (action.dependentOnCasterStatus && action.dependentOnCasterStatus != casterModel.status) {
+        return null;
+    }
 
 
 

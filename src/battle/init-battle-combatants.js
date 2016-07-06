@@ -66,6 +66,10 @@ export default function() {
         characterUpgrades: [
             {libraryId: "character-upgrade-005-i"},
             {libraryId: "character-upgrade-005-ii"}
+        ],
+
+        items: [
+            "item_003"
         ]
     };
 

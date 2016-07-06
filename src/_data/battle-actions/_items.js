@@ -57,5 +57,27 @@ export default {
                 }
             ]
         }
-    }
+    },
+    "item_003": {
+        ...itemSchema,
+        name: "Breakpoint",
+        description: "Patches a memory leak",
+        affectCasterStatus: ["memory-leak", "normal"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status != "memory-leak"
+        },
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                getItemUseMessage(action, casterModel, targetModel, actionDescription),
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name} fixed the memory leak!`]
+                }
+            ]
+        }
+    },
 }

@@ -80,11 +80,13 @@ export function getSubactions(action, combatantState) {
 
     /* Part time bouncer: cancel this attack and it's additional sub actions if the status is not relevant */
     /* Cancel if move is dependent on status.
-    EX: don't recover from lag if you're not lagging, and don't get the memory-leak penalty when using the recover action */
-    const actionModel = Actions[action.actionId];
-    if (actionModel.dependentOnCasterStatus && actionModel.dependentOnCasterStatus != combatantState.status) {
-        return [];
-    }
+    EX: don't recover from lag if you're not lagging */
+    // const actionModel = Actions[action.actionId];
+    // if (actionModel.dependentOnCasterStatus && actionModel.dependentOnCasterStatus != combatantState.status) {
+    //     return [];
+    // }
+    /* TODO: I moved this logic to 'get-rollout-step.js' where it belongs */
+    /* TODO: IF no bugs pop up, delete all these comments */
 
 
     /* Case 1: suffering from a memory leak */
