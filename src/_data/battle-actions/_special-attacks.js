@@ -122,11 +122,11 @@ export default {
         name: "(Thrash: catch fire)",
         description: "",
         ppCost: 0,
-        dependentOnStatus: "memory-leak",
+        dependentOnCasterStatus: "memory-leak",
         affectTargetStatus: ["memory-leak", "fire"],
-        getFail: function(action, casterState, targetState, currentChanges) {
-            return targetState.status != "memory-leak"
-        },
+        // getFail: function(action, casterState, targetState, currentChanges) {
+        //     return targetState.status != "memory-leak"
+        // },
         customSuccessStep(action, casterState, targetState, currentChanges) {
             return [
                 {
