@@ -11,6 +11,7 @@ export function getReplacedActionIdMiddleware(originalActionId="", casterModel={
     //TODO: Items should not be replaceable. Add in the Item keys to the filter list?
     if ([
         "natural-death-a",
+        "attack-008-a-resolve", //promise resolve
         "natural-recover-lag"
     ].indexOf(originalActionId) > -1) {
         return originalActionId;
