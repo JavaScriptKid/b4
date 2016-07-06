@@ -12,7 +12,10 @@ export function getUpdatedItemsList(action, casterState, targetState, currentCha
             return index != targetIndex;
         });
 
-        changes["setCasterItemsList"] = updatedItems;
+        /* Add this property of # of items is different */
+        if (updatedItems.length != casterState.items.length) {
+            changes["setCasterItemsList"] = updatedItems;
+        }
     }
 
     return {
