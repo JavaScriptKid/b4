@@ -34,7 +34,8 @@ export default {
     "natural-fire-a": {
         ...actionSchema,
         animation: "sick-shake",
-        affectTargetHpPointsByPercent: -0.20,
+        dependentOnCasterStatus: "fire",
+        affectTargetHpPointsByPercent: -0.15,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
                 {
