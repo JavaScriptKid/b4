@@ -20,10 +20,44 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
 
 export default {
     /* DDoS */
+    "attack-special-000-a": {
+        ...specialAttackSchema,
+        name: "Throttle",
+        description: "Causes opponent to lag out for 1 or 2 turns",
+        ppCost: 4,
+        affectTargetStatus: ["normal", "lag"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.status != "normal"
+        },
+        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    action: {
+                        targetId: currentChanges.targetId,
+                        casterId: currentChanges.targetId,
+                        actionId: "natural-recover-lag"
+                    },
+                    turnRange: [1, 2]
+                }
+            ]
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${targetState.name} is lagging out!`
+                    ]
+                }
+            ]
+        }
+    },
+    /* DDoS */
     "attack-special-001-a": {
         ...specialAttackSchema,
         name: "DDoS",
-        description: "Causes opponent to lag out",
+        description: "Causes lagging for 2 to 5 turns",
         ppCost: 6,
         affectTargetStatus: ["normal", "lag"],
         getFail: function(action, casterState, targetState, currentChanges) {

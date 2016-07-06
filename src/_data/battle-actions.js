@@ -36,15 +36,15 @@ export default {
  TODO: Promise Mk II
  TODO: Promise Mk III
  // TODO: Garbage Jammer
- TODO: Thrash
- TODO: -Thrash: Catch on Fire
+ // TODO: Thrash
+ // TODO: -Thrash: Catch on Fire
  TODO: Repeat
  TODO: Revert
  TODO: Zen
  TODO: -Come out of Zen
  TODO: Fury
  TODO: -Come out of Fury
- TODO: Throttle
+ // TODO: Throttle
  // TODO: DDoS
  TODO: Rsync
  TODO: Deadline
