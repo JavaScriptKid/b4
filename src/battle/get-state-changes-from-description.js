@@ -22,7 +22,11 @@ export function getStateChangesFromDescription(dObj, currentState) {
 
         //Status
         {forId: dObj["casterId"], descriptionProp: "affectCasterStatus", stateProp: "status", addToOld: false},
-        {forId: dObj["targetId"], descriptionProp: "affectTargetStatus", stateProp: "status", addToOld: false}
+        {forId: dObj["targetId"], descriptionProp: "affectTargetStatus", stateProp: "status", addToOld: false},
+
+        //Items
+        {forId: dObj["casterId"], descriptionProp: "setCasterItemsList", stateProp: "items", addToOld: false},
+        {forId: dObj["targetId"], descriptionProp: "setTargetItemsList", stateProp: "items", addToOld: false}
 
     ].forEach( prop => {
         if (Object.keys( dObj ).indexOf(prop.descriptionProp) > -1 ) {
@@ -32,7 +36,6 @@ export function getStateChangesFromDescription(dObj, currentState) {
             }
             nextState[ prop.forId ][prop.stateProp] = dObj[prop.descriptionProp];
         }
-
     });
 
     return {

@@ -8,6 +8,7 @@ import {getPpChanges} from './calculations/change-pp'
 import {getMiss} from './calculations/miss'
 import {getSuperCharged} from './calculations/super-charge'
 import {getExtraActionAdds} from './calculations/extra-action-adds'
+import {getUpdatedItemsList} from './calculations/updated-items-list'
 
 export function getStepDescriptionObject(action, casterModel, targetModel) {
     let changes = {
@@ -24,6 +25,8 @@ export function getStepDescriptionObject(action, casterModel, targetModel) {
     changes = getRegularAttackChanges(action, casterModel, targetModel, changes);
     changes = getStatusChanges(action, casterModel, targetModel, changes);
     changes = getExtraActionAdds(action, casterModel, targetModel, changes);
+    changes = getUpdatedItemsList(action, casterModel, targetModel, changes);
+
 
     return {
         ...changes

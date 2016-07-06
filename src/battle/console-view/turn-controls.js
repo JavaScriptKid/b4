@@ -96,14 +96,12 @@ class TurnControls extends React.Component {
                    <span>
                        C1
                        <select ref="player1select">
-                           <option value="random">(random attack)</option>
                            {this.renderActions(player1Id)}
                        </select>
                    </span>
                    <span>
                        C2
                        <select ref="player2select">
-                           <option value="random">(random attack)</option>
                            {this.renderActions(player2Id)}
                        </select>
                    </span>
