@@ -8,6 +8,17 @@ const attackSchema = {
 };
 
 export default {
+    /* Insult */
+    "attack-000-a": {
+        ...attackSchema,
+        name: "Insult",
+        animation: "tada",
+        description: "When you have nothing left to lose",
+        affectTargetHpPoints: -2,
+        ppCost: 0
+    },
+
+
     /* Slice */
     "attack-001-a": {
         ...attackSchema,

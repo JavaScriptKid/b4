@@ -1,5 +1,6 @@
-export function CombatantModel(combatantState={}) {
+import Actions from '../_data/battle-actions'
 
+export function CombatantModel(combatantState={}) {
     return {
 
         ...combatantState,
@@ -12,6 +13,17 @@ export function CombatantModel(combatantState={}) {
 
         speedRoll: function(externalSpeedModification=0) {
             return combatantState.speedStatPoints + combatantState.speedModifier + externalSpeedModification
-        }
+        },
+
+        attacks: getAvailableAttacks(combatantState)
     }
 }
+
+var getAvailableAttacks = function(combatantState={}) {
+    const available = combatantState.attacks.filter(attackId => {
+        const model = Actions[attackId];
+        return combatantState.pp >= model.ppCost;
+    });
+
+    return available.length ? available : ["attack-000-a"]; /* Return just Insult if not enough PP for anything else */
+};

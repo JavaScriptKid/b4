@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {executeTurn} from '../execute-turn'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 import {addQueuedSubmissions} from '../cloud-queue'
+import { CombatantModel } from '../combatant-model'
 
 import {getSmartAttack} from '../combatants/enemy-ai'
 import Actions from '../../_data/battle-actions'
@@ -66,7 +67,7 @@ class TurnControls extends React.Component {
 
     renderActions(combId) {
         const combs = this.props.history[ this.props.history.length-1 ].combatants;
-        const model = combs[combId];
+        const model = new CombatantModel(combs[combId]);
 
         const options = [
             ...model.attacks,
