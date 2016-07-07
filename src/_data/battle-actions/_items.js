@@ -13,7 +13,8 @@ const getItemUseMessage = function(action, casterModel, targetModel, actionDescr
 const itemSchema = {
     ...actionSchema,
     type: "Item",
-    animation: "slideDown"
+    animation: "slideDown",
+    speedModifier: 999
 };
 
 export default {
@@ -79,5 +80,5 @@ export default {
                 }
             ]
         }
-    },
+    }
 }

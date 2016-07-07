@@ -15,6 +15,8 @@ const allAttacks = [
     "attack-special-001-a",
     "attack-special-002-a",
     "attack-special-003-a",
+    "attack-special-004-a",
+    "attack-special-004-b"
 ];
 
 

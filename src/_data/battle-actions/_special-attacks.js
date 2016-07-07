@@ -172,5 +172,49 @@ export default {
                 }
             ]
         }
+    },
+
+    /* Curl */
+    "attack-special-004-a": {
+        ...specialAttackSchema,
+        name: "Curl",
+        description: "Steals 1 random item",
+        ppCost: 6,
+        theftQuantity: 1,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.items.length == 0
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} stole 1 item`
+                    ]
+                }
+            ]
+        }
+    },
+    "attack-special-004-b": {
+        ...specialAttackSchema,
+        name: "Curl mk II",
+        description: "Steal 2 random items",
+        ppCost: 6,
+        theftQuantity: 2,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.items.length == 0
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} stole 2? items`
+                    ]
+                }
+            ]
+        }
     }
 }
