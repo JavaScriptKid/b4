@@ -11,7 +11,7 @@ export default {
     ...naturals
 }
 /*
- TODO: TODO: Insult
+ // TODO: TODO: Insult (should not use Attack stat)
  // TODO: Slice
  // TODO: Slice Mk II
  // TODO: Slice Mk III
@@ -30,7 +30,7 @@ export default {
  // TODO: Curl
  // TODO: Curl Mk II
  TODO: Curl Mk III ?
- TODO: Steal-and-Use (needs a name)
+ // TODO: Steal-and-Use (needs a name)
  // TODO: Promise
  // TODO: -Promise resolve
  TODO: Promise Mk II
