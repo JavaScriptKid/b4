@@ -225,6 +225,7 @@ export default {
         name: "Steal-and-Use",
         description: "Steals 1 random item and immediately uses it",
         theftQuantity: 1,
+        ppCost: 11,
         stealAndUseItem: true,
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.items.length == 0
@@ -241,4 +242,27 @@ export default {
             ]
         }
     },
+
+    /* Clean */
+    "attack-special-006-a": {
+        ...specialAttackSchema,
+        name: "Clean",
+        ppCost: 7,
+        description: "Clears status back to normal",
+        affectCasterStatus: "normal",
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status == "normal"
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name}'s status condition is gone!`
+                    ]
+                }
+            ]
+        }
+    }
 }

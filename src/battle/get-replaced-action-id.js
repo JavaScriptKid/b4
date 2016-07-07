@@ -11,7 +11,8 @@ export function getReplacedActionIdMiddleware(originalActionId="", casterModel={
     if ([
         "natural-death-a",
         "attack-008-a-resolve", //promise resolve
-        "natural-recover-lag"
+        "attack-special-006-a", //"clean" status back to normal
+        "natural-recover-lag",
     ].indexOf(originalActionId) > -1) {
         return originalActionId;
     }
