@@ -1,4 +1,5 @@
 import actionSchema from './battle-action-schema'
+import listingTextHelper from '../../helpers/listing-text-helper'
 
 const specialAttackSchema = {
     ...actionSchema,
@@ -190,7 +191,7 @@ export default {
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} stole 1 item`
+                        `${casterState.name} stole ${listingTextHelper(currentChanges.stolenItemNames)} from ${targetState.name}!`
                     ]
                 }
             ]
@@ -211,7 +212,7 @@ export default {
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} stole 2? items`
+                        `${casterState.name} stole ${listingTextHelper(currentChanges.stolenItemNames)} from ${targetState.name}!`
                     ]
                 }
             ]

@@ -1,4 +1,6 @@
 import shuffle from 'lodash/shuffle'
+import Actions from '../../_data/battle-actions'
+
 
 var addItemsToArray = function(newItems=[], origArray=[]) {
     return [
@@ -33,6 +35,7 @@ export function getUpdatedItemsList(action, casterState, targetState, currentCha
 
         changes["setCasterItemsList"] = updatedCasterItems;
         changes["setTargetItemsList"] = updatedTargetItems;
+        changes["stolenItemNames"] = itemsToSteal.map(itemId => {return Actions[itemId].name});
     }
 
 
