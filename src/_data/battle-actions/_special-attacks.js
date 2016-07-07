@@ -345,7 +345,7 @@ export default {
         ...specialAttackSchema,
         name: "Deadline",
         ppCost: 5,
-        description: "Temporarily boosts speed",
+        description: "Boosts speed for 4 to 6 turns",
         affectCasterStatus: ["normal", "deadline"],
         getFail: function(action, casterState, targetState, currentChanges) {
             return casterState.status != "normal"
@@ -374,7 +374,7 @@ export default {
                         casterId: currentChanges.casterId,
                         actionId: "natural-recover-deadline"
                     },
-                    turnRange: [2, 5]
+                    turnRange: [4, 6]
                 }
             ]
         }

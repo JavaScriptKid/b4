@@ -47,9 +47,10 @@ export default {
  // TODO: Throttle
  // TODO: DDoS
  TODO: Rsync
- TODO: Deadline
+ // TODO: Deadline
  TODO: Redirect
  // TODO: Clean
+TODO: Scope Bomb (normal, but stronger against Deadline status)
 
  NATURALS
  // DEATH
@@ -57,4 +58,14 @@ export default {
  // FIRE
  // LAGGING OUT
  // Recover from LAGGING OUT
+
+
+ STATUS EFFECTS
+ // DONE lag
+ // DONE memory-leak
+ // DONE fire
+ // TODO: zen (++accuracy, --defense)
+ // TODO: fury (++attack, --accuracy)
+ // TODO: deadline  (++speed, weak to Scope Bomb)
+
  */

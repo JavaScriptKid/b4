@@ -58,7 +58,8 @@ export default function() {
             "item_001",
             "item_002",
             "item_002"
-        ]
+        ],
+        speedStatPoints: 3 //Be careful. This should be populated with real stat (Spd)
     };
 
     combatants[id2] = {
@@ -80,7 +81,8 @@ export default function() {
 
         items: [
             "item_003"
-        ]
+        ],
+        speedStatPoints: 3 //Be careful. This should be populated with real stat (Spd)
     };
 
 

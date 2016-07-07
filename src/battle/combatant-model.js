@@ -12,7 +12,11 @@ export function CombatantModel(combatantState={}) {
         isAlive: (combatantState.hp > 0),
 
         speedRoll: function(externalSpeedModification=0) {
-            return combatantState.speedStatPoints + combatantState.speedModifier + externalSpeedModification
+
+            const base = combatantState.speedStatPoints + combatantState.speedModifier + externalSpeedModification;
+            /* Deadline status: add 25% to speed stat */
+            const deadlineBonus = (combatantState.status == "deadline") ? Math.round(combatantState.speedStatPoints * 0.25) : 0;
+            return base + deadlineBonus;
         },
 
         attacks: getAvailableAttacks(combatantState)
