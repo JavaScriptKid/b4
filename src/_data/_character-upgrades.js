@@ -65,6 +65,23 @@ export default {
         ...upgradeSchema,
         name: "Weakless II",
         description: "Decrease weakness of your strongest Framework by 30%"
+    },
+
+    /* Attack Interactions */
+    "character-upgrade-007-i": { //TODO
+        ...upgradeSchema,
+        name: "Oathbreaker",
+        description: "15% chance of dissolving oncoming enemy Promises"
+    },
+    "character-upgrade-007-ii": { //TODO
+        ...upgradeSchema,
+        name: "Oathbreaker II",
+        description: "30% chance of dissolving oncoming enemy Promises"
+    },
+    "character-upgrade-007-iii": { //TODO
+        ...upgradeSchema,
+        name: "Oathbreaker III",
+        description: "50% chance of dissolving oncoming enemy Promises"
     }
 
 }

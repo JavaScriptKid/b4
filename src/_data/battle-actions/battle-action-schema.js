@@ -46,6 +46,7 @@ export default {
     theftQuantity: 0,
     theftQuality: "random", /* best, worst */
     targetResistanceNeeded: 0, /* target needs defense roll higher than this (?), or it will fail */
+    stealAndUseItem: false,
 
     //Turn status
     repetitions: [], /* [1, 4]*/

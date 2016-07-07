@@ -217,5 +217,28 @@ export default {
                 }
             ]
         }
-    }
+    },
+
+    /* Steal and Use Item */
+    "attack-special-005-a": {
+        ...specialAttackSchema,
+        name: "Steal-and-Use",
+        description: "Steals 1 random item and immediately uses it",
+        theftQuantity: 1,
+        stealAndUseItem: true,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.items.length == 0
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} stole a ${currentChanges.stolenItemNames[0]} from ${targetState.name}!`
+                    ]
+                }
+            ]
+        }
+    },
 }

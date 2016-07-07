@@ -27,9 +27,9 @@ export default {
  TODO: reduce
  TODO: reduce Mk II
  TODO: reduce Mk III
- TODO: Curl
- TODO: Curl Mk II
- TODO: Curl Mk III
+ // TODO: Curl
+ // TODO: Curl Mk II
+ TODO: Curl Mk III ?
  TODO: Steal-and-Use (needs a name)
  // TODO: Promise
  // TODO: -Promise resolve

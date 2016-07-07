@@ -39,6 +39,13 @@ export function getUpdatedItemsList(action, casterState, targetState, currentCha
     }
 
 
+    /* Steal and Use */
+    if (action.stealAndUseItem === true) {
+
+    }
+
+
+
     /* Use up an item id from caster's Item list */
     if (action.type == "Item") {
         
