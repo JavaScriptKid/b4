@@ -264,5 +264,80 @@ export default {
                 }
             ]
         }
+    },
+
+    /* Fury */
+    "attack-special-007-a": {
+        ...specialAttackSchema,
+        name: "Troll",
+        ppCost: 5,
+        description: "Enters temporary state of fury",
+        affectCasterStatus: ["normal", "fury"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status != "normal"
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} is enraged in fury!`
+                    ]
+                }
+            ]
+        },
+        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    action: {
+                        targetId: currentChanges.casterId,
+                        casterId: currentChanges.casterId,
+                        actionId: "natural-recover-fury"
+                    },
+                    turnRange: [2, 5]
+                }
+            ]
+        }
+    },
+
+    /* Fury */
+    "attack-special-008-a": {
+        ...specialAttackSchema,
+        name: "Headphones",
+        ppCost: 5,
+        description: "Enters temporary state of zen",
+        affectCasterStatus: ["normal", "zen"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status != "normal"
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} put on Headphones!`
+                    ]
+                },
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} has entered a state of Zen`
+                    ]
+                }
+            ]
+        },
+        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    action: {
+                        targetId: currentChanges.casterId,
+                        casterId: currentChanges.casterId,
+                        actionId: "natural-recover-zen"
+                    },
+                    turnRange: [2, 5]
+                }
+            ]
+        }
     }
 }

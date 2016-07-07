@@ -40,16 +40,16 @@ export default {
  // TODO: -Thrash: Catch on Fire
  TODO: Repeat
  TODO: Revert
- TODO: Zen
- TODO: -Come out of Zen
- TODO: Fury
- TODO: -Come out of Fury
+ // TODO: Zen
+ // TODO: -Come out of Zen
+ // TODO: Fury
+ // TODO: -Come out of Fury
  // TODO: Throttle
  // TODO: DDoS
  TODO: Rsync
  TODO: Deadline
  TODO: Redirect
- TODO: Clean
+ // TODO: Clean
 
  NATURALS
  // DEATH

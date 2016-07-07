@@ -61,6 +61,7 @@ export default {
             ]
         }
     },
+
     "natural-recover-lag": {
         ...actionSchema,
         ppCost: 0,
@@ -79,5 +80,46 @@ export default {
                 }
             ]
         }
+    },
+
+    "natural-recover-fury": {
+        ...actionSchema,
+        ppCost: 0,
+        animation: "tada",
+        dependentOnCasterStatus: "fury",
+        affectCasterStatus: ["fury", "normal"], /* If fury, change to normal" */
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name} has calmed down from fury`]
+                }
+            ]
+        }
+    },
+
+    "natural-recover-zen": {
+        ...actionSchema,
+        ppCost: 0,
+        animation: "tada",
+        dependentOnCasterStatus: "zen",
+        affectCasterStatus: ["zen", "normal"], /* If zen, change to normal" */
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name} has returned from zen meditation`]
+                }
+            ]
+        }
     }
+
 }
