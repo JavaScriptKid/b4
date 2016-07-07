@@ -36,13 +36,13 @@ export function getUpdatedItemsList(action, casterState, targetState, currentCha
         changes["setCasterItemsList"] = updatedCasterItems;
         changes["setTargetItemsList"] = updatedTargetItems;
         changes["stolenItemNames"] = itemsToSteal.map(itemId => {return Actions[itemId].name});
+
+        /* Steal and Use */
+        if (action.stealAndUseItem === true && itemsToSteal.length) {
+            changes["shouldImmediatelyUse"] = itemsToSteal[0];
+        }
     }
 
-
-    /* Steal and Use */
-    if (action.stealAndUseItem === true) {
-
-    }
 
 
 

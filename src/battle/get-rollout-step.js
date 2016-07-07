@@ -54,7 +54,8 @@ export function getRolloutStep(subaction, state) {
         steps: [
             ...stepOutput,
             {type: "stateChange", newState: nextState} //The view clickthrough should dispatch this
-        ]
+        ],
+        stepDescriptionObject: stepDescriptionObject /* Adding this so we can add immediate after events, like Steal-And-Use */
     }
 
 }

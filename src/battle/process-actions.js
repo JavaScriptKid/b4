@@ -41,7 +41,20 @@ export function processActions(actionQueue=[], initialState={}) {
                 addStateLogToTurnHistory({...rolloutStep.nextState});
                 addStepLogToRolloutHistory(rolloutStep.steps);
 
-                /* Check if this rollout was the death of a character */
+                /* ADDING EXTRA SUB EVENTS ON THIS SAME TURN */
+                /* Case 1. Steal and Use */
+                if (rolloutStep.stepDescriptionObject.shouldImmediatelyUse) {
+                    const useItemSubAction = {
+                        casterId: a.casterId,
+                        targetId: a.casterId,
+                        actionId: rolloutStep.stepDescriptionObject.shouldImmediatelyUse
+                    };
+                    const useItemStolenItemRolloutStep = getRolloutStep(useItemSubAction, rolloutStep.nextState);
+                    addStateLogToTurnHistory({...useItemStolenItemRolloutStep.nextState});
+                    addStepLogToRolloutHistory(useItemStolenItemRolloutStep.steps);
+                }
+
+                /* Case 2. Check if this rollout was the death of a character */
                 const deathId = getDeadCombatantId(rolloutStep.nextState);
                 if (deathId) {
                     const deathSubAction = {
