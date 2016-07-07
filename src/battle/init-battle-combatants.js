@@ -8,6 +8,7 @@ import makeId from '../helpers/make-id'
 //import specialAttacks from '../_data/battle-actions/_special-attacks'
 
 const allAttacks = [
+    //"attack-000-a"
     "attack-001-a",
     "attack-002-a",
     "attack-008-a",
@@ -21,7 +22,7 @@ const allAttacks = [
     "attack-special-006-a",
     "attack-special-007-a",
     "attack-special-008-a",
-    //"attack-000-a"
+    "attack-special-009-a"
 ];
 
 

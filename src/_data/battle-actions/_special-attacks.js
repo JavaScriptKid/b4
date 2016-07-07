@@ -301,7 +301,7 @@ export default {
         }
     },
 
-    /* Fury */
+    /* Zen */
     "attack-special-008-a": {
         ...specialAttackSchema,
         name: "Headphones",
@@ -334,6 +334,45 @@ export default {
                         targetId: currentChanges.casterId,
                         casterId: currentChanges.casterId,
                         actionId: "natural-recover-zen"
+                    },
+                    turnRange: [2, 5]
+                }
+            ]
+        }
+    },
+    /* Deadline */
+    "attack-special-009-a": {
+        ...specialAttackSchema,
+        name: "Deadline",
+        ppCost: 5,
+        description: "Temporarily boosts speed",
+        affectCasterStatus: ["normal", "deadline"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status != "normal"
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} issued a deadline!`
+                    ]
+                },
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name}'s speed is greatly increased`
+                    ]
+                }
+            ]
+        },
+        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+            return [
+                {
+                    action: {
+                        targetId: currentChanges.casterId,
+                        casterId: currentChanges.casterId,
+                        actionId: "natural-recover-deadline"
                     },
                     turnRange: [2, 5]
                 }

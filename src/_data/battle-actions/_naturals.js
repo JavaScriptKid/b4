@@ -120,6 +120,26 @@ export default {
                 }
             ]
         }
+    },
+
+    "natural-recover-deadline": {
+        ...actionSchema,
+        ppCost: 0,
+        animation: "tada",
+        dependentOnCasterStatus: "deadline",
+        affectCasterStatus: ["deadline", "normal"], /* If deadline, change to normal" */
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "animation",
+                    animationName: action.animation
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s deadline has passed`]
+                }
+            ]
+        }
     }
 
 }
