@@ -7,6 +7,28 @@ const attackSchema = {
     dependentOnAttack: null //"action_attack_whatever_001"
 };
 
+const getIteratingSuccessMessage = function(action, casterModel, targetModel, actionDescription) {
+    return [
+        {
+            type: "message",
+            content: [
+                `${casterModel.name} used `,
+                "@@pause_300@@",
+                `[FAST]${action.name}!`
+            ]
+        },
+        {
+            type: "animation",
+            animationName: action.animation
+        },
+        {
+            type: "message",
+            content: [`It hit ${actionDescription.repetitionsCount} times!`]
+        }
+    ]
+};
+
+
 export default {
     /* Insult */
     "attack-000-a": {
@@ -80,6 +102,51 @@ export default {
         affectTargetSpeedPoints: {percentChance: 33.3, affectValue: -3}, /* MIGHT do this. 1/3 chance */
         speedModifier: 10,
         ppCost: 9
+    },
+
+    /* forEach */
+    "attack-003-a": {
+        ...attackSchema,
+        name: "ForEach",
+        animation: "iterate",
+        description: "Hits the enemy 2 to 5 times with wildcard damage",
+        affectTargetHpPoints: -5,
+        repetitions: [2,5],
+        repetitionType: "random",
+        ppCost: 5,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
+        }
+    },
+
+    /* map */
+    "attack-004-a": {
+        ...attackSchema,
+        name: "MapArray",
+        animation: "iterate",
+        description: "Hits the enemy 2 to 5 times with consistent damage",
+        affectTargetHpPoints: -5,
+        repetitions: [2,5],
+        repetitionType: "map",
+        ppCost: 5,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
+        }
+    },
+
+    /* reduce */
+    "attack-005-a": {
+        ...attackSchema,
+        name: "ReduceArray",
+        animation: "iterate",
+        description: "Hits the enemy 2 to 5 times with increasing damage",
+        affectTargetHpPoints: -5,
+        repetitions: [2,5],
+        repetitionType: "reduce",
+        ppCost: 5,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
+        }
     },
 
 

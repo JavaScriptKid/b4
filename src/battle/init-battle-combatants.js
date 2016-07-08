@@ -11,6 +11,9 @@ const allAttacks = [
     //"attack-000-a"
     "attack-001-a",
     "attack-002-a",
+    "attack-003-a",
+    "attack-004-a",
+    "attack-005-a",
     "attack-008-a",
     "attack-special-000-a",
     "attack-special-001-a",

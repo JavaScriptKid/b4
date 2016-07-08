@@ -1,3 +1,7 @@
+import {getRandomInRange} from '../../helpers/numbers-helper'
+import {randomFromArray} from '../../helpers/random-from-array'
+import range from 'lodash/range'
+
 export function getRegularAttackChanges(action, casterState, targetState, currentChanges) {
 
     let changes = {};
@@ -6,8 +10,33 @@ export function getRegularAttackChanges(action, casterState, targetState, curren
 
         if (action.repetitions.length) {
             //Do the roll [x,x] amount of times
-            changes["repetitionsCount"] = 5;
-            changes["affectTargetHp"] = -45;
+            const repetitionsCount = getRandomInRange( action.repetitions[0], action.repetitions[1]);
+
+            const damageRange = [2,3,4,5,6];
+            const chosenBase = randomFromArray(damageRange);
+
+            let totalDamageCounter = 0;
+            range(0, repetitionsCount).forEach((number, index) => {
+                /* Add a random number from the range */
+                if (action.repetitionType == "random") {
+                    totalDamageCounter += randomFromArray(damageRange);
+                }
+
+                /* Add a consistent number from the range (chosenBase) */
+                if (action.repetitionType == "map") {
+                    totalDamageCounter += chosenBase;
+                }
+
+                /* Add a consistent number from the range (chosenBase) */
+                if (action.repetitionType == "reduce") {
+                    totalDamageCounter += (chosenBase + index);
+                }
+            });
+
+            //console.log(totalDamageCounter);
+            changes["repetitionsCount"] = repetitionsCount;
+            changes["affectTargetHp"] = -totalDamageCounter;
+
         } else {
 
             // Point based strike
