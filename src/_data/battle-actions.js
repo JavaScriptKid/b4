@@ -18,13 +18,13 @@ export default {
  // TODO: Preloaded
  // TODO: Preloaded Mk II
  // TODO: Preloaded Mk III
- TODO: forEach
+ // TODO: forEach
  TODO: forEach Mk II
  TODO: for Each Mk III
- TODO: map
+ // TODO: map
  TODO: map Mk II
  TODO: map Mk III
- TODO: reduce
+ // TODO: reduce
  TODO: reduce Mk II
  TODO: reduce Mk III
  // TODO: Curl

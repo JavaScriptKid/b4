@@ -2,7 +2,7 @@ import {getRandomInRange} from '../../helpers/numbers-helper'
 import {randomFromArray} from '../../helpers/random-from-array'
 import range from 'lodash/range'
 
-export function getRegularAttackChanges(action, casterState, targetState, currentChanges) {
+export function getRegularAttackChanges(action, casterModel, targetModel, currentChanges) {
 
     let changes = {};
 
@@ -41,11 +41,17 @@ export function getRegularAttackChanges(action, casterState, targetState, curren
 
             // Point based strike
             if (action.affectTargetHpPoints != 0) {
-                changes["affectTargetHp"] = action.affectTargetHpPoints; //Should be a proper roll?
+                /* TODO: This function still needs to be balanced according to actual character Stats. Right now, everything is 0 */
+                changes["affectTargetHp"] = casterModel.attackRoll(
+                    action.affectTargetHpPoints,
+                    targetModel.defenseRating,
+                    targetModel.status,
+                    action
+                );
             }
             // Percentage based strike
             if (action.affectTargetHpPointsByPercent != 0) {
-                changes["affectTargetHp"] = Math.round(action.affectTargetHpPointsByPercent * targetState.maxHp);
+                changes["affectTargetHp"] = Math.round(action.affectTargetHpPointsByPercent * targetModel.maxHp);
             }
         }
 
@@ -54,8 +60,8 @@ export function getRegularAttackChanges(action, casterState, targetState, curren
 
     /* HP RECOVERY */
     if (action.affectCasterHpPoints > 0) {
-        const maxHp = casterState.maxHp;
-        const hp = casterState.hp;
+        const maxHp = casterModel.maxHp;
+        const hp = casterModel.hp;
         const gain = ( hp + action.affectCasterHpPoints > maxHp )
             ? (maxHp - hp)
             : action.affectCasterHpPoints;
