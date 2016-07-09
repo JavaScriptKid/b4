@@ -8,10 +8,10 @@ export function getCombatantStats(combatant={}) {
     return {
         maxHp: applyHealthUpgrades(stats.maxHp, combatant),
         maxPp: stats.maxPp,
-        atk: applyAttackUpgrades(stats.atk, combatant),
-        def: stats.def,
-        spec: stats.spec,
-        spd: stats.spd
+        attackStatPoints: applyAttackUpgrades(stats.atk, combatant),
+        defenseStatPoints: stats.def,
+        specialStatPoints: stats.spec,
+        speedStatPoints: stats.spd
     }
 
 }

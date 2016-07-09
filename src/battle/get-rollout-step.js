@@ -18,6 +18,7 @@ export function getRolloutStep(subaction, state) {
     const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel)
     const action = {
         actionId: actionId, /* Include a copy of the action's id */
+        isSuperCharged: subaction.isSuperCharged,
         ...Actions[actionId]
     };
 

@@ -28,16 +28,12 @@ class TurnControls extends React.Component {
         const player2Id = Object.keys(combs)[1];
 
 
-        const actionid1 = this.refs.player1select.value == "random" ? null : this.refs.player1select.value;
-        const actionid2 = this.refs.player2select.value == "random" ? null : this.refs.player2select.value;
+        const actionid1 = this.refs[`${player1Id}-select`].value;
+        const actionid2 = this.refs[`${player2Id}-select`].value;
 
         const submissions = [ /* Submission models */
-            getSmartAttack(
-                combs[player1Id], combs[player2Id], {}, actionid1
-            ),
-            getSmartAttack(
-                combs[player2Id], combs[player1Id], {}, actionid2
-            )
+            getSmartAttack(combs[player1Id], combs[player2Id], {}, actionid1, this.refs[`${player1Id}-dangercheckbox`].checked),
+            getSmartAttack(combs[player2Id], combs[player1Id], {}, actionid2, this.refs[`${player2Id}-dangercheckbox`].checked)
         ];
 
         /* RUN A COUNT # OF TURNS TODO - only does 1 right now */
@@ -65,10 +61,7 @@ class TurnControls extends React.Component {
         this.runTurn();
     }
 
-    renderActions(combId) {
-        const combs = this.props.history[ this.props.history.length-1 ].combatants;
-        const model = new CombatantModel(combs[combId]);
-
+    renderActions(model) {
         const options = [
             ...model.attacks,
             ...model.items
@@ -81,8 +74,30 @@ class TurnControls extends React.Component {
 
             return <option key={i} value={actionId}>{itemLabel}{model.name}</option>
         });
-
     }
+
+
+    renderCombForm(combId) {
+        const combs = this.props.history[ this.props.history.length-1 ].combatants;
+        const model = new CombatantModel(combs[combId]);
+
+        const isCheckboxEnabled = model.isDangerMeterUsable();
+
+        return (
+            <div>
+                <span>{model.name} </span>
+                <select ref={`${combId}-select`}>
+                    {this.renderActions(model)}
+                </select>
+                <span>
+                    <input ref={`${combId}-dangercheckbox`} type="checkbox" disabled={!isCheckboxEnabled} />
+                    Danger Charge
+                </span>
+            </div>
+        )
+    }
+
+
 
     render() {
 
@@ -94,18 +109,8 @@ class TurnControls extends React.Component {
            <div>
                <button onClick={::this.handleClick}>Run Turn</button>
                <div>
-                   <span>
-                       C1
-                       <select ref="player1select">
-                           {this.renderActions(player1Id)}
-                       </select>
-                   </span>
-                   <span>
-                       C2
-                       <select ref="player2select">
-                           {this.renderActions(player2Id)}
-                       </select>
-                   </span>
+                   {this.renderCombForm(player1Id)}
+                   {this.renderCombForm(player2Id)}
                </div>
            </div>
         );

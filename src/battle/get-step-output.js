@@ -1,4 +1,16 @@
 const getUseMessage = function(action, casterModel, targetModel, actionDescription) {
+
+    if (action.isSuperCharged) {
+        return {
+            type: "message",
+            content: [
+                `${casterModel.name} used `,
+                `[FAST]SUPER CHARGED ${action.name}!`
+            ]
+        }
+    }
+
+
     return {
         type: "message",
         content: [

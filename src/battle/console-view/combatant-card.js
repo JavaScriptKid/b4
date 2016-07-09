@@ -88,19 +88,19 @@ class CombatantCard extends React.Component {
                 </div>
                 <div>
                     <label>Atk</label>
-                    <span>{stats.atk}</span> <span>{this.renderDiff(stats.atk, opponentStats.atk)}</span>
+                    <span>{stats.attackStatPoints}</span> <span>{this.renderDiff(stats.attackStatPoints, opponentStats.attackStatPoints)}</span>
                 </div>
                 <div>
                     <label>Def</label>
-                    <span>{stats.def}</span> <span>{this.renderDiff(stats.def, opponentStats.def)}</span>
+                    <span>{stats.defenseStatPoints}</span> <span>{this.renderDiff(stats.defenseStatPoints, opponentStats.defenseStatPoints)}</span>
                 </div>
                 <div>
                     <label>Spec</label>
-                    <span>{stats.spec}</span> <span>{this.renderDiff(stats.spec, opponentStats.spec)}</span>
+                    <span>{stats.specialStatPoints}</span> <span>{this.renderDiff(stats.specialStatPoints, opponentStats.specialStatPoints)}</span>
                 </div>
                 <div>
                     <label>Spd</label>
-                    <span>{stats.spd}</span> <span>{this.renderDiff(stats.spd, opponentStats.spd)}</span>
+                    <span>{stats.speedStatPoints}</span> <span>{this.renderDiff(stats.speedStatPoints, opponentStats.speedStatPoints)}</span>
                 </div>
             </div>
         )

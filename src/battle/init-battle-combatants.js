@@ -1,4 +1,5 @@
 import { setBattleValue } from '../redux-action-creators/battle-action-creators'
+import {getCombatantStats} from './get-combatant-stats'
 import initialCombatantProperties from './initial-combatant-properties'
 
 import makeId from '../helpers/make-id'
@@ -31,46 +32,42 @@ const allAttacks = [
 
 export default function() {
 
-    var combatants = {};
 
     const id1 = makeId('combatant');
     const id2 = makeId('combatant');
 
-    combatants[id1] = {
-        ...initialCombatantProperties,
+
+    const initialComb1 = {
 
         id: id1,
         name: "Jacob",
         level: 3,
-        hp: 48,
-        status: "normal",
         class: "ninja",
+        dangerMeter: 75,
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
-
         attacks: [ ...allAttacks],
-
-        laptopUpgrades: [
-            { libraryId: "laptop-upgrade_001", isEnabled: true },
-            { libraryId: "laptop-upgrade_002", isEnabled: true },
-            { libraryId: "laptop-upgrade_003", isEnabled: true } /* can be disabled by special attacks? */
-        ],
-        characterUpgrades: [
-            { libraryId: "character-upgrade-001-i" }
-        ],
         items: [
             "item_001",
             "item_002",
             "item_002"
         ],
-        speedStatPoints: 3 //Be careful. This should be populated with real stat (Spd)
+        laptopUpgrades: [
+            { libraryId: "laptop-upgrade_001" },
+            { libraryId: "laptop-upgrade_002" },
+            { libraryId: "laptop-upgrade_003" }
+        ],
+        characterUpgrades: [
+            { libraryId: "character-upgrade-001-i" }
+        ]
     };
 
-    combatants[id2] = {
-        ...initialCombatantProperties,
+    const initialComb2 = {
+
 
         id: id2,
         name: "Travis",
         level: 3,
+        dangerMeter: 75,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 
@@ -82,11 +79,29 @@ export default function() {
             {libraryId: "character-upgrade-005-ii"}
         ],
 
-        items: [
-            "item_003"
-        ],
-        speedStatPoints: 3 //Be careful. This should be populated with real stat (Spd)
     };
+
+
+    var combatants = {};
+    const stats1 = getCombatantStats(initialComb1);
+    const stats2 = getCombatantStats(initialComb2);
+
+
+    combatants[id1] = {
+        ...initialCombatantProperties,
+        ...initialComb1,
+        ...stats1,
+        hp: initialComb1.hp || stats1.maxHp,
+        pp: initialComb1.pp || stats1.maxPp
+    };
+    combatants[id2] = {
+        ...initialCombatantProperties,
+        ...initialComb2,
+        ...stats2,
+        hp: initialComb2.hp || stats2.maxHp,
+        pp: initialComb2.pp || stats2.maxPp
+    };
+
 
 
     /* Fresh kickoff of battle */

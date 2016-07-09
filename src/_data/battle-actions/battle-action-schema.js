@@ -7,7 +7,7 @@ export default {
     ppCost: 0,
 
     //Danger Meter
-    increaseDangerMeter: 0.10,
+    increaseDangerMeter: 0.15,
 
     //Combatant Stats
     affectTargetHpPoints: 0,

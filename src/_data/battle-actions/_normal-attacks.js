@@ -114,7 +114,7 @@ export default {
         repetitions: [2,5],
         repetitionType: "random",
         ppCost: 5,
-        increaseDangerMeter: 0.11,
+        increaseDangerMeter: 0.17,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
         }

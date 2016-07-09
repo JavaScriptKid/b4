@@ -20,6 +20,11 @@ export function getDangerMeter(action, casterState, targetState, currentChanges)
     // changes["casterDangerMeter"] = 0;
     // }
 
+    if (action.isSuperCharged) {
+        changes["casterDangerMeter"] = 0
+    }
+
+
     //TODO:
     /* If this affects the Target's danger meter {
         changes["targetDangerMeter"] = reduction or whatever;
