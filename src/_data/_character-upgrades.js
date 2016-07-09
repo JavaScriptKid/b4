@@ -22,26 +22,26 @@ export default {
     },
 
     /* Extra Attacks and Items in Battle */
-    "character-upgrade-003-i": { //TODO
-        ...upgradeSchema,
-        name: "1 Extra Attack",
-        description: "Bring an extra attack to battle"
-    },
-    "character-upgrade-003-ii": { //TODO
-        ...upgradeSchema,
-        name: "1 Extra Attack",
-        description: "Bring an extra attack to battle"
-    },
-    "character-upgrade-004-i": { //TODO
-        ...upgradeSchema,
-        name: "1 Extra Item",
-        description: "Bring an extra item to battle"
-    },
-    "character-upgrade-004-ii": { //TODO
-        ...upgradeSchema,
-        name: "1 Extra Item",
-        description: "Bring an extra item to battle"
-    },
+    //"character-upgrade-003-i": { //TODO
+    //    ...upgradeSchema,
+    //    name: "1 Extra Attack",
+    //    description: "Bring an extra attack to battle"
+    //},
+    //"character-upgrade-003-ii": { //TODO
+    //    ...upgradeSchema,
+    //    name: "1 Extra Attack",
+    //    description: "Bring an extra attack to battle"
+    //},
+    //"character-upgrade-004-i": { //TODO
+    //    ...upgradeSchema,
+    //    name: "1 Extra Item",
+    //    description: "Bring an extra item to battle"
+    //},
+    //"character-upgrade-004-ii": { //TODO
+    //    ...upgradeSchema,
+    //    name: "1 Extra Item",
+    //    description: "Bring an extra item to battle"
+    //},
 
     /* Danger Meter */
     "character-upgrade-005-i": {

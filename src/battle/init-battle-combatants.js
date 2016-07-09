@@ -26,7 +26,8 @@ const allAttacks = [
     "attack-special-006-a",
     "attack-special-007-a",
     "attack-special-008-a",
-    "attack-special-009-a"
+    "attack-special-009-a",
+    "attack-special-010-a",
 ];
 
 
@@ -41,7 +42,7 @@ export default function() {
 
         id: id1,
         name: "Jacob",
-        level: 3,
+        level: 10,
         class: "ninja",
         dangerMeter: 75,
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
@@ -66,7 +67,7 @@ export default function() {
 
         id: id2,
         name: "Travis",
-        level: 3,
+        level: 10,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 

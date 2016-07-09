@@ -378,5 +378,28 @@ export default {
                 }
             ]
         }
+    },
+
+    /* Mitigate */
+    "attack-special-010-a": {
+        ...specialAttackSchema,
+        name: "Mitigate",
+        ppCost: 5,
+        description: "Reduces Enemy Danger Meter by 20%",
+        affectTargetDangerMeter: -0.2,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.dangerMeter == 0
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${targetState.name}'s Danger Meter is reduced!`
+                    ]
+                }
+            ]
+        }
     }
 }

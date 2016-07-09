@@ -13,23 +13,19 @@ export function getDangerMeter(action, casterState, targetState, currentChanges)
         changes["casterDangerMeter"] = updatedCasterDangerMeter < dmTotal ? updatedCasterDangerMeter : dmTotal;
     }
 
-
-    //TODO:
-    //If this was super charged {
-    //
-    // changes["casterDangerMeter"] = 0;
-    // }
-
+    /* Deplete your Danger Meter after super charging */
     if (action.isSuperCharged) {
         changes["casterDangerMeter"] = 0
     }
 
 
-    //TODO:
-    /* If this affects the Target's danger meter {
-        changes["targetDangerMeter"] = reduction or whatever;
-     */
-
+    /* Bring down Target's Danger Meter */
+    if (action.affectTargetDangerMeter != 0) {
+        const dmTotal = targetState.maxDangerMeter; // 100
+        const updatedTargetDangerMeter = targetState.dangerMeter + (dmTotal * action.affectTargetDangerMeter);
+        //Bottom out at 0. You can't bring an enemy's DM up. (Maybe someday an attack can do that as a pro/con)
+        changes["targetDangerMeter"] = updatedTargetDangerMeter > 0 ? updatedTargetDangerMeter : 0;
+    }
 
     return {
         ...currentChanges,

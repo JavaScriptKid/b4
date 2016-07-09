@@ -51,6 +51,7 @@ export default {
  TODO: Redirect
  // TODO: Clean
 TODO: Scope Bomb (normal, but stronger against Deadline status)
+// TODO: Mitigate
 
  NATURALS
  // DEATH

@@ -8,6 +8,7 @@ export default {
 
     //Danger Meter
     increaseDangerMeter: 0.15,
+    affectTargetDangerMeter: 0,
 
     //Combatant Stats
     affectTargetHpPoints: 0,
