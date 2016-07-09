@@ -1,3 +1,5 @@
+import Frameworks from '../../_data/_frameworks'
+
 /*
     Sketchpad
  f1Alignment
@@ -9,8 +11,46 @@
  function(action, currentDescription)
  //action has chosenFramework property. action.chosenFramework
 
+
+
+
+Variables: initialDamage, frameworkUsed, casterModel, targetModel
+
+
 */
 
+export function applyFrameworkBonus(initialDamage, frameworkUsed, casterModel, targetModel) {
+
+    //const damage = initialDamage * -1;
+
+    const frameworkModel = Frameworks[frameworkUsed];
+
+    //Add up all "strong against" values
+    var additions = 0;
+    frameworkModel.strongAgainst.forEach(frameworkId => {
+        const model = Frameworks[frameworkId];
+        additions += targetModel[model.playerProperty];
+    });
+
+    //Add up all "weak against" values
+    var subtractions = 0;
+    frameworkModel.weakAgainst.forEach(frameworkId => {
+        const model = Frameworks[frameworkId];
+        subtractions += targetModel[model.playerProperty];
+    });
+
+    console.log(additions, subtractions);
+    const percentageAddition = (additions - subtractions) * 0.1; //10% for each point
+    console.log(initialDamage);
+    console.log(percentageAddition);
+
+    const totalValue = Math.round( initialDamage * (-percentageAddition) );
+
+    console.log('totalValue', totalValue);
+
+    //TODO: This isn't quite there yet
+    return totalValue;
+}
 
 
 

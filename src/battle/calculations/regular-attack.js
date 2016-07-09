@@ -1,6 +1,7 @@
 import {getRandomInRange} from '../../helpers/numbers-helper'
 import {randomFromArray} from '../../helpers/random-from-array'
 import range from 'lodash/range'
+import {applyFrameworkBonus} from './framework-dynamics'
 
 export function getRegularAttackChanges(action, casterModel, targetModel, currentChanges) {
 
@@ -54,8 +55,19 @@ export function getRegularAttackChanges(action, casterModel, targetModel, curren
                 changes["affectTargetHp"] = Math.round(action.affectTargetHpPointsByPercent * targetModel.maxHp);
             }
         }
-
     }
+
+
+    /* Super Charge augmentation */
+    if (changes["affectTargetHp"] < 0 && currentChanges.isSuperCharged) {
+        const result = applyFrameworkBonus(
+            changes["affectTargetHp"],
+            action.superChargedFrameworkId,
+            casterModel,
+            targetModel
+        );
+    }
+
 
 
     /* HP RECOVERY */

@@ -6,7 +6,7 @@ export function getDangerMeter(action, casterState, targetState, currentChanges)
 
         /* Add action's increase to caster's danger meter */
         const actionDangerIncrease = action.increaseDangerMeter;
-        /* TODO: wrap this value in a Caster Model `dangerIncreaseRoll` method that will augment the % increase */
+        /* TODO: wrap this value in a Caster Model `dangerIncreaseRoll` method that will augment the % increase (for char upgrades) */
 
         const dmTotal = casterState.maxDangerMeter; // 100
         const updatedCasterDangerMeter = casterState.dangerMeter + (dmTotal * actionDangerIncrease);
@@ -14,7 +14,7 @@ export function getDangerMeter(action, casterState, targetState, currentChanges)
     }
 
     /* Deplete your Danger Meter after super charging */
-    if (action.isSuperCharged) {
+    if (action.superChargedFrameworkId) {
         changes["casterDangerMeter"] = 0
     }
 
