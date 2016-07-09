@@ -1,4 +1,5 @@
 import Actions from '../_data/battle-actions'
+import {hasUpgrade} from './get-combatant-stats'
 
 export function CombatantModel(combatantState={}) {
     return {
@@ -37,11 +38,19 @@ export function CombatantModel(combatantState={}) {
         /* Danger */
         isDangerMeterUsable() {
 
-            //upgrade goes here {
-            //return }
 
-            //upgrade goes here {
-            //return }
+            const firstDangerMeterUpgrade = hasUpgrade("character-upgrade-005-i", combatantState.characterUpgrades);
+            const secondDangerMeterUpgrade = hasUpgrade("character-upgrade-005-ii", combatantState.characterUpgrades);
+
+            /* Dangerous I: 65% */
+            if (firstDangerMeterUpgrade && !secondDangerMeterUpgrade) {
+                return combatantState.dangerMeter >= (combatantState.maxDangerMeter * 0.65);
+            }
+
+            /* Dangerous II: 55% */
+            if (firstDangerMeterUpgrade && secondDangerMeterUpgrade) {
+                return combatantState.dangerMeter >= (combatantState.maxDangerMeter * 0.55);
+            }
 
             /* Default: 75% */
             return combatantState.dangerMeter >= (combatantState.maxDangerMeter * 0.75);

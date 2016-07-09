@@ -44,15 +44,15 @@ export default {
     },
 
     /* Danger Meter */
-    "character-upgrade-005-i": { //TODO
+    "character-upgrade-005-i": {
         ...upgradeSchema,
         name: "Dangerous I",
-        description: "Decrease Danger Meter threshold to 85"
+        description: "Decrease Danger Meter threshold to 65%"
     },
-    "character-upgrade-005-ii": { //TODO
+    "character-upgrade-005-ii": {
         ...upgradeSchema,
         name: "Dangerous II",
-        description: "Decrease Danger Meter threshold to 70"
+        description: "Decrease Danger Meter threshold to 55%"
     },
 
     /* Framework dynamics */

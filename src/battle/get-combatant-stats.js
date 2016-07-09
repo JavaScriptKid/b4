@@ -17,7 +17,7 @@ export function getCombatantStats(combatant={}) {
 }
 
 
-var hasUpgrade = function(libraryId="", dataset=[]) {
+export function hasUpgrade(libraryId="", dataset=[]) {
     const upgradeMatch = dataset.find(upgrade => {
         return upgrade.libraryId == libraryId
     });

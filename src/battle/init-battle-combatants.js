@@ -67,7 +67,6 @@ export default function() {
         id: id2,
         name: "Travis",
         level: 3,
-        dangerMeter: 75,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 
@@ -77,7 +76,7 @@ export default function() {
         characterUpgrades: [
             {libraryId: "character-upgrade-005-i"},
             {libraryId: "character-upgrade-005-ii"}
-        ],
+        ]
 
     };
 
