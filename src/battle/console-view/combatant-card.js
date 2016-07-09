@@ -27,11 +27,18 @@ import {getAlignmentByUpgrades} from '../get-alignment-by-upgrades'
 class CombatantCard extends React.Component {
 
     handleChange() {
-        setCombatantValue(this.props.combatantId, {
+
+        const updatedCombatant = {
+            ...this.props.combatant,
             name: this.refs.name.value,
             class: this.refs.class.value,
             level: this.refs.level.value,
-            skin: this.refs.skin.value
+            skin: this.refs.skin.value,
+        };
+
+        setCombatantValue(this.props.combatantId, {
+            ...updatedCombatant,
+            ...getCombatantStats(updatedCombatant) //Update stats too
         });
     }
 

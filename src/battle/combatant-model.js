@@ -26,7 +26,7 @@ export function CombatantModel(combatantState={}) {
             //targetStatus, actionModel are in here for you to use later for specific variations
             /* TODO: This function still needs to be balanced according to actual character Stats. Right now, everything is 0 */
             //console.log(actionDamageCount, targetDefenseRating);
-            
+
             const attackDamage = (this.attackRating * -1) + actionDamageCount;
             const defenseOffset = Math.round(targetDefenseRating / 2);
             const result = attackDamage + defenseOffset; //attack Damage is a negative number
@@ -37,7 +37,11 @@ export function CombatantModel(combatantState={}) {
         /* Danger */
         isDangerMeterUsable() {
 
+            //upgrade goes here {
+            //return }
 
+            //upgrade goes here {
+            //return }
 
             /* Default: 75% */
             return combatantState.dangerMeter >= (combatantState.maxDangerMeter * 0.75);
