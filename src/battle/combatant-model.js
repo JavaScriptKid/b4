@@ -1,5 +1,7 @@
 import Actions from '../_data/battle-actions'
 import {hasUpgrade} from './get-combatant-stats'
+import {getAlignmentByUpgrades} from './get-alignment-by-upgrades'
+
 
 export function CombatantModel(combatantState={}) {
     return {
@@ -54,9 +56,22 @@ export function CombatantModel(combatantState={}) {
 
             /* Default: 75% */
             return combatantState.dangerMeter >= (combatantState.maxDangerMeter * 0.75);
+        },
+
+        /* Alignment */
+        ...getAlignmentByUpgrades(combatantState.laptopUpgrades),
+        getAvailableFrameworkOptions() {
+            return [
+                {prop: this.f1Alignment, frameworkId: "framework_001"},
+                {prop: this.f2Alignment, frameworkId: "framework_002"},
+                {prop: this.f3Alignment, frameworkId: "framework_003"},
+                {prop: this.f4Alignment, frameworkId: "framework_004"}
+            ].filter(obj => {
+                return obj.prop > 0
+            }).map(obj => {
+                return obj.frameworkId
+            });
         }
-
-
     }
 }
 

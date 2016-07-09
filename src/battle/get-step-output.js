@@ -1,11 +1,11 @@
 const getUseMessage = function(action, casterModel, targetModel, actionDescription) {
 
-    if (action.isSuperCharged) {
+    if (action.superChargedFrameworkId) {
         return {
             type: "message",
             content: [
-                `${casterModel.name} used `,
-                `[FAST]SUPER CHARGED ${action.name}!`
+                `${casterModel.name} SUPER CHARGED ${action.name} with the power of `,
+                `[FAST]${actionDescription.frameworkName.toUpperCase()}`
             ]
         }
     }
@@ -30,7 +30,7 @@ var getMissStep = function(action, casterModel, targetModel, actionDescription) 
             return action.customMissStep(action, casterModel, targetModel, actionDescription);
         }
         return [
-            getUseMessage(),
+            getUseMessage(action, casterModel, targetModel, actionDescription),
             {
                 type: "message",
                 content: [
@@ -52,7 +52,7 @@ var getFailStep = function(action, casterModel, targetModel, actionDescription) 
         }
 
         return [
-            getUseMessage(action, casterModel, targetModel),
+            getUseMessage(action, casterModel, targetModel, actionDescription),
             {
                 type: "message",
                 content: [
@@ -72,7 +72,7 @@ var getSuccessStep = function(action, casterModel, targetModel, actionDescriptio
     }
 
     return [
-        getUseMessage(action, casterModel, targetModel),
+        getUseMessage(action, casterModel, targetModel, actionDescription),
         {
             type: "animation",
             animationName: action.animation

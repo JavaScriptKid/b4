@@ -15,10 +15,11 @@ export function getRolloutStep(subaction, state) {
     const casterModel = new CombatantModel(state.combatants[subaction.casterId]);
     const targetModel = new CombatantModel(state.combatants[subaction.targetId]);
 
-    const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel)
+    const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel);
+    console.log(subaction)
     const action = {
         actionId: actionId, /* Include a copy of the action's id */
-        isSuperCharged: subaction.isSuperCharged,
+        superChargedFrameworkId: subaction.superChargedFrameworkId,
         ...Actions[actionId]
     };
 

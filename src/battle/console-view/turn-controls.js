@@ -7,6 +7,8 @@ import { CombatantModel } from '../combatant-model'
 
 import {getSmartAttack} from '../combatants/enemy-ai'
 import Actions from '../../_data/battle-actions'
+import Frameworks from '../../_data/_frameworks'
+
 
 @connect((state, props) => {
     return {
@@ -31,9 +33,19 @@ class TurnControls extends React.Component {
         const actionid1 = this.refs[`${player1Id}-select`].value;
         const actionid2 = this.refs[`${player2Id}-select`].value;
 
+
+        const p1FrameworkCharge = this.refs[`${player1Id}-dangercheckbox`].checked
+            ? this.refs[`${player1Id}-framework`].value || null
+            : null;
+
+
+        const p2FrameworkCharge = this.refs[`${player2Id}-dangercheckbox`].checked
+            ? this.refs[`${player2Id}-framework`].value || null
+            : null;
+
         const submissions = [ /* Submission models */
-            getSmartAttack(combs[player1Id], combs[player2Id], {}, actionid1, this.refs[`${player1Id}-dangercheckbox`].checked),
-            getSmartAttack(combs[player2Id], combs[player1Id], {}, actionid2, this.refs[`${player2Id}-dangercheckbox`].checked)
+            getSmartAttack(combs[player1Id], combs[player2Id], {}, actionid1, p1FrameworkCharge),
+            getSmartAttack(combs[player2Id], combs[player1Id], {}, actionid2, p2FrameworkCharge)
         ];
 
         /* RUN A COUNT # OF TURNS TODO - only does 1 right now */
@@ -81,7 +93,15 @@ class TurnControls extends React.Component {
         const combs = this.props.history[ this.props.history.length-1 ].combatants;
         const model = new CombatantModel(combs[combId]);
 
+
         const isCheckboxEnabled = model.isDangerMeterUsable();
+
+        const frameworkOptions = model.getAvailableFrameworkOptions().map(optionId => {
+            const model = Frameworks[optionId];
+            return (
+                <option key={optionId} value={optionId}>{model.name}</option>
+            )
+        });
 
         return (
             <div>
@@ -92,6 +112,11 @@ class TurnControls extends React.Component {
                 <span>
                     <input ref={`${combId}-dangercheckbox`} type="checkbox" disabled={!isCheckboxEnabled} />
                     Danger Charge
+                </span>
+                <span>
+                    <select ref={`${combId}-framework`} disabled={!isCheckboxEnabled}>
+                        {frameworkOptions}
+                    </select>
                 </span>
             </div>
         )
