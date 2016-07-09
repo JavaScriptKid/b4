@@ -26,7 +26,9 @@ export function CombatantModel(combatantState={}) {
 
             const attackDamage = (this.attackRating * -1) + actionDamageCount;
             const defenseOffset = Math.round(targetDefenseRating / 2);
-            return attackDamage + defenseOffset; //attack Damage is a negative number
+            const result = attackDamage + defenseOffset; //attack Damage is a negative number
+
+            return (result > 1) ? result : 1;
         },
 
 

@@ -52,7 +52,7 @@ class CombatantCard extends React.Component {
                 </div>
                 <div>
                     <label>DM</label>
-                    <span>?</span>/<span>100</span>
+                    <span>{me.dangerMeter}</span>/<span>{me.maxDangerMeter}</span>
                 </div>
                 <div>
                     <label>Sts</label>

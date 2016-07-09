@@ -3,9 +3,11 @@ export default {
     description: "",
     animation: "tada",
 
-
     //Cost
     ppCost: 0,
+
+    //Danger Meter
+    increaseDangerMeter: 0.10,
 
     //Combatant Stats
     affectTargetHpPoints: 0,
@@ -29,13 +31,6 @@ export default {
     itemMalfunctionChance: 0,
 
     //statuses
-
-    //protectTargetFromStatuses: [],
-    //clearTargetStatuses: [],
-
-    protectCasterFromStatuses: [],
-    clearCasterStatuses: [],
-
     affectTargetStatus: null, //"normal", "memory-leak", "lag", "fury", "zen", "fire
     affectCasterStatus: null, //"normal", "memory-leak", "lag", "fury", "zen", "fire
     statusTurnCount: [], /* [min, max] */

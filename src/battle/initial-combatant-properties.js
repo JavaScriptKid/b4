@@ -21,6 +21,10 @@ export default {
     maxHp: 50,
     pp: 50,
     maxPp: 50,
+
+    maxDangerMeter: 100,
+    dangerMeter: 0,
+
     status: "normal", /* normal, memory-leak, lag, fire */
     healthStatPoints: 0,
     attackStatPoints: 0,

@@ -9,6 +9,7 @@ import {getMiss} from './calculations/miss'
 import {getSuperCharged} from './calculations/super-charge'
 import {getExtraActionAdds} from './calculations/extra-action-adds'
 import {getUpdatedItemsList} from './calculations/updated-items-list'
+import {getDangerMeter} from './calculations/danger-meter'
 
 export function getStepDescriptionObject(action, casterModel, targetModel) {
     let changes = {
@@ -26,6 +27,8 @@ export function getStepDescriptionObject(action, casterModel, targetModel) {
     changes = getStatusChanges(action, casterModel, targetModel, changes);
     changes = getExtraActionAdds(action, casterModel, targetModel, changes);
     changes = getUpdatedItemsList(action, casterModel, targetModel, changes);
+    changes = getDangerMeter(action, casterModel, targetModel, changes);
+
 
 
     return {

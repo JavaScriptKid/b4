@@ -28,7 +28,6 @@ const getIteratingSuccessMessage = function(action, casterModel, targetModel, ac
     ]
 };
 
-
 export default {
     /* Insult */
     "attack-000-a": {
@@ -37,7 +36,8 @@ export default {
         animation: "tada",
         description: "When you have nothing left to lose",
         affectTargetHpPoints: -2,
-        ppCost: 0
+        ppCost: 0,
+        increaseDangerMeter: 0
     },
 
 
@@ -114,6 +114,7 @@ export default {
         repetitions: [2,5],
         repetitionType: "random",
         ppCost: 5,
+        increaseDangerMeter: 0.11,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
         }
