@@ -16,7 +16,6 @@ export function getRolloutStep(subaction, state) {
     const targetModel = new CombatantModel(state.combatants[subaction.targetId]);
 
     const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel);
-    console.log(subaction)
     const action = {
         actionId: actionId, /* Include a copy of the action's id */
         superChargedFrameworkId: subaction.superChargedFrameworkId,

@@ -39,12 +39,20 @@ export function applyFrameworkBonus(initialDamage, frameworkUsed, casterModel, t
         subtractions += targetModel[model.playerProperty];
     });
 
-    console.log(additions, subtractions);
-    const percentageAddition = (additions - subtractions) * 0.1; //10% for each point
-    console.log(initialDamage);
-    console.log(percentageAddition);
+    console.log('additions', additions);
+    console.log('subtractions', subtractions);
+    console.log('---')
 
-    const totalValue = Math.round( initialDamage * (-percentageAddition) );
+    const frameworkPointsValue = casterModel[frameworkModel.playerProperty];
+    const percentageAddition = (additions - subtractions) * 0.1; //10% for each point
+    const roundedPercent = Math.round( percentageAddition * 10) / 10;
+
+    console.log('initial', initialDamage);
+    console.log('frameworkPointsValue', frameworkPointsValue);
+    console.log('roundedPercent', roundedPercent);
+    const totalBeforeDynamics = initialDamage - frameworkPointsValue;
+
+    const totalValue = totalBeforeDynamics - Math.round(totalBeforeDynamics * -roundedPercent);
 
     console.log('totalValue', totalValue);
 
