@@ -60,12 +60,14 @@ export function getRegularAttackChanges(action, casterModel, targetModel, curren
 
     /* Super Charge augmentation */
     if (changes["affectTargetHp"] < 0 && currentChanges.isSuperCharged) {
-        const result = applyFrameworkBonus(
+        
+        changes["affectTargetHp"] = applyFrameworkBonus(
             changes["affectTargetHp"],
             action.superChargedFrameworkId,
             casterModel,
             targetModel
         );
+
     }
 
 
