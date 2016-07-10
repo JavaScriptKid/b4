@@ -1,0 +1,19 @@
+.battle-arena {
+    .scoreboards {
+        display:flex;
+        justify-content: space-between;
+    }
+    .scoreboard {
+        display:flex;
+        background-image: linear-gradient(-180deg, #DBDBDB 14%, #EEEEEE 25%, #E4E4E4 40%, #D8D8D8 100%);
+
+        .scoreboard_avatar {
+            background:#ccc;
+
+        }
+
+        .scoreboard_scores {
+            flex:1;
+        }
+    }
+}
