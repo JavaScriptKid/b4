@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {CombatantModel} from '../combatant-model'
 
 @connect((state, props) => {
     return {
@@ -11,7 +12,6 @@ import { connect } from 'react-redux'
 class CombatantScoreboard extends React.Component {
 
     renderStatusBlip(me) {
-        //TODO
         if (me.status == "normal") {
             return null;
         }
@@ -79,10 +79,15 @@ class CombatantScoreboard extends React.Component {
 
     renderDanger(me) {
         //Danger Color logic here
+
+        const style = {
+            color: me.isDangerMeterUsable() ? "#399988" : "#444" //TODO: make flashing instead?
+        };
+
         return (
             <span className="scoreboard_danger">
                 <span>Danger Meter</span>
-                <span>{me.dangerMeter/me.maxDangerMeter * 100}%</span>
+                <span style={style}>{me.dangerMeter/me.maxDangerMeter * 100}%</span>
             </span>
         )
     }
@@ -95,10 +100,20 @@ class CombatantScoreboard extends React.Component {
         return (
             <div style={style} className="scoreboard_alignment">
                 {
-                    ["framework_001","framework_002","framework_003","framework_004"].map(frId => {
-                       return (
-                           <div key={frId} className="square"></div>
-                       )
+                    [
+                        {hasValue: me.f1Alignment > 0, fillColor: "#41CA2A"},
+                        {hasValue: me.f2Alignment > 0, fillColor: "#8E5FD4"},
+                        {hasValue: me.f3Alignment > 0, fillColor: "#4A90E2"},
+                        {hasValue: me.f4Alignment > 0, fillColor: "#FF4800"},
+
+                    ].map((obj, i) => {
+                        var style = {};
+                        if (obj.hasValue) {
+                            style.background = me.isDangerMeterUsable() ? obj.fillColor : "#444";
+                        }
+                        return (
+                            <div key={i} style={style} className="square"></div>
+                        )
                     })
                 }
             </div>
@@ -107,6 +122,7 @@ class CombatantScoreboard extends React.Component {
 
     render() {
 
+        const me = new CombatantModel(this.props.combatant);
         const baseUnit = this.props.vW;
 
         const scoreboardStyle = {
@@ -118,10 +134,10 @@ class CombatantScoreboard extends React.Component {
         const avatarStyle = {
             width: baseUnit * 5,
             height: baseUnit * 5,
-            marginRight: baseUnit
+            marginRight: baseUnit,
+            backgroundImage: `url(${me.skin})`,
         };
 
-        const me = this.props.combatant;
 
         return (
            <div className="scoreboard" style={scoreboardStyle}>
