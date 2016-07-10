@@ -9,11 +9,41 @@
 
         .scoreboard_avatar {
             background:#ccc;
-
         }
 
         .scoreboard_scores {
             flex:1;
+            > div:first-of-type {
+                margin-bottom: 0.2em;
+            }
         }
+
+        .scoreboard_name {
+            color:#000;
+            font-size:1.4em;
+            margin-right: 0.8em;
+            margin-bottom: 0.2em;
+        }
+
+        .scoreboard_lvl {
+            color: #666;
+            margin-right: 0.8em;
+        }
+
+        .scoreboard_hp {
+            margin-right: 0.8em;
+        }
+
+        /* Spacing between values */
+        .scoreboard_lvl,
+        .scoreboard_hp,
+        .scoreboard_danger {
+            > span:first-of-type {
+                margin-right:0.4em;
+            }
+        }
+
+
+
     }
 }

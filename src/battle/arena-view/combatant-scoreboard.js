@@ -10,9 +10,81 @@ import { connect } from 'react-redux'
 
 class CombatantScoreboard extends React.Component {
 
-    renderStatusBlip() {
+    renderStatusBlip(me) {
         //TODO
+        if (me.status == "normal") {
+            return null;
+        }
+
+        const baseBadgeStyle = {
+            color: "#fff",
+            background: "red",
+            paddingLeft: '0.2em',
+            paddingRight: '0.2em'
+        };
+
+        if (me.status == "lag") {
+            const style = {
+                ...baseBadgeStyle,
+                background: "#472C5F"
+            };
+            return <span style={style}>LAGGING</span>
+        }
+
+        if (me.status == "zen") {
+            const style = {
+                ...baseBadgeStyle,
+                background: "#4A90E2"
+            };
+            return <span style={style}>ZEN</span>
+        }
+
+        if (me.status == "fury") {
+            const style = {
+                ...baseBadgeStyle,
+                background: "#B72C2C"
+            };
+            return <span style={style}>FURY</span>
+        }
+
+        if (me.status == "memory-leak") {
+            const style = {
+                ...baseBadgeStyle,
+                background: "#FF5303"
+            };
+            return <span style={style}>MEMORYLEAK</span>
+        }
+
+        if (me.status == "fire") {
+            const style = {
+                ...baseBadgeStyle,
+                background: "red"
+            };
+            return <span style={style}>FIRE</span>
+        }
+
+
         return null;
+    }
+
+    renderHp(me) {
+        //HP Color logic here
+        return (
+            <span className="scoreboard_hp">
+                <span>HP</span>
+                <span>{me.hp}/{me.maxHp}</span>
+            </span>
+        )
+    }
+
+    renderDanger(me) {
+        //Danger Color logic here
+        return (
+            <span className="scoreboard_danger">
+                <span>Danger Meter</span>
+                <span>{me.dangerMeter/me.maxDangerMeter * 100}%</span>
+            </span>
+        )
     }
 
     render() {
@@ -41,24 +113,18 @@ class CombatantScoreboard extends React.Component {
                     </div>
                     <div className="scoreboard_scores">
                         <div>
-                            <span>{(me.name).toUpperCase()}</span>
-                            <span>
+                            <span className="scoreboard_name">{(me.name).toUpperCase()}</span>
+                            <span className="scoreboard_lvl">
                                 <span>LVL</span>
                                 <span>{me.level}</span>
                             </span>
                             <span>
-                                {this.renderStatusBlip()}
+                                {this.renderStatusBlip(me)}
                             </span>
                         </div>
                         <div>
-                            <span>
-                                <span>HP</span>
-                                <span>XX/XX</span>
-                            </span>
-                            <span>
-                                <span>Danger</span>
-                                <span>XX%</span>
-                            </span>
+                            {this.renderHp(me)}
+                            {this.renderDanger(me)}
                         </div>
                     </div>
            </div>
