@@ -87,6 +87,24 @@ class CombatantScoreboard extends React.Component {
         )
     }
 
+    renderAlignment(me) {
+        const style = {
+            top: this.props.vW * 1.5,
+            right: this.props.vW * 1.5
+        };
+        return (
+            <div style={style} className="scoreboard_alignment">
+                {
+                    ["framework_001","framework_002","framework_003","framework_004"].map(frId => {
+                       return (
+                           <div key={frId} className="square"></div>
+                       )
+                    })
+                }
+            </div>
+        )
+    }
+
     render() {
 
         const baseUnit = this.props.vW;
@@ -126,6 +144,7 @@ class CombatantScoreboard extends React.Component {
                             {this.renderHp(me)}
                             {this.renderDanger(me)}
                         </div>
+                        {this.renderAlignment(me)}
                     </div>
            </div>
         );
