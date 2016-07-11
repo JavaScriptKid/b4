@@ -17,7 +17,7 @@ class ArenaCombatant extends React.Component {
             //Player
 
             const rolloutLeftValue = baseUnit * 8;
-            const submittingLeftValue = baseUnit * 38;
+            const submittingLeftValue = baseUnit * 41;
 
 
             return {

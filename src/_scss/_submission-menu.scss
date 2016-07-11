@@ -5,6 +5,13 @@
         transition: bottom 0.2s ease-out;
     }
 
+    .submission-menu_more-container {
+        display:flex;
+        .back-button {
+            //width: 50%;
+        }
+    }
+
     .submission-menu_option {
         background: rgba(#fff, 0.4);
         margin-top: 0.5em;
