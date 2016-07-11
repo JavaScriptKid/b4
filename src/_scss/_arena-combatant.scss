@@ -1,9 +1,28 @@
 .battle-arena {
     .arena-combatant {
-        position: absolute;;
+        position: absolute;
         background-size: 400%;
-        background-position: 33.33% 33.33%;
-        
+        z-index: 5;
+        &.is-player {
+            background-position: 33.33% 33.33%;
+        }
+        &:not(.is-player) {
+            background-position: 100% 100%;
+        }
+
+        &:after {
+            content: '';
+            position:absolute;
+            z-index: 4;
+            left:3em;
+            right:3em;
+            bottom:-0.8em;
+
+            height:1.5em;
+            border-radius: 50%;
+            background:rgba(black, 0.2);
+        }
+
     }
 }
 
