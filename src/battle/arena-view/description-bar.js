@@ -31,12 +31,13 @@ class DescriptionBar extends React.Component {
             borderTop: `${baseUnit * 0.5}px solid #000`,
             borderBottom: `${baseUnit * 0.5}px solid #000`,
             fontSize: baseUnit * 2,
-            height: baseUnit * 5
+            height: this.props.isRollout ? baseUnit * 14 : baseUnit * 5
         };
 
+        const content = this.props.isRollout ? "Jacob used SLICE!" : this.props.descriptionBarText
         return (
            <div onClick={::this.handleDevClick} style={barStyle} className="bottom-bar">
-               {this.props.descriptionBarText}
+               {content}
            </div>
         );
     }

@@ -19,18 +19,6 @@ import ArenaCombatant from './arena-combatant'
 
 class BattleArenaView extends React.Component {
 
-    renderBottomBar() {
-        /* Return MessageBar if in Rollout or DescriptionBar */
-        if (this.props.isRollout) {
-            //return <MessageBar /> TODO: maybe just roll this in with Description Bar? easier animation
-        }
-
-
-        return (
-            <DescriptionBar />
-        )
-    }
-
     render() {
 
         const scoreboardContainerStyle = {
@@ -50,8 +38,8 @@ class BattleArenaView extends React.Component {
                <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
 
 
-               {<SubmissionMenu hide={this.props.isRollout} />}
-               {this.renderBottomBar()}
+               <SubmissionMenu hide={this.props.isRollout} />
+               <DescriptionBar isRollout={this.props.isRollout} />
            </div>
         );
     }
