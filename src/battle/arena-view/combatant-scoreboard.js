@@ -128,6 +128,7 @@ class CombatantScoreboard extends React.Component {
         const scoreboardStyle = {
             width: `calc(50% - ${baseUnit * 0.5 }px)`,
             border: `${baseUnit * 0.5 }px solid #000`,
+            //borderRadius: `${baseUnit * 0.5 }`,
             padding: baseUnit * 1,
             fontSize: baseUnit * 2 /* BASE FONT SIZE */
         };

@@ -1,0 +1,16 @@
+.battle-arena {
+    .arena-combatant {
+        position: absolute;;
+        background-size: 400%;
+        background-position: 33.33% 33.33%;
+        
+    }
+}
+
+.is-rollout {
+    .arena-combatant {
+        //TODO: style differently when in Rollout Mode
+        //Turn to Face forward, move to the left, etc
+        background-position: 33.33% 33.33%;
+    }
+}

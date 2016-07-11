@@ -20,6 +20,7 @@ const store = createStore({
             { turnId: 0, steps: [] }
         ],
         submissions: [],
+        descriptionBarText: "",
         viewMode: "battle" //"console" || "battle"
     },
     map: {
