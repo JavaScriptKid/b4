@@ -2,8 +2,10 @@ import Actions from '../../../_data/battle-actions'
 
 const optionSchema = {
     labelText: "some option",
+    supportText: "",
     customClasses: "",
     descriptionBarText: "",
+
     filterPresenceTest: function() {
         return true
     },
@@ -13,7 +15,10 @@ const optionSchema = {
     }
 };
 
-var filterOptionsByTest = function(optionsList) {
+var filterOptionsByTest = function(initialOptionsList, startIndex) {
+
+    const optionsList = initialOptionsList.splice(startIndex, 4);
+
     return optionsList.filter(optionModel => {
         return optionModel.filterPresenceTest()
     }).map(optionModel => {
@@ -21,6 +26,8 @@ var filterOptionsByTest = function(optionsList) {
             ...optionModel,
             isDisabled: optionModel.filterDisabledTest()
         }
+    }).filter((optionModel, index) => {
+        return index < 4; //4 = page size
     });
 };
 
@@ -37,20 +44,23 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
             return {
                 ...optionSchema,
                 labelText: model.name,
+                supportText: `PP ${model.ppCost}`
             };
         });
 
-        return filterOptionsByTest([
-            ...attackOptions,
-            ...
-        ]);
+        const items = filterOptionsByTest(attackOptions, menuStartingIndex);
+
+        return {
+            items: items
+        }
     }
 
     /* Default - root level menu */
-    return filterOptionsByTest([
+    const items = filterOptionsByTest([
         {
             ...optionSchema,
             labelText: "Super Charge",
+            supportText: "...",
             customClasses: "",
             filterPresenceTest: function() {
                 return casterModel.isDangerMeterUsable()
@@ -58,15 +68,21 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
         },
         {
             ...optionSchema,
-            labelText: "Attack"
+            labelText: "Attack",
+            supportText: "..."
         },
         {
             ...optionSchema,
-            labelText: "Special"
+            labelText: "Special",
+            supportText: "..."
         },
         {
             ...optionSchema,
-            labelText: "Item"
+            labelText: "Item",
+            supportText: "..."
         }
-    ])
+    ]);
+    return {
+        items: items
+    }
 }

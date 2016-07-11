@@ -6,7 +6,7 @@ class SubmissionMenuOption extends React.Component {
         return (
             <div style={this.props.baseStyle} className="submission-menu_option">
                 <span>{model.labelText}</span>
-                <span>...</span>
+                <span>{model.supportText}</span>
             </div>
         )
     }

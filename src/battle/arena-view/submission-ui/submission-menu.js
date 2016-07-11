@@ -5,7 +5,9 @@ import SubmissionMenuOption from './submission-menu-option'
 
 @connect((state, props) => {
     return {
-        vW: Math.round(state.map.viewportWidth / 100)
+        vW: Math.round(state.map.viewportWidth / 100),
+        menuLevel: state.battle.menuLevel,
+        menuOptionIndex: state.battle.menuOptionIndex
     }
 })
 
@@ -27,7 +29,12 @@ class SubmissionMenu extends React.Component {
         };
 
 
-        const menuOptions = getSubmissionMenuStructure(this.props.casterModel);
+        const menuOptions = getSubmissionMenuStructure(
+            this.props.casterModel,
+            this.props.menuLevel,
+            this.props.menuOptionIndex
+        ).items;
+        
         const optionComponents = menuOptions.map((optionModel, i) => {
             return <SubmissionMenuOption baseStyle={optionStyle} key={i} model={optionModel} />
         });
