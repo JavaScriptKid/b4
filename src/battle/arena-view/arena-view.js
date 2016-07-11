@@ -9,6 +9,7 @@ import ArenaCombatant from './arena-combatant'
 
     const combatantIds = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants);
 
+
     return {
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
@@ -45,11 +46,11 @@ class BattleArenaView extends React.Component {
                    <CombatantScoreboard combatantId={this.props.combatantIds[1]} />
                </div>
 
-               <ArenaCombatant vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
-               <ArenaCombatant vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
+               <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
+               <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
 
 
-               <SubmissionMenu />
+               {<SubmissionMenu hide={this.props.isRollout} />}
                {this.renderBottomBar()}
            </div>
         );

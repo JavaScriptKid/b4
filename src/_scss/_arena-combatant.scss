@@ -3,6 +3,7 @@
         position: absolute;
         background-size: 400%;
         z-index: 5;
+        transition: left 0.3s ease-out;
         &.is-player {
             background-position: 33.33% 33.33%;
         }
@@ -30,6 +31,14 @@
     .arena-combatant {
         //TODO: style differently when in Rollout Mode
         //Turn to Face forward, move to the left, etc
-        background-position: 33.33% 33.33%;
+
+        &.is-player {
+            background-position: 100% 100%;
+        }
+        &:not(.is-player) {
+            background-position: 33.33% 33.33%;
+        }
     }
+
+
 }

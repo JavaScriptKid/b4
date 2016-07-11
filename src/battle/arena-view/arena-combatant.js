@@ -15,9 +15,14 @@ class ArenaCombatant extends React.Component {
 
         if (this.props.isPlayer) {
             //Player
+
+            const rolloutLeftValue = baseUnit * 8;
+            const submittingLeftValue = baseUnit * 38;
+
+
             return {
-                left: baseUnit * 38,
-                top: baseUnit * 34,
+                left: this.props.isRollout ? rolloutLeftValue : submittingLeftValue,
+                top: baseUnit * 30,
                 width: baseUnit * 29,
                 height: baseUnit * 29,
             }
@@ -53,7 +58,7 @@ class ArenaCombatant extends React.Component {
 
 ArenaCombatant.defaultProps = {
     combatantId: "some-id",
-    isPlayer: false
+    isPlayer: false,
 };
 
 

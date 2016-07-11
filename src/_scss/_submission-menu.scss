@@ -1,6 +1,8 @@
 .battle-arena {
     .submission-menu {
         position: absolute;
+        z-index:20;
+        transition: left 0.2s ease-out;
     }
 
     .submission-menu_option {

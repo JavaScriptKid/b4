@@ -1,6 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+
+//DEV ONLY
+import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
+import store from '../../init/store'
+
+
 @connect((state, props) => {
     return {
         vW: Math.round(state.map.viewportWidth / 100),
@@ -9,6 +15,12 @@ import { connect } from 'react-redux'
 })
 
 class DescriptionBar extends React.Component {
+
+    handleDevClick() {
+        setBattleValue({
+            submissions: store.getState().battle.submissions.length > 0 ? [] : ["a", "b"]
+        });
+    }
 
     render() {
         const baseUnit = this.props.vW;
@@ -23,7 +35,7 @@ class DescriptionBar extends React.Component {
         };
 
         return (
-           <div style={barStyle} className="bottom-bar">
+           <div onClick={::this.handleDevClick} style={barStyle} className="bottom-bar">
                {this.props.descriptionBarText}
            </div>
         );
