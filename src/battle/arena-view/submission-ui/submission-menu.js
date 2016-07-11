@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getSubmissionMenuStructure } from './get-submission-menu-structure'
+import SubmissionMenuOption from './submission-menu-option'
 
 @connect((state, props) => {
     return {
@@ -25,20 +27,14 @@ class SubmissionMenu extends React.Component {
         };
 
 
+        const menuOptions = getSubmissionMenuStructure(this.props.casterModel);
+        const optionComponents = menuOptions.map((optionModel, i) => {
+            return <SubmissionMenuOption baseStyle={optionStyle} key={i} model={optionModel} />
+        });
+
         return (
            <div style={menuStyle} className="submission-menu">
-               <div style={optionStyle} className="submission-menu_option">
-                   <span>Attack</span>
-                   <span>...</span>
-               </div>
-               <div style={optionStyle} className="submission-menu_option">
-                   <span>Special</span>
-                   <span>...</span>
-               </div>
-               <div style={optionStyle} className="submission-menu_option">
-                   <span>Item</span>
-                   <span>...</span>
-               </div>
+               {optionComponents}
            </div>
         );
     }
