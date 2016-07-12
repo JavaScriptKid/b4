@@ -38,14 +38,19 @@ class SubmissionMenu extends React.Component {
             labelText: "MENU",
             customClasses: "back-button",
         };
+
+        const hidePrevPageBtn = this.props.menuOptionIndex <= 4;
         const pageUpModel = {
             labelText: null,
-            supportText: null
+            supportText: null,
+            customClasses: hidePrevPageBtn ? "invisible" : ""
         };
         const pageDownModel = {
             labelText: null,
             supportText: null
         };
+
+        
 
         return (
             <div className="submission-menu_more-container" style={containerStyle}>
