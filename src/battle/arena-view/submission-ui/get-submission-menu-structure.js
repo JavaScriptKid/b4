@@ -1,11 +1,15 @@
 import Actions from '../../../_data/battle-actions'
+import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 
 const optionSchema = {
+    optionId: "some_unique_id",
     labelText: "some option",
     supportText: "",
     customClasses: "",
     descriptionBarText: "",
-
+    handleEnter() {
+        return;
+    },
     filterPresenceTest: function() {
         return true
     },
@@ -15,10 +19,10 @@ const optionSchema = {
     }
 };
 
+
 var filterOptionsByTest = function(initialOptionsList, startIndex) {
 
     const optionsList = initialOptionsList.splice(startIndex, 4);
-
     return optionsList.filter(optionModel => {
         return optionModel.filterPresenceTest()
     }).map(optionModel => {
@@ -47,7 +51,10 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
             return {
                 ...optionSchema,
                 labelText: model.name,
-                supportText: `PP ${model.ppCost}`
+                supportText: `PP ${model.ppCost}`,
+                handleEnter() {
+                    console.log('submission!')
+                }
             };
         });
 
@@ -73,16 +80,33 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
         {
             ...optionSchema,
             labelText: "Attack",
+            handleEnter() {
+                const nextMenu = getSubmissionMenuStructure(casterModel, "attacks", 0);
+                setBattleValue({
+                    menuLevel: "attacks",
+                    selectedOptionId: nextMenu.items[0].optionId
+                })
+            },
             supportText: "..."
         },
         {
             ...optionSchema,
             labelText: "Special",
+            handleEnter() {
+                setBattleValue({
+                    menuLevel: "special"
+                })
+            },
             supportText: "..."
         },
         {
             ...optionSchema,
             labelText: "Item",
+            handleEnter() {
+                setBattleValue({
+                    menuLevel: "items"
+                })
+            },
             supportText: "..."
         }
     ]);

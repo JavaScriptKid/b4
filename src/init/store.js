@@ -22,9 +22,9 @@ const store = createStore({
         submissions: [],
         descriptionBarText: "",
         //Menu
-        menuLevel: "attacks", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
+        menuLevel: "", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
         menuOptionIndex: 1,
-
+        selectedOptionId: "",
         viewMode: "battle" //"console" || "battle"
     },
     map: {
