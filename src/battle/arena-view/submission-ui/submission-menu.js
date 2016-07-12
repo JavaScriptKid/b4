@@ -55,7 +55,7 @@ class SubmissionMenu extends React.Component {
         };
 
         const menuOptionIndex = this.props.menuOptionIndex;
-        const hidePrevPageBtn = this.props.menuOptionIndex <= 4;
+        const hidePrevPageBtn = this.props.menuOptionIndex == 1;
         const pageLeftModel = {
             labelText: null,
             supportText: null,
@@ -67,11 +67,12 @@ class SubmissionMenu extends React.Component {
             }
         };
         //TODO: this isn't right
-        const hideNextPageBtn = false;//menuOptions.items.length - this.props.menuOptionIndex > 4;
+
+        const isLastPage = menuOptions.totalItemCount <= 4 * this.props.menuOptionIndex;
         const pageRightModel = {
             labelText: null,
             supportText: null,
-            customClasses: hideNextPageBtn ? "invisible" : "",
+            customClasses: isLastPage ? "invisible" : "",
             handleEnter() {
                 setBattleValue({
                     menuOptionIndex: menuOptionIndex + 4
