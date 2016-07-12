@@ -1,6 +1,16 @@
 import React from 'react';
+import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 
 class SubmissionMenuOption extends React.Component {
+
+
+    handleClick() {
+        setBattleValue({
+            selectedOptionId: this.props.model.optionId
+        });
+        this.props.model.handleEnter();
+    }
+
 
     renderLeftArrow() {
         const baseUnit = this.props.vW;
@@ -58,7 +68,7 @@ class SubmissionMenuOption extends React.Component {
         const backArrow = this.props.useBackArrowIcon ? this.renderBackArrowIcon() : null;
 
         return (
-            <div style={this.props.baseStyle} className={`submission-menu_option ${model.customClasses || ""}`}>
+            <div onClick={::this.handleClick} style={this.props.baseStyle} className={`submission-menu_option ${model.customClasses || ""}`}>
                 {model.labelText ? <span>{backArrow}{model.labelText}</span> : null}
                 {model.supportText ? <span>{model.supportText}</span> : null}
                 { this.props.isLeftArrow ? this.renderLeftArrow() : null }

@@ -10,6 +10,11 @@ import range from 'lodash/range'
 class PagingIndicators extends React.Component {
 
     render() {
+
+        if (this.props.totalItems <= 4) {
+            return null
+        }
+
         const baseUnit = this.props.vW;
         const containerStyle = {
             width: baseUnit * 37,

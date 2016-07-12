@@ -16,6 +16,10 @@ class SubmissionMenu extends React.Component {
 
     renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
 
+        if (["attacks"].indexOf(this.props.menuLevel) == -1) {
+            return null
+        }
+
         const backStyle = {
             ...baseOptionStyles,
             width: 'initial',
