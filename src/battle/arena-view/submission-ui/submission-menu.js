@@ -9,7 +9,7 @@ import PagingIndicators from './paging-indicators'
         vW: Math.round(state.map.viewportWidth / 100),
         menuLevel: state.battle.menuLevel,
         menuOptionIndex: state.battle.menuOptionIndex,
-        showPP: state.battle.menuLevel == "attacks"
+        showPP: (["attacks", "special", "items"].indexOf(state.battle.menuLevel) > -1)
     }
 })
 
