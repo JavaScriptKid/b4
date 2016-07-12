@@ -41,7 +41,7 @@ class SubmissionMenu extends React.Component {
             ...baseOptionStyles,
             width: baseUnit * 8,
             marginLeft: baseUnit * 1.5,
-            marginTop: 0,
+            marginTop: 0
         };
 
         const backModel = {
@@ -66,9 +66,12 @@ class SubmissionMenu extends React.Component {
                 })
             }
         };
+        //TODO: this isn't right
+        const hideNextPageBtn = false;//menuOptions.items.length - this.props.menuOptionIndex > 4;
         const pageRightModel = {
             labelText: null,
             supportText: null,
+            customClasses: hideNextPageBtn ? "invisible" : "",
             handleEnter() {
                 setBattleValue({
                     menuOptionIndex: menuOptionIndex + 4
