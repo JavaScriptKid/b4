@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
 import PagingIndicators from './paging-indicators'
+import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 
 @connect((state, props) => {
     return {
@@ -41,23 +42,38 @@ class SubmissionMenu extends React.Component {
             width: baseUnit * 8,
             marginLeft: baseUnit * 1.5,
             marginTop: 0,
-
         };
 
         const backModel = {
             labelText: "BACK",
             customClasses: "back-button",
+            handleEnter() {
+                setBattleValue({
+                    menuLevel: ""
+                })
+            }
         };
 
+        const menuOptionIndex = this.props.menuOptionIndex;
         const hidePrevPageBtn = this.props.menuOptionIndex <= 4;
-        const pageUpModel = {
+        const pageLeftModel = {
             labelText: null,
             supportText: null,
-            customClasses: hidePrevPageBtn ? "invisible" : ""
+            customClasses: hidePrevPageBtn ? "invisible" : "",
+            handleEnter() {
+                setBattleValue({
+                    menuOptionIndex: menuOptionIndex - 4
+                })
+            }
         };
-        const pageDownModel = {
+        const pageRightModel = {
             labelText: null,
-            supportText: null
+            supportText: null,
+            handleEnter() {
+                setBattleValue({
+                    menuOptionIndex: menuOptionIndex + 4
+                })
+            }
         };
 
 
@@ -68,8 +84,8 @@ class SubmissionMenu extends React.Component {
                     <SubmissionMenuOption vW={this.props.vW} useBackArrowIcon={false} baseStyle={backStyle} model={backModel} />
                 </div>
                 <div style={{display:"flex"}}>
-                    <SubmissionMenuOption vW={this.props.vW} isLeftArrow={true} baseStyle={pageStyle} model={pageUpModel} />
-                    <SubmissionMenuOption vW={this.props.vW} isRightArrow={true} baseStyle={pageStyle} model={pageDownModel} />
+                    <SubmissionMenuOption vW={this.props.vW} isLeftArrow={true} baseStyle={pageStyle} model={pageLeftModel} />
+                    <SubmissionMenuOption vW={this.props.vW} isRightArrow={true} baseStyle={pageStyle} model={pageRightModel} />
                 </div>
             </div>
         )
