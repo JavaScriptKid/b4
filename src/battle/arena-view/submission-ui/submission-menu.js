@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
+import PagingIndicators from './paging-indicators'
 
 @connect((state, props) => {
     return {
@@ -18,20 +19,23 @@ class SubmissionMenu extends React.Component {
         const backStyle = {
             ...baseOptionStyles,
             width: 'initial',
-            flex: "1"
+            flex: "1",
+            marginTop: 0,
+            textAlign: "center",
         };
         
         const containerStyle = {
-            width: baseUnit * 37
+            width: baseUnit * 37,
         };
         const pageStyle = {
             ...baseOptionStyles,
             width: baseUnit * 8,
-            marginLeft: baseUnit * 1.5
+            marginLeft: baseUnit * 1.5,
+            marginTop: 0
         };
 
         const backModel = {
-            labelText: "Back",
+            labelText: "MENU",
             customClasses: "back-button",
         };
         const pageUpModel = {
@@ -45,9 +49,9 @@ class SubmissionMenu extends React.Component {
 
         return (
             <div className="submission-menu_more-container" style={containerStyle}>
-                    <SubmissionMenuOption vW={this.props.vW} baseStyle={backStyle} model={backModel} />
-                    <SubmissionMenuOption vW={this.props.vW} isUpArrow={true} baseStyle={pageStyle} model={pageUpModel} />
-                    <SubmissionMenuOption vW={this.props.vW} isDownArrow={true} baseStyle={pageStyle} model={pageDownModel} />
+                    <SubmissionMenuOption vW={this.props.vW} useBackArrowIcon={true} baseStyle={backStyle} model={backModel} />
+                    <SubmissionMenuOption vW={this.props.vW} isLeftArrow={true} baseStyle={pageStyle} model={pageUpModel} />
+                    <SubmissionMenuOption vW={this.props.vW} isRightArrow={true} baseStyle={pageStyle} model={pageDownModel} />
             </div>
         )
     }
@@ -81,6 +85,12 @@ class SubmissionMenu extends React.Component {
         return (
            <div style={menuStyle} className="submission-menu">
                {optionComponents}
+
+               <PagingIndicators
+                   vW={this.props.vW}
+                   totalItems={menuOptions.totalItemCount}
+                   currentIndex={this.props.menuOptionIndex}
+               />
                {this.renderMoreContainer(menuOptions, optionStyle, baseUnit)}
            </div>
         );

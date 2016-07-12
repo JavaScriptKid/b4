@@ -36,10 +36,13 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
 
     /* Normal attacks */
     if (menuLevel == "attacks") {
-        const attackOptions = casterModel.attacks.filter(atkId => {
+
+        const normalAttacks = casterModel.attacks.filter(atkId => {
             const model = Actions[atkId];
             return model.type == "Normal"
-        }).map(atkId => {
+        });
+
+        const attackOptions = normalAttacks.map(atkId => {
             const model = Actions[atkId];
             return {
                 ...optionSchema,
@@ -51,7 +54,8 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
         const items = filterOptionsByTest(attackOptions, menuStartingIndex);
 
         return {
-            items: items
+            items: items,
+            totalItemCount: normalAttacks.length
         }
     }
 
@@ -83,6 +87,7 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
         }
     ]);
     return {
-        items: items
+        items: items,
+        totalItemCount: items.length
     }
 }

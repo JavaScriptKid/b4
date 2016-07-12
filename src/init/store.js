@@ -23,7 +23,7 @@ const store = createStore({
         descriptionBarText: "",
         //Menu
         menuLevel: "attacks", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
-        menuOptionIndex: 0,
+        menuOptionIndex: 1,
 
         viewMode: "battle" //"console" || "battle"
     },
