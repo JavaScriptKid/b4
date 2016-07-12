@@ -35,17 +35,19 @@ class SubmissionMenu extends React.Component {
             customClasses: "back-button",
         };
         const pageUpModel = {
-            labelText: "U"
+            labelText: null,
+            supportText: null
         };
         const pageDownModel = {
-            labelText: "D"
+            labelText: null,
+            supportText: null
         };
 
         return (
             <div className="submission-menu_more-container" style={containerStyle}>
-                    <SubmissionMenuOption baseStyle={backStyle} model={backModel} />
-                    <SubmissionMenuOption baseStyle={pageStyle} model={pageUpModel} />
-                    <SubmissionMenuOption baseStyle={pageStyle} model={pageDownModel} />
+                    <SubmissionMenuOption vW={this.props.vW} baseStyle={backStyle} model={backModel} />
+                    <SubmissionMenuOption vW={this.props.vW} isUpArrow={true} baseStyle={pageStyle} model={pageUpModel} />
+                    <SubmissionMenuOption vW={this.props.vW} isDownArrow={true} baseStyle={pageStyle} model={pageDownModel} />
             </div>
         )
     }
