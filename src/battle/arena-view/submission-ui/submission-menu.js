@@ -8,7 +8,8 @@ import PagingIndicators from './paging-indicators'
     return {
         vW: Math.round(state.map.viewportWidth / 100),
         menuLevel: state.battle.menuLevel,
-        menuOptionIndex: state.battle.menuOptionIndex
+        menuOptionIndex: state.battle.menuOptionIndex,
+        showPP: state.battle.menuLevel == "attacks"
     }
 })
 
@@ -16,6 +17,7 @@ class SubmissionMenu extends React.Component {
 
     renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
 
+        /* Do not show unless on one of these menuLevels: */
         if (["attacks"].indexOf(this.props.menuLevel) == -1) {
             return null
         }
@@ -90,7 +92,6 @@ class SubmissionMenu extends React.Component {
         const ppStyle = {
             float: "right",
             fontSize: baseUnit * 2,
-            //marginBottom: baseUnit * 1,
             borderRadius: baseUnit * 0.3,
             position: "relative",
             borderBottomRightRadius: 0,
@@ -113,7 +114,7 @@ class SubmissionMenu extends React.Component {
 
         return (
            <div style={menuStyle} className="submission-menu">
-               <div style={ppStyle}>PP {this.props.casterModel.pp}/{this.props.casterModel.maxPp}</div>
+               {this.props.showPP ? <div style={ppStyle}>PP {this.props.casterModel.pp}/{this.props.casterModel.maxPp}</div> : null}
                <div>
                 {optionComponents}
                </div>
