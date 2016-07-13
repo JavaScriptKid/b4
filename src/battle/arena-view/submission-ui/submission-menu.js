@@ -10,7 +10,7 @@ import {setBattleValue} from '../../../redux-action-creators/battle-action-creat
         vW: Math.round(state.map.viewportWidth / 100),
         menuLevel: state.battle.menuLevel,
         menuOptionIndex: state.battle.menuOptionIndex,
-        showPP: (["attacks", "special", "items"].indexOf(state.battle.menuLevel) > -1)
+        showPP: (["attacks", "special"].indexOf(state.battle.menuLevel) > -1)
     }
 })
 
@@ -19,7 +19,7 @@ class SubmissionMenu extends React.Component {
     renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
 
         /* Do not show unless on one of these menuLevels: */
-        if (["attacks"].indexOf(this.props.menuLevel) == -1) {
+        if (["attacks", "special", "items"].indexOf(this.props.menuLevel) == -1) {
             return null
         }
 
@@ -66,7 +66,6 @@ class SubmissionMenu extends React.Component {
                 })
             }
         };
-        //TODO: this isn't right
 
         const isLastPage = menuOptions.totalItemCount <= 4 * this.props.menuOptionIndex;
         const pageRightModel = {
@@ -129,7 +128,7 @@ class SubmissionMenu extends React.Component {
         );
 
         const optionComponents = menuOptions.items.map((optionModel, i) => {
-            return <SubmissionMenuOption baseStyle={optionStyle} key={i} model={optionModel} />
+            return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />
         });
 
         return (

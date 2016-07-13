@@ -66,11 +66,15 @@ class SubmissionMenuOption extends React.Component {
     render() {
         const model = this.props.model;
         const backArrow = this.props.useBackArrowIcon ? this.renderBackArrowIcon() : null;
+        const metaStyle = {
+            fontSize: this.props.vW * 2
+        };
+
 
         return (
             <div onClick={::this.handleClick} style={this.props.baseStyle} className={`submission-menu_option ${model.customClasses || ""}`}>
                 {model.labelText ? <span>{backArrow}{model.labelText}</span> : null}
-                {model.supportText ? <span>{model.supportText}</span> : null}
+                {model.supportText ? <span style={metaStyle}>{model.supportText}</span> : null}
                 { this.props.isLeftArrow ? this.renderLeftArrow() : null }
                 { this.props.isRightArrow ? this.renderRightArrow() : null }
             </div>
