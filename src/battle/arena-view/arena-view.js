@@ -16,14 +16,20 @@ import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
         playerModel: new CombatantModel(playerProperties),
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
-        vW: Math.round(state.map.viewportWidth / 100)
+        vW: Math.round(state.map.viewportWidth / 100),
+        submissions: state.battle.submissions
     }
 })
 
 class BattleArenaView extends React.Component {
 
-    componentDidMount() {
-        aiSubmissionWatcher();
+    componentWillUpdate(newProps) {
+        if (newProps.submissions.length != this.props.submissions.length) {
+            if (newProps.submissions.length == 0) {
+                console.log('submissions are empty. Submit AI ones?')
+                //Combatants.filter for AI controlled ones, forEach submit something
+            }
+        }
     }
 
     render() {
