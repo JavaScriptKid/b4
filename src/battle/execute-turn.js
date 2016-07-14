@@ -9,7 +9,7 @@ import {processActions} from './process-actions'
  * Go from submissions to result output
  */
 export function executeTurn(submissionModels=[]) {
-
+    
     /* 1. Assemble the Queue */
     //------------------------
     const lastHistoryEntry = store.getState().battle.history[store.getState().battle.history.length-1];

@@ -5,6 +5,7 @@ import DescriptionBar from './description-bar'
 import SubmissionMenu from './submission-ui/submission-menu'
 import ArenaCombatant from './arena-combatant'
 import { CombatantModel } from '../combatant-model'
+import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
 
 @connect((state, props) => {
 
@@ -20,6 +21,10 @@ import { CombatantModel } from '../combatant-model'
 })
 
 class BattleArenaView extends React.Component {
+
+    componentDidMount() {
+        aiSubmissionWatcher();
+    }
 
     render() {
 
