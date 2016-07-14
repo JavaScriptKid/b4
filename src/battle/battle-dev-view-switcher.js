@@ -4,13 +4,15 @@ import {setBattleValue} from '../redux-action-creators/battle-action-creators'
 
 class BattleDevViewSwitcher extends React.Component {
 
-    switchToConsole() {
+    switchToConsole(e) {
+        e.preventDefault();
         setBattleValue({
             viewMode: "console"
         })
     }
 
-    switchToArena() {
+    switchToArena(e) {
+        e.preventDefault();
         setBattleValue({
             viewMode: "arena"
         })
@@ -19,13 +21,15 @@ class BattleDevViewSwitcher extends React.Component {
     render() {
         const isConsoleMode = (this.props.viewMode == "console");
         const activeStyle = {
-            fontWeight: "bold"
+            background: "#4A90E2",
+            color:"#fff",
+            borderColor: "#2F619B"
         };
 
         return (
-            <div style={{position:"absolute"}}>
-                <a href="#" onClick={::this.switchToConsole} style={ isConsoleMode ? activeStyle : {}}>Console</a>
-                <a href="#" onClick={::this.switchToArena} style={ !isConsoleMode ? activeStyle : {}}>Arena</a>
+            <div style={{marginBottom:"1em"}}>
+                <a href="#" className="dev-switch-link" onClick={::this.switchToConsole} style={ isConsoleMode ? activeStyle : {}}>Console</a>
+                <a href="#" className="dev-switch-link" onClick={::this.switchToArena} style={ !isConsoleMode ? activeStyle : {}}>Arena</a>
             </div>
         )
     }

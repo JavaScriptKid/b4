@@ -32,5 +32,18 @@ html, body {
     overflow:hidden;
 }
 
+.dev-switch-link {
+    text-decoration:none;
+    color:#666;
+    border:1px solid #666;
+    padding: 0.2em 0;
+    display:inline-block;
+    width:120px;
+    text-align:center;
+    &:first-of-type {
+        border-right:0;
+    }
+}
+
 @import 'battle-console-view';
 @import 'battle-arena-view';

@@ -22,7 +22,12 @@ class Viewport extends React.Component {
     render() {
 
         if (this.props.isBattleConsoleView) {
-            return <BattleConsoleView />
+            return (
+                <div>
+                    <BattleDevViewSwitcher />
+                    <BattleConsoleView />
+                </div>
+            )
         }
 
 
@@ -33,6 +38,7 @@ class Viewport extends React.Component {
         return (
             <div className="ui-wrapper">
                 <div style={viewportStyle} className={`viewport viewport-${this.props.vpWidth}`}>
+                    <BattleDevViewSwitcher />
                     <BattleArenaView />
                 </div>
             </div>
