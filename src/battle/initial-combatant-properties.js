@@ -36,6 +36,7 @@ export default {
     defenseModifier: 0,
     speedModifier: 0,
     efficiencyModifier: 0,
-    accuracyModifier: 0
-    
+    accuracyModifier: 0,
+
+    isComputerControlled: false
 };

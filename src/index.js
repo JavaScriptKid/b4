@@ -6,6 +6,7 @@ import store from './init/store';
 import Viewport from './viewport/viewport'
 import initBattleCombatants from './battle/init-battle-combatants'
 
+
 var RootComponent = React.createClass({
 
     componentWillMount() {
@@ -17,7 +18,7 @@ var RootComponent = React.createClass({
     render() {
         return (
             <Provider store={ this.props.store }>
-                <Viewport />
+                    <Viewport />
             </Provider>
         );
     }

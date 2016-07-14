@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import resizer from './resizer'
 import BattleConsoleView from '../battle/console-view/console-view'
 import BattleArenaView from '../battle/arena-view/arena-view'
+import BattleDevViewSwitcher from '../battle/battle-dev-view-switcher'
 
 @connect((state, props) => {
     return {
@@ -38,14 +39,6 @@ class Viewport extends React.Component {
         );
     }
 }
-
-Viewport.propTypes = {
-    /*someRequiredProp: React.PropTypes.string.isRequired*/
-}
-
-Viewport.defaultProps = {
-}
-
 
 
 export default Viewport;
