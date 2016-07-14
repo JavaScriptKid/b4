@@ -1,5 +1,7 @@
 import Actions from '../../../_data/battle-actions'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
+import {getSubmission} from '../../submissions/get-submission'
+import {addSubmission} from '../../submissions/add-submission'
 
 const optionSchema = {
     optionId: "some_unique_id",
@@ -43,11 +45,12 @@ var getAttackOptionModels = function(list) {
             labelText: model.name,
             supportText: model.ppCost > 0 ? `PP ${model.ppCost}` : "",
             handleEnter() {
-                console.log('submission!')
+                const submissionModel = getSubmission(atkId, null);
+                addSubmission(submissionModel);
             }
         };
     });
-}
+};
 
 export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStartingIndex=0) {
 

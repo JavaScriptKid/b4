@@ -7,7 +7,7 @@ export function addSubmission(submissionModel) {
     }
     setBattleValue({
         submissions: [
-            ...store.getState().submissions,
+            ...store.getState().battle.submissions,
             submissionModel
         ]
     })
