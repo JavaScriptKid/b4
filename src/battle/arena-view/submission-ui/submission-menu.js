@@ -4,9 +4,11 @@ import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
 import PagingIndicators from './paging-indicators'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
+import {vW} from '../../../helpers/vw'
 
 @connect((state, props) => {
     return {
+        cW: state.map.cW,
         vW: Math.round(state.map.viewportWidth / 100),
         menuLevel: state.battle.menuLevel,
         menuOptionIndex: state.battle.menuOptionIndex,
@@ -98,15 +100,15 @@ class SubmissionMenu extends React.Component {
         const baseUnit = this.props.vW;
         const menuStyle = {
             left: (baseUnit * 4),
-            bottom: this.props.hide ? (baseUnit * - 39):(baseUnit * 7),
+            bottom: this.props.hide ? (baseUnit * - 39) : (baseUnit * 7),
             fontSize: baseUnit * 3
         };
         const optionStyle = {
-            padding: baseUnit * 1.2,
-            width: baseUnit * 37,
-            border: `${baseUnit * 0.5 }px solid #000`,
-            borderRadius: `${baseUnit * 0.5 }`,
-            marginTop: baseUnit * 1.5
+            padding: vW(1.2),
+            width: vW(37),
+            border: `${vW(0.5)}px solid #000`,
+            borderRadius: vW(1),
+            marginTop: vW(1.5)
         };
         const ppStyle = {
             float: "right",
