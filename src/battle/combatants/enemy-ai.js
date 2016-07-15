@@ -24,3 +24,22 @@ export function getSmartAttack(casterState, targetState, aiProperties={}, useDir
 
 
 }
+
+import store from '../../init/store'
+export function getAutoAttacks() {
+    const history = store.getState().battle.history;
+    const combs = history[history.length-1].combatants;
+
+    const combModels = Object.keys(combs).map(combId => {
+        return combs[combId];
+    });
+    //    .filter(model => {
+    //    return model.isComputerControlled
+    //});
+
+    //Hard coding this for now. I don't see a lot of value in making it so fluid unless there are more than 2 combatants
+    return getSmartAttack(combModels[1], combModels[0], {}, null, null)
+
+
+
+}

@@ -1,5 +1,6 @@
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 import store from '../../init/store'
+import {executeTurn} from '../execute-turn'
 
 export function addSubmission(submissionModel) {
     if (!submissionModel) {
@@ -10,5 +11,12 @@ export function addSubmission(submissionModel) {
             ...store.getState().battle.submissions,
             submissionModel
         ]
-    })
+    });
+
+    /* EXECUTE THE TURN IF ALL ARE IN */
+    if (store.getState().battle.submissions.length == 2) {
+        const result = executeTurn(store.getState().battle.submissions);
+        console.log(result);
+    }
+
 }

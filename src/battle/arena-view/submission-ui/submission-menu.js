@@ -100,7 +100,7 @@ class SubmissionMenu extends React.Component {
         const baseUnit = this.props.vW;
         const menuStyle = {
             left: (baseUnit * 4),
-            bottom: this.props.hide ? (baseUnit * - 39) : (baseUnit * 7),
+            bottom: this.props.hide ? (baseUnit * - 43) : (baseUnit * 7),
             fontSize: baseUnit * 3
         };
         const optionStyle = {

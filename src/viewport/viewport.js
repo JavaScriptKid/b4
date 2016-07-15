@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import resizer from './resizer'
 import BattleConsoleView from '../battle/console-view/console-view'
 import BattleArenaView from '../battle/arena-view/arena-view'
-import BattleDevViewSwitcher from '../battle/battle-dev-view-switcher'
 
 @connect((state, props) => {
     return {
@@ -24,7 +23,6 @@ class Viewport extends React.Component {
         if (this.props.isBattleConsoleView) {
             return (
                 <div>
-                    <BattleDevViewSwitcher />
                     <BattleConsoleView />
                 </div>
             )
@@ -38,7 +36,6 @@ class Viewport extends React.Component {
         return (
             <div className="ui-wrapper">
                 <div style={viewportStyle} className={`viewport viewport-${this.props.vpWidth}`}>
-                    <BattleDevViewSwitcher />
                     <BattleArenaView />
                 </div>
             </div>

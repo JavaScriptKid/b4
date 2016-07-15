@@ -17,9 +17,9 @@ import store from '../../init/store'
 class DescriptionBar extends React.Component {
 
     handleDevClick() {
-        setBattleValue({
-            submissions: store.getState().battle.submissions.length > 0 ? [] : ["a", "b"]
-        });
+        //setBattleValue({
+        //    submissions: store.getState().battle.submissions.length > 0 ? [] : ["a", "b"]
+        //});
     }
 
     render() {
@@ -34,7 +34,7 @@ class DescriptionBar extends React.Component {
             height: this.props.isRollout ? baseUnit * 14 : baseUnit * 5
         };
 
-        const content = this.props.isRollout ? "Jacob used SLICE!" : this.props.descriptionBarText
+        const content = this.props.isRollout ? "insertRolloutHere" : this.props.descriptionBarText
         return (
            <div onClick={::this.handleDevClick} style={barStyle} className="bottom-bar">
                {content}

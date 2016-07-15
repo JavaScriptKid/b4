@@ -4,6 +4,7 @@ import CombatantScoreboard from './combatant-scoreboard'
 import DescriptionBar from './description-bar'
 import SubmissionMenu from './submission-ui/submission-menu'
 import ArenaCombatant from './arena-combatant'
+import AutoSubmitter from './auto-submitter'
 import { CombatantModel } from '../combatant-model'
 import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
 
@@ -16,21 +17,11 @@ import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
         playerModel: new CombatantModel(playerProperties),
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
-        vW: Math.round(state.map.viewportWidth / 100),
-        submissions: state.battle.submissions
+        vW: Math.round(state.map.viewportWidth / 100)
     }
 })
 
 class BattleArenaView extends React.Component {
-
-    componentWillUpdate(newProps) {
-        if (newProps.submissions.length != this.props.submissions.length) {
-            if (newProps.submissions.length == 0) {
-                console.log('submissions are empty. Submit AI ones?')
-                //Combatants.filter for AI controlled ones, forEach submit something
-            }
-        }
-    }
 
     render() {
 
@@ -53,6 +44,8 @@ class BattleArenaView extends React.Component {
 
                <SubmissionMenu casterModel={this.props.playerModel} hide={this.props.isRollout} />
                <DescriptionBar isRollout={this.props.isRollout} />
+
+               <AutoSubmitter />
            </div>
         );
     }
