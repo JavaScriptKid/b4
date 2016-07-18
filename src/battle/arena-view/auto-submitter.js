@@ -15,7 +15,9 @@ class AutoSubmitter extends React.Component {
     submit(newProps) {
             if (newProps.submissions.length == 0) {
                 const autoSubmission = getAutoAttacks(); //Just gets one submission for the computer for now
-                addSubmission(autoSubmission)
+                autoSubmission.forEach(submission => {
+                    addSubmission(submission)
+                });
             }
     }
 

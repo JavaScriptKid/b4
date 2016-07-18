@@ -17,6 +17,11 @@ export function addSubmission(submissionModel) {
     if (store.getState().battle.submissions.length == 2) {
         const result = executeTurn(store.getState().battle.submissions);
         console.log(result);
+
+        /* populate the Rollout Log with the steps! */
+        setBattleValue({
+            rollout: [...result.rolloutSteps]
+        })
     }
 
 }

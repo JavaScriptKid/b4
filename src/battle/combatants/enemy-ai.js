@@ -38,7 +38,22 @@ export function getAutoAttacks() {
     //});
 
     //Hard coding this for now. I don't see a lot of value in making it so fluid unless there are more than 2 combatants
-    return getSmartAttack(combModels[1], combModels[0], {}, null, null)
+
+    //Fill array with computerControlled attacks, hard coded for 2 combatants:
+    var autoAttacks = [];
+
+    if (combModels[0].isComputerControlled) {
+        autoAttacks.push(
+            getSmartAttack(combModels[0], combModels[1], {}, null, null)
+        )
+    }
+    if (combModels[1].isComputerControlled) {
+        autoAttacks.push(
+            getSmartAttack(combModels[1], combModels[0], {}, null, null)
+        )
+    }
+
+    return autoAttacks;
 
 
 

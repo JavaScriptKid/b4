@@ -19,6 +19,7 @@ const store = createStore({
         turnRolloutHistoryEntries: [
             { turnId: 0, steps: [] }
         ],
+        rollout: [],
         submissions: [],
         descriptionBarText: "",
         //Menu
