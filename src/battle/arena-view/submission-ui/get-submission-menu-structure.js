@@ -104,7 +104,7 @@ export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStarti
     const items = filterOptionsByTest([
         {
             ...optionSchema,
-            labelText: "Super Charge",
+            labelText: "SUPER CHARGE",
             supportText: "...",
             customClasses: "",
             filterPresenceTest: function() {

@@ -1,5 +1,6 @@
 import store from '../init/store'
 import {setBattleValue, setLatestHistory} from '../redux-action-creators/battle-action-creators'
+import {gradualStateChange} from './gradual-state-change'
 
 export function doStep() {
     const rollout = store.getState().battle.rollout;
@@ -13,6 +14,12 @@ export function doStep() {
 
     const nowStep = rollout[0];
     console.log(nowStep);
+
+    //Delete this step
+    const reducedRollout = rollout.filter((step,i) => {return i > 0});
+    setBattleValue({
+        rollout: reducedRollout
+    });
 
     //Do the step.
     if (nowStep.type == "message") {
@@ -29,14 +36,10 @@ export function doStep() {
     }
 
     if (nowStep.type == "stateChange") {
-        setLatestHistory(nowStep.newState)
+        gradualStateChange(nowStep.newState);
+        //setLatestHistory(nowStep.newState)
     }
 
-    //Delete this step
-    const reducedRollout = rollout.filter((step,i) => {return i > 0});
-    setBattleValue({
-        rollout: reducedRollout
-    });
 
     //Reset the submissions if we are done rolling out
     if (reducedRollout.length == 0) {
@@ -50,9 +53,9 @@ export function doStep() {
 
 
     //Auto run the next step if this is a stateChange
-    if (nowStep.type == "stateChange" && reducedRollout.length > 0) {
-        doStep();
-    }
+    //if (nowStep.type == "stateChange" && reducedRollout.length > 0) {
+    //    doStep();
+    //}
 }
 
 
