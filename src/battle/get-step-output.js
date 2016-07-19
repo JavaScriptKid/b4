@@ -75,7 +75,8 @@ var getSuccessStep = function(action, casterModel, targetModel, actionDescriptio
         getUseMessage(action, casterModel, targetModel, actionDescription, nextState),
         {
             type: "animation",
-            animationName: action.animation
+            animationName: action.animation,
+            actionDescription: actionDescription //Animation will use this for certain details
         }
     ]
 };

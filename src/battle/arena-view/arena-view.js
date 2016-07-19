@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import BattleAnimations from '../../_data/_battle-animations'
 import CombatantScoreboard from './combatant-scoreboard'
 import DescriptionBar from './description-bar'
 import SubmissionMenu from './submission-ui/submission-menu'
@@ -17,11 +18,21 @@ import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
         playerModel: new CombatantModel(playerProperties),
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
-        vW: Math.round(state.map.viewportWidth / 100)
+        vW: Math.round(state.map.viewportWidth / 100),
+        currentAnimation: state.battle.currentAnimation
     }
 })
 
 class BattleArenaView extends React.Component {
+
+
+    renderAnimation() {
+        if (!this.props.currentAnimation) {
+            return null
+        }
+        const animationComponentFunction = BattleAnimations[this.props.currentAnimation.animationId];
+        return animationComponentFunction(this.props.currentAnimation.actionDescription);
+    }
 
     render() {
 
@@ -41,6 +52,7 @@ class BattleArenaView extends React.Component {
                <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
                <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
 
+               {this.renderAnimation()}
 
                <SubmissionMenu casterModel={this.props.playerModel} hide={this.props.isRollout} />
                <DescriptionBar isRollout={this.props.isRollout} />

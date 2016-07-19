@@ -38,5 +38,6 @@ export default {
     efficiencyModifier: 0,
     accuracyModifier: 0,
 
-    isComputerControlled: false
+    isComputerControlled: false,
+    animation: "initial"
 };

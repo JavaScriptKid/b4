@@ -19,7 +19,8 @@ const getIteratingSuccessMessage = function(action, casterModel, targetModel, ac
         },
         {
             type: "animation",
-            animationName: action.animation
+            animationName: action.animation,
+            actionDescription: actionDescription
         },
         {type: "stateChange", newState: nextState},
         {
@@ -46,7 +47,7 @@ export default {
     "attack-001-a": {
         ...attackSchema,
         name: "Slice",
-        animation: "shootingStar",
+        animation: "tada", //"shootingStar",
         description: "Chops the enemy to bits.",
         affectTargetHpPoints: -5,
         ppCost: 3
@@ -109,7 +110,7 @@ export default {
     "attack-003-a": {
         ...attackSchema,
         name: "ForEach",
-        animation: "iterate",
+        animation: "tada", //"iterate",
         description: "Hits the enemy 2 to 5 times with wildcard damage",
         affectTargetHpPoints: -5,
         repetitions: [2,5],
@@ -125,7 +126,7 @@ export default {
     "attack-004-a": {
         ...attackSchema,
         name: "MapArray",
-        animation: "iterate",
+        animation: "tada", // "iterate",
         description: "Hits the enemy 2 to 5 times with consistent damage",
         affectTargetHpPoints: -5,
         repetitions: [2,5],
@@ -140,7 +141,7 @@ export default {
     "attack-005-a": {
         ...attackSchema,
         name: "ReduceArray",
-        animation: "iterate",
+        animation: "tada", //: "iterate",
         description: "Hits the enemy 2 to 5 times with increasing damage",
         affectTargetHpPoints: -5,
         repetitions: [2,5],
@@ -174,7 +175,8 @@ export default {
                 },
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -210,7 +212,8 @@ export default {
                 },
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 }
             ]
         }

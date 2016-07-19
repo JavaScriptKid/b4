@@ -30,9 +30,16 @@ export function doStep() {
     }
 
     if (nowStep.type == "animation") {
-        //TODO
+
+        if (!nowStep.actionDescription) {
+            console.warn('no actionDescription found for', nowStep)
+        }
+
         setBattleValue({
-            textMessageContent: ["**ANIMATION**"]
+            currentAnimation: {
+                animationId: nowStep.animationName,
+                actionDescription: nowStep.actionDescription
+            }
         })
     }
 

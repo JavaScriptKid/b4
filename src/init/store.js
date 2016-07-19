@@ -22,6 +22,8 @@ const store = createStore({
         rollout: [
             //{type:"message", content: ["Begin Hack Battle"]}
         ],
+        currentAnimation: null,
+
         submissions: [],
         textMessageContent: [],
 

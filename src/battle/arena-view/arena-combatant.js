@@ -44,6 +44,7 @@ class ArenaCombatant extends React.Component {
 
         const style = {
             backgroundImage: `url(${me.skin})`,
+            animation: me.animation,
             ...this.getPositionStyles(baseUnit)
         };
 
