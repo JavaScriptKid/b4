@@ -21,8 +21,11 @@ const store = createStore({
         ],
         rollout: [],
         submissions: [],
-        descriptionBarText: "",
+        textMessageContent: [],
+
+
         //Menu
+        descriptionBarText: "", //for static messaging, like Item descriptions
         menuLevel: "", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
         menuOptionIndex: 1,
         selectedOptionId: "",

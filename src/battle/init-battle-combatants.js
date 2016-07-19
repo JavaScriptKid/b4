@@ -39,7 +39,7 @@ export default function() {
 
 
     const initialComb1 = {
-        isComputerControlled: true,
+        //isComputerControlled: true,
         id: id1,
         name: "Jacob",
         level: 10,

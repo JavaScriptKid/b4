@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import {convertText} from '../../messaging/text-converter'
+import TextLine from './text-line'
+import {doStep} from '../do-step'
 
 //DEV ONLY
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
@@ -10,16 +13,30 @@ import store from '../../init/store'
 @connect((state, props) => {
     return {
         vW: Math.round(state.map.viewportWidth / 100),
-        descriptionBarText: state.battle.descriptionBarText
+        descriptionBarText: state.battle.descriptionBarText,
+        textMessageContent: state.battle.textMessageContent
     }
 })
 
 class DescriptionBar extends React.Component {
 
-    handleDevClick() {
-        //setBattleValue({
-        //    submissions: store.getState().battle.submissions.length > 0 ? [] : ["a", "b"]
-        //});
+
+    handleEnterKey() {
+        //Unmount current text content
+        setBattleValue({
+            textMessageContent: []
+        });
+        doStep();
+    }
+
+    getTextLine() {
+
+        if (this.props.textMessageContent.length == 0) {
+            return null;
+        }
+
+        const textContent = convertText(this.props.textMessageContent);
+        return <TextLine content={textContent} needsUserPrompt={true} handleUserPrompt={this.handleEnterKey} />
     }
 
     render() {
@@ -34,9 +51,12 @@ class DescriptionBar extends React.Component {
             height: this.props.isRollout ? baseUnit * 14 : baseUnit * 5
         };
 
-        const content = this.props.isRollout ? "insertRolloutHere" : this.props.descriptionBarText
+
+        const content = this.props.isRollout
+            ? this.getTextLine()
+            : this.props.descriptionBarText;
         return (
-           <div onClick={::this.handleDevClick} style={barStyle} className="bottom-bar">
+           <div style={barStyle} className="bottom-bar">
                {content}
            </div>
         );
