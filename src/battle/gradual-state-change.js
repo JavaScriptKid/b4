@@ -52,7 +52,6 @@ export function gradualStateChange(newState) {
         queue.forEach(q => {
 
             var handleIteration = function(newValue) {
-                console.log('iteration', newValue, q.combatantId);
                 setCombatantValue(q.combatantId, {
                     hp: newValue
                 });
@@ -71,7 +70,7 @@ export function gradualStateChange(newState) {
 
 function blanketApply(newState) {
     setLatestHistory(newState)
-    if (store.getState().battle.rollout.length > 0) {
+    //if (store.getState().battle.rollout.length > 0) {
         doStep(); //move forward to the next step
-    }
+    //}
 }

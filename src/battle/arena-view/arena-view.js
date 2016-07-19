@@ -15,7 +15,7 @@ import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
 
     return {
         playerModel: new CombatantModel(playerProperties),
-        isRollout: state.battle.rollout.length > 0, //state.battle.submissions.length == combatantIds.length,
+        isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
         vW: Math.round(state.map.viewportWidth / 100)
     }

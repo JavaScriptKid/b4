@@ -7,7 +7,7 @@ const attackSchema = {
     dependentOnAttack: null //"action_attack_whatever_001"
 };
 
-const getIteratingSuccessMessage = function(action, casterModel, targetModel, actionDescription) {
+const getIteratingSuccessMessage = function(action, casterModel, targetModel, actionDescription, nextState) {
     return [
         {
             type: "message",
@@ -21,6 +21,7 @@ const getIteratingSuccessMessage = function(action, casterModel, targetModel, ac
             type: "animation",
             animationName: action.animation
         },
+        {type: "stateChange", newState: nextState},
         {
             type: "message",
             content: [`It hit ${actionDescription.repetitionsCount} times!`]
@@ -115,8 +116,8 @@ export default {
         repetitionType: "random",
         ppCost: 5,
         increaseDangerMeter: 0.17,
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
-            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
         }
     },
 
@@ -130,8 +131,8 @@ export default {
         repetitions: [2,5],
         repetitionType: "map",
         ppCost: 5,
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
-            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
         }
     },
 
@@ -145,8 +146,8 @@ export default {
         repetitions: [2,5],
         repetitionType: "reduce",
         ppCost: 5,
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
-            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription)
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
         }
     },
 
@@ -161,7 +162,7 @@ export default {
         affectTargetHpPoints: -5,
         speedModifier: 0,
         ppCost: 9,
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return [
                 { //copy of "use" message
                     type: "message",
@@ -201,7 +202,7 @@ export default {
         affectTargetHpPoints: -25,
         speedModifier: 0,
         ppCost: 0,
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return [
                 {
                 type: "message",

@@ -1,4 +1,4 @@
-const getUseMessage = function(action, casterModel, targetModel, actionDescription) {
+const getUseMessage = function(action, casterModel, targetModel, actionDescription, nextState) {
 
     if (action.superChargedFrameworkId) {
         return {
@@ -21,16 +21,16 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
     }
 };
 
-var getMissStep = function(action, casterModel, targetModel, actionDescription) {
+var getMissStep = function(action, casterModel, targetModel, actionDescription, nextState) {
 
     /* If actionDescription has MISS property, check for a custom return or use default */
     if (actionDescription.didActionMiss) {
 
         if (typeof action.customMissStep === "function") {
-            return action.customMissStep(action, casterModel, targetModel, actionDescription);
+            return action.customMissStep(action, casterModel, targetModel, actionDescription, nextState);
         }
         return [
-            getUseMessage(action, casterModel, targetModel, actionDescription),
+            getUseMessage(action, casterModel, targetModel, actionDescription, nextState),
             {
                 type: "message",
                 content: [
@@ -43,16 +43,16 @@ var getMissStep = function(action, casterModel, targetModel, actionDescription) 
     return null;
 };
 
-var getFailStep = function(action, casterModel, targetModel, actionDescription) {
+var getFailStep = function(action, casterModel, targetModel, actionDescription, nextState) {
 
     /* If actionDescription has FAIL property, check for a custom return or use default */
     if (actionDescription.didActionFail) {
         if (typeof action.customFailStep === "function") {
-            return action.customFailStep(action, casterModel, targetModel, actionDescription);
+            return action.customFailStep(action, casterModel, targetModel, actionDescription, nextState);
         }
 
         return [
-            getUseMessage(action, casterModel, targetModel, actionDescription),
+            getUseMessage(action, casterModel, targetModel, actionDescription, nextState),
             {
                 type: "message",
                 content: [
@@ -66,13 +66,13 @@ var getFailStep = function(action, casterModel, targetModel, actionDescription) 
 };
 
 
-var getSuccessStep = function(action, casterModel, targetModel, actionDescription) {
+var getSuccessStep = function(action, casterModel, targetModel, actionDescription, nextState) {
     if (typeof action.customSuccessStep === "function") {
-        return action.customSuccessStep(action, casterModel, targetModel, actionDescription);
+        return action.customSuccessStep(action, casterModel, targetModel, actionDescription, nextState);
     }
 
     return [
-        getUseMessage(action, casterModel, targetModel, actionDescription),
+        getUseMessage(action, casterModel, targetModel, actionDescription, nextState),
         {
             type: "animation",
             animationName: action.animation
@@ -82,15 +82,15 @@ var getSuccessStep = function(action, casterModel, targetModel, actionDescriptio
 
 
 
-export function getStepOutput(action, casterModel, targetModel, actionDescription) {
+export function getStepOutput(action, casterModel, targetModel, actionDescription, nextState) {
 
     /* FOR NOW */
-    let result = getMissStep(action, casterModel, targetModel, actionDescription);
+    let result = getMissStep(action, casterModel, targetModel, actionDescription, nextState);
     if (!result) {
-        result = getFailStep(action, casterModel, targetModel, actionDescription);
+        result = getFailStep(action, casterModel, targetModel, actionDescription, nextState);
     }
     if (!result) {
-        result = getSuccessStep(action, casterModel, targetModel, actionDescription);
+        result = getSuccessStep(action, casterModel, targetModel, actionDescription, nextState);
     }
     return result;
 }

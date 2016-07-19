@@ -8,7 +8,8 @@ export function doStep() {
     //console.log('RUN');
 
     if (rollout.length == 0) {
-        /* Fail safe */
+        /* Rollout queue is empty -> go to end of turn */
+        handleEndOfTurn();
         return;
     }
 
@@ -42,14 +43,14 @@ export function doStep() {
 
 
     //Reset the submissions if we are done rolling out
-    if (reducedRollout.length == 0) {
-
-        handleEndOfTurn();
-
-        setBattleValue({
-            submissions: []
-        });
-    }
+    //if (reducedRollout.length == 0) {
+    //
+    //    handleEndOfTurn();
+    //
+    //    setBattleValue({
+    //        submissions: []
+    //    });
+    //}
 
 
     //Auto run the next step if this is a stateChange
@@ -69,6 +70,7 @@ var handleEndOfTurn = function() {
     //We are rolled out, so update State and Rollout history with the preserved result
 
     setBattleValue({
+        submissions: [],
         history: [
             ...history,
             result.nextState

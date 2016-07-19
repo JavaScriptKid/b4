@@ -54,12 +54,10 @@ class TextLine extends React.Component {
     }
 
     handleDone() {
-        console.log('done!');
 
         var handler = () => {
             this.promptHandler()
         };
-
 
         if (this.props.needsUserPrompt) {
             //Open the gates for both clicks and Enter
