@@ -39,6 +39,14 @@ class CombatantScoreboard extends React.Component {
             return <span style={style}>ZEN</span>
         }
 
+        if (me.status == "deadline") {
+            const style = {
+                ...baseBadgeStyle,
+                background: "#000"
+            };
+            return <span style={style}>DEADLINE</span>
+        }
+
         if (me.status == "fury") {
             const style = {
                 ...baseBadgeStyle,

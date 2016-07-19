@@ -99,8 +99,12 @@ class TextLine extends React.Component {
             return <span style={style} key={i}>{d.content}</span>
         });
 
+        const style = {
+            height:"100%"
+        };
+
         return (
-            <div onClick={::this.handleClick}>
+            <div onClick={::this.handleClick} style={style}>
                 {spans}
             </div>
         )

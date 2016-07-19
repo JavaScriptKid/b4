@@ -21,11 +21,14 @@ export function addSubmission(submissionModel) {
 
         /* populate the Rollout Log with the steps! */
         setBattleValue({
-            rollout: [...result.rolloutSteps]
+            rollout: [...result.rolloutSteps],
+            result: result
         });
 
         /* Run the first step! */
-        doStep();
+        setTimeout(() => {
+            doStep();
+        }, 500)
     }
 
 }

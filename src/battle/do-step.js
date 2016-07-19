@@ -1,5 +1,5 @@
 import store from '../init/store'
-import {setBattleValue} from '../redux-action-creators/battle-action-creators'
+import {setBattleValue, setLatestHistory} from '../redux-action-creators/battle-action-creators'
 
 export function doStep() {
     const rollout = store.getState().battle.rollout;
@@ -28,6 +28,10 @@ export function doStep() {
         })
     }
 
+    if (nowStep.type == "stateChange") {
+        setLatestHistory(nowStep.newState)
+    }
+
     //Delete this step
     const reducedRollout = rollout.filter((step,i) => {return i > 0});
     setBattleValue({
@@ -36,7 +40,9 @@ export function doStep() {
 
     //Reset the submissions if we are done rolling out
     if (reducedRollout.length == 0) {
-        console.log('TURN IS OVER')
+
+        handleEndOfTurn();
+
         setBattleValue({
             submissions: []
         });
@@ -48,3 +54,29 @@ export function doStep() {
         doStep();
     }
 }
+
+
+var handleEndOfTurn = function() {
+
+    const history = store.getState().battle.history;
+    const result = store.getState().battle.result;
+    const turnRolloutHistoryEntries = store.getState().battle.turnRolloutHistoryEntries;
+    const devTimeTravelTurn = store.getState().battle.devTimeTravelTurn;
+
+    //We are rolled out, so update State and Rollout history with the preserved result
+
+    setBattleValue({
+        history: [
+            ...history,
+            result.nextState
+        ],
+        turnRolloutHistoryEntries: [
+            ...turnRolloutHistoryEntries,
+            {
+                turnId: turnRolloutHistoryEntries.length,
+                steps:result.rolloutSteps
+            }
+        ],
+        devTimeTravelTurn: devTimeTravelTurn+1
+    })
+};

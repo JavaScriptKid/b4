@@ -23,6 +23,8 @@ const store = createStore({
         submissions: [],
         textMessageContent: [],
 
+        result: {}, //"result" from executeTurn preserved during rollout
+
 
         //Menu
         descriptionBarText: "", //for static messaging, like Item descriptions
