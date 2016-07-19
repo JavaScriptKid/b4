@@ -1,7 +1,8 @@
-import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
+import {setBattleValue, setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 import store from '../../init/store'
 import {executeTurn} from '../execute-turn'
 import {doStep} from '../do-step'
+import {turnCombatantsForRollout} from '../arena-view/turn-combatants'
 
 export function addSubmission(submissionModel) {
     if (!submissionModel) {
@@ -24,6 +25,11 @@ export function addSubmission(submissionModel) {
             rollout: [...result.rolloutSteps],
             result: result
         });
+
+        console.log('TURN FOR ROLLOUT')
+        turnCombatantsForRollout();
+
+
 
         /* Run the first step! */
         setTimeout(() => {

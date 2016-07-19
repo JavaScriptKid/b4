@@ -57,6 +57,12 @@ export function gradualStateChange(newState) {
                 });
             };
 
+            if (q.changeInStartValue < 0) {
+                setCombatantValue(q.combatantId, {
+                    animation: "blink 0.3s steps(2, start) infinite"
+                });
+            }
+
             runEaseOut(q.wasHp, q.changeInStartValue, 150, handleIteration, handleDone)
         });
 
@@ -69,8 +75,23 @@ export function gradualStateChange(newState) {
 
 
 function blanketApply(newState) {
-    setLatestHistory(newState)
-    //if (store.getState().battle.rollout.length > 0) {
-        doStep(); //move forward to the next step
-    //}
+
+
+
+
+    //BUGFIX: Don't blanket apply Animation. Maybe this should be moved to the thing that gives us new state?
+    var newCombatantState = {}; //newState.combatants;
+    for (var combId in newState.combatants) {
+        let model = {...newState.combatants[combId]};
+        delete model.animation;
+        newCombatantState[combId] = {...model};
+    }
+
+    const updatedState = {
+        ...newState,
+        combatants: {...newCombatantState}
+    };
+
+    setLatestHistory(updatedState);
+    doStep(); //move forward to the next step
 }

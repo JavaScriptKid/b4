@@ -1,6 +1,7 @@
 import store from '../init/store'
-import {setBattleValue, setLatestHistory} from '../redux-action-creators/battle-action-creators'
+import {setBattleValue, setLatestHistory, setCombatantValue} from '../redux-action-creators/battle-action-creators'
 import {gradualStateChange} from './gradual-state-change'
+import {turnCombatantsForSubmissions} from './arena-view/turn-combatants'
 
 export function doStep() {
     const rollout = store.getState().battle.rollout;
@@ -75,7 +76,6 @@ var handleEndOfTurn = function() {
     const devTimeTravelTurn = store.getState().battle.devTimeTravelTurn;
 
     //We are rolled out, so update State and Rollout history with the preserved result
-
     setBattleValue({
         submissions: [],
         history: [
@@ -90,5 +90,9 @@ var handleEndOfTurn = function() {
             }
         ],
         devTimeTravelTurn: devTimeTravelTurn+1
-    })
+    });
+
+    console.log('END OF TURN - TURN')
+    turnCombatantsForSubmissions();
+
 };

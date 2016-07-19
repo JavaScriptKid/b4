@@ -32,7 +32,8 @@ export default {
                 getItemUseMessage(action, casterModel, targetModel, actionDescription),
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -51,7 +52,8 @@ export default {
                 getItemUseMessage(action, casterModel, targetModel, actionDescription),
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -73,7 +75,8 @@ export default {
                 getItemUseMessage(action, casterModel, targetModel, actionDescription),
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",

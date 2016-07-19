@@ -12,7 +12,7 @@ class AnimationTada extends React.Component {
         setTimeout(() => {
 
             setCombatantValue(this.props.casterId, {
-                animation: ""
+                animation: "inherit"
             });
             setBattleValue({
                currentAnimation: null

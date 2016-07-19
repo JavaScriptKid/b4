@@ -15,7 +15,7 @@ export default {
     },
     "natural-memory-leak-a": {
         ...actionSchema,
-        animation: "sick-shake",
+        animation: "tada", //animation: "sick-shake",
         dependentOnCasterStatus: "memory-leak",
         affectTargetHpPointsByPercent: -0.07,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
@@ -33,7 +33,7 @@ export default {
     },
     "natural-fire-a": {
         ...actionSchema,
-        animation: "sick-shake",
+        animation: "tada", //"sick-shake",
         dependentOnCasterStatus: "fire",
         affectTargetHpPointsByPercent: -0.15,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {

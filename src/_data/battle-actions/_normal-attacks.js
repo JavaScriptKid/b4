@@ -22,7 +22,9 @@ const getIteratingSuccessMessage = function(action, casterModel, targetModel, ac
             animationName: action.animation,
             actionDescription: actionDescription
         },
-        {type: "stateChange", newState: nextState},
+        {
+            type: "stateChange", newState: nextState
+        },
         {
             type: "message",
             content: [`It hit ${actionDescription.repetitionsCount} times!`]
@@ -177,6 +179,9 @@ export default {
                     type: "animation",
                     animationName: action.animation,
                     actionDescription: actionDescription
+                },
+                {
+                    type: "stateChange", newState: nextState
                 },
                 {
                     type: "message",

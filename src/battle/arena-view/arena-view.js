@@ -8,6 +8,7 @@ import ArenaCombatant from './arena-combatant'
 import AutoSubmitter from './auto-submitter'
 import { CombatantModel } from '../combatant-model'
 import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
+import {turnCombatantsForSubmissions} from './turn-combatants'
 
 @connect((state, props) => {
 
@@ -25,6 +26,10 @@ import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
 
 class BattleArenaView extends React.Component {
 
+    componentDidMount() {
+        //This may be temporary
+        turnCombatantsForSubmissions();
+    }
 
     renderAnimation() {
         if (!this.props.currentAnimation) {

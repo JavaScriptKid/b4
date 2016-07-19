@@ -6,11 +6,12 @@
         transition: left 0.3s ease-out;
         &.is-player {
             z-index:6;
-            animation: turnForwards 0.2s steps(2, end) forwards;
+            background-position: 33.33% 33.33%;
+            //animation: turnForwards 0.2s steps(2, end) forwards;
         }
         &:not(.is-player) {
-            //background-position: 100% 100%;
-            animation: turnBackwards 0.2s steps(2, end) forwards;
+            background-position: 100% 100%;
+            //animation: turnBackwards 0.2s steps(2, end) forwards;
         }
 
         &:after {
@@ -35,32 +36,33 @@
         //Turn to Face forward, move to the left, etc
 
         &.is-player {
-
-            animation: turnBackwards 0.2s steps(2, end) forwards;
+            background-position: 100% 100%;
+            //animation: turnBackwards 0.2s steps(2, end) forwards;
         }
         &:not(.is-player) {
+            background-position: 33.33% 33.33%;
             //background-position: 33.33% 33.33%;
-            animation: turnForwards 0.2s steps(2, end) forwards;
+            //animation: turnForwards 0.2s steps(2, end) forwards;
         }
     }
 
 
 }
 
-@keyframes turnForwards {
+@keyframes turnToFaceUp {
     from {
-        background-position: 100% 100%;
+        background-position: 33.33% 33.33%;
     }
     to {
-        background-position: 33.33% 33.33%;
+        background-position: 100% 100%;
     }
 }
 
-@keyframes turnBackwards {
+@keyframes turnToFaceDown {
     from {
-        background-position: 33.33% 33.33%;
+        background-position: 100% 100%;
     }
     to {
-        background-position: 100% 100%;
+        background-position: 33.33% 33.33%;
     }
 }
