@@ -19,7 +19,9 @@ const store = createStore({
         turnRolloutHistoryEntries: [
             { turnId: 0, steps: [] }
         ],
-        rollout: [],
+        rollout: [
+            //{type:"message", content: ["Begin Hack Battle"]}
+        ],
         submissions: [],
         textMessageContent: [],
 
