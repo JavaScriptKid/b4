@@ -2,7 +2,6 @@ import store from '../../init/store'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 
 export function turnCombatantsForSubmissions() {
-    console.log('turnForSubmissions called')
     const history = store.getState().battle.history;
     const combs = history[history.length-1].combatants;
 
@@ -21,8 +20,6 @@ export function turnCombatantsForSubmissions() {
 
 
 export function turnCombatantsForRollout() {
-    console.log('turnForRollout called')
-
 
     const history = store.getState().battle.history;
     const combs = history[history.length-1].combatants;

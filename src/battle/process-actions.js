@@ -51,8 +51,6 @@ export function processActions(actionQueue=[], initialState={}) {
                     };
                     const useItemStolenItemRolloutStep = getRolloutStep(useItemSubAction, rolloutStep.nextState);
 
-                    console.log(useItemStolenItemRolloutStep)
-
                     addStateLogToTurnHistory({...useItemStolenItemRolloutStep.nextState});
                     addStepLogToRolloutHistory(useItemStolenItemRolloutStep.steps);
                 }

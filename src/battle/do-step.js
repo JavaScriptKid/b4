@@ -15,7 +15,7 @@ export function doStep() {
     }
 
     const nowStep = rollout[0];
-    console.log(nowStep);
+    //console.log(nowStep);
 
     //Delete this step
     const reducedRollout = rollout.filter((step,i) => {return i > 0});
@@ -35,7 +35,7 @@ export function doStep() {
         if (!nowStep.actionDescription) {
             console.warn('no actionDescription found for', nowStep)
         }
-        console.log(nowStep)
+        //console.log(nowStep)
         setBattleValue({
             currentAnimation: {
                 animationId: nowStep.animationName,

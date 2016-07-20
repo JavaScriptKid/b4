@@ -44,8 +44,7 @@ export default function() {
         name: "Jacob",
         level: 10,
         class: "ninja",
-        dangerMeter: 73,
-        pp: 6,
+        dangerMeter: 0,
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
         attacks: [ ...allAttacks],
         items: [
