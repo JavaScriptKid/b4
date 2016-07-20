@@ -9,6 +9,10 @@ html, body {
     font-family: "Source Code Pro", monospace;
 }
 
+body {
+    background: #E0E5EE;
+}
+
 #app-root {
     height: 100%;
 }
@@ -25,8 +29,8 @@ html, body {
     background-size: cover;
     position:relative;
     margin: 0 auto;
-    top:50%;
-    transform: translateY(-50%);
+    //top:50%;
+    //transform: translateY(-50%);
     width:176px; /* init */
     height:112px; /* init */
     overflow:hidden;

@@ -23,7 +23,9 @@ const optionSchema = {
 
 
 var filterOptionsByTest = function(initialOptionsList, startIndex) {
-    const optionsList = initialOptionsList.splice(startIndex, 4);
+    
+    const optionsList = initialOptionsList.splice(startIndex-1, 4);
+
     return optionsList.filter(optionModel => {
         return optionModel.filterPresenceTest()
     }).map(optionModel => {
@@ -54,17 +56,19 @@ var getAttackOptionModels = function(list) {
 
 export function getSubmissionMenuStructure(casterModel, menuLevel="", menuStartingIndex=0) {
 
-
     /* Normal attacks */
     if (menuLevel == "attacks") {
+
 
         const normalAttacks = casterModel.attacks.filter(atkId => {
             const model = Actions[atkId];
             return model.type == "Normal"
         });
 
+
         const attackOptions = getAttackOptionModels(normalAttacks);
         const attackItems = filterOptionsByTest(attackOptions, menuStartingIndex);
+
         return {
             items: attackItems,
             totalItemCount: normalAttacks.length

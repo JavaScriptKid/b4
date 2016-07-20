@@ -22,7 +22,8 @@ export default {
             return [
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -40,7 +41,8 @@ export default {
             return [
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -72,7 +74,8 @@ export default {
             return [
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -92,7 +95,8 @@ export default {
             return [
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -112,7 +116,8 @@ export default {
             return [
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",
@@ -132,7 +137,8 @@ export default {
             return [
                 {
                     type: "animation",
-                    animationName: action.animation
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",

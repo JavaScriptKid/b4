@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import store from './init/store';
 import Viewport from './viewport/viewport'
 import initBattleCombatants from './battle/init-battle-combatants'
-
+import BattleDevViewSwitcher from './battle/battle-dev-view-switcher'
 
 var RootComponent = React.createClass({
 
@@ -18,7 +18,10 @@ var RootComponent = React.createClass({
     render() {
         return (
             <Provider store={ this.props.store }>
+                <div>
+                    <BattleDevViewSwitcher />
                     <Viewport />
+                </div>
             </Provider>
         );
     }

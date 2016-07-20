@@ -6,6 +6,11 @@ class BattleDevViewSwitcher extends React.Component {
 
     switchToConsole(e) {
         e.preventDefault();
+
+        if (this.props.isRollout) {
+            return false;
+        }
+
         setBattleValue({
             viewMode: "console"
         })
@@ -13,6 +18,11 @@ class BattleDevViewSwitcher extends React.Component {
 
     switchToArena(e) {
         e.preventDefault();
+
+        if (this.props.isRollout) {
+            return false;
+        }
+
         setBattleValue({
             viewMode: "arena"
         })
@@ -25,9 +35,13 @@ class BattleDevViewSwitcher extends React.Component {
             color:"#fff",
             borderColor: "#2F619B"
         };
+        const containerStyle = {
+            opacity: this.props.isRollout ? "0.5" : "1",
+            marginBottom: "1em"
+        };
 
         return (
-            <div style={{marginBottom:"1em"}}>
+            <div style={containerStyle}>
                 <a href="#" className="dev-switch-link" onClick={::this.switchToConsole} style={ isConsoleMode ? activeStyle : {}}>Console</a>
                 <a href="#" className="dev-switch-link" onClick={::this.switchToArena} style={ !isConsoleMode ? activeStyle : {}}>Arena</a>
             </div>
@@ -36,7 +50,10 @@ class BattleDevViewSwitcher extends React.Component {
 }
 
 export default connect((state, props) => {
+    const combatantIds = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants);
+
     return {
-        viewMode: state.battle.viewMode
+        viewMode: state.battle.viewMode,
+        isRollout: false//state.battle.submissions.length == combatantIds.length
     }
 })(BattleDevViewSwitcher)

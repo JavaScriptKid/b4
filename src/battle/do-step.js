@@ -35,7 +35,7 @@ export function doStep() {
         if (!nowStep.actionDescription) {
             console.warn('no actionDescription found for', nowStep)
         }
-
+        console.log(nowStep)
         setBattleValue({
             currentAnimation: {
                 animationId: nowStep.animationName,

@@ -50,6 +50,9 @@ export function processActions(actionQueue=[], initialState={}) {
                         actionId: rolloutStep.stepDescriptionObject.shouldImmediatelyUse
                     };
                     const useItemStolenItemRolloutStep = getRolloutStep(useItemSubAction, rolloutStep.nextState);
+
+                    console.log(useItemStolenItemRolloutStep)
+
                     addStateLogToTurnHistory({...useItemStolenItemRolloutStep.nextState});
                     addStepLogToRolloutHistory(useItemStolenItemRolloutStep.steps);
                 }
