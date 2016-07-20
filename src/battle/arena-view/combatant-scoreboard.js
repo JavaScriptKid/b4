@@ -88,14 +88,19 @@ class CombatantScoreboard extends React.Component {
 
     renderDanger(me) {
         //Danger Color logic here
+        const baseUnit = this.props.vW;
+
+        const dangerStyle = {
+            fontSize: baseUnit * 1.75
+        };
 
         const style = {
             color: me.isDangerMeterUsable() ? "#399988" : "#444" //TODO: make flashing instead?
         };
 
         return (
-            <span className="scoreboard_danger">
-                <span>Danger Meter</span>
+            <span style={dangerStyle} className="scoreboard_danger">
+                <span>Charge</span>
                 <span style={style}>{me.dangerMeter/me.maxDangerMeter * 100}%</span>
             </span>
         )
@@ -147,6 +152,7 @@ class CombatantScoreboard extends React.Component {
             marginRight: baseUnit,
             backgroundImage: `url(${me.skin})`,
         };
+
 
 
         return (
