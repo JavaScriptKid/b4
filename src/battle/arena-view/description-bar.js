@@ -44,12 +44,12 @@ class DescriptionBar extends React.Component {
         const baseUnit = this.props.vW;
 
         const barStyle = {
-            padding: baseUnit,
+            padding: this.props.isRollout ? baseUnit * 2 : baseUnit,
             paddingLeft: baseUnit * 3,
             borderTop: `${baseUnit * 0.5}px solid #000`,
             borderBottom: `${baseUnit * 0.5}px solid #000`,
             fontSize: this.props.isRollout ? baseUnit * 2.5 : baseUnit * 2,
-            height: this.props.isRollout ? baseUnit * 14 : baseUnit * 5
+            height: this.props.isRollout ? baseUnit * 13 : baseUnit * 5
         };
 
 
