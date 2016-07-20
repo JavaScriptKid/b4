@@ -47,7 +47,7 @@ class DescriptionBar extends React.Component {
             paddingLeft: baseUnit * 3,
             borderTop: `${baseUnit * 0.5}px solid #000`,
             borderBottom: `${baseUnit * 0.5}px solid #000`,
-            fontSize: baseUnit * 2,
+            fontSize: this.props.isRollout ? baseUnit * 2.5 : baseUnit * 2,
             height: this.props.isRollout ? baseUnit * 14 : baseUnit * 5
         };
 
