@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {CombatantModel} from '../combatant-model'
+import Lifebar from './combatant-lifebar'
 
 @connect((state, props) => {
     return {
@@ -75,15 +76,15 @@ class CombatantScoreboard extends React.Component {
         return null;
     }
 
-    renderHp(me) {
-        //HP Color logic here
-        return (
-            <span className="scoreboard_hp">
-                <span>HP</span>
-                <span>{me.hp}/{me.maxHp}</span>
-            </span>
-        )
-    }
+    //renderHp(me) {
+    //    //HP Color logic here
+    //    return (
+    //        <span className="scoreboard_hp">
+    //            <span>HP</span>
+    //            <span>{me.hp}/{me.maxHp}</span>
+    //        </span>
+    //    )
+    //}
 
     renderDanger(me) {
         //Danger Color logic here
@@ -166,7 +167,7 @@ class CombatantScoreboard extends React.Component {
                             </span>
                         </div>
                         <div>
-                            {this.renderHp(me)}
+                            <Lifebar part={me.hp} whole={me.maxHp} vW={baseUnit}/>
                             {this.renderDanger(me)}
                         </div>
                         {this.renderAlignment(me)}
