@@ -20,12 +20,13 @@ import store from '../../init/store'
 
 class DescriptionBar extends React.Component {
 
+    //componentWillUpdate(newProps) {
+    //    //if (newProps.textMessageContent.length != this.props.textMessageContent.length) {
+    //    //    console.log('update', newProps.textMessageContent)
+    //    //}
+    //}
 
     handleEnterKey() {
-        //Unmount current text content
-        setBattleValue({
-            textMessageContent: []
-        });
         doStep();
     }
 

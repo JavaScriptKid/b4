@@ -25,9 +25,16 @@ export function doStep() {
 
     //Do the step.
     if (nowStep.type == "message") {
+
         setBattleValue({
-            textMessageContent: nowStep.content
-        })
+            textMessageContent: []
+        });
+
+        //setTimeout(function() {
+            setBattleValue({
+                textMessageContent: nowStep.content
+            })
+        //}, 10)
     }
 
     if (nowStep.type == "animation") {
@@ -49,22 +56,6 @@ export function doStep() {
         //setLatestHistory(nowStep.newState)
     }
 
-
-    //Reset the submissions if we are done rolling out
-    //if (reducedRollout.length == 0) {
-    //
-    //    handleEndOfTurn();
-    //
-    //    setBattleValue({
-    //        submissions: []
-    //    });
-    //}
-
-
-    //Auto run the next step if this is a stateChange
-    //if (nowStep.type == "stateChange" && reducedRollout.length > 0) {
-    //    doStep();
-    //}
 }
 
 
@@ -77,6 +68,7 @@ var handleEndOfTurn = function() {
 
     //We are rolled out, so update State and Rollout history with the preserved result
     setBattleValue({
+        textMessageContent: [],
         submissions: [],
         history: [
             ...history,
