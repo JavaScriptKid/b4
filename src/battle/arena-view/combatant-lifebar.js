@@ -23,11 +23,12 @@ class Lifebar extends React.Component {
         const containerStyle = {
             position: "relative",
             display: "inline-block",
+            verticalAlign: "middle",
             borderRadius: baseUnit * 0.3,
             width: baseUnit * 14,
             height: baseUnit * 1.5,
             background: "#333",
-            marginRight: baseUnit
+            marginRight: baseUnit * 2
         };
 
         const pad = baseUnit * 0.25;

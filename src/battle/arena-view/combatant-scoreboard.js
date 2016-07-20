@@ -91,7 +91,9 @@ class CombatantScoreboard extends React.Component {
         const baseUnit = this.props.vW;
 
         const dangerStyle = {
-            fontSize: baseUnit * 1.75
+            fontSize: baseUnit * 1.6,
+            verticalAlign: "middle",
+            display: "inline-block"
         };
 
         const style = {
@@ -100,7 +102,7 @@ class CombatantScoreboard extends React.Component {
 
         return (
             <span style={dangerStyle} className="scoreboard_danger">
-                <span>Charge</span>
+                <span>Danger Meter</span>
                 <span style={style}>{me.dangerMeter/me.maxDangerMeter * 100}%</span>
             </span>
         )

@@ -84,7 +84,7 @@ var handleEndOfTurn = function() {
         devTimeTravelTurn: devTimeTravelTurn+1
     });
 
-    console.log('END OF TURN - TURN')
+    //console.log('END OF TURN - TURN')
     turnCombatantsForSubmissions();
 
 };
