@@ -1,6 +1,10 @@
 import Actions from '../../_data/battle-actions'
 import {randomFromArray} from '../../helpers/random-from-array'
 
+
+export function doesCombatantHaveAnyStatus(combatantModel) {
+    return combatantModel.status != "normal";
+}
 export function doesCombatantHaveNegativeStatus(combatantModel) {
     const status = combatantModel.status;
     return (status == "lag" || status == "memory-leak" || status == "fire");
@@ -24,6 +28,40 @@ export function findMoveThatCanHealStatus(list=[], status="") {
     }
     return null;
 }
+
+
+export function findMoveThatCanGiveMeStatus(list=[], status="") {
+    const available = list.filter(id => {
+        const model = Actions[id];
+        if (Array.isArray(model.affectCasterStatus)) {
+            return (model.affectCasterStatus[1] == status);
+        }
+        return model.affectCasterStatus == status;
+    });
+
+    if (available.length) {
+        return randomFromArray(available)
+    }
+    return null;
+}
+
+export function findAttackThatGivesMePositiveStatus(combatantModel) {
+    const positiveStatuses = ["zen", "fury", "deadline"];
+    var available = [];
+    positiveStatuses.forEach( status => {
+        const result = findMoveThatCanGiveMeStatus(combatantModel.attacks, status);
+        if (result) {
+            available.push(result);
+        }
+    });
+    
+    if (available.length) {
+        return randomFromArray(available)
+    }
+    return null;
+}
+
+
 
 export function findAttackThatCanHealStatus(combatantModel) {
     return findMoveThatCanHealStatus(combatantModel.attacks, combatantModel.status);
