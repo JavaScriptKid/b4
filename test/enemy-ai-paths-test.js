@@ -1,7 +1,10 @@
 import {assert} from 'chai'
 import {
     findMoveThatCanHealStatus,
-    findItemThatCanHealStatus
+    findItemThatCanHealStatus,
+    findMoveThatCanRecoverHp,
+    findAttackThatCanRecoverHp,
+    findItemThatCanRecoverHp
 } from '../src/battle/combatants/enemy-ai-paths'
 
 describe('findMoveThatCanHealStatus', () => {
@@ -43,6 +46,26 @@ describe('findItemThatCanHealStatus', () => {
         };
         assert.isNull(
             findItemThatCanHealStatus(combatantModel)
+        )
+    });
+});
+
+describe('findMoveThatCanRecoverHp', () => {
+    it('will return a valid move if it has one', () => {
+        assert.ok(
+            findMoveThatCanRecoverHp(["item_002"])
+        );
+        assert.ok(
+            findAttackThatCanRecoverHp({attacks: ["item_002"]}) //This attack is obviously an item. Trying to future proof
+        );
+        assert.ok(
+            findItemThatCanRecoverHp({items: ["item_002"]}) //This attack is obviously an item. Trying to future proof
+        )
+
+    });
+    it('will return null if it only has invalid items', () => {
+        assert.isNull(
+            findMoveThatCanRecoverHp(["item_001", "item_003"])
         )
     });
 });

@@ -31,3 +31,30 @@ export function findAttackThatCanHealStatus(combatantModel) {
 export function findItemThatCanHealStatus(combatantModel) {
     return findMoveThatCanHealStatus(combatantModel.items, combatantModel.status);
 }
+
+export function isCombatantHpFull(combatantModel) {
+    return combatantModel.hp >= combatantModel.maxHp
+}
+export function isCombatantHpCritical(combatantModel) {
+    //Is HP less than or equal to 20%?
+    return combatantModel.hp <= Math.round( combatantModel.maxHp * 0.2 )
+}
+
+
+export function findMoveThatCanRecoverHp(list=[]) {
+    const available = list.filter(id => {
+        const model = Actions[id];
+        return model.affectCasterHpPoints > 0;
+    });
+
+    if (available.length) {
+        return randomFromArray(available)
+    }
+    return null;
+}
+export function findAttackThatCanRecoverHp(combatantModel) {
+    return findMoveThatCanRecoverHp(combatantModel.attacks);
+}
+export function findItemThatCanRecoverHp(combatantModel) {
+    return findMoveThatCanRecoverHp(combatantModel.items);
+}
