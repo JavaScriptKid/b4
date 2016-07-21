@@ -4,9 +4,6 @@ import {getTraitPathChoice} from './get-trait-path-choice'
 import {randomFromArray} from '../../helpers/random-from-array'
 
 
-
-
-
 export function getSmartAttack(casterState, targetState, aiProperties={}, useDirectActionId=null, superChargedFrameworkId=null) {
     /* TODO: build out this function to provide smart attack choice based on caster/target state and aiProperties */
     //-------------------------
