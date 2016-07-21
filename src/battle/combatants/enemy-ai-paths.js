@@ -44,6 +44,22 @@ export function findMoveThatCanGiveMeStatus(list=[], status="") {
     }
     return null;
 }
+export function findMoveThatCanGiveEnemyStatus(list=[], status="") {
+    const available = list.filter(id => {
+        const model = Actions[id];
+        if (Array.isArray(model.affectTargetStatus)) {
+            return (model.affectTargetStatus[1] == status);
+        }
+        return model.affectTargetStatus == status;
+    });
+
+    if (available.length) {
+        return randomFromArray(available)
+    }
+    return null;
+}
+
+
 
 export function findAttackThatGivesMePositiveStatus(combatantModel) {
     const positiveStatuses = ["zen", "fury", "deadline"];
@@ -54,7 +70,24 @@ export function findAttackThatGivesMePositiveStatus(combatantModel) {
             available.push(result);
         }
     });
-    
+
+    if (available.length) {
+        return randomFromArray(available)
+    }
+    return null;
+}
+
+
+export function findAttackThatGivesEnemyNegativeStatus(combatantModel) {
+    const negativeStatuses = ["lag", "memory-leak", "fire"];
+    var available = [];
+    negativeStatuses.forEach( status => {
+        const result = findMoveThatCanGiveEnemyStatus(combatantModel.attacks, status);
+        if (result) {
+            available.push(result);
+        }
+    });
+
     if (available.length) {
         return randomFromArray(available)
     }

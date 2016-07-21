@@ -5,7 +5,8 @@ import {
     findMoveThatCanRecoverHp,
     findAttackThatCanRecoverHp,
     findItemThatCanRecoverHp,
-    findAttackThatGivesMePositiveStatus
+    findAttackThatGivesMePositiveStatus,
+    findAttackThatGivesEnemyNegativeStatus
 } from '../src/battle/combatants/enemy-ai-paths'
 
 describe('findMoveThatCanHealStatus', () => {
@@ -76,6 +77,14 @@ describe('findAttackThatGivesMePositiveStatus', () => {
     it('will return a valid move if it has one', () => {
         assert.ok(
             findAttackThatGivesMePositiveStatus({attacks: ["attack-special-007-a"]})
+        );
+    })
+});
+
+describe('findAttackThatGivesEnemyNegativeStatus', () => {
+    it('will return a valid move if it has one', () => {
+        assert.ok(
+            findAttackThatGivesEnemyNegativeStatus({attacks: ["attack-special-003-a"]})
         );
     })
 });
