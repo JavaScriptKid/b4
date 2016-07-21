@@ -39,5 +39,11 @@ export default {
     accuracyModifier: 0,
 
     isComputerControlled: false,
+    computerAiTraits: {
+        vicious: 0,
+        protective: 0,
+        cursing: 0,
+        conservative: 0
+    },
     animation: "initial"
 };

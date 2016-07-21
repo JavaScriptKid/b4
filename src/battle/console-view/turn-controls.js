@@ -31,6 +31,8 @@ class TurnControls extends React.Component {
                 setTimeout(function() {
                     run();
                 }, 10)
+            } else {
+                console.log('BATTLE OVER!')
             }
         };
         run();

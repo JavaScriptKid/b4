@@ -1,7 +1,10 @@
 import Actions from '../../_data/battle-actions'
 import {CombatantModel} from '../combatant-model'
-
+import {getTraitPathChoice} from './get-trait-path-choice'
 import {randomFromArray} from '../../helpers/random-from-array'
+
+
+
 
 
 export function getSmartAttack(casterState, targetState, aiProperties={}, useDirectActionId=null, superChargedFrameworkId=null) {
@@ -9,6 +12,18 @@ export function getSmartAttack(casterState, targetState, aiProperties={}, useDir
     //-------------------------
 
     const casterModel = new CombatantModel( casterState );
+    const targetModel = new CombatantModel( targetState );
+
+    if (casterModel.isComputerControlled) {
+        const smartAttack = getTraitPathChoice(casterModel.computerAiTraits, casterModel, targetModel);
+    }
+
+
+
+
+    //Hopefully all of the below will go away
+    //
+    //
     const actionId = useDirectActionId ? useDirectActionId : randomFromArray(casterModel.attacks);
     const action = Actions[actionId];
 
@@ -33,11 +48,6 @@ export function getAutoAttacks() {
     const combModels = Object.keys(combs).map(combId => {
         return combs[combId];
     });
-    //    .filter(model => {
-    //    return model.isComputerControlled
-    //});
-
-    //Hard coding this for now. I don't see a lot of value in making it so fluid unless there are more than 2 combatants
 
     //Fill array with computerControlled attacks, hard coded for 2 combatants:
     var autoAttacks = [];

@@ -65,6 +65,13 @@ export default function() {
     const initialComb2 = {
 
         isComputerControlled: true,
+        computerAiTraits: {
+            vicious: 3,
+            protective: 7,
+            cursing: 4,
+            conservative: 2
+        },
+
         id: id2,
         name: "Travis",
         level: 10,
