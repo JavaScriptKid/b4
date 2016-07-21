@@ -13,6 +13,9 @@ var RootComponent = React.createClass({
         /* B4 demo only. */
         //Seed the battle
         initBattleCombatants();
+
+        window.init = function() {initBattleCombatants();}
+
     },
 
     render() {

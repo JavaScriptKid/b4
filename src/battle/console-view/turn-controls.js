@@ -4,6 +4,7 @@ import {executeTurn} from '../execute-turn'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 import {addQueuedSubmissions} from '../cloud-queue'
 import { CombatantModel } from '../combatant-model'
+import {getDeadCombatantId} from '../get-dead-combatant-id'
 
 import {getSmartAttack} from '../combatants/enemy-ai'
 import Actions from '../../_data/battle-actions'
@@ -23,7 +24,19 @@ class TurnControls extends React.Component {
         //this.runTurn();
     }
 
-    runTurn(count=1) {
+    runWholeBattle() {
+        var run = () => {
+            const result = this.runTurn();
+            if ( !getDeadCombatantId(result.nextState) ) {
+                setTimeout(function() {
+                    run();
+                }, 10)
+            }
+        };
+        run();
+    }
+
+    runTurn() {
 
         const combs = this.props.history[ this.props.history.length-1 ].combatants;
         const player1Id = Object.keys(combs)[0];
@@ -48,8 +61,8 @@ class TurnControls extends React.Component {
             getSmartAttack(combs[player2Id], combs[player1Id], {}, actionid2, p2FrameworkCharge)
         ];
 
-        /* RUN A COUNT # OF TURNS TODO - only does 1 right now */
-        [1].forEach(i => {
+        /* RUN 1 TURN */
+
             const result = executeTurn(submissions);
             //FOR NOW
             setBattleValue({
@@ -65,8 +78,11 @@ class TurnControls extends React.Component {
                     }
                 ],
                 devTimeTravelTurn: this.props.devTimeTravelTurn+1
-            })
-        });
+            });
+
+        //For wholeBattleButton
+        return result;
+
     }
 
     handleClick() {
@@ -132,6 +148,7 @@ class TurnControls extends React.Component {
 
         return (
            <div>
+               <button onClick={::this.runWholeBattle}>Run Whole Battle</button>
                <button onClick={::this.handleClick}>Run Turn</button>
                <div>
                    {this.renderCombForm(player1Id)}

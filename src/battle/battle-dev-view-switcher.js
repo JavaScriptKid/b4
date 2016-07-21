@@ -54,6 +54,6 @@ export default connect((state, props) => {
 
     return {
         viewMode: state.battle.viewMode,
-        isRollout: false//state.battle.submissions.length == combatantIds.length
+        isRollout: state.battle.submissions.length == combatantIds.length
     }
 })(BattleDevViewSwitcher)

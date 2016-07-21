@@ -2,6 +2,7 @@ import store from '../init/store'
 import {setBattleValue, setLatestHistory, setCombatantValue} from '../redux-action-creators/battle-action-creators'
 import {gradualStateChange} from './gradual-state-change'
 import {turnCombatantsForSubmissions} from './arena-view/turn-combatants'
+import {getDeadCombatantId} from './get-dead-combatant-id'
 
 export function doStep() {
     const rollout = store.getState().battle.rollout;
@@ -69,7 +70,7 @@ var handleEndOfTurn = function() {
     //We are rolled out, so update State and Rollout history with the preserved result
     setBattleValue({
         textMessageContent: [],
-        submissions: [],
+        //submissions: [],
         history: [
             ...history,
             result.nextState
@@ -84,7 +85,17 @@ var handleEndOfTurn = function() {
         devTimeTravelTurn: devTimeTravelTurn+1
     });
 
-    //console.log('END OF TURN - TURN')
-    turnCombatantsForSubmissions();
+    //Is the battle over?
+    if ( getDeadCombatantId(result.nextState) ) {
+        //Yes.
+        console.log('BATTLE IS OVER')
+
+    } else {
+        //No.
+        setBattleValue({
+            submissions: []
+        });
+        turnCombatantsForSubmissions();
+    }
 
 };

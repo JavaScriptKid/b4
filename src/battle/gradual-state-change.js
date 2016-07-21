@@ -63,7 +63,7 @@ export function gradualStateChange(newState) {
                 });
             }
 
-            runEaseOut(q.wasHp, q.changeInStartValue, 150, handleIteration, handleDone)
+            runEaseOut(q.wasHp, q.changeInStartValue, 120, handleIteration, handleDone)
         });
 
     } else {

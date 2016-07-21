@@ -115,6 +115,17 @@ export default function() {
                     ...combatants
                 }
             }
-        ]
+        ],
+        //adds
+        turnRolloutHistoryEntries: [
+            { turnId: 0, steps: [] }
+        ],
+        rollout: [
+            //{type:"message", content: ["Begin Hack Battle"]}
+        ],
+        currentAnimation: null,
+
+        submissions: [],
+        devTimeTravelTurn: 0,
     })
 }

@@ -22,7 +22,7 @@ class ArenaCombatant extends React.Component {
 
             return {
                 left: this.props.isRollout ? rolloutLeftValue : submittingLeftValue,
-                top: baseUnit * 30,
+                top: baseUnit * 28,
                 width: baseUnit * 29,
                 height: baseUnit * 29,
             }
