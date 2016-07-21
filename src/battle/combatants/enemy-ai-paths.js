@@ -10,13 +10,11 @@ export function doesCombatantHavePositiveStatus(combatantModel) {
     return (status == "zen" || status == "fury" || status == "deadline");
 }
 
-export function findMoveThatCanHealStatus(combatantModel) {
-    const status = combatantModel.status;
-
-    const available = combatantModel.attacks.filter(id => {
+export function findMoveThatCanHealStatus(list=[], status="") {
+    const available = list.filter(id => {
         const model = Actions[id];
         if (Array.isArray(model.affectCasterStatus)) {
-            return model.affectCasterStatus[1] == "normal";
+            return (model.affectCasterStatus[0] == status && model.affectCasterStatus[1] == "normal");
         }
         return model.affectCasterStatus == "normal";
     });
@@ -25,4 +23,11 @@ export function findMoveThatCanHealStatus(combatantModel) {
         return randomFromArray(available)
     }
     return null;
+}
+
+export function findAttackThatCanHealStatus(combatantModel) {
+    return findMoveThatCanHealStatus(combatantModel.attacks, combatantModel.status);
+}
+export function findItemThatCanHealStatus(combatantModel) {
+    return findMoveThatCanHealStatus(combatantModel.items, combatantModel.status);
 }
