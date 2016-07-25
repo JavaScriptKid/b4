@@ -12,6 +12,7 @@ const allAttacks = [
     //"attack-000-a"
     "attack-001-a",
     "attack-002-a",
+    "attack-002-b",
     "attack-003-a",
     "attack-004-a",
     "attack-005-a",
@@ -66,11 +67,12 @@ export default function() {
 
         isComputerControlled: true,
         computerAiTraits: {
-            vicious: 3,
-            protective: 7,
-            cursing: 4,
+            vicious: 4,
+            protective: 3,
+            cursing: 3,
             conservative: 2,
-            klepto: 5
+            klepto: 2,
+            random: 3
         },
 
         id: id2,

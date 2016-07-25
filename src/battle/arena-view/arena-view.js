@@ -7,7 +7,6 @@ import SubmissionMenu from './submission-ui/submission-menu'
 import ArenaCombatant from './arena-combatant'
 import AutoSubmitter from './auto-submitter'
 import { CombatantModel } from '../combatant-model'
-import {aiSubmissionWatcher} from '../submissions/ai-submission-watcher'
 import {turnCombatantsForSubmissions} from './turn-combatants'
 
 @connect((state, props) => {

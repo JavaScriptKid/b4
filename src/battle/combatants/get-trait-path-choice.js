@@ -4,8 +4,8 @@ export function getTraitPathChoice(traitProperties={}, casterModel, targetModel)
 
     const chosenTrait = randomFromArray( concatTraits(traitProperties) );
     console.log(chosenTrait); //"protective", "vicious", etc
-    const action = getActionFromPathTrait(chosenTrait, casterModel, targetModel);
-    console.log(action);
+    return getActionFromPathTrait(chosenTrait, casterModel, targetModel);
+
 }
 
 import {viciousAiPath} from './ai-paths/vicious-ai-path'
@@ -41,6 +41,10 @@ var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) 
     /* CONSERVATIVE */
     if (chosenTrait == "conservative") {
         result = conservativeAiPath(casterModel, targetModel);
+    }
+    /* RANDOM */
+    if (chosenTrait == "random") {
+        result = randomAiPath(casterModel, targetModel);
     }
 
     /* Fallback to REASONABLE */

@@ -5,22 +5,23 @@ import {randomFromArray} from '../../helpers/random-from-array'
 
 
 export function getSmartAttack(casterState, targetState, aiProperties={}, useDirectActionId=null, superChargedFrameworkId=null) {
-    /* TODO: build out this function to provide smart attack choice based on caster/target state and aiProperties */
-    //-------------------------
 
     const casterModel = new CombatantModel( casterState );
     const targetModel = new CombatantModel( targetState );
 
     if (casterModel.isComputerControlled) {
         const smartAttack = getTraitPathChoice(casterModel.computerAiTraits, casterModel, targetModel);
+        const action = Actions[smartAttack.actionId];
+
+        return {
+            ...smartAttack,
+            speedRoll: casterModel.speedRoll( action.speedModifier )
+        }
     }
 
 
-
-
     //Hopefully all of the below will go away
-    //
-    //
+    // If not computer controlled, use the supplied actionId or a random one
     const actionId = useDirectActionId ? useDirectActionId : randomFromArray(casterModel.attacks);
     const action = Actions[actionId];
 
@@ -38,6 +39,7 @@ export function getSmartAttack(casterState, targetState, aiProperties={}, useDir
 }
 
 import store from '../../init/store'
+
 export function getAutoAttacks() {
     const history = store.getState().battle.history;
     const combs = history[history.length-1].combatants;

@@ -163,7 +163,7 @@ export function findLeastExpensivePpMove(combatantModel) {
     const sorted = [...combatantModel.attacks].sort((idA, idB) => {
         const modelA = Actions[idA];
         const modelB = Actions[idB];
-        return modelA.ppCost > modelB.ppCost;
+        return modelA.ppCost > modelB.ppCost ? 1 : -1;
     });
     return sorted[0];
 }
@@ -173,7 +173,7 @@ export function findMostDamagingAttack(combatantModel) {
     const sorted = [...combatantModel.attacks].sort((idA, idB) => {
         const modelA = Actions[idA];
         const modelB = Actions[idB];
-        return modelA.affectTargetHpPoints > modelB.affectTargetHpPoints;
+        return modelA.affectTargetHpPoints > modelB.affectTargetHpPoints ? 1 : -1;
     });
     /* This will return the most damaging `affectTargetHpPoints` value. However,
         it does not account for potential repetitions or a deferred payload. May want

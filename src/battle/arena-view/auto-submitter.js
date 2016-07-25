@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {getAutoAttacks} from '../combatants/enemy-ai'
+import {getAutoAttacks, getSmartAttack} from '../combatants/enemy-ai'
 import {addSubmission} from '../submissions/add-submission'
 
 @connect((state, props) => {
