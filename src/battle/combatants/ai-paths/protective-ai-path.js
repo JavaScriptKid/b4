@@ -4,7 +4,8 @@ import {
     findItemThatCanHealStatus,
     isCombatantHpFull,
     findItemThatCanRecoverHp,
-    findAttackThatGivesMePositiveStatus
+    findAttackThatGivesMePositiveStatus,
+    doesCombatantHaveAnyStatus
 } from '../enemy-ai-paths';
 
 export function protectiveAiPath(casterModel, targetModel) {
@@ -28,15 +29,17 @@ export function protectiveAiPath(casterModel, targetModel) {
         }
     }
 
-    /* Q Is my HP less than full? */
+    /* Q Can I give myself a positive status? */
     if (!result) {
-        result = findAttackThatGivesMePositiveStatus(casterModel);
+        if (!doesCombatantHaveAnyStatus(casterModel)) {
+            result = findAttackThatGivesMePositiveStatus(casterModel);
+        }
     }
 
     return result ? {
         casterId: casterModel.id,
         targetId: targetModel.id,
-        dangerCharge: null,
+        superChargedFrameworkId: null,
         actionId: result
     } : null
 }

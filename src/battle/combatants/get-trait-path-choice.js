@@ -3,16 +3,17 @@ import {randomFromArray} from '../../helpers/random-from-array'
 export function getTraitPathChoice(traitProperties={}, casterModel, targetModel) {
 
     const chosenTrait = randomFromArray( concatTraits(traitProperties) );
-    console.log(chosenTrait) //"protective", "vicious", etc
+    console.log(chosenTrait); //"protective", "vicious", etc
     const action = getActionFromPathTrait(chosenTrait, casterModel, targetModel);
+    console.log(action);
 }
 
 import {viciousAiPath} from './ai-paths/vicious-ai-path'
-import {protectiveAiPathAiPath} from './ai-paths/protective-ai-path'
+import {protectiveAiPath} from './ai-paths/protective-ai-path'
 
 var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) {
     /*
-    *   Output Format is {casterId, targetId, actionId, and dangerCharge=""}
+    *   Output Format is {casterId, targetId, actionId, and superChargedFrameworkId=""}
      */
 
     let result = null;

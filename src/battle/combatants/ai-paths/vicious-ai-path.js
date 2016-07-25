@@ -12,12 +12,12 @@ export function viciousAiPath(casterModel, targetModel) {
     if (isDangerMeterUsable(casterModel)) {
         return {
             ...baseInstruction,
-            //dangerCharge: "Palm or whatever" //TODO!
+            //superChargedFrameworkId: "Palm or whatever" //TODO!
         }
     }
     return {
         ...baseInstruction,
-        dangerCharge: null
+        superChargedFrameworkId: null
     }
 }
 
