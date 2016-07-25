@@ -13,12 +13,17 @@ class AutoSubmitter extends React.Component {
 
 
     submit(newProps) {
+
+        //Presentational Timeout Only for BOTH PLAYERS being computer controlled
+        setTimeout(() => {
+
             if (newProps.submissions.length == 0) {
                 const autoSubmission = getAutoAttacks(); //Just gets one submission for the computer for now
                 autoSubmission.forEach(submission => {
                     addSubmission(submission)
                 });
             }
+        }, 700)
     }
 
     componentDidMount() {

@@ -43,7 +43,7 @@ export default function() {
         //isComputerControlled: true,
         id: id1,
         name: "Jacob",
-        level: 10,
+        level: 3,
         class: "ninja",
         dangerMeter: 0,
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
@@ -60,24 +60,34 @@ export default function() {
         ],
         characterUpgrades: [
             { libraryId: "character-upgrade-001-i" }
-        ]
+        ],
+
+        isComputerControlled: true,
+        computerAiTraits: {
+            vicious: 3,
+            protective: 2,
+            cursing: 5,
+            conservative: 2,
+            klepto: 7,
+            //random: 3
+        },
     };
 
     const initialComb2 = {
 
         isComputerControlled: true,
         computerAiTraits: {
-            vicious: 4,
-            protective: 3,
-            cursing: 3,
-            conservative: 2,
-            klepto: 2,
-            random: 3
+            vicious: 1,
+            protective: 1,
+            cursing: 7,
+            conservative: 1,
+            klepto: 1,
+            //random: 3
         },
 
         id: id2,
         name: "Travis",
-        level: 10,
+        level: 3,
         class: "captain",
         skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 

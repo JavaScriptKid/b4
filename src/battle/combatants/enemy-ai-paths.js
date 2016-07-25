@@ -185,5 +185,9 @@ export function findMostDamagingAttack(combatantModel) {
 
 /* RANDOM ATTACK */
 export function findRandomAttack(combatantModel) {
-    return randomFromArray( combatantModel.attacks );
+    const available = combatantModel.attacks.filter(id => {
+        const model = Actions[id];
+        return model.type == "Normal";
+    });
+    return randomFromArray(available);
 }

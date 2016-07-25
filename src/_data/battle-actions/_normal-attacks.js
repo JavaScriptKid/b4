@@ -51,7 +51,7 @@ export default {
         name: "Slice",
         animation: "tada", //"shootingStar",
         description: "Chops the enemy to bits.",
-        affectTargetHpPoints: -5,
+        affectTargetHpPoints: -4,
         ppCost: 3
     },
 
@@ -81,7 +81,7 @@ export default {
         ...attackSchema,
         name: "Preloaded",
         description: "Extremely fast attack",
-        affectTargetHpPoints: -9,
+        affectTargetHpPoints: -7,
         speedModifier: 6,
         ppCost: 5
     },

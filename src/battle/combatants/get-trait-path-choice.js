@@ -48,6 +48,9 @@ var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) 
     }
 
     /* Fallback to REASONABLE */
+    if (!result) {
+        console.log('falling back to a random one')
+    }
     return result || randomAiPath(casterModel, targetModel);
 };
 
