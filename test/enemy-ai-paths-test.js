@@ -6,7 +6,11 @@ import {
     findAttackThatCanRecoverHp,
     findItemThatCanRecoverHp,
     findAttackThatGivesMePositiveStatus,
-    findAttackThatGivesEnemyNegativeStatus
+    findAttackThatGivesEnemyNegativeStatus,
+    doesCombatantHaveItems,
+    findMoveThatCanStealItems,
+    findLeastExpensivePpMove,
+    findMostDamagingAttack
 } from '../src/battle/combatants/enemy-ai-paths'
 
 describe('findMoveThatCanHealStatus', () => {
@@ -87,4 +91,53 @@ describe('findAttackThatGivesEnemyNegativeStatus', () => {
             findAttackThatGivesEnemyNegativeStatus({attacks: ["attack-special-003-a"]})
         );
     })
+});
+
+describe('doesCombatantHaveItems', () => {
+    it('will return true if comb has items', () => {
+        assert.isTrue(
+            doesCombatantHaveItems({items: ["an-item"]})
+        );
+    });
+    it('will return false if comb does not have items', () => {
+        assert.isFalse(
+            doesCombatantHaveItems({items: []})
+        );
+    })
+});
+
+describe('findMoveThatCanStealItems', () => {
+    it('will return a valid move if we have one', () => {
+        assert.ok(
+            findMoveThatCanStealItems(["attack-special-004-a"])
+        );
+    });
+    it('will return null if it only has invalid attacks', () => {
+        assert.isNull(
+            findMoveThatCanStealItems(["attack-special-003-a"])
+        );
+    });
+});
+
+describe('findLeastExpensivePpMove', () => {
+    it('will return the move with the lowest PP cost', () => {
+        assert.equal(
+            findLeastExpensivePpMove({
+                attacks: ["attack-special-004-a", "attack-special-000-a", "attack-001-a"]
+            }),
+            "attack-001-a"
+        );
+    });
+});
+
+
+describe('findMostDamagingAttack', () => {
+    /* THIS IS TRICKY TO TEST, SHOULD INVOLVE RANDOMNESS */
+    it('will return the attack with most damaging affectTargetHpPoints', () => {
+        assert.ok(
+            findMostDamagingAttack({
+                attacks: ["attack-001-a", "attack-001-c", "attack-002-c"]
+            })
+        );
+    });
 });

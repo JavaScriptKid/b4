@@ -20,7 +20,7 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
 
 
 export default {
-    /* DDoS */
+    /* Throttle */
     "attack-special-000-a": {
         ...specialAttackSchema,
         name: "Throttle",

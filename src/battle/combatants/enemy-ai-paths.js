@@ -1,7 +1,7 @@
 import Actions from '../../_data/battle-actions'
 import {randomFromArray} from '../../helpers/random-from-array'
 
-
+/* STATUS */
 export function doesCombatantHaveAnyStatus(combatantModel) {
     return combatantModel.status != "normal";
 }
@@ -103,6 +103,8 @@ export function findItemThatCanHealStatus(combatantModel) {
     return findMoveThatCanHealStatus(combatantModel.items, combatantModel.status);
 }
 
+
+/* HP */
 export function isCombatantHpFull(combatantModel) {
     return combatantModel.hp >= combatantModel.maxHp
 }
@@ -128,4 +130,55 @@ export function findAttackThatCanRecoverHp(combatantModel) {
 }
 export function findItemThatCanRecoverHp(combatantModel) {
     return findMoveThatCanRecoverHp(combatantModel.items);
+}
+
+/* ITEMS */
+export function doesCombatantHaveItems(combatantModel) {
+    return combatantModel.items.length > 0
+}
+
+export function findMoveThatCanStealItems(list=[]) {
+    const available = list.filter(id => {
+        const model = Actions[id];
+        return model.theftQuantity > 0;
+    });
+
+    if (available.length) {
+        return randomFromArray(available)
+    }
+    return null;
+}
+export function findAttackThatCanStealItems(combatantModel) {
+    return findMoveThatCanStealItems(combatantModel.attacks);
+}
+
+/* DAMAGE METER */
+export function isDangerMeterUsable(combatantModel) {
+    return combatantModel.isDangerMeterUsable();
+}
+
+
+/* PP MANAGEMENT */
+export function findLeastExpensivePpMove(combatantModel) {
+    const sorted = [...combatantModel.attacks].sort((idA, idB) => {
+        const modelA = Actions[idA];
+        const modelB = Actions[idB];
+        return modelA.ppCost > modelB.ppCost;
+    });
+    return sorted[0];
+}
+
+/* DAMAGE */
+export function findMostDamagingAttack(combatantModel) {
+    const sorted = [...combatantModel.attacks].sort((idA, idB) => {
+        const modelA = Actions[idA];
+        const modelB = Actions[idB];
+        return modelA.affectTargetHpPoints > modelB.affectTargetHpPoints;
+    });
+    /* This will return the most damaging `affectTargetHpPoints` value. However,
+        it does not account for potential repetitions or a deferred payload. May want
+         to add further considerations for those attacks. At this point, why would an enemy
+         ever choose "Promise" or "ForEach" over "Slice Mk II" ?
+     */
+    return sorted[0];
 }
