@@ -38,7 +38,7 @@ export function protectiveAiPath(casterModel, targetModel) {
 
     return result ? {
         casterId: casterModel.id,
-        targetId: targetModel.id,
+        targetId: casterModel.id,
         superChargedFrameworkId: null,
         actionId: result
     } : null

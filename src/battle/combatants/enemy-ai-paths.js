@@ -182,3 +182,8 @@ export function findMostDamagingAttack(combatantModel) {
      */
     return sorted[0];
 }
+
+/* RANDOM ATTACK */
+export function findRandomAttack(combatantModel) {
+    return randomFromArray( combatantModel.attacks );
+}

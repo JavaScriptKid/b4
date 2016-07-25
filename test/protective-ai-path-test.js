@@ -43,7 +43,7 @@ describe('protectiveAiPath', () => {
         };
         const result = protectiveAiPath(model, {});
         assert.equal(result.actionId, "attack-special-009-a")
-    })
+    });
 
 
     it('will be null if no path can be found', () => {

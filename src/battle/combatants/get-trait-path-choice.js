@@ -10,6 +10,10 @@ export function getTraitPathChoice(traitProperties={}, casterModel, targetModel)
 
 import {viciousAiPath} from './ai-paths/vicious-ai-path'
 import {protectiveAiPath} from './ai-paths/protective-ai-path'
+import {cursingAiPath} from './ai-paths/cursing-ai-path'
+import {kleptoAiPath} from './ai-paths/klepto-ai-path'
+import {conservativeAiPath} from './ai-paths/conservative-ai-path'
+import {randomAiPath} from './ai-paths/random-ai-path'
 
 var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) {
     /*
@@ -22,23 +26,25 @@ var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) 
     if (chosenTrait == "vicious") {
         result = viciousAiPath(casterModel, targetModel);
     }
-
     /* PROTECTIVE */
     if (chosenTrait == "protective") {
         result = protectiveAiPath(casterModel, targetModel);
     }
-
-
     /* CURSING */
+    if (chosenTrait == "cursing") {
+        result = cursingAiPath(casterModel, targetModel);
+    }
     /* KLEPTO */
+    if (chosenTrait == "klepto") {
+        result = kleptoAiPath(casterModel, targetModel);
+    }
     /* CONSERVATIVE */
-
-    /* Fallback to REASONABLE */
-    return result || {
-        //
+    if (chosenTrait == "conservative") {
+        result = conservativeAiPath(casterModel, targetModel);
     }
 
-
+    /* Fallback to REASONABLE */
+    return result || randomAiPath(casterModel, targetModel);
 };
 
 

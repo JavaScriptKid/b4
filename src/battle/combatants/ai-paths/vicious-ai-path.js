@@ -3,6 +3,12 @@ import {findMostDamagingAttack, isDangerMeterUsable} from '../enemy-ai-paths';
 export function viciousAiPath(casterModel, targetModel) {
     const attackId = findMostDamagingAttack(casterModel);
 
+    //Bail out if this attack will obviously fail */
+    if (casterModel.status == "lag") {
+        return null;
+    }
+
+
     const baseInstruction = {
         casterId: casterModel.id,
         targetId: targetModel.id,

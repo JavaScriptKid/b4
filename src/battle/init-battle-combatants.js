@@ -69,7 +69,8 @@ export default function() {
             vicious: 3,
             protective: 7,
             cursing: 4,
-            conservative: 2
+            conservative: 2,
+            klepto: 5
         },
 
         id: id2,
