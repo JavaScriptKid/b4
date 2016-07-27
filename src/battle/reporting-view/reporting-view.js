@@ -33,7 +33,7 @@ class ReportingView extends React.Component {
             )
         });
 
-        
+
 
         return (
             <div>
