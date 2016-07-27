@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import resizer from './resizer'
 import BattleConsoleView from '../battle/console-view/console-view'
 import BattleArenaView from '../battle/arena-view/arena-view'
+import ReportingView from '../battle/reporting-view/reporting-view'
 
 @connect((state, props) => {
     return {
         isBattleConsoleView: state.battle.viewMode == "console", //and gameArea == "battle"
+        isReportingView: state.battle.viewMode == "reporting",
         vpWidth: state.map.viewportWidth,
         vpHeight: state.map.viewportHeight,
     }
@@ -24,6 +26,14 @@ class Viewport extends React.Component {
             return (
                 <div>
                     <BattleConsoleView />
+                </div>
+            )
+        }
+
+        if (this.props.isReportingView) {
+            return (
+                <div>
+                    <ReportingView />
                 </div>
             )
         }
