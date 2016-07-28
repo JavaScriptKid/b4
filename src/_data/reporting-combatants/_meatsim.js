@@ -7,7 +7,8 @@ export default {
         klepto: 1
     },
 
-    name: "MeatSim",
+    name: "MeatSim L3",
+    simName: "meatsim",
     level: 3,
     class: "captain",
     skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",

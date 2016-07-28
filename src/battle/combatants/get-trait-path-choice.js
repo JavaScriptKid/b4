@@ -3,7 +3,7 @@ import {randomFromArray} from '../../helpers/random-from-array'
 export function getTraitPathChoice(traitProperties={}, casterModel, targetModel) {
 
     const chosenTrait = randomFromArray( concatTraits(traitProperties) );
-    console.log(chosenTrait); //"protective", "vicious", etc
+    //console.log(chosenTrait); //"protective", "vicious", etc
     return getActionFromPathTrait(chosenTrait, casterModel, targetModel);
 
 }
@@ -49,7 +49,7 @@ var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) 
 
     /* Fallback to REASONABLE */
     if (!result) {
-        console.log('falling back to a random one')
+        //console.log('falling back to a random one')
     }
     return result || randomAiPath(casterModel, targetModel);
 };

@@ -35,8 +35,8 @@ const allAttacks = [
 export default function(c1, c2) {
 
 
-    const id1 = "c1";
-    const id2 = "c2";
+    const id1 = c1.simName;
+    const id2 = c2.simName;
 
 
     const initialComb1 = {
@@ -62,18 +62,19 @@ export default function(c1, c2) {
         ...initialCombatantProperties,
         ...initialComb1,
         ...stats1,
-        hp: initialComb1.hp || stats1.maxHp,
-        pp: initialComb1.pp || stats1.maxPp
+        // hp: initialComb1.hp || stats1.maxHp,
+        // pp: initialComb1.pp || stats1.maxPp
     };
     combatants[id2] = {
         ...initialCombatantProperties,
         ...initialComb2,
         ...stats2,
-        hp: initialComb2.hp || stats2.maxHp,
-        pp: initialComb2.pp || stats2.maxPp
+        // hp: initialComb2.hp || stats2.maxHp,
+        // pp: initialComb2.pp || stats2.maxPp
     };
 
 
+    console.log('kickoff', combatants)
 
     /* Fresh kickoff of battle */
     setBattleValue({

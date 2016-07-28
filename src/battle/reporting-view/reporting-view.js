@@ -4,6 +4,8 @@ import Table from './table.js'
 import {modelsFromObject} from '../../helpers/models-from-object'
 import Combatants from '../../_data/reporting-combatants'
 import calculateRows from './calculate-row'
+import getTestCombatants from './get-test-combatants'
+
 
 @connect((state, props) => {
     return {}
@@ -13,6 +15,7 @@ class ReportingView extends React.Component {
 
     constructor() {
         super();
+
         this.state = {
             columns: modelsFromObject(Combatants),
             rowData: {}
@@ -20,14 +23,13 @@ class ReportingView extends React.Component {
     }
 
     componentDidMount() {
+
         const participantIds = Object.keys(Combatants);
-        calculateRows(participantIds, this.handleNewMatchupResult.bind(this))
+        calculateRows(participantIds, this.handleNewMatchupResult.bind(this), Combatants)
     }
 
 
     handleNewMatchupResult(newResult) {
-
-        //console.log(newResult)
 
         let rowData = {...this.state.rowData};
 
