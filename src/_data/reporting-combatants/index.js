@@ -38,14 +38,16 @@ export function getGeneratedCharacters() {
         {property: "vicious", possibilities: [1, 5]},
         {property: "protective", possibilities: [1,  5]},
         {property: "cursing", possibilities: [1, 5]},
-        //{property: "conservative", possibilities: [1, 3, 5]},
+        {property: "conservative", possibilities: [1, 3, 5]},
         {property: "klepto", possibilities: [1,  5]}
     ];
-    const personalityPossibilities = generateVariations(personalityVariations);
+    const personalityPossibilities = [{}]//generateVariations(personalityVariations);
 
 
     const variations = [
-        {property: "level", possibilities: [3, 5]},
+        {
+            property: "level", possibilities: [1, 3, 5]
+        },
         {property: "class", possibilities: ["ninja", "captain", "monk"]},
         {property: "computerAiTraits", possibilities: personalityPossibilities}
     ];
