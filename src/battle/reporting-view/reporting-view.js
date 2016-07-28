@@ -1,5 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Table from './table.js'
+import {modelsFromObject} from '../../helpers/models-from-object'
+import Combatants from '../../_data/_reporting-combatants'
+import calculateRows from './calculate-row'
 
 @connect((state, props) => {
     return {}
@@ -7,44 +11,46 @@ import { connect } from 'react-redux'
 
 class ReportingView extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            columns: modelsFromObject(Combatants),
+            rowData: {}
+        }
+    }
+
+    componentDidMount() {
+        const participantIds = Object.keys(Combatants);
+        calculateRows(participantIds, this.handleNewMatchupResult.bind(this))
+    }
+
+
+    handleNewMatchupResult(newResult) {
+
+        //console.log(newResult)
+
+        let rowData = {...this.state.rowData};
+
+        const firstWins = (newResult.firstCombatantId == newResult.secondCombatantId) ?
+            "X" : newResult.firstCombatantWins;
+
+        const secondWins = (newResult.firstCombatantId == newResult.secondCombatantId) ?
+            "X" : newResult.secondCombatantWins;
+
+        rowData[
+            `${newResult.firstCombatantId}_x_${newResult.secondCombatantId}`] = firstWins;
+        rowData[`${newResult.secondCombatantId}_x_${newResult.firstCombatantId}`] = secondWins;
+
+        this.setState({
+            rowData: rowData
+        })
+    }
+
+
     render() {
-
-        const matchups = [
-            ["a", "a"],
-            ["a", "b"],
-            ["a", "c"],
-            ["b", "b"],
-            ["b", "c"],
-            ["c", "c"]
-        ];
-
-        var columns = [];
-        const titleRow = matchups.filter(matchup => {
-            if (columns.indexOf(matchup[1]) == -1) {
-                columns.push(matchup[1]);
-                return true;
-            }
-            return false;
-        }).map((matchup, i) => {
-            return (
-                <td key={i}>
-                    {matchup[1]}
-                </td>
-            )
-        });
-
-
-
         return (
             <div>
-                <table className="b4-reporting-table">
-                    <thead>
-                    <tr>
-                        <td>X</td>
-                        {titleRow}
-                    </tr>
-                    </thead>
-                </table>
+                <Table columns={this.state.columns} rowData={this.state.rowData}/>
             </div>
         );
     }
