@@ -7,9 +7,9 @@ export default {
         klepto: 1
     },
 
-    name: "Knight L3",
+    name: "Knight L1",
     simName: "knight",
-    level: 3,
+    level: 1,
     class: "ninja",
     skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 
