@@ -37,7 +37,6 @@ class BattleDevViewSwitcher extends React.Component {
     }
 
     render() {
-        const isConsoleMode = (this.props.viewMode == "console");
         const activeStyle = {
             background: "#4A90E2",
             color:"#fff",
@@ -50,8 +49,8 @@ class BattleDevViewSwitcher extends React.Component {
 
         return (
             <div style={containerStyle}>
-                <a href="#" className="dev-switch-link" onClick={::this.switchToConsole} style={ this.props.viewMode == "console" ? activeStyle : {}}>Console</a>
                 <a href="#" className="dev-switch-link" onClick={::this.switchToArena} style={ this.props.viewMode == "arena" ? activeStyle : {}}>Arena</a>
+                <a href="#" className="dev-switch-link" onClick={::this.switchToConsole} style={ this.props.viewMode == "console" ? activeStyle : {}}>Console</a>
                 <a href="#" className="dev-switch-link" onClick={::this.switchToReporting} style={ this.props.viewMode == "reporting" ? activeStyle : {}}>Reporting</a>
             </div>
         )

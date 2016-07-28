@@ -23,10 +23,18 @@ class ReportingView extends React.Component {
     }
 
     componentDidMount() {
-
-        const participantIds = Object.keys(Combatants);
-        calculateRows(participantIds, this.handleNewMatchupResult.bind(this), Combatants)
     }
+
+    handleRunReportButton() {
+
+        this.setState({
+            rowData: {}
+        }, () => {
+            const participantIds = Object.keys(Combatants);
+            calculateRows(participantIds, this.handleNewMatchupResult.bind(this), Combatants)
+        });
+    }
+
 
 
     handleNewMatchupResult(newResult) {
@@ -52,6 +60,7 @@ class ReportingView extends React.Component {
     render() {
         return (
             <div>
+                <button onClick={::this.handleRunReportButton}>Run Report</button>
                 <Table columns={this.state.columns} rowData={this.state.rowData}/>
             </div>
         );

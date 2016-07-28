@@ -7,7 +7,7 @@ export default {
         klepto: 20
     },
 
-    name: "Thief L2",
+    name: "Thief",
     simName: "thief",
     level: 2,
     class: "captain",

@@ -7,7 +7,7 @@ export default {
         klepto: 1
     },
 
-    name: "Knight L1",
+    name: "Knight",
     simName: "knight",
     level: 1,
     class: "ninja",
@@ -15,8 +15,7 @@ export default {
 
     attacks: [
         "attack-001-a",
-        "attack-002-a",
-        "attack-003-a"
+        "attack-002-a"
     ],
 
     laptopUpgrades: [

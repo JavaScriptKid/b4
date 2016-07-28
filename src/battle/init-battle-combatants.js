@@ -64,6 +64,8 @@ export default function(c1, c2) {
         ...stats1,
         // hp: initialComb1.hp || stats1.maxHp,
         // pp: initialComb1.pp || stats1.maxPp
+        hp: stats1.maxHp,
+        pp: stats1.maxPp,
     };
     combatants[id2] = {
         ...initialCombatantProperties,
@@ -71,6 +73,8 @@ export default function(c1, c2) {
         ...stats2,
         // hp: initialComb2.hp || stats2.maxHp,
         // pp: initialComb2.pp || stats2.maxPp
+        hp: stats2.maxHp,
+        pp: stats2.maxPp,
     };
 
 
