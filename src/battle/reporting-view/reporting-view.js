@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Table from './table.js'
 import {modelsFromObject} from '../../helpers/models-from-object'
-import Combatants from '../../_data/_reporting-combatants'
+import Combatants from '../../_data/reporting-combatants'
 import calculateRows from './calculate-row'
 
 @connect((state, props) => {

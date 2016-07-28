@@ -70,7 +70,7 @@ export default function() {
             conservative: 2,
             klepto: 7,
             //random: 3
-        },
+        }
     };
 
     const initialComb2 = {

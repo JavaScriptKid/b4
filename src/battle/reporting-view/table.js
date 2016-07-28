@@ -1,5 +1,4 @@
 import React from 'react';
-//import './Table.css'
 import Cell from "./Cell.js"
 
 
