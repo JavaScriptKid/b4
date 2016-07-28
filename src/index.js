@@ -7,14 +7,20 @@ import Viewport from './viewport/viewport'
 import initBattleCombatants from './battle/init-battle-combatants'
 import BattleDevViewSwitcher from './battle/battle-dev-view-switcher'
 
+import Combatants from './_data/reporting-combatants'
+
 var RootComponent = React.createClass({
 
     componentWillMount() {
+
+        console.log( Combatants["thief"])
+
         /* B4 demo only. */
         //Seed the battle
-        initBattleCombatants();
-
-        window.init = function() {initBattleCombatants();}
+        initBattleCombatants(
+            Combatants["meatsim"],
+            Combatants["thief"]
+        );
 
     },
 

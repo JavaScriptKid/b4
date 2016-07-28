@@ -3,5 +3,5 @@ import Thief from './_thief'
 
 export default {
     "meatsim": { ...Meatsim },
-    "theif": { ...Thief }
+    "thief": { ...Thief }
 }

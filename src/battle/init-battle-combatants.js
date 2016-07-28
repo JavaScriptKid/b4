@@ -32,75 +32,24 @@ const allAttacks = [
 ];
 
 
-export default function() {
+export default function(c1, c2) {
 
 
-    const id1 = makeId('combatant');
-    const id2 = makeId('combatant');
+    const id1 = "c1";
+    const id2 = "c2";
 
 
     const initialComb1 = {
-        //isComputerControlled: true,
-        id: id1,
-        name: "Jacob",
-        level: 3,
-        class: "ninja",
-        dangerMeter: 0,
-        skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/svJacob-2.svg",
-        attacks: [ ...allAttacks],
-        items: [
-            "item_001",
-            "item_002",
-            "item_002"
-        ],
-        laptopUpgrades: [
-            { libraryId: "laptop-upgrade_001" },
-
-            //{ libraryId: "laptop-upgrade_003" }
-        ],
-        characterUpgrades: [
-            { libraryId: "character-upgrade-001-i" }
-        ],
-
         isComputerControlled: true,
-        computerAiTraits: {
-            vicious: 3,
-            protective: 2,
-            cursing: 5,
-            conservative: 2,
-            klepto: 7,
-            //random: 3
-        }
+        id: id1,
+        ...c1
     };
 
     const initialComb2 = {
 
         isComputerControlled: true,
-        computerAiTraits: {
-            vicious: 1,
-            protective: 1,
-            cursing: 7,
-            conservative: 1,
-            klepto: 1,
-            //random: 3
-        },
-
         id: id2,
-        name: "Travis",
-        level: 3,
-        class: "captain",
-        skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
-
-        attacks: [ ...allAttacks],
-
-        laptopUpgrades: [
-            { libraryId: "laptop-upgrade_002" },
-        ],
-        characterUpgrades: [
-            {libraryId: "character-upgrade-005-i"},
-            {libraryId: "character-upgrade-005-ii"}
-        ]
-
+        ...c2
     };
 
 
