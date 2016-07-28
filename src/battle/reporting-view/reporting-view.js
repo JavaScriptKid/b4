@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Table from './table.js'
 import {modelsFromObject} from '../../helpers/models-from-object'
-import Combatants from '../../_data/reporting-combatants'
+import Combatants, {getGeneratedCharacters} from '../../_data/reporting-combatants'
 import calculateRows from './calculate-row'
-import getTestCombatants from './get-test-combatants'
+
+
 
 
 @connect((state, props) => {
@@ -16,13 +17,12 @@ class ReportingView extends React.Component {
     constructor() {
         super();
 
+        this.GeneratedCombatants = getGeneratedCharacters();
+
         this.state = {
-            columns: modelsFromObject(Combatants),
+            columns: modelsFromObject(this.GeneratedCombatants),
             rowData: {}
         }
-    }
-
-    componentDidMount() {
     }
 
     handleRunReportButton() {
@@ -30,8 +30,8 @@ class ReportingView extends React.Component {
         this.setState({
             rowData: {}
         }, () => {
-            const participantIds = Object.keys(Combatants);
-            calculateRows(participantIds, this.handleNewMatchupResult.bind(this), Combatants)
+            const participantIds = Object.keys(this.GeneratedCombatants);
+            calculateRows(participantIds, this.handleNewMatchupResult.bind(this), this.GeneratedCombatants)
         });
     }
 
