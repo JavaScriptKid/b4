@@ -35,7 +35,10 @@ const store = createStore({
         menuLevel: "", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
         menuOptionIndex: 1,
         selectedOptionId: "",
-        viewMode: "battle" //"console" || "battle" || "reporting"
+        viewMode: "battle", //"console" || "battle" || "reporting"
+
+        //Arena
+        backgroundStyle: null
     },
     map: {
         viewportWidth: 0

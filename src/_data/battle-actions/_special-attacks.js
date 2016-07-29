@@ -266,19 +266,25 @@ export default {
         }
     },
 
-    /* Fury */
+    /* Troll */
     "attack-special-007-a": {
         ...specialAttackSchema,
         name: "Troll",
+        animation: "fury",
         ppCost: 5,
         description: "Enters temporary state of fury",
         affectCasterStatus: ["normal", "fury"],
-        getFail: function(action, casterState, targetState, currentChanges) {
+        getFail: function(action, casterState, targetState, actionDescription) {
             return casterState.status != "normal"
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
                 {
                     type: "message",
                     content: [

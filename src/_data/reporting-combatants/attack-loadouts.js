@@ -7,6 +7,12 @@ export const allAttacks = [
     "attack-004-a",
     "attack-005-a",
     "attack-008-a",
+
+    "attack-special-008-a",
+    "attack-special-007-a",
+    "attack-special-009-a",
+    "attack-special-010-a",
+
     "attack-special-000-a",
     "attack-special-001-a",
     "attack-special-002-a",
@@ -15,8 +21,4 @@ export const allAttacks = [
     "attack-special-004-b",
     "attack-special-005-a",
     "attack-special-006-a",
-    "attack-special-007-a",
-    "attack-special-008-a",
-    "attack-special-009-a",
-    "attack-special-010-a",
 ];

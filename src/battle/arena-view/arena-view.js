@@ -6,6 +6,7 @@ import DescriptionBar from './description-bar'
 import SubmissionMenu from './submission-ui/submission-menu'
 import ArenaCombatant from './arena-combatant'
 import AutoSubmitter from './auto-submitter'
+import ArenaBackground from './arena-background'
 import { CombatantModel } from '../combatant-model'
 import {turnCombatantsForSubmissions} from './turn-combatants'
 
@@ -48,6 +49,9 @@ class BattleArenaView extends React.Component {
 
         return (
            <div className={`battle-arena ${rolloutClass}`}>
+               <ArenaBackground />
+
+
                <div style={scoreboardContainerStyle} className="scoreboards">
                    <CombatantScoreboard combatantId={this.props.combatantIds[0]} />
                    <CombatantScoreboard combatantId={this.props.combatantIds[1]} />
