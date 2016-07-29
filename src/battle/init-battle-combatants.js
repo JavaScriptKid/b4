@@ -17,7 +17,7 @@ export default function(c1, c2) {
 
 
     const initialComb1 = {
-        isComputerControlled: true,
+        isComputerControlled: false,
         id: id1,
         ...c1
     };

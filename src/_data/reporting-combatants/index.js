@@ -1,3 +1,4 @@
+import Player from './_player'
 import Meatsim from './_meatsim'
 import Thief from './_thief'
 import Knight from './_knight'
@@ -7,6 +8,10 @@ import {allAttacks} from './attack-loadouts'
 
 
 export default {
+    "player": {
+        ...Player,
+        items: [...allItems]
+    },
     "meatsim": {
         ...Meatsim,
         items: [...allItems]

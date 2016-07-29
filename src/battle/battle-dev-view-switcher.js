@@ -49,7 +49,7 @@ class BattleDevViewSwitcher extends React.Component {
 
         return (
             <div style={containerStyle}>
-                <a href="#" className="dev-switch-link" onClick={::this.switchToArena} style={ this.props.viewMode == "arena" ? activeStyle : {}}>Arena</a>
+                <a href="#" className="dev-switch-link" onClick={::this.switchToArena} style={ this.props.viewMode == "battle" ? activeStyle : {}}>Arena</a>
                 <a href="#" className="dev-switch-link" onClick={::this.switchToConsole} style={ this.props.viewMode == "console" ? activeStyle : {}}>Console</a>
                 <a href="#" className="dev-switch-link" onClick={::this.switchToReporting} style={ this.props.viewMode == "reporting" ? activeStyle : {}}>Reporting</a>
             </div>
