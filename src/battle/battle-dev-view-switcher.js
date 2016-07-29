@@ -24,7 +24,7 @@ class BattleDevViewSwitcher extends React.Component {
         }
 
         setBattleValue({
-            viewMode: "arena"
+            viewMode: "battle"
         })
     }
 

@@ -1,3 +1,5 @@
+import {allAttacks} from './attack-loadouts'
+
 export default {
     computerAiTraits: {
         vicious: 1,
@@ -14,7 +16,7 @@ export default {
     skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 
     attacks: [
-        "attack-001-a"
+        ...allAttacks
     ],
 
     laptopUpgrades: [
