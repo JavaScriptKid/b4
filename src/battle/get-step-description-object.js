@@ -14,10 +14,9 @@ import {getDangerMeter} from './calculations/danger-meter'
 export function getStepDescriptionObject(action, casterModel, targetModel) {
     let changes = {
         casterId: casterModel.id,
-        targetId: targetModel.id
+        targetId: targetModel.id,
+        isCasterComputerControlled: casterModel.isComputerControlled //animations like to know this
     };
-
-
 
     /* Build up an object full of descriptive properties */
     changes = getSuperCharged(action, casterModel, targetModel, changes);

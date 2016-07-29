@@ -85,7 +85,6 @@ var getSuccessStep = function(action, casterModel, targetModel, actionDescriptio
 
 export function getStepOutput(action, casterModel, targetModel, actionDescription, nextState) {
 
-    /* FOR NOW */
     let result = getMissStep(action, casterModel, targetModel, actionDescription, nextState);
     if (!result) {
         result = getFailStep(action, casterModel, targetModel, actionDescription, nextState);

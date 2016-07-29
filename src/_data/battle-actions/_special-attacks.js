@@ -311,19 +311,25 @@ export default {
     "attack-special-008-a": {
         ...specialAttackSchema,
         name: "Headphones",
+        animation: "zen",
         ppCost: 5,
         description: "Enters temporary state of zen",
         affectCasterStatus: ["normal", "zen"],
-        getFail: function(action, casterState, targetState, currentChanges) {
+        getFail: function(action, casterState, targetState, actionDescription) {
             return casterState.status != "normal"
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
                 {
                     type: "message",
                     content: [
                         `${casterState.name} put on Headphones!`
                     ]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
                 },
                 {
                     type: "message",

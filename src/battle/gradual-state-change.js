@@ -60,12 +60,12 @@ export function gradualStateChange(newState) {
             };
 
             if (q.changeInStartValue < 0) {
+
+                setCombatantValue(q.combatantId, {
+                    animation: "blink 0.3s steps(2, start) infinite"
+                });
                 sfxBabum.play();
-                setTimeout(() => {
-                    setCombatantValue(q.combatantId, {
-                        animation: "blink 0.3s steps(2, start) infinite"
-                    });
-                }, 90) //VISUAL: Slight delay before reduction starts
+
             }
 
             runEaseOut(q.wasHp, q.changeInStartValue, 120, handleIteration, handleDone)

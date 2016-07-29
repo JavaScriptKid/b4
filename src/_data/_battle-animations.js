@@ -1,6 +1,10 @@
 import React from 'react'
 import Tada from '../battle/arena-view/animations/animation-tada'
 import Fury from '../battle/arena-view/animations/animation-fury'
+import Zen from '../battle/arena-view/animations/animation-zen'
+import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-down'
+
+
 //import SlideOutDown from '../animations/animation-slide-out-down'
 //import ShootingStar from '../animations/animation-shooting-star'
 //import ForEach1 from '../animations/animation-forEach1'
@@ -11,10 +15,18 @@ export default {
     },
     fury(actionDescription) {
         return <Fury casterId={actionDescription.casterId} />
+    },
+    zen(actionDescription) {
+        return <Zen casterId={actionDescription.casterId} />
+    },
+    slideOutDown(actionDescription) {
+
+        return (
+            <SlideOutDown
+                casterId={actionDescription.casterId}
+                isPlayer={!actionDescription.isCasterComputerControlled} />
+        )
     }
-    //slideOutDown(event) {
-    //    return <SlideOutDown event={event} />
-    //},
     //shootingStar(event) {
     //    return <ShootingStar event={event} />
     //},

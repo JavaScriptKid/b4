@@ -1,1 +1,0 @@
-/* Deleted. See legacy b3 for old references */

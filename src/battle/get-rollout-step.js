@@ -42,7 +42,7 @@ export function getRolloutStep(subaction, state) {
     const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state.combatants);
     const cloudQueue = getUpdatedCloudQueue(stepDescriptionObject, state.cloudQueue);
     const nextState = getMergedCombatantState({
-        cloudQueue: cloudQueue, /* TODO: how do cloud changes get merged into nextState? */
+        cloudQueue: cloudQueue,
         combatants: stateChanges
     }, state);
 

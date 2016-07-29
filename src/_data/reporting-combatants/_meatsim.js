@@ -1,10 +1,11 @@
 import {allAttacks} from './attack-loadouts'
 
+
 export default {
     computerAiTraits: {
         vicious: 1,
         protective: 1,
-        cursing: 7,
+        cursing: 1,
         conservative: 1,
         klepto: 1
     },
