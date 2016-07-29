@@ -3,6 +3,8 @@ import {doStep} from './do-step'
 import {setLatestHistory, setCombatantValue} from '../redux-action-creators/battle-action-creators'
 import {modelsFromObject} from '../helpers/models-from-object'
 import {runEaseOut} from '../helpers/run-ease-out'
+import {sfxBabum} from '../_data/_sfx'
+
 
 export function gradualStateChange(newState) {
 
@@ -58,9 +60,12 @@ export function gradualStateChange(newState) {
             };
 
             if (q.changeInStartValue < 0) {
-                setCombatantValue(q.combatantId, {
-                    animation: "blink 0.3s steps(2, start) infinite"
-                });
+                sfxBabum.play();
+                setTimeout(() => {
+                    setCombatantValue(q.combatantId, {
+                        animation: "blink 0.3s steps(2, start) infinite"
+                    });
+                }, 90) //VISUAL: Slight delay before reduction starts
             }
 
             runEaseOut(q.wasHp, q.changeInStartValue, 120, handleIteration, handleDone)
