@@ -46,7 +46,7 @@ export function getGeneratedCharacters() {
 
     const variations = [
         {
-            property: "level", possibilities: [1, 3, 5]
+            property: "level", possibilities: [1, 3, 5, 10, 20]
         },
         {property: "class", possibilities: ["ninja", "captain", "monk"]},
         {property: "computerAiTraits", possibilities: personalityPossibilities}
