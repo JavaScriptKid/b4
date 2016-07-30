@@ -39,10 +39,11 @@ export default function(c1, c2) {
         ...initialCombatantProperties,
         ...initialComb1,
         ...stats1,
-        // hp: initialComb1.hp || stats1.maxHp,
-        // pp: initialComb1.pp || stats1.maxPp
-        hp: stats1.maxHp,
+         //hp: initialComb1.hp || stats1.maxHp,
+         //pp: initialComb1.pp || stats1.maxPp
+        //hp: stats1.maxHp,
         pp: stats1.maxPp,
+        hp:1
     };
     combatants[id2] = {
         ...initialCombatantProperties,

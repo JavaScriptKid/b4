@@ -13,13 +13,11 @@ var RootComponent = React.createClass({
 
     componentWillMount() {
 
-        console.log( Combatants["thief"])
-
         /* B4 demo only. */
         //Seed the battle
         initBattleCombatants(
             Combatants["player"],
-            Combatants["thief"]
+            Combatants["knight"]
         );
 
     },

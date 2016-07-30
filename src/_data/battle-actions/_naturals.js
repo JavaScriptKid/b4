@@ -4,8 +4,14 @@ export default {
     /* Death */
     "natural-death-a": {
         ...actionSchema,
+        animation: "die",
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
                 {
                     type: "message",
                     content: [`${casterModel.name} has run out of battery life`]

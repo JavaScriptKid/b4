@@ -3,6 +3,7 @@ import {setBattleValue, setLatestHistory, setCombatantValue} from '../redux-acti
 import {gradualStateChange} from './gradual-state-change'
 import {turnCombatantsForSubmissions} from './arena-view/turn-combatants'
 import {getDeadCombatantId} from './get-dead-combatant-id'
+import {getWinningCombatantId} from './get-winning-combatant-id'
 
 export function doStep() {
     const rollout = store.getState().battle.rollout;
@@ -88,7 +89,7 @@ var handleEndOfTurn = function() {
     //Is the battle over?
     if ( getDeadCombatantId(result.nextState) ) {
         //Yes.
-        console.log('BATTLE IS OVER')
+        handleEndOfBattle(result.nextState)
 
     } else {
         //No.
@@ -98,4 +99,20 @@ var handleEndOfTurn = function() {
         turnCombatantsForSubmissions();
     }
 
+};
+
+
+var handleEndOfBattle = function(nextState) {
+    console.log('BATTLE IS OVER');
+
+    const winnerId = getWinningCombatantId(nextState);
+    const loserId = getDeadCombatantId(nextState);
+
+    const winnerProperties = nextState.combatants[winnerId];
+
+    setBattleValue({
+        textMessageContent: [
+            `${winnerProperties.name} is the winner`
+        ]
+    });
 };

@@ -3,6 +3,7 @@ import Tada from '../battle/arena-view/animations/animation-tada'
 import Fury from '../battle/arena-view/animations/animation-fury'
 import Zen from '../battle/arena-view/animations/animation-zen'
 import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-down'
+import Die from '../battle/arena-view/animations/animation-die'
 
 
 //import SlideOutDown from '../animations/animation-slide-out-down'
@@ -20,13 +21,17 @@ export default {
         return <Zen casterId={actionDescription.casterId} />
     },
     slideOutDown(actionDescription) {
-
         return (
             <SlideOutDown
                 casterId={actionDescription.casterId}
                 isPlayer={!actionDescription.isCasterComputerControlled} />
         )
+    },
+    die(actionDescription) { //caster is the person who ran out of HP
+        return <Die casterId={actionDescription.casterId} />
     }
+
+
     //shootingStar(event) {
     //    return <ShootingStar event={event} />
     //},
