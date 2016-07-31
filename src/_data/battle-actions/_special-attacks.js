@@ -413,5 +413,33 @@ export default {
                 }
             ]
         }
+    },
+
+
+    /* Commit */
+    "attack-special-011-a": {
+        ...specialAttackSchema,
+        name: "Commit",
+        ppCost: 1,
+        description: "Bookmarks health and statuses of all combatants",
+        speedModifier: 950, /* Should be faster than Items */
+        changeCasterCommittedTurnIndex: true,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return false; //TODO
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} committed the battle status!`
+                    ]
+                }
+            ]
+        }
     }
+
+
+
 }

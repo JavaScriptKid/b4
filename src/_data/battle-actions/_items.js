@@ -14,7 +14,7 @@ const itemSchema = {
     ...actionSchema,
     type: "Item",
     animation: "slideOutDown", //animation: "slideDown",
-    speedModifier: 999,
+    speedModifier: 900,
     increaseDangerMeter: 0
 };
 

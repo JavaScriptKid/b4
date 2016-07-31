@@ -12,7 +12,8 @@ export function executeTurn(submissionModels=[]) {
     
     /* 1. Assemble the Queue */
     //------------------------
-    const lastHistoryEntry = store.getState().battle.history[store.getState().battle.history.length-1];
+    const history = store.getState().battle.history;
+    const lastHistoryEntry = history[history.length-1];
     const actionQueue = [
         ...extractQueuedSubmissions(lastHistoryEntry.cloudQueue),
         ...getOrderedActionsFromSubmissions(submissionModels)
@@ -20,7 +21,8 @@ export function executeTurn(submissionModels=[]) {
 
     const historyWithUpdatedQueue = {
         cloudQueue: removeQueueSlot( lastHistoryEntry.cloudQueue ),
-        combatants: {...lastHistoryEntry.combatants }
+        combatants: {...lastHistoryEntry.combatants },
+        currentTurnIndex: history.length
     }; /* Make version of state with updated Queue to use as initialState in processActions */
 
 

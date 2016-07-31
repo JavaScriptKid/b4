@@ -38,7 +38,13 @@ export default {
  // TODO: Thrash
  // TODO: -Thrash: Catch on Fire
  TODO: Repeat
+
+
+ TODO: Commit
  TODO: Revert
+ TODO: Stash
+
+
  // TODO: Zen
  // TODO: -Come out of Zen
  // TODO: Fury

@@ -10,11 +10,13 @@ import {getSuperCharged} from './calculations/super-charge'
 import {getExtraActionAdds} from './calculations/extra-action-adds'
 import {getUpdatedItemsList} from './calculations/updated-items-list'
 import {getDangerMeter} from './calculations/danger-meter'
+import {getRevertChanges} from './calculations/revert'
 
-export function getStepDescriptionObject(action, casterModel, targetModel) {
+export function getStepDescriptionObject(action, casterModel, targetModel, currentTurnIndex) {
     let changes = {
         casterId: casterModel.id,
         targetId: targetModel.id,
+        currentTurnIndex: currentTurnIndex,
         isCasterComputerControlled: casterModel.isComputerControlled //animations like to know this
     };
 
@@ -27,6 +29,7 @@ export function getStepDescriptionObject(action, casterModel, targetModel) {
     changes = getExtraActionAdds(action, casterModel, targetModel, changes);
     changes = getUpdatedItemsList(action, casterModel, targetModel, changes);
     changes = getDangerMeter(action, casterModel, targetModel, changes);
+    changes = getRevertChanges(action, casterModel, targetModel, changes);
 
 
 

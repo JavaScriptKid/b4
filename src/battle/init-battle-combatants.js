@@ -65,7 +65,8 @@ export default function(c1, c2) {
                 cloudQueue: [],
                 combatants: {
                     ...combatants
-                }
+                },
+                currentTurnIndex: 0
             }
         ],
         //adds

@@ -30,7 +30,11 @@ export function getStateChangesFromDescription(dObj, currentState) {
 
         //Danger Meter
         {forId: dObj["casterId"], descriptionProp: "casterDangerMeter", stateProp: "dangerMeter", addToOld: false},
-        {forId: dObj["targetId"], descriptionProp: "targetDangerMeter", stateProp: "dangerMeter", addToOld: false}
+        {forId: dObj["targetId"], descriptionProp: "targetDangerMeter", stateProp: "dangerMeter", addToOld: false},
+
+        //Time Travel casterCommittedTurnIndex
+        {forId: dObj["casterId"], descriptionProp: "casterCommittedTurnIndex", stateProp: "committedTurnIndex", addToOld: false},
+        {forId: dObj["targetId"], descriptionProp: "targetCommittedTurnIndex", stateProp: "committedTurnIndex", addToOld: false}
 
     ].forEach( prop => {
         if (Object.keys( dObj ).indexOf(prop.descriptionProp) > -1 ) {
