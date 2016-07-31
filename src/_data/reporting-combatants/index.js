@@ -46,7 +46,13 @@ export function getGeneratedCharacters() {
         {property: "conservative", possibilities: [1, 3, 5]},
         {property: "klepto", possibilities: [1,  5]}
     ];
-    const personalityPossibilities = [{}]//generateVariations(personalityVariations);
+    const personalityPossibilities = [{
+        vicious: 1,
+        protective: 1,
+        cursing: 1,
+        conservative: 1,
+        klepto: 1
+    }]//generateVariations(personalityVariations);
 
 
     const variations = [
@@ -64,6 +70,7 @@ export function getGeneratedCharacters() {
             id: id,
             simName: id,
             name: id,
+            isComputerControlled: true,
             attacks: [...allAttacks],
             items: [...allItems]
         }

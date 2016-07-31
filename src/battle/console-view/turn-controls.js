@@ -6,7 +6,7 @@ import {addQueuedSubmissions} from '../cloud-queue'
 import { CombatantModel } from '../combatant-model'
 import {getDeadCombatantId} from '../get-dead-combatant-id'
 
-import {getSmartAttack} from '../combatants/enemy-ai'
+import {getSmartAttack, getDirectAttack} from '../combatants/enemy-ai'
 import Actions from '../../_data/battle-actions'
 import Frameworks from '../../_data/_frameworks'
 
@@ -20,13 +20,9 @@ import Frameworks from '../../_data/_frameworks'
 })
 class TurnControls extends React.Component {
 
-    componentDidMount() {
-        //this.runTurn();
-    }
-
     runWholeBattle() {
         var run = () => {
-            const result = this.runTurn();
+            const result = this.runSmartTurn();
             if ( !getDeadCombatantId(result.nextState) ) {
                 setTimeout(function() {
                     run();
@@ -38,8 +34,45 @@ class TurnControls extends React.Component {
         run();
     }
 
-    runTurn() {
+    runSmartTurn() {
 
+        const combs = this.props.history[ this.props.history.length-1 ].combatants;
+        const player1Id = Object.keys(combs)[0];
+        const player2Id = Object.keys(combs)[1];
+
+        const submissions = [ /* Submission models */
+            getSmartAttack(combs[player1Id], combs[player2Id], {}, null, null),
+            getSmartAttack(combs[player2Id], combs[player1Id], {}, null, null)
+        ];
+
+        /* RUN 1 TURN */
+
+            const result = executeTurn(submissions);
+            //FOR NOW
+            setBattleValue({
+                history: [
+                    ...this.props.history,
+                    result.nextState
+                ],
+                turnRolloutHistoryEntries: [
+                    ...this.props.turnRolloutHistoryEntries,
+                    {
+                        turnId: this.props.turnRolloutHistoryEntries.length,
+                        steps:result.rolloutSteps
+                    }
+                ],
+                devTimeTravelTurn: this.props.devTimeTravelTurn+1
+            });
+
+        //For wholeBattleButton
+        return result;
+    }
+
+    handleSmartTurnClick() {
+        this.runSmartTurn();
+    }
+
+    handleRunActionsClick() {
         const combs = this.props.history[ this.props.history.length-1 ].combatants;
         const player1Id = Object.keys(combs)[0];
         const player2Id = Object.keys(combs)[1];
@@ -65,31 +98,25 @@ class TurnControls extends React.Component {
 
         /* RUN 1 TURN */
 
-            const result = executeTurn(submissions);
-            //FOR NOW
-            setBattleValue({
-                history: [
-                    ...this.props.history,
-                    result.nextState
-                ],
-                turnRolloutHistoryEntries: [
-                    ...this.props.turnRolloutHistoryEntries,
-                    {
-                        turnId: this.props.turnRolloutHistoryEntries.length,
-                        steps:result.rolloutSteps
-                    }
-                ],
-                devTimeTravelTurn: this.props.devTimeTravelTurn+1
-            });
-
-        //For wholeBattleButton
-        return result;
-
+        const result = executeTurn(submissions);
+        //FOR NOW
+        setBattleValue({
+            history: [
+                ...this.props.history,
+                result.nextState
+            ],
+            turnRolloutHistoryEntries: [
+                ...this.props.turnRolloutHistoryEntries,
+                {
+                    turnId: this.props.turnRolloutHistoryEntries.length,
+                    steps:result.rolloutSteps
+                }
+            ],
+            devTimeTravelTurn: this.props.devTimeTravelTurn+1
+        });
     }
 
-    handleClick() {
-        this.runTurn();
-    }
+
 
     renderActions(model) {
         const options = [
@@ -151,10 +178,14 @@ class TurnControls extends React.Component {
         return (
            <div>
                <button onClick={::this.runWholeBattle}>Run Whole Battle</button>
-               <button onClick={::this.handleClick}>Run Turn</button>
+               <button onClick={::this.handleSmartTurnClick}>Run Smart Turn</button>
+               <hr/>
                <div>
-                   {this.renderCombForm(player1Id)}
-                   {this.renderCombForm(player2Id)}
+                   <button onClick={::this.handleRunActionsClick}>Run Actions</button>
+                   <div>
+                       {this.renderCombForm(player1Id)}
+                       {this.renderCombForm(player2Id)}
+                   </div>
                </div>
            </div>
         );

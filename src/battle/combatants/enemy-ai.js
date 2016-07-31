@@ -9,7 +9,7 @@ export function getSmartAttack(casterState, targetState, aiProperties={}, useDir
     const casterModel = new CombatantModel( casterState );
     const targetModel = new CombatantModel( targetState );
 
-    if (casterModel.isComputerControlled) {
+    if (casterModel.isComputerControlled && !useDirectActionId) {
         const smartAttack = getTraitPathChoice(casterModel.computerAiTraits, casterModel, targetModel);
         const action = Actions[smartAttack.actionId];
 

@@ -40,10 +40,10 @@ export default {
 
     isComputerControlled: false,
     computerAiTraits: {
-        vicious: 0,
-        protective: 0,
-        cursing: 0,
-        conservative: 0
+        vicious: 1,
+        protective: 1,
+        cursing: 1,
+        conservative: 1
     },
     animation: "initial"
 };

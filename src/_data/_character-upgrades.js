@@ -44,12 +44,12 @@ export default {
     //},
 
     /* Danger Meter */
-    "character-upgrade-005-i": {
+    "character-upgrade-005-i": { /* Implemented! */
         ...upgradeSchema,
         name: "Dangerous I",
         description: "Decrease Danger Meter threshold to 65%"
     },
-    "character-upgrade-005-ii": {
+    "character-upgrade-005-ii": { /* Implemented! */
         ...upgradeSchema,
         name: "Dangerous II",
         description: "Decrease Danger Meter threshold to 55%"

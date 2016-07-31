@@ -16,7 +16,7 @@ export default function(participantIds=[], doneCallback, GeneratedCombatants) {
 
         const matchup = remainingMatchups[0];
 
-        console.log(matchup)
+        console.log(matchup);
 
         function getResult(currentResults = []) {
             if (currentResults.length < 10) {
