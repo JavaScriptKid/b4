@@ -304,6 +304,42 @@ export default {
                 }
             ]
         }
+    },
+
+
+    /* Scope Bomb */
+    "attack-009-a": {
+        ...attackSchema,
+        name: "Scope Bomb",
+        animation: "tada",
+        description: "Extra effective against a deadline",
+        affectTargetHpPoints: -4,
+        statusMultiplier: ["deadline", 2],
+        ppCost: 5,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+
+            let queue = [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} dropped a Scope Bomb!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                }
+            ];
+
+            //Add an extra message if it was Super Effective
+            if (actionDescription.wasSuperEffective) {
+                queue.push({
+                        type: "message",
+                        content: [`It was extra painful!`]
+                    })
+            }
+
+            return [...queue]
+        }
     }
 
 }

@@ -43,12 +43,22 @@ export function getRegularAttackChanges(action, casterModel, targetModel, curren
             // Point based strike
             if (action.affectTargetHpPoints != 0) {
                 /* TODO: This function still needs to be balanced according to actual character Stats. Right now, everything is 0 */
-                changes["affectTargetHp"] = casterModel.attackRoll(
+
+
+                let attackRoll = casterModel.attackRoll(
                     action.affectTargetHpPoints,
                     targetModel.defenseRating,
                     targetModel.status,
                     action
                 );
+
+                /* Status multiplier. EX: Scope Bomb is more effective against Deadline */
+                if (action.statusMultiplier && targetModel.status == action.statusMultiplier[0]) {
+                    attackRoll = Math.round( attackRoll * action.statusMultiplier[1]);
+                    changes["wasSuperEffective"] = true
+                }
+
+                changes["affectTargetHp"] = attackRoll;
             }
             // Percentage based strike
             if (action.affectTargetHpPointsByPercent != 0) {

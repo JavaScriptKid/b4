@@ -26,6 +26,7 @@ export const allAttacks = [
     "attack-005-c",
 
     "attack-008-a",
+    "attack-009-a",
 
     "attack-special-008-a",
     "attack-special-007-a",

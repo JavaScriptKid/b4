@@ -27,6 +27,9 @@ export default {
     affectCasterSpecialPoints: 0,
     affectCasterAccuracyPoints: 0,
 
+    //Status multiplier
+    statusMultiplier: null, //[status, rate] EX: ["deadline", 1.5]
+
     //Item stats
     itemValue: 0,
     itemMalfunctionChance: 0,
@@ -52,6 +55,12 @@ export default {
     customSuccessStep: null, //function,
     customMissStep: null, //function,
     customFailStep: null, //function,
+
+    //Time Travel
+    changeCasterCommittedData: false,
+    clearTargetCommittedData: false,
+    useCasterCommittedData: false,
+
 
     getFail: function() {
         return false
