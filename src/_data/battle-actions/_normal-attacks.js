@@ -113,11 +113,41 @@ export default {
         ...attackSchema,
         name: "ForEach",
         animation: "tada", //"iterate",
-        description: "Hits the enemy 2 to 5 times with wildcard damage",
+        description: "Hits the enemy 2 to 4 times with wildcard damage",
         affectTargetHpPoints: -5,
-        repetitions: [2,5],
+        repetitions: [2,4],
         repetitionType: "random",
         ppCost: 5,
+        increaseDangerMeter: 0.17,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
+        }
+    },
+    /* forEach Mk II */
+    "attack-003-b": {
+        ...attackSchema,
+        name: "ForEach Mk II",
+        animation: "tada", //"iterate",
+        description: "Hits the enemy 3 to 5 times with stronger wildcard damage",
+        affectTargetHpPoints: -7,
+        repetitions: [3,5],
+        repetitionType: "random",
+        ppCost: 8,
+        increaseDangerMeter: 0.17,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
+        }
+    },
+    /* forEach Mk III */
+    "attack-003-c": {
+        ...attackSchema,
+        name: "ForEach Mk III",
+        animation: "tada", //"iterate",
+        description: "Hits the enemy 4 to 6 times with stronger wildcard damage",
+        affectTargetHpPoints: -9,
+        repetitions: [4,6],
+        repetitionType: "random",
+        ppCost: 11,
         increaseDangerMeter: 0.17,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
@@ -127,28 +157,80 @@ export default {
     /* map */
     "attack-004-a": {
         ...attackSchema,
-        name: "MapArray",
+        name: "Map",
         animation: "tada", // "iterate",
-        description: "Hits the enemy 2 to 5 times with consistent damage",
+        description: "Hits the enemy 2 to 4 times with consistent damage",
         affectTargetHpPoints: -5,
-        repetitions: [2,5],
+        repetitions: [2,4],
         repetitionType: "map",
         ppCost: 5,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
         }
     },
+    "attack-004-b": {
+        ...attackSchema,
+        name: "Map Mk II",
+        animation: "tada", // "iterate",
+        description: "Hits the enemy 3 to 5 times with consistent damage",
+        affectTargetHpPoints: -6,
+        repetitions: [3,5],
+        repetitionType: "map",
+        ppCost: 7,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
+        }
+    },
+    "attack-004-c": {
+        ...attackSchema,
+        name: "Map Mk III",
+        animation: "tada", // "iterate",
+        description: "Hits the enemy 4 to 6 times with consistent damage",
+        affectTargetHpPoints: -7,
+        repetitions: [4,6],
+        repetitionType: "map",
+        ppCost: 9,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
+        }
+    },
 
-    /* reduce */
+    /* Reduce */
     "attack-005-a": {
         ...attackSchema,
-        name: "ReduceArray",
+        name: "Reduce",
         animation: "tada", //: "iterate",
-        description: "Hits the enemy 2 to 5 times with increasing damage",
+        description: "Hits the enemy 2 to 4 times with increasing damage",
         affectTargetHpPoints: -5,
-        repetitions: [2,5],
+        repetitions: [2,4],
         repetitionType: "reduce",
         ppCost: 5,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
+        }
+    },
+    "attack-005-b": {
+        ...attackSchema,
+        name: "Reduce Mk II",
+        animation: "tada", //: "iterate",
+        description: "Hits the enemy 3 to 5 times with increasing damage",
+        affectTargetHpPoints: -6,
+        repetitions: [3,5],
+        repetitionType: "reduce",
+        ppCost: 7,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
+        }
+    },
+    "attack-005-c": {
+        ...attackSchema,
+        name: "Reduce Mk III",
+        animation: "tada", //: "iterate",
+        description: "Hits the enemy 3 to 6 times with increasing damage",
+        affectTargetHpPoints: -7,
+        repetitions: [3,6],
+        repetitionType: "reduce",
+        ppCost: 9,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return getIteratingSuccessMessage(action, casterModel, targetModel, actionDescription, nextState)
         }

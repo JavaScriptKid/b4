@@ -19,17 +19,16 @@ export default {
  // TODO: Preloaded Mk II
  // TODO: Preloaded Mk III
  // TODO: forEach
- TODO: forEach Mk II
- TODO: for Each Mk III
+ // TODO: forEach Mk II
+ // TODO: for Each Mk III
  // TODO: map
- TODO: map Mk II
- TODO: map Mk III
+ // TODO: map Mk II
+ // TODO: map Mk III
  // TODO: reduce
- TODO: reduce Mk II
- TODO: reduce Mk III
+ // TODO: reduce Mk II
+ // TODO: reduce Mk III
  // TODO: Curl
  // TODO: Curl Mk II
- TODO: Curl Mk III ?
  // TODO: Steal-and-Use (needs a name)
  // TODO: Promise
  // TODO: -Promise resolve
