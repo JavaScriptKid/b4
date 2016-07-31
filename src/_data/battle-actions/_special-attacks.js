@@ -438,7 +438,31 @@ export default {
                 }
             ]
         }
+    },
+    // ... REVERT GOES HERE ... //attack-special-011-b
+    /* Stash */
+    "attack-special-011-c": {
+        ...specialAttackSchema,
+        name: "Stash",
+        ppCost: 7,
+        description: "Destroys opponent's Commit",
+        clearTargetCommittedTurnIndex: true,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return targetState.committedTurnIndex == -1
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} cleared ${targetState.name}'s Commit!`
+                    ]
+                }
+            ]
+        }
     }
+
 
 
 

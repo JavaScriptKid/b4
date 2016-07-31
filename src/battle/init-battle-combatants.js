@@ -4,10 +4,6 @@ import initialCombatantProperties from './initial-combatant-properties'
 
 import makeId from '../helpers/make-id'
 
-//Dev only: seed these characters with all possible attacks
-//import normalAttacks from '../_data/battle-actions/_normal-attacks'
-//import specialAttacks from '../_data/battle-actions/_special-attacks'
-
 
 export default function(c1, c2) {
 
