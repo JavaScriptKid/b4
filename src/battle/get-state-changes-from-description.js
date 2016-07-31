@@ -19,6 +19,8 @@ export function getStateChangesFromDescription(dObj, currentState) {
         //Hp
         {forId: dObj["casterId"], descriptionProp: "affectCasterHp", stateProp: "hp", addToOld: true},
         {forId: dObj["targetId"], descriptionProp: "affectTargetHp", stateProp: "hp", addToOld: true},
+        {forId: dObj["casterId"], descriptionProp: "blanketSetCasterHp", stateProp: "hp", addToOld: false},
+        {forId: dObj["targetId"], descriptionProp: "blanketSetTargetHp", stateProp: "hp", addToOld: false},
 
         //Status
         {forId: dObj["casterId"], descriptionProp: "affectCasterStatus", stateProp: "status", addToOld: false},
@@ -33,8 +35,10 @@ export function getStateChangesFromDescription(dObj, currentState) {
         {forId: dObj["targetId"], descriptionProp: "targetDangerMeter", stateProp: "dangerMeter", addToOld: false},
 
         //Time Travel casterCommittedTurnIndex
-        {forId: dObj["casterId"], descriptionProp: "casterCommittedTurnIndex", stateProp: "committedTurnIndex", addToOld: false},
-        {forId: dObj["targetId"], descriptionProp: "targetCommittedTurnIndex", stateProp: "committedTurnIndex", addToOld: false}
+        {forId: dObj["casterId"], descriptionProp: "casterCommitData", stateProp: "committedTurnData", addToOld: false},
+        {forId: dObj["targetId"], descriptionProp: "targetCommitData", stateProp: "committedTurnData", addToOld: false}
+
+
 
     ].forEach( prop => {
         if (Object.keys( dObj ).indexOf(prop.descriptionProp) > -1 ) {

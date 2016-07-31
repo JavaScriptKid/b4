@@ -12,11 +12,10 @@ import {getUpdatedItemsList} from './calculations/updated-items-list'
 import {getDangerMeter} from './calculations/danger-meter'
 import {getRevertChanges} from './calculations/revert'
 
-export function getStepDescriptionObject(action, casterModel, targetModel, currentTurnIndex) {
+export function getStepDescriptionObject(action, casterModel, targetModel) {
     let changes = {
         casterId: casterModel.id,
         targetId: targetModel.id,
-        currentTurnIndex: currentTurnIndex,
         isCasterComputerControlled: casterModel.isComputerControlled //animations like to know this
     };
 

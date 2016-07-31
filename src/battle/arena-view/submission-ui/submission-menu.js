@@ -73,7 +73,7 @@ class SubmissionMenu extends React.Component {
         const pageRightModel = {
             labelText: null,
             supportText: null,
-            customClasses: isLastPage ? "invisible" : "",
+            customClasses: "", //isLastPage ? "invisible" : "",
             handleEnter() {
                 setBattleValue({
                     menuOptionIndex: menuOptionIndex + 4

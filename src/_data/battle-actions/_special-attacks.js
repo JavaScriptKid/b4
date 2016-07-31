@@ -415,7 +415,7 @@ export default {
         }
     },
 
-
+    /* ------------------- TIME TRAVEL -------------------------------------------- */
     /* Commit */
     "attack-special-011-a": {
         ...specialAttackSchema,
@@ -423,7 +423,7 @@ export default {
         ppCost: 1,
         description: "Bookmarks health and statuses of all combatants",
         speedModifier: 950, /* Should be faster than Items */
-        changeCasterCommittedTurnIndex: true,
+        changeCasterCommittedData: true,
         getFail: function(action, casterState, targetState, currentChanges) {
             return false; //TODO
         },
@@ -439,16 +439,39 @@ export default {
             ]
         }
     },
-    // ... REVERT GOES HERE ... //attack-special-011-b
+
+    /* Revert */
+    "attack-special-011-b": {
+        ...specialAttackSchema,
+        name: "Revert",
+        ppCost: 10,
+        description: "Reverts battle status to saved Commit",
+        useCasterCommittedData: true,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.committedTurnData === null
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} reverted the battle to a saved Commit!`
+                    ]
+                }
+            ]
+        }
+    },
+
     /* Stash */
     "attack-special-011-c": {
         ...specialAttackSchema,
         name: "Stash",
         ppCost: 7,
         description: "Destroys opponent's Commit",
-        clearTargetCommittedTurnIndex: true,
+        clearTargetCommittedData: true,
         getFail: function(action, casterState, targetState, currentChanges) {
-            return targetState.committedTurnIndex == -1
+            return targetState.committedTurnData === null
         },
         customSuccessStep(action, casterState, targetState, currentChanges) {
             return [

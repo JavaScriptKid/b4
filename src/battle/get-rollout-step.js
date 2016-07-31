@@ -14,7 +14,7 @@ export function getRolloutStep(subaction, state) {
 
     const casterModel = new CombatantModel(state.combatants[subaction.casterId]);
     const targetModel = new CombatantModel(state.combatants[subaction.targetId]);
-    const currentTurnIndex = state.currentTurnIndex;
+
 
     const actionId = getReplacedActionIdMiddleware(subaction.actionId, casterModel);
     const action = {
@@ -39,7 +39,7 @@ export function getRolloutStep(subaction, state) {
 
 
 
-    const stepDescriptionObject = getStepDescriptionObject(action, casterModel, targetModel, currentTurnIndex);
+    const stepDescriptionObject = getStepDescriptionObject(action, casterModel, targetModel);
     const stateChanges = getStateChangesFromDescription(stepDescriptionObject, state.combatants);
     const cloudQueue = getUpdatedCloudQueue(stepDescriptionObject, state.cloudQueue);
     const nextState = getMergedCombatantState({

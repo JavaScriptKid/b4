@@ -17,7 +17,7 @@ var RootComponent = React.createClass({
         //Seed the battle
         initBattleCombatants(
             Combatants["player"],
-            Combatants["knight"]
+            Combatants["meatsim"]
         );
 
     },

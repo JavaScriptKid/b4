@@ -25,7 +25,7 @@ export default {
     maxDangerMeter: 100,
     dangerMeter: 0,
 
-    committedTurnIndex: -1,
+    committedTurnData: null, //object
 
     status: "normal", /* normal, memory-leak, lag, fire */
     healthStatPoints: 0,
