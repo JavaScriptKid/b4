@@ -6,7 +6,10 @@ import {runEaseOut} from '../helpers/run-ease-out'
 import {sfxBabum} from '../_data/_sfx'
 
 
-export function gradualStateChange(newState) {
+export function gradualStateChange(rawNewState) {
+
+    const newState = removeAnimationFromState(rawNewState);
+    //console.log('nS', newState)
 
     //1. Find the diffs that we should gradually change (like HP) and do that.
     const history = store.getState().battle.history;
@@ -81,22 +84,36 @@ export function gradualStateChange(newState) {
 
 function blanketApply(newState) {
 
-
-
-
-    //BUGFIX: Don't blanket apply Animation. Maybe this should be moved to the thing that gives us new state?
-    var newCombatantState = {}; //newState.combatants;
-    for (var combId in newState.combatants) {
-        let model = {...newState.combatants[combId]};
-        delete model.animation;
-        newCombatantState[combId] = {...model};
-    }
-
-    const updatedState = {
-        ...newState,
-        combatants: {...newCombatantState}
-    };
+    const updatedState = removeAnimationFromState(newState);
 
     setLatestHistory(updatedState);
     doStep(); //move forward to the next step
 }
+
+
+export function removeAnimationFromState(newState) {
+
+    const history = store.getState().battle.history;
+    const currentState = history[history.length-1];
+
+
+    //Don't blanket apply Animation. Use the previous animation value.
+    var newCombatantState = {};
+    for (var combId in newState.combatants) {
+        let model = {...newState.combatants[combId]};
+
+        const currentAnimation = currentState.combatants[combId].animation;
+
+        //model.animation = currentState.combatants[combId].animation; //Carries over animation from previous state
+
+        model.animation = currentAnimation.match(/blink/) ? "initial" : currentAnimation;
+
+        newCombatantState[combId] = {...model};
+    }
+
+    return {
+        ...newState,
+        combatants: {...newCombatantState}
+    };
+}
+

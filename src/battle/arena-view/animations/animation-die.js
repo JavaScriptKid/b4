@@ -19,6 +19,8 @@ class AnimationDie extends React.Component {
                 currentAnimation: null
             });
 
+
+
             setTimeout(function() {
                 doStep();
             }, 200); /* LEGACY - Pause for a bit when animation ends */

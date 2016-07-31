@@ -2,6 +2,7 @@ import store from '../../init/store'
 import {setCombatantValue} from '../../redux-action-creators/battle-action-creators'
 
 export function turnCombatantsForSubmissions() {
+
     const history = store.getState().battle.history;
     const combs = history[history.length-1].combatants;
 

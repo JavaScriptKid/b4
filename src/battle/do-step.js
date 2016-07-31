@@ -1,9 +1,11 @@
 import store from '../init/store'
 import {setBattleValue, setLatestHistory, setCombatantValue} from '../redux-action-creators/battle-action-creators'
-import {gradualStateChange} from './gradual-state-change'
+import {gradualStateChange, removeAnimationFromState} from './gradual-state-change'
 import {turnCombatantsForSubmissions} from './arena-view/turn-combatants'
 import {getDeadCombatantId} from './get-dead-combatant-id'
 import {getWinningCombatantId} from './get-winning-combatant-id'
+
+
 
 export function doStep() {
     const rollout = store.getState().battle.rollout;
@@ -55,7 +57,6 @@ export function doStep() {
 
     if (nowStep.type == "stateChange") {
         gradualStateChange(nowStep.newState);
-        //setLatestHistory(nowStep.newState)
     }
 
 }
@@ -74,7 +75,7 @@ var handleEndOfTurn = function() {
         //submissions: [],
         history: [
             ...history,
-            result.nextState
+            removeAnimationFromState(result.nextState)
         ],
         turnRolloutHistoryEntries: [
             ...turnRolloutHistoryEntries,
@@ -85,6 +86,7 @@ var handleEndOfTurn = function() {
         ],
         devTimeTravelTurn: devTimeTravelTurn+1
     });
+
 
     //Is the battle over?
     if ( getDeadCombatantId(result.nextState) ) {
@@ -103,7 +105,6 @@ var handleEndOfTurn = function() {
 
 
 var handleEndOfBattle = function(nextState) {
-    console.log('BATTLE IS OVER');
 
     const winnerId = getWinningCombatantId(nextState);
     const loserId = getDeadCombatantId(nextState);
@@ -115,4 +116,9 @@ var handleEndOfBattle = function(nextState) {
             `${winnerProperties.name} is the winner`
         ]
     });
+    setCombatantValue(winnerId, {
+        animation: "celebrate 2s infinite"
+    });
+
+
 };

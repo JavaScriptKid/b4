@@ -18,7 +18,6 @@ export function addSubmission(submissionModel) {
     /* EXECUTE THE TURN IF ALL ARE IN */
     if (store.getState().battle.submissions.length == 2) {
         const result = executeTurn(store.getState().battle.submissions);
-        //console.log(result);
 
         /* populate the Rollout Log with the steps! */
         setBattleValue({
