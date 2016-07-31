@@ -102,10 +102,9 @@ export function removeAnimationFromState(newState) {
     for (var combId in newState.combatants) {
         let model = {...newState.combatants[combId]};
 
+
+        //Carries over animation from previous state, but reset if it is "blink"
         const currentAnimation = currentState.combatants[combId].animation;
-
-        //model.animation = currentState.combatants[combId].animation; //Carries over animation from previous state
-
         model.animation = currentAnimation.match(/blink/) ? "initial" : currentAnimation;
 
         newCombatantState[combId] = {...model};

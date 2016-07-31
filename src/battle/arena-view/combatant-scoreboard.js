@@ -155,8 +155,6 @@ class CombatantScoreboard extends React.Component {
             backgroundImage: `url(${me.skin})`,
         };
 
-
-
         return (
            <div className="scoreboard" style={scoreboardStyle}>
                     <div className="scoreboard_avatar-container">
@@ -175,7 +173,7 @@ class CombatantScoreboard extends React.Component {
                             </span>
                         </div>
                         <div>
-                            <Lifebar part={me.hp} whole={me.maxHp} vW={baseUnit}/>
+                            <Lifebar isPlayer={!me.isComputerControlled} part={me.hp} whole={me.maxHp} vW={baseUnit}/>
                             {this.renderDanger(me)}
                         </div>
                         {this.renderAlignment(me)}

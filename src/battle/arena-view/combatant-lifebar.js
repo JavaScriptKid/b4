@@ -50,6 +50,21 @@ class Lifebar extends React.Component {
             background: this.getColorStyle(percent)
         };
 
+        const hpIndicatorStyle = {
+            position: "absolute",
+            top: "96%",
+            left: baseUnit * 0.3,
+            padding: baseUnit * 0.3,
+            fontSize: baseUnit * 1.4,
+            background: "#222",
+            color:"#FFF"
+        };
+
+        const indicator = this.props.isPlayer ? (
+            <div style={hpIndicatorStyle}>
+                {this.props.part}/{this.props.whole}
+            </div>
+        ) : null;
 
 
         return (
@@ -57,6 +72,7 @@ class Lifebar extends React.Component {
                <div style={fillContainerStyle}>
                    <div style={fillStyle} />
                </div>
+               {indicator}
            </div>
         );
     }
