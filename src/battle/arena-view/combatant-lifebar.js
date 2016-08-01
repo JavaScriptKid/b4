@@ -52,17 +52,19 @@ class Lifebar extends React.Component {
 
         const hpIndicatorStyle = {
             position: "absolute",
-            top: "96%",
-            left: baseUnit * 0.3,
+            top: "110%",
+            left: percent > 0 ? `${percent}%` : "0%",
+            transform: "translateX(-50%)",
             padding: baseUnit * 0.3,
             fontSize: baseUnit * 1.4,
             background: "#222",
             color:"#FFF"
         };
 
+        const displayNumber = this.props.part >= 0 ? this.props.part : 0;
         const indicator = this.props.isPlayer ? (
             <div style={hpIndicatorStyle}>
-                {this.props.part}/{this.props.whole}
+                {displayNumber}/{this.props.whole}
             </div>
         ) : null;
 

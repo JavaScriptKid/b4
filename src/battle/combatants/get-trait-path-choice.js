@@ -51,6 +51,7 @@ var getActionFromPathTrait = function(chosenTrait="", casterModel, targetModel) 
     if (!result) {
         //console.log('falling back to a random one')
     }
+
     return result || randomAiPath(casterModel, targetModel);
 };
 

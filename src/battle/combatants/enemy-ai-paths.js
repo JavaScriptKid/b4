@@ -189,5 +189,10 @@ export function findRandomAttack(combatantModel) {
         const model = Actions[id];
         return model.type == "Normal";
     });
+
+    if (available.length == 0) {
+        return "attack-000-a"; //Couldn't find any to use, so use Insult
+    }
+
     return randomFromArray(available);
 }
