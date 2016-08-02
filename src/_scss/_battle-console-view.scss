@@ -7,6 +7,8 @@
         &._flex-row-top {
             align-items: flex-start;
         }
+        .static { padding-right:1em;}
+        .flexer { padding-left:1em; flex:1;}
     }
     ._c50 {
         width: calc(50%);
@@ -117,30 +119,25 @@
         .tab {
             padding:0.5em 1em;
             border:1px solid #ccc;
-            border-bottom:0;
+            &:not(:last-of-type) {
+            border-right: 0;
+            }
             text-decoration:none;
             color:#000;
-            &:not(:last-of-type) {
-                border-right: 0;
+            position:relative;
+
+            &:hover {
+                cursor:pointer;
             }
+
             &.active-tab {
                 color: #4A90E2;
-                position:relative;
-                &:after {
-                    content: '';
-                    position:absolute;
-                    bottom:-2px;
-                    left:0;
-                    right:0;
-                    background:white;
-                    height:3px;
-                }
             }
         }
     }
     .card-tab-body {
-        border:1px solid #ccc;
-        padding: 1em;
+        //border:1px solid #ccc;
+        padding-top: 1em;
     }
 
 }

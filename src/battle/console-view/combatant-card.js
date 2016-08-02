@@ -45,13 +45,10 @@ class CombatantCard extends React.Component {
         });
     }
 
-    renderStatus() {
+    renderCurrentState() {
         const me = this.props.combatant;
         return (
             <div>
-                <div className="combatant-card-section-label">
-                    Stats
-                </div>
                 <div>
                     <label>HP</label>
                     <span>{me.hp}</span>/<span>{me.maxHp}</span>
@@ -145,9 +142,6 @@ class CombatantCard extends React.Component {
         const model = this.props.combatant;
         return (
             <div className="combatant-card-section">
-                <div className="combatant-card-section-label">
-                    Character
-                </div>
                 <div>
                     <label>Name</label>
                     <input onChange={::this.handleChange} value={model.name} ref="name"/>
@@ -194,9 +188,6 @@ class CombatantCard extends React.Component {
     }
 
 
-    renderTab() {
-
-    }
 
     getTabClass(tabId) {
         if (this.state.activeTab == tabId) {
@@ -211,6 +202,44 @@ class CombatantCard extends React.Component {
         })
     }
 
+    renderTab() {
+        if (this.state.activeTab == "char") {
+            return (
+                <div className="combatant-card-section _flex-row _flex-row-top">
+                    <div className="_c50">
+                        {this.renderCharacterInfo()}
+                    </div>
+                    <div className="_c50">
+                        {this.renderStatsInfo()}
+                    </div>
+                </div>
+            );
+        }
+        if (this.state.activeTab == "state") {
+            return this.renderCurrentState();
+        }
+        if (this.state.activeTab == "alignment") {
+            return (
+                <div className="combatant-card-section _flex-row _flex-row-top">
+                    <div className="static">
+                        {this.renderAlignmentInfo()}
+                    </div>
+                    <div className="flexer">
+                        <div className="combatant-card-section-label">Add Part</div>
+                        <CombatantLaptopUpgradeList combatantId={this.props.combatantId}/>
+                    </div>
+                </div>
+            )
+        }
+        if (this.state.activeTab == "upgrades") {
+            return (
+                <div className="combatant-card-section">
+                    <CharacterUpgradeChecklist combatantId={this.props.combatantId}/>
+                </div>
+            )
+        }
+
+    }
     render() {
         const model = this.props.combatant;
         return (
@@ -220,41 +249,16 @@ class CombatantCard extends React.Component {
                 </div>
                 <div>
                     <div className="card-tab-group">
-                        <a href="#" onClick={::this.changeTab("char")} className={this.getTabClass("char")}>CHAR</a>
-                        <a href="#" onClick={::this.changeTab("state")} className={this.getTabClass("state")}>STATE</a>
-                        <a href="#" onClick={::this.changeTab("stats")} className={this.getTabClass("stats")}>STATS</a>
-                        <a href="#" onClick={::this.changeTab("alignment")} className={this.getTabClass("alignment")}>ALIGNMENT</a>
-                        <a href="#" onClick={::this.changeTab("upgrades")} className={this.getTabClass("upgrades")}>UPGRADES</a>
+                        <div onClick={::this.changeTab.bind(this, "char")} className={this.getTabClass("char")}>CHAR</div>
+                        <div onClick={::this.changeTab.bind(this, "state")} className={this.getTabClass("state")}>STATE</div>
+                        <div onClick={::this.changeTab.bind(this, "alignment")} className={this.getTabClass("alignment")}>ALIGNMENT</div>
+                        <div onClick={::this.changeTab.bind(this, "upgrades")} className={this.getTabClass("upgrades")}>UPGRADES</div>
                     </div>
                     <div className="card-tab-body">
-                        HEY
-                    </div>
-
-
-                    <div className="combatant-card-section">
-                        {this.renderCharacterInfo()}
-                    </div>
-                    <div className="combatant-card-section">
-                        {this.renderStatus()}
-                    </div>
-                    <div className="combatant-card-section _flex-row _flex-row-top">
-                        <div className="_c50">
-                            {this.renderStatsInfo()}
-                        </div>
-                        <div className="_c50">
-                            {this.renderAlignmentInfo()}
-                        </div>
-                    </div>
-                    <div className="combatant-card-section">
-                        <div className="combatant-card-section-label">Laptop Upgrades</div>
-                        <CombatantLaptopUpgradeList combatantId={this.props.combatantId}/>
-                    </div>
-                    <div className="combatant-card-section">
-                        <div className="combatant-card-section-label">Character Upgrade</div>
-                        <CharacterUpgradeChecklist combatantId={this.props.combatantId}/>
+                        {this.renderTab()}
                     </div>
                 </div>
-            </div >
+            </div>
         );
     }
 }
