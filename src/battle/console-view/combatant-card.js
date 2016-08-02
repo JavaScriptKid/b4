@@ -9,25 +9,28 @@ import {getAlignmentByUpgrades} from '../get-alignment-by-upgrades'
 
 @connect((state, props) => {
 
-    //assumes only 2 combatants
     const otherCombatantId = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants).find(id => {
         return id != props.combatantId
     });
 
     return {
-        //combatant: state.battle.combatants[props.combatantId] || {},
-        //opponentCombatant: state.battle.combatants[otherCombatantId] || {}
-
         combatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[props.combatantId] || {},
-        opponentCombatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[otherCombatantId] || {},
-
+        opponentCombatant: state.battle.history[state.battle.devTimeTravelTurn].combatants[otherCombatantId] || {}
     }
 })
 
 class CombatantCard extends React.Component {
 
-    handleChange() {
+    constructor() {
+        super();
 
+        this.state = {
+            activeTab: "char"
+        }
+    }
+
+
+    handleChange() {
         const updatedCombatant = {
             ...this.props.combatant,
             name: this.refs.name.value,
@@ -191,6 +194,23 @@ class CombatantCard extends React.Component {
     }
 
 
+    renderTab() {
+
+    }
+
+    getTabClass(tabId) {
+        if (this.state.activeTab == tabId) {
+            return "tab active-tab"
+        }
+        return "tab"
+    }
+
+    changeTab(newTabId) {
+        this.setState({
+            activeTab: newTabId
+        })
+    }
+
     render() {
         const model = this.props.combatant;
         return (
@@ -199,6 +219,18 @@ class CombatantCard extends React.Component {
                     <div className="combatant-image" style={{backgroundImage: `url(${model.skin})`}}></div>
                 </div>
                 <div>
+                    <div className="card-tab-group">
+                        <a href="#" onClick={::this.changeTab("char")} className={this.getTabClass("char")}>CHAR</a>
+                        <a href="#" onClick={::this.changeTab("state")} className={this.getTabClass("state")}>STATE</a>
+                        <a href="#" onClick={::this.changeTab("stats")} className={this.getTabClass("stats")}>STATS</a>
+                        <a href="#" onClick={::this.changeTab("alignment")} className={this.getTabClass("alignment")}>ALIGNMENT</a>
+                        <a href="#" onClick={::this.changeTab("upgrades")} className={this.getTabClass("upgrades")}>UPGRADES</a>
+                    </div>
+                    <div className="card-tab-body">
+                        HEY
+                    </div>
+
+
                     <div className="combatant-card-section">
                         {this.renderCharacterInfo()}
                     </div>

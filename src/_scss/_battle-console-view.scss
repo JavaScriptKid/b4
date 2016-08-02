@@ -21,7 +21,7 @@
     }
 
     .col1 {
-        width: 450px;
+        width: 600px;
         margin-right:1em;
     }
     .col2 {
@@ -32,6 +32,7 @@
     .card {
         background:#fff;
         padding: 1em;
+        font-size: 14px;
         box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.23);
     }
     .combatant-card {
@@ -107,6 +108,39 @@
         button {
             font-size:0.7em;
         }
+    }
+
+
+    /* Tab Group */
+    .card-tab-group {
+        display:flex;
+        .tab {
+            padding:0.5em 1em;
+            border:1px solid #ccc;
+            border-bottom:0;
+            text-decoration:none;
+            color:#000;
+            &:not(:last-of-type) {
+                border-right: 0;
+            }
+            &.active-tab {
+                color: #4A90E2;
+                position:relative;
+                &:after {
+                    content: '';
+                    position:absolute;
+                    bottom:-2px;
+                    left:0;
+                    right:0;
+                    background:white;
+                    height:3px;
+                }
+            }
+        }
+    }
+    .card-tab-body {
+        border:1px solid #ccc;
+        padding: 1em;
     }
 
 }
