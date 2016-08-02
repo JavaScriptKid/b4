@@ -119,19 +119,21 @@
         .tab {
             padding:0.5em 1em;
             border:1px solid #ccc;
-            &:not(:last-of-type) {
-            border-right: 0;
-            }
-            text-decoration:none;
             color:#000;
             position:relative;
+            text-decoration:none;
+            background: #ebebeb;
 
+            &:not(:last-of-type) {
+                border-right: 0;
+            }
             &:hover {
                 cursor:pointer;
             }
 
             &.active-tab {
                 color: #4A90E2;
+                background:#fff;
             }
         }
     }

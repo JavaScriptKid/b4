@@ -25,7 +25,7 @@ class CombatantCard extends React.Component {
         super();
 
         this.state = {
-            activeTab: "char"
+            activeTab: "state"
         }
     }
 
