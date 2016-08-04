@@ -39,7 +39,8 @@ export default function(c1, c2) {
          //pp: initialComb1.pp || stats1.maxPp
         hp: stats1.maxHp,
         pp: stats1.maxPp,
-        //hp:1
+
+        dangerMeter: 99
     };
     combatants[id2] = {
         ...initialCombatantProperties,
@@ -49,6 +50,8 @@ export default function(c1, c2) {
         // pp: initialComb2.pp || stats2.maxPp
         hp: stats2.maxHp,
         pp: stats2.maxPp,
+
+        dangerMeter: 99
     };
 
 
