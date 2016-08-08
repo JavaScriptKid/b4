@@ -23,7 +23,7 @@ export default {
         ...actionSchema,
         animation: "tada", //animation: "sick-shake",
         dependentOnCasterStatus: "memory-leak",
-        affectTargetHpPointsByPercent: -0.07,
+        affectTargetHpPointsByPercent: -0.15,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
                 {
@@ -42,7 +42,7 @@ export default {
         ...actionSchema,
         animation: "tada", //"sick-shake",
         dependentOnCasterStatus: "fire",
-        affectTargetHpPointsByPercent: -0.15,
+        affectTargetHpPointsByPercent: -0.25,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
                 {

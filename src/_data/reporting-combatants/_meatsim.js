@@ -3,7 +3,7 @@ import {allAttacks} from './attack-loadouts'
 
 export default {
     computerAiTraits: {
-        vicious: 1,
+        vicious: 2,
         protective: 1,
         cursing: 1,
         conservative: 1,
@@ -12,7 +12,7 @@ export default {
 
     name: "MeatSim",
     simName: "meatsim",
-    level: 2,
+    level: 4,
     class: "captain",
     skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 
