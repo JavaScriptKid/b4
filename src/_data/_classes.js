@@ -9,9 +9,9 @@ const ClassSchema = {
 };
 
 const Presets = {
-    "fastHp": [2, 3, 3],
-    "standardHp": [2],
-    "slowHp": [2, 1, 1],
+    "fastHp": [4, 5, 5],
+    "standardHp": [4],
+    "slowHp": [4, 3, 3],
 
     "fastStat": [2, 2, 2, 1 ],
     "standardStat": [2,1],

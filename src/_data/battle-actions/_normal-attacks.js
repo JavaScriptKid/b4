@@ -60,7 +60,7 @@ export default {
         ...attackSchema,
         name: "Slice mk II",
         description: "Deep cuts than the original Slice",
-        affectTargetHpPoints: -9,
+        affectTargetHpPoints: -6,
         ppCost: 5
     },
 
@@ -69,7 +69,7 @@ export default {
         ...attackSchema,
         name: "Slice mk III",
         description: "Chops the enemy to bits. May lower enemy defense on impact.",
-        affectTargetHpPoints: -13,
+        affectTargetHpPoints: -8,
         ppCost: 6,
         //TODO
         affectTargetDefensePoints: {percentChance: 33.3, affectValue: -2}  /* MIGHT do this. 1/3 chance */
@@ -81,7 +81,7 @@ export default {
         ...attackSchema,
         name: "Preloaded",
         description: "Extremely fast attack",
-        affectTargetHpPoints: -7,
+        affectTargetHpPoints: -5,
         speedModifier: 6,
         ppCost: 5
     },
@@ -91,7 +91,7 @@ export default {
         ...attackSchema,
         name: "Preloaded mk II",
         description: "Even faster version of Preloaded",
-        affectTargetHpPoints: -14,
+        affectTargetHpPoints: -6,
         speedModifier: 8,
         ppCost: 7
     },
@@ -101,7 +101,7 @@ export default {
         ...attackSchema,
         name: "Preloaded mk II",
         description: "Fastest loader of them all. Reduces enemy speed.",
-        affectTargetHpPoints: -14,
+        affectTargetHpPoints: -7,
         //TODO
         affectTargetSpeedPoints: {percentChance: 33.3, affectValue: -3}, /* MIGHT do this. 1/3 chance */
         speedModifier: 10,
@@ -114,7 +114,7 @@ export default {
         name: "ForEach",
         animation: "tada", //"iterate",
         description: "Hits the enemy 2 to 4 times with wildcard damage",
-        affectTargetHpPoints: -5,
+        affectTargetHpPoints: -3,
         repetitions: [2,4],
         repetitionType: "random",
         ppCost: 5,
@@ -129,7 +129,7 @@ export default {
         name: "ForEach Mk II",
         animation: "tada", //"iterate",
         description: "Hits the enemy 3 to 5 times with stronger wildcard damage",
-        affectTargetHpPoints: -7,
+        affectTargetHpPoints: -3,
         repetitions: [3,5],
         repetitionType: "random",
         ppCost: 8,
@@ -144,7 +144,7 @@ export default {
         name: "ForEach Mk III",
         animation: "tada", //"iterate",
         description: "Hits the enemy 4 to 6 times with stronger wildcard damage",
-        affectTargetHpPoints: -9,
+        affectTargetHpPoints: -3,
         repetitions: [4,6],
         repetitionType: "random",
         ppCost: 11,
@@ -160,7 +160,7 @@ export default {
         name: "Map",
         animation: "tada", // "iterate",
         description: "Hits the enemy 2 to 4 times with consistent damage",
-        affectTargetHpPoints: -5,
+        affectTargetHpPoints: -3,
         repetitions: [2,4],
         repetitionType: "map",
         ppCost: 5,
@@ -173,7 +173,7 @@ export default {
         name: "Map Mk II",
         animation: "tada", // "iterate",
         description: "Hits the enemy 3 to 5 times with consistent damage",
-        affectTargetHpPoints: -6,
+        affectTargetHpPoints: -4,
         repetitions: [3,5],
         repetitionType: "map",
         ppCost: 7,
@@ -186,7 +186,7 @@ export default {
         name: "Map Mk III",
         animation: "tada", // "iterate",
         description: "Hits the enemy 4 to 6 times with consistent damage",
-        affectTargetHpPoints: -7,
+        affectTargetHpPoints: -5,
         repetitions: [4,6],
         repetitionType: "map",
         ppCost: 9,
@@ -244,7 +244,7 @@ export default {
         ...attackSchema,
         name: "Promise",
         description: "Send an attack in the air to strike later",
-        affectTargetHpPoints: -5,
+        affectTargetHpPoints: -1,
         speedModifier: 0,
         ppCost: 9,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
@@ -288,7 +288,7 @@ export default {
         ...attackSchema,
         name: "(Promise: resolve)",
         description: "",
-        affectTargetHpPoints: -25,
+        affectTargetHpPoints: -9,
         speedModifier: 0,
         ppCost: 0,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
@@ -313,7 +313,7 @@ export default {
         name: "Scope Bomb",
         animation: "tada",
         description: "Extra effective against a deadline",
-        affectTargetHpPoints: -4,
+        affectTargetHpPoints: -5,
         statusMultiplier: ["deadline", 2],
         ppCost: 5,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
