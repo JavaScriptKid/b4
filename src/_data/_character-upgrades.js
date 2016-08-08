@@ -56,15 +56,15 @@ export default {
     },
 
     /* Framework dynamics */
-    "character-upgrade-006-i": { //TODO
+    "character-upgrade-006-i": {
         ...upgradeSchema,
         name: "Weakless I",
-        description: "Decrease weakness of your strongest Framework by 15%"
+        description: "Decrease Framework weakness by 10%"
     },
-    "character-upgrade-006-ii": { //TODO
+    "character-upgrade-006-ii": {
         ...upgradeSchema,
         name: "Weakless II",
-        description: "Decrease weakness of your strongest Framework by 30%"
+        description: "Decrease Framework weakness by 20%"
     },
 
     /* Attack Interactions */
