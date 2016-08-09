@@ -25,16 +25,22 @@ export function CombatantModel(combatantState={}) {
             return base + deadlineBonus;
         },
 
-        attackRoll(actionDamageCount, targetDefenseRating, targetStatus, actionModel) {
+        attackRoll(actionDamageCount, targetDefenseRating, targetStatus, actionModel, targetModel) {
             //targetStatus, actionModel are in here for you to use later for specific variations
-            /* TODO: This function still needs to be balanced according to actual character Stats. Right now, everything is 0 */
-            //console.log(actionDamageCount, targetDefenseRating);
-
             const attackDamage = (this.attackRating * -1) + actionDamageCount;
             const defenseOffset = Math.round(targetDefenseRating / 2);
-            const result = attackDamage + defenseOffset; //attack Damage is a negative number
 
-            return (result < -1) ? result : -1;
+            let result = attackDamage + defenseOffset; //attack Damage is a negative number
+
+            /* Reduce result be decreased by Char upgrades */
+            /* 1. Oathbreaker upgrade */
+            if (actionModel.actionId == "attack-008-a-resolve") {
+                result = applyOathbreakerUpgrades(result, targetModel.characterUpgrades);
+            }
+
+
+
+            return (result < -1) ? result : -1; //Should be a negative number
         },
 
         /* Danger */
@@ -82,4 +88,26 @@ var getAvailableAttacks = function(combatantState={}) {
     });
 
     return available.length ? available : ["attack-000-a"]; /* Return just Insult if not enough PP for anything else */
+};
+
+
+/**
+ * Target Model reduces pain of a returning Promise
+ */
+
+var applyOathbreakerUpgrades = function(initialValue, targetUpgrades=[]) {
+    if (hasUpgrade("character-upgrade-007-iii", targetUpgrades)) {
+        //Reduce 50% - Oathbreaker III
+        return Math.round( initialValue * 0.5 );
+    }
+    if (hasUpgrade("character-upgrade-007-ii", targetUpgrades)) {
+        //Reduce 30% - Oathbreaker II
+        return initialValue - Math.round( initialValue * 0.3 );
+    }
+    if (hasUpgrade("character-upgrade-007-i", targetUpgrades)) {
+        //Reduce 15% - Oathbreaker I
+        return initialValue - Math.round( initialValue * 0.15 );
+    }
+
+    return initialValue;
 };

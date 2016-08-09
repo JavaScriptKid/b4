@@ -52,7 +52,8 @@ export function getRegularAttackChanges(action, casterModel, targetModel, curren
                     action.affectTargetHpPoints,
                     targetModel.defenseRating,
                     targetModel.status,
-                    action
+                    action,
+                    targetModel
                 );
 
                 /* Status multiplier. EX: Scope Bomb is more effective against Deadline */
