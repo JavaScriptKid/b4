@@ -13,7 +13,8 @@ class BattleDevViewSwitcher extends React.Component {
 
         setBattleValue({
             viewMode: "console"
-        })
+        });
+        localStorage.setItem("b4CurrentView", "console");
     }
 
     switchToArena(e) {
@@ -26,6 +27,7 @@ class BattleDevViewSwitcher extends React.Component {
         setBattleValue({
             viewMode: "battle"
         })
+        localStorage.setItem("b4CurrentView", "battle");
     }
 
     switchToReporting(e) {
@@ -34,6 +36,7 @@ class BattleDevViewSwitcher extends React.Component {
         setBattleValue({
             viewMode: "reporting"
         })
+        localStorage.setItem("b4CurrentView", "reporting");
     }
 
     render() {

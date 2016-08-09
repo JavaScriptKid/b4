@@ -5,6 +5,8 @@ const mockCurrentUser = {
     email: "drewconley@gmail.com",
 };
 
+const viewMode = localStorage.getItem("b4CurrentView") || "battle";
+
 const store = createStore({
     battle: {
         devTimeTravelTurn: 0,
@@ -35,7 +37,7 @@ const store = createStore({
         menuLevel: "", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
         menuOptionIndex: 1,
         selectedOptionId: "",
-        viewMode: "battle", //"console" || "battle" || "reporting"
+        viewMode: viewMode, //"console" || "battle" || "reporting"
 
         //Arena
         backgroundStyle: null
