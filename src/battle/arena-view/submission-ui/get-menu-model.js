@@ -1,4 +1,6 @@
 import Actions from '../../../_data/battle-actions'
+import MenuOptionSchema from './menu-option-schema'
+import {changeMenuPage} from './change-menu-page'
 
 export function getMenuModel(casterModel) {
 
@@ -7,9 +9,9 @@ export function getMenuModel(casterModel) {
 
     return {
 
-        canUseSuper: casterModel.isDangerMeterUsable(),
+        //canUseSuper: casterModel.isDangerMeterUsable(),
         structure: {
-            root: [],
+            root: getTopLevelMenu(casterModel),
             superCharge: [],
             attack: attack,
             special: special,
@@ -17,6 +19,57 @@ export function getMenuModel(casterModel) {
         }
     }
 }
+
+/* Utility for getting Top Level Menu */
+var getTopLevelMenu = function(casterModel) {
+    const superOption = {
+        ...MenuOptionSchema,
+        optionId: "root_super",
+        labelText: "SUPER CHARGE",
+        supportText: "...",
+        customClasses: "",
+        handleEnter() {
+            changeMenuPage(newMenuKey="superCharge");
+        }
+    };
+    const attackOption = {
+        ...MenuOptionSchema,
+        optionId: "root_attack",
+        labelText: "ATTACK",
+        supportText: "...",
+        customClasses: "",
+        handleEnter() {
+            changeMenuPage(newMenuKey="attack");
+        }
+    };
+    const specialOption = {
+        ...MenuOptionSchema,
+        optionId: "root_special",
+        labelText: "SPECIAL",
+        supportText: "...",
+        customClasses: "",
+        handleEnter() {
+            changeMenuPage(newMenuKey="special");
+        }
+    };
+    const itemOption = {
+        ...MenuOptionSchema,
+        optionId: "root_item",
+        labelText: "ITEM",
+        supportText: "...",
+        customClasses: "",
+        handleEnter() {
+            changeMenuPage(newMenuKey="item");
+        }
+    };
+
+    return [
+        casterModel.isDangerMeterUsable() ? superOption : null,
+        attackOption,
+        specialOption,
+        itemOption
+    ].filter( option => option !== null);
+};
 
 /* Utility for getting Type of actions */
 var filterActionsByType = function(actionList, type="", currentPp) {
