@@ -13,9 +13,9 @@ export function getMenuModel(casterModel) {
         structure: {
             root: getTopLevelMenu(casterModel),
             superCharge: [],
-            attack: attack,
-            special: special,
-            items: [...casterModel.items]
+            attack: attack.map((a,i) => generateOptionFromActionId(a, `attack_${a}_${i}`)),
+            special: special.map((a,i) => generateOptionFromActionId(a, `special_${a}_${i}`)),
+            items: [...casterModel.items].map((a,i) => generateOptionFromActionId(a, `item_${a}_${i}`))
         }
     }
 }
@@ -77,4 +77,19 @@ var filterActionsByType = function(actionList, type="", currentPp) {
         const model = Actions[aId];
         return model.type === type && currentPp >= model.ppCost;
     });
+};
+
+/* Utility for generating config for specific action */
+var generateOptionFromActionId = function(actionId, optionId) {
+    const model = Actions[actionId];
+    return {
+        ...MenuOptionSchema,
+        optionId: optionId,
+        labelText: model.name,
+        supportText: model.ppCost > 0 ? `PP ${model.ppCost}` : "",
+        customClasses: "",
+        handleEnter() {
+            console.log('SUBMIT!')
+        }
+    }
 };
