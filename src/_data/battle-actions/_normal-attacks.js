@@ -40,6 +40,7 @@ export default {
         animation: "tada",
         description: "When you have nothing left to lose",
         affectTargetHpPoints: -2,
+        bypassCasterAttackStats: true,
         ppCost: 0,
         increaseDangerMeter: 0
     },

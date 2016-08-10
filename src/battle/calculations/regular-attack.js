@@ -62,6 +62,13 @@ export function getRegularAttackChanges(action, casterModel, targetModel, curren
                     changes["wasSuperEffective"] = true
                 }
 
+                /* Bypass attack stat. EX: "Insult" */
+                if (action.bypassCasterAttackStats) {
+                    attackRoll = action.affectTargetHpPoints;
+                }
+
+
+
                 changes["affectTargetHp"] = attackRoll;
             }
             // Percentage based strike

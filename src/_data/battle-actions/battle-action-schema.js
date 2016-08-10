@@ -19,6 +19,8 @@ export default {
     affectTargetSpecialPoints: 0,
     affectTargetAccuracyPoints: 0,
 
+    bypassCasterAttackStats: false, //Don't let move use the Attack stat, like "Insult"
+
     affectCasterHpPoints: 0,
     affectCasterHpPointsByPercent: 0,
     affectCasterAttackPoints: 0,
