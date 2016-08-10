@@ -47,6 +47,9 @@ export default {
         name: "Mini Battery Pack",
         description: "Recovers 10 HP",
         affectCasterHpPoints: 10,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.hp == casterState.maxHp;
+        },
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
                 getItemUseMessage(action, casterModel, targetModel, actionDescription),
