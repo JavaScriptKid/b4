@@ -2,6 +2,6 @@ import {setBattleValue} from '../../../redux-action-creators/battle-action-creat
 
 export function changeMenuPage(newMenuKey="") {
     setBattleValue({
-        menuLevel: newMenuKey
+        menuKey: newMenuKey
     });
 }

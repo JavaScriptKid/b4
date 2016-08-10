@@ -6,6 +6,8 @@ import {getMenuModel} from './get-menu-model'
 
 import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
+import BottomSubmissionNavBar from './bottom-submission-nav-bar'
+
 import PagingIndicators from './paging-indicators'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import {vW} from '../../../helpers/vw'
@@ -16,7 +18,10 @@ import {vW} from '../../../helpers/vw'
     return {
         cW: state.map.cW,
         vW: Math.round(state.map.viewportWidth / 100),
-        menuLevel: state.battle.menuLevel,
+
+        menuKey: state.battle.menuKey,
+
+        menuLevel: state.battle.menuLevel, //LEGACY
         menuOptionIndex: state.battle.menuOptionIndex,
         showPP: (["attacks", "special"].indexOf(state.battle.menuLevel) > -1)
     }
@@ -25,8 +30,8 @@ import {vW} from '../../../helpers/vw'
 class SubmissionMenu extends React.Component {
 
     componentDidMount() {
-        const menu = getMenuModel(this.props.casterModel);
-        console.log(menu);
+        //const menu = getMenuModel(this.props.casterModel);
+        //console.log(menu);
     }
 
     renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
@@ -119,7 +124,7 @@ class SubmissionMenu extends React.Component {
             width: vW(37),
             border: `${vW(0.5)}px solid #000`,
             borderRadius: vW(1),
-            marginTop: vW(1.5)
+            marginTop: vW(1.3)
         };
         const ppStyle = {
             float: "right",
@@ -134,13 +139,15 @@ class SubmissionMenu extends React.Component {
         };
 
 
-        const menuOptions = getSubmissionMenuStructure(
-            this.props.casterModel,
-            this.props.menuLevel,
-            this.props.menuOptionIndex
-        );
+        //const menuOptions = getSubmissionMenuStructure(
+        //    this.props.casterModel,
+        //    this.props.menuLevel,
+        //    this.props.menuOptionIndex
+        //);
+        const menu = getMenuModel(this.props.casterModel).structure;
 
-        const optionComponents = menuOptions.items.map((optionModel, i) => {
+
+        const optionComponents = menu[this.props.menuKey].map((optionModel, i) => {
             return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />
         });
 
@@ -150,13 +157,16 @@ class SubmissionMenu extends React.Component {
                <div>
                 {optionComponents}
                </div>
+               <BottomSubmissionNavBar vW={this.props.vW} />
 
+               {/*
                <PagingIndicators
                    vW={this.props.vW}
                    totalItems={menuOptions.totalItemCount}
                    currentIndex={this.props.menuOptionIndex}
                />
-               {this.renderMoreContainer(menuOptions, optionStyle, baseUnit)}
+               */}
+               {/* this.renderMoreContainer(menuOptions, optionStyle, baseUnit) */}
            </div>
         );
     }

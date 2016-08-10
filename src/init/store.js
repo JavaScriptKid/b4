@@ -34,9 +34,15 @@ const store = createStore({
 
         //Menu
         descriptionBarText: "", //for static messaging, like Item descriptions
+        selectedOptionId: "",
+        menuKey: "root",
+
+
+        ////////////////////////////////
         menuLevel: "", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
         menuOptionIndex: 1,
-        selectedOptionId: "",
+        //LEGACY ^^^ ///////////////////////////
+
         viewMode: viewMode, //"console" || "battle" || "reporting"
 
         //Arena

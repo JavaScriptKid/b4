@@ -8,8 +8,6 @@ export function getMenuModel(casterModel) {
     const special = filterActionsByType(casterModel.attacks, "Special", casterModel.pp);
 
     return {
-
-        //canUseSuper: casterModel.isDangerMeterUsable(),
         structure: {
             root: getTopLevelMenu(casterModel),
             superCharge: [],
@@ -29,7 +27,7 @@ var getTopLevelMenu = function(casterModel) {
         supportText: "...",
         customClasses: "",
         handleEnter() {
-            changeMenuPage(newMenuKey="superCharge");
+            changeMenuPage("superCharge");
         }
     };
     const attackOption = {
@@ -39,7 +37,7 @@ var getTopLevelMenu = function(casterModel) {
         supportText: "...",
         customClasses: "",
         handleEnter() {
-            changeMenuPage(newMenuKey="attack");
+            changeMenuPage("attack");
         }
     };
     const specialOption = {
@@ -49,7 +47,7 @@ var getTopLevelMenu = function(casterModel) {
         supportText: "...",
         customClasses: "",
         handleEnter() {
-            changeMenuPage(newMenuKey="special");
+            changeMenuPage("special");
         }
     };
     const itemOption = {
@@ -59,7 +57,7 @@ var getTopLevelMenu = function(casterModel) {
         supportText: "...",
         customClasses: "",
         handleEnter() {
-            changeMenuPage(newMenuKey="item");
+            changeMenuPage("items");
         }
     };
 
