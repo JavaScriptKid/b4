@@ -55,7 +55,7 @@ export default function(c1, c2) {
     };
 
 
-    console.log('kickoff', combatants)
+    //console.log('kickoff', combatants)
 
     /* Fresh kickoff of battle */
     setBattleValue({

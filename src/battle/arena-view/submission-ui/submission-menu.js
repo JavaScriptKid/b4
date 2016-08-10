@@ -1,10 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
+//New way!
+import {getMenuModel} from './get-menu-model'
+
 import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
 import PagingIndicators from './paging-indicators'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import {vW} from '../../../helpers/vw'
+
+
 
 @connect((state, props) => {
     return {
@@ -17,6 +23,11 @@ import {vW} from '../../../helpers/vw'
 })
 
 class SubmissionMenu extends React.Component {
+
+    componentDidMount() {
+        const menu = getMenuModel(this.props.casterModel);
+        console.log(menu);
+    }
 
     renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
 
