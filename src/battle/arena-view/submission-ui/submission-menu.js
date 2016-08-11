@@ -7,7 +7,9 @@ import {getPagesFromArray} from '../../../helpers/array-to-pages'
 
 import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
+import SubmissionTitleBar from './submission-title-bar'
 import BottomSubmissionNavBar from './bottom-submission-nav-bar'
+
 
 import PagingIndicators from './paging-indicators'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
@@ -25,7 +27,7 @@ import {vW} from '../../../helpers/vw'
 
         menuLevel: state.battle.menuLevel, //LEGACY
         menuOptionIndex: state.battle.menuOptionIndex,
-        showPP: (["attacks", "special"].indexOf(state.battle.menuLevel) > -1)
+        //showPP: (["attacks", "special"].indexOf(state.battle.menuLevel) > -1)
     }
 })
 
@@ -117,7 +119,7 @@ class SubmissionMenu extends React.Component {
     render() {
         const baseUnit = this.props.vW;
         const menuStyle = {
-            left: (baseUnit * 4),
+            left: (baseUnit * 2),
             bottom: this.props.hide ? (baseUnit * - 43) : (baseUnit * 7),
             fontSize: baseUnit * 3
         };
@@ -126,7 +128,7 @@ class SubmissionMenu extends React.Component {
             width: vW(37),
             border: `${vW(0.5)}px solid #000`,
             borderRadius: vW(1),
-            marginTop: vW(1.3)
+            marginTop: vW(1)
         };
         const ppStyle = {
             float: "right",
@@ -158,6 +160,9 @@ class SubmissionMenu extends React.Component {
         return (
            <div style={menuStyle} className="submission-menu">
                {this.props.showPP ? <div style={ppStyle}>PP {this.props.casterModel.pp}/{this.props.casterModel.maxPp}</div> : null}
+
+               <SubmissionTitleBar pp={this.props.casterModel.pp} maxPp={this.props.casterModel.maxPp}  />
+
                <div>
                 {optionComponents}
                </div>

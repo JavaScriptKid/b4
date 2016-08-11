@@ -9,7 +9,8 @@ import {setBattleValue} from '../../../redux-action-creators/battle-action-creat
     return {
         //isVisible: (["attacks", "special"].indexOf(state.battle.menuKey) > -1)
         isHidden: state.battle.menuKey == "root",
-        menuPageIndex: state.battle.menuPageIndex
+        menuPageIndex: state.battle.menuPageIndex,
+        cW: state.map.cW //know when to update vW size
     }
 })
 
@@ -36,9 +37,9 @@ class BottomSubmissionNavBar extends React.Component {
             border: `${vW(0.5)}px solid #000`,
             borderRadius: vW(1),
 
-            marginTop: vW(1.3),
+            marginTop: vW(1.1),
             textAlign: "center",
-            display:"inline-block"
+            display: "inline-block"
         };
 
 
@@ -66,13 +67,22 @@ class BottomSubmissionNavBar extends React.Component {
             }
         };
 
+        const pagerStyle = {
+            ...backStyle,
+            marginLeft: vW(1)
+        };
 
         return (
-           <div>
-               <SubmissionMenuOption vW={this.props.vW} useBackArrowIcon={true} baseStyle={backStyle} model={backModel} />
-               <SubmissionMenuOption vW={this.props.vW} baseStyle={backStyle} model={pageLeftModel} />
-               <SubmissionMenuOption vW={this.props.vW} baseStyle={backStyle} model={pageRightModel} />
-           </div>
+            <div className="submission-bottom-nav-container">
+                <div>
+                    <SubmissionMenuOption vW={this.props.vW} useBackArrowIcon={true} baseStyle={backStyle}
+                                          model={backModel}/>
+                </div>
+                <div>
+                    <SubmissionMenuOption vW={this.props.vW} baseStyle={pagerStyle} model={pageLeftModel}/>
+                    <SubmissionMenuOption vW={this.props.vW} baseStyle={pagerStyle} model={pageRightModel}/>
+                </div>
+            </div>
         );
     }
 }
@@ -80,7 +90,6 @@ class BottomSubmissionNavBar extends React.Component {
 BottomSubmissionNavBar.propTypes = {
     lastPage: React.PropTypes.number.isRequired
 };
-
 
 
 export default BottomSubmissionNavBar;

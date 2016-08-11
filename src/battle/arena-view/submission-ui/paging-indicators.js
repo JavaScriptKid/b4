@@ -15,8 +15,10 @@ class PagingIndicators extends React.Component {
         if (this.props.isHidden) {
             return null;
         }
+
+        let isVisible = true;
         if (this.props.totalItems == 1) {
-            return null;
+            isVisible = false;
         }
 
         const baseUnit = this.props.vW;
@@ -25,7 +27,8 @@ class PagingIndicators extends React.Component {
             display: "flex",
             justifyContent: "center",
             paddingTop: baseUnit * 1.3,
-            paddingBottom: baseUnit * 1.3,
+            paddingBottom: 0,
+            visibility: isVisible ? "visible" : "hidden"
         };
         const circleStyle = {
             width: baseUnit * 1.3,
