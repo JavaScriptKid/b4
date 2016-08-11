@@ -4,6 +4,7 @@ import range from 'lodash/range'
 
 @connect((state, props) => {
     return {
+        isHidden: state.battle.menuKey == "root"
     }
 })
 
@@ -11,8 +12,11 @@ class PagingIndicators extends React.Component {
 
     render() {
 
-        if (this.props.totalItems <= 4) {
-            return null
+        if (this.props.isHidden) {
+            return null;
+        }
+        if (this.props.totalItems == 1) {
+            return null;
         }
 
         const baseUnit = this.props.vW;
@@ -20,8 +24,8 @@ class PagingIndicators extends React.Component {
             width: baseUnit * 37,
             display: "flex",
             justifyContent: "center",
-            paddingTop: baseUnit * 1.5,
-            paddingBottom: baseUnit * 1.5,
+            paddingTop: baseUnit * 1.3,
+            paddingBottom: baseUnit * 1.3,
         };
         const circleStyle = {
             width: baseUnit * 1.3,
@@ -32,17 +36,17 @@ class PagingIndicators extends React.Component {
             marginRight: baseUnit * 1,
         };
 
-        const pages = Math.ceil(this.props.totalItems / 4);
-        const circles = range(pages).map((page,i) => {
 
-            const diff = (i+1) * 4 - this.props.currentIndex;
-            const isActivePage = (diff >= 0 && diff <= 4);
+        const circles = range(this.props.totalItems).map((page,i) => {
+
+
+            const isActivePage = (this.props.currentIndex == i);
             const style = {
                 ...circleStyle,
                 background: isActivePage ? "#000" : "rgba(0,0,0,0)"
             };
 
-            return <div key={i} style={style} />
+            return <div key={i} style={style}></div>
         });
 
 

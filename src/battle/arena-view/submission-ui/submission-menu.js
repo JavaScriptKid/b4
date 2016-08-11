@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 //New way!
 import {getMenuModel} from './get-menu-model'
+import {getPagesFromArray} from '../../../helpers/array-to-pages'
 
 import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
@@ -20,6 +21,7 @@ import {vW} from '../../../helpers/vw'
         vW: Math.round(state.map.viewportWidth / 100),
 
         menuKey: state.battle.menuKey,
+        menuPageIndex: state.battle.menuPageIndex,
 
         menuLevel: state.battle.menuLevel, //LEGACY
         menuOptionIndex: state.battle.menuOptionIndex,
@@ -145,9 +147,11 @@ class SubmissionMenu extends React.Component {
         //    this.props.menuOptionIndex
         //);
         const menu = getMenuModel(this.props.casterModel).structure;
+        const pages = getPagesFromArray( menu[this.props.menuKey] );
 
 
-        const optionComponents = menu[this.props.menuKey].map((optionModel, i) => {
+
+        const optionComponents = pages[this.props.menuPageIndex].map((optionModel, i) => {
             return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />
         });
 
@@ -157,16 +161,14 @@ class SubmissionMenu extends React.Component {
                <div>
                 {optionComponents}
                </div>
-               <BottomSubmissionNavBar vW={this.props.vW} />
 
-               {/*
                <PagingIndicators
                    vW={this.props.vW}
-                   totalItems={menuOptions.totalItemCount}
-                   currentIndex={this.props.menuOptionIndex}
+                   totalItems={pages.length}
+                   currentIndex={this.props.menuPageIndex}
                />
-               */}
-               {/* this.renderMoreContainer(menuOptions, optionStyle, baseUnit) */}
+
+               <BottomSubmissionNavBar vW={this.props.vW} lastPage={pages.length-1} />
            </div>
         );
     }

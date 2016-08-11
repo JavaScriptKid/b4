@@ -36,6 +36,7 @@ const store = createStore({
         descriptionBarText: "", //for static messaging, like Item descriptions
         selectedOptionId: "",
         menuKey: "root",
+        menuPageIndex: 0,
 
 
         ////////////////////////////////
