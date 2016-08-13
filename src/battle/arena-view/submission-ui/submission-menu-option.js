@@ -1,5 +1,6 @@
 import React from 'react';
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
+import Icons from './submission-icons'
 
 class SubmissionMenuOption extends React.Component {
 
@@ -14,34 +15,22 @@ class SubmissionMenuOption extends React.Component {
 
     renderLeftArrow() {
         const baseUnit = this.props.vW;
-        const upArrowStyle = {
-            width: 0,
-            height: 0,
-            position: "relative",
-            left: baseUnit,
-            top: -baseUnit * 0.2,
-            borderTop: `${baseUnit * 1.2}px solid transparent`,
-            borderBottom: `${baseUnit * 1.2}px solid transparent`,
-            borderRight: `${baseUnit * 1.5}px solid #000`
+        const style = {
+            paddingLeft: baseUnit * 1.5,
+            paddingRight: baseUnit * 1.5,
         };
         return (
-            <span style={upArrowStyle} />
+            <span style={style}>{Icons.leftArrow(baseUnit*2)}</span>
         )
     }
     renderRightArrow() {
         const baseUnit = this.props.vW;
-        const upArrowStyle = {
-            width: 0,
-            height: 0,
-            position: "relative",
-            left: baseUnit*1.45,
-            top: -baseUnit * 0.2,
-            borderTop: `${baseUnit * 1.2}px solid transparent`,
-            borderBottom: `${baseUnit * 1.2}px solid transparent`,
-            borderLeft: `${baseUnit * 1.5}px solid #000`
+        const style = {
+            paddingLeft: baseUnit * 1.5,
+            paddingRight: baseUnit * 1.5,
         };
         return (
-            <span style={upArrowStyle} />
+            <span style={style}>{Icons.rightArrow(baseUnit*2)}</span>
         )
     }
 

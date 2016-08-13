@@ -48,7 +48,7 @@ class BottomSubmissionNavBar extends React.Component {
         const nextPage = menuPageIndex < this.props.lastPage ? menuPageIndex + 1 : this.props.lastPage;
 
         const pageLeftModel = {
-            labelText: "[L]",
+            labelText: null,
             customClasses: "",
             handleEnter() {
                 setBattleValue({
@@ -58,7 +58,7 @@ class BottomSubmissionNavBar extends React.Component {
         };
 
         const pageRightModel = {
-            labelText: "[R]",
+            labelText: null,
             customClasses: "",
             handleEnter() {
                 setBattleValue({
@@ -79,8 +79,8 @@ class BottomSubmissionNavBar extends React.Component {
                                           model={backModel}/>
                 </div>
                 <div>
-                    <SubmissionMenuOption isDeactivated={menuPageIndex == 0} vW={this.props.vW} baseStyle={pagerStyle} model={pageLeftModel}/>
-                    <SubmissionMenuOption isDeactivated={menuPageIndex == nextPage} vW={this.props.vW} baseStyle={pagerStyle} model={pageRightModel}/>
+                    <SubmissionMenuOption isDeactivated={menuPageIndex == 0} vW={this.props.vW} isLeftArrow={true} baseStyle={pagerStyle} model={pageLeftModel}/>
+                    <SubmissionMenuOption isDeactivated={menuPageIndex == nextPage} vW={this.props.vW} isRightArrow={true} baseStyle={pagerStyle} model={pageRightModel}/>
                 </div>
             </div>
         );
