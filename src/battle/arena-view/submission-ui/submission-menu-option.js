@@ -70,9 +70,14 @@ class SubmissionMenuOption extends React.Component {
             fontSize: this.props.vW * 2
         };
 
+        const style = {
+            ...this.props.baseStyle,
+            opacity: this.props.isDeactivated ? "0.3" : "1"
+        };
+
 
         return (
-            <div onClick={::this.handleClick} style={this.props.baseStyle} className={`submission-menu_option ${model.customClasses || ""}`}>
+            <div onClick={::this.handleClick} style={style} className={`submission-menu_option ${model.customClasses || ""}`}>
                 {model.labelText ? <span>{backArrow}{model.labelText}</span> : null}
                 {model.supportText ? <span style={metaStyle}>{model.supportText}</span> : null}
                 { this.props.isLeftArrow ? this.renderLeftArrow() : null }

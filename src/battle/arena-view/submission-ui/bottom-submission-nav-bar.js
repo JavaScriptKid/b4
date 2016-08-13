@@ -79,8 +79,8 @@ class BottomSubmissionNavBar extends React.Component {
                                           model={backModel}/>
                 </div>
                 <div>
-                    <SubmissionMenuOption vW={this.props.vW} baseStyle={pagerStyle} model={pageLeftModel}/>
-                    <SubmissionMenuOption vW={this.props.vW} baseStyle={pagerStyle} model={pageRightModel}/>
+                    <SubmissionMenuOption isDeactivated={menuPageIndex == 0} vW={this.props.vW} baseStyle={pagerStyle} model={pageLeftModel}/>
+                    <SubmissionMenuOption isDeactivated={menuPageIndex == nextPage} vW={this.props.vW} baseStyle={pagerStyle} model={pageRightModel}/>
                 </div>
             </div>
         );
