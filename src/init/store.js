@@ -34,10 +34,10 @@ const store = createStore({
 
         //Menu
         descriptionBarText: "", //for static messaging, like Item descriptions
-        selectedOptionId: "",
+        selectedOptionId: "root_attack",
         menuKey: "root",
         menuPageIndex: 0,
-        
+
 
         viewMode: viewMode, //"console" || "battle" || "reporting"
 

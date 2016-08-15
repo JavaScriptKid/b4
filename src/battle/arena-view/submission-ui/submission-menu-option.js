@@ -1,6 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import Icons from './submission-icons'
+
+
+@connect((state, props) => {
+    return {
+        isSelected: (state.battle.selectedOptionId == props.model.optionId)
+    }
+})
 
 class SubmissionMenuOption extends React.Component {
 
@@ -64,9 +73,10 @@ class SubmissionMenuOption extends React.Component {
             opacity: this.props.isDeactivated ? "0.3" : "1"
         };
 
+        const optionClasses = `submission-menu_option ${model.customClasses || ""} ${this.props.isSelected ? "is-selected" : ""}`;
 
         return (
-            <div onClick={::this.handleClick} style={style} className={`submission-menu_option ${model.customClasses || ""}`}>
+            <div onClick={::this.handleClick} style={style} className={optionClasses}>
                 {model.labelText ? <span>{backArrow}{model.labelText}</span> : null}
                 {model.supportText ? <span style={metaStyle}>{model.supportText}</span> : null}
                 { this.props.isLeftArrow ? this.renderLeftArrow() : null }
