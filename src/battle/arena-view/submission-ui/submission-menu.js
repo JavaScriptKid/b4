@@ -25,96 +25,10 @@ import {vW} from '../../../helpers/vw'
         menuKey: state.battle.menuKey,
         menuPageIndex: state.battle.menuPageIndex,
 
-        menuLevel: state.battle.menuLevel, //LEGACY
-        menuOptionIndex: state.battle.menuOptionIndex,
-        //showPP: (["attacks", "special"].indexOf(state.battle.menuLevel) > -1)
     }
 })
 
 class SubmissionMenu extends React.Component {
-
-    componentDidMount() {
-        //const menu = getMenuModel(this.props.casterModel);
-        //console.log(menu);
-    }
-
-    renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
-
-        /* Do not show unless on one of these menuLevels: */
-        if (["attacks", "special", "items"].indexOf(this.props.menuLevel) == -1) {
-            return null
-        }
-
-        const backStyle = {
-            ...baseOptionStyles,
-            width: 'initial',
-            //flex: "1",
-            marginTop: 0,
-            textAlign: "center",
-            display:"block"
-        };
-        
-        const containerStyle = {
-            width: "100%", //baseUnit * 37,
-            display: "flex",
-            justifyContent: "space-between"
-        };
-        const pageStyle = {
-            ...baseOptionStyles,
-            width: baseUnit * 8,
-            marginLeft: baseUnit * 1.5,
-            marginTop: 0
-        };
-
-        const backModel = {
-            labelText: "BACK",
-            customClasses: "back-button",
-            handleEnter() {
-                setBattleValue({
-                    menuLevel: ""
-                })
-            }
-        };
-
-        const menuOptionIndex = this.props.menuOptionIndex;
-        const hidePrevPageBtn = this.props.menuOptionIndex == 1;
-        const pageLeftModel = {
-            labelText: null,
-            supportText: null,
-            customClasses: hidePrevPageBtn ? "invisible" : "",
-            handleEnter() {
-                setBattleValue({
-                    menuOptionIndex: menuOptionIndex - 4
-                })
-            }
-        };
-
-        const isLastPage = menuOptions.totalItemCount <= 4 * this.props.menuOptionIndex;
-        const pageRightModel = {
-            labelText: null,
-            supportText: null,
-            customClasses: "", //isLastPage ? "invisible" : "",
-            handleEnter() {
-                setBattleValue({
-                    menuOptionIndex: menuOptionIndex + 4
-                })
-            }
-        };
-
-
-
-        return (
-            <div className="submission-menu_more-container" style={containerStyle}>
-                <div>
-                    <SubmissionMenuOption vW={this.props.vW} useBackArrowIcon={false} baseStyle={backStyle} model={backModel} />
-                </div>
-                <div style={{display:"flex"}}>
-                    <SubmissionMenuOption vW={this.props.vW} isLeftArrow={true} baseStyle={pageStyle} model={pageLeftModel} />
-                    <SubmissionMenuOption vW={this.props.vW} isRightArrow={true} baseStyle={pageStyle} model={pageRightModel} />
-                </div>
-            </div>
-        )
-    }
 
     render() {
         const baseUnit = this.props.vW;
@@ -145,15 +59,9 @@ class SubmissionMenu extends React.Component {
         };
 
 
-        //const menuOptions = getSubmissionMenuStructure(
-        //    this.props.casterModel,
-        //    this.props.menuLevel,
-        //    this.props.menuOptionIndex
-        //);
         const menu = getMenuModel(this.props.casterModel).structure;
+        console.log(menu)
         const pages = getPagesFromArray( menu[this.props.menuKey] );
-
-
 
         const optionComponents = pages[this.props.menuPageIndex].map((optionModel, i) => {
             return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />

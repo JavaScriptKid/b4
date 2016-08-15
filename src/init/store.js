@@ -37,12 +37,7 @@ const store = createStore({
         selectedOptionId: "",
         menuKey: "root",
         menuPageIndex: 0,
-
-
-        ////////////////////////////////
-        menuLevel: "", //"", "attacks", "special", "items", "charged-attacks", "charged-frameworks"
-        menuOptionIndex: 1,
-        //LEGACY ^^^ ///////////////////////////
+        
 
         viewMode: viewMode, //"console" || "battle" || "reporting"
 
