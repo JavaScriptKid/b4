@@ -55,7 +55,7 @@ class SubmissionMenu extends React.Component {
         };
         
         const containerStyle = {
-            width: baseUnit * 37,
+            width: "100%", //baseUnit * 37,
             display: "flex",
             justifyContent: "space-between"
         };
@@ -119,13 +119,15 @@ class SubmissionMenu extends React.Component {
     render() {
         const baseUnit = this.props.vW;
         const menuStyle = {
+            width: baseUnit * 37,
             left: (baseUnit * 2),
             bottom: this.props.hide ? (baseUnit * - 43) : (baseUnit * 7),
             fontSize: baseUnit * 3
         };
         const optionStyle = {
             padding: vW(1.2),
-            width: vW(37),
+            // width: vW(37),
+            width: "100%",
             border: `${vW(0.5)}px solid #000`,
             borderRadius: vW(1),
             marginTop: vW(1)
