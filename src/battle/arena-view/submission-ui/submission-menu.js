@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {getMenuModel} from './get-menu-model'
 import {getPagesFromArray} from '../../../helpers/array-to-pages'
 
-import { getSubmissionMenuStructure } from './get-submission-menu-structure'
+//import { getSubmissionMenuStructure } from './get-submission-menu-structure'
 import SubmissionMenuOption from './submission-menu-option'
 import SubmissionTitleBar from './submission-title-bar'
 import BottomSubmissionNavBar from './bottom-submission-nav-bar'
@@ -15,7 +15,9 @@ import PagingIndicators from './paging-indicators'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import {vW} from '../../../helpers/vw'
 
-
+//Keyboard
+import {addKeyboardSinglePress, removeKeyboardSinglePress} from '../../../helpers/single-keypress-binding'
+import {handleMenuUp, handleMenuDown} from './menu-keyboard-handlers'
 
 @connect((state, props) => {
     return {
@@ -29,6 +31,43 @@ import {vW} from '../../../helpers/vw'
 })
 
 class SubmissionMenu extends React.Component {
+
+
+
+
+    bindKeyboard() {
+        //console.log('BIND');
+        const selectedOptionId = this.props.selectedOptionId;
+        addKeyboardSinglePress(38, handleMenuUp.bind(this, this.menuModel), "battle-submission-ui-handle-up");
+        addKeyboardSinglePress(40, handleMenuDown.bind(this, this.menuModel), "battle-submission-ui-handle-down");
+
+    }
+    unbindKeyboard() {
+        //console.log('UNBIND');
+        removeKeyboardSinglePress("battle-submission-ui-handle-up");
+        removeKeyboardSinglePress("battle-submission-ui-handle-down");
+    }
+
+    componentWillMount() {
+        this.menuModel = getMenuModel(this.props.casterModel).structure;
+    }
+
+    componentDidMount() {
+        this.bindKeyboard();
+    }
+
+    componentWillUpdate(newProps) {
+        if (!newProps.hide && this.props.hide) {
+            //NOW SHOWING
+
+            this.menuModel = getMenuModel(newProps.casterModel).structure; //Update the menu model
+            this.bindKeyboard();
+        }
+        if (newProps.hide && !this.props.hide) {
+            //NO LONGER SHOWING
+            this.unbindKeyboard();
+        }
+    }
 
     render() {
         const baseUnit = this.props.vW;
@@ -59,9 +98,9 @@ class SubmissionMenu extends React.Component {
         };
 
 
-        const menu = getMenuModel(this.props.casterModel).structure;
-        console.log(menu)
-        const pages = getPagesFromArray( menu[this.props.menuKey] );
+        //const menu = getMenuModel(this.props.casterModel).structure;
+        //console.log(menu)
+        const pages = getPagesFromArray( this.menuModel[this.props.menuKey] );
 
         const optionComponents = pages[this.props.menuPageIndex].map((optionModel, i) => {
             return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />

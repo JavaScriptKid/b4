@@ -1,6 +1,8 @@
 import Actions from '../../../_data/battle-actions'
 import MenuOptionSchema from './menu-option-schema'
 import {changeMenuPage} from './change-menu-page'
+import {getSubmission} from '../../submissions/get-submission'
+import {addSubmission} from '../../submissions/add-submission'
 
 export function getMenuModel(casterModel) {
 
@@ -87,7 +89,9 @@ var generateOptionFromActionId = function(actionId, optionId) {
         supportText: model.ppCost > 0 ? `PP ${model.ppCost}` : "",
         customClasses: "",
         handleEnter() {
-            console.log('SUBMIT!')
+            //console.log('SUBMIT!')
+            const submissionModel = getSubmission(actionId, null);
+            addSubmission(submissionModel);
         }
     }
 };
