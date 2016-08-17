@@ -49,9 +49,30 @@ function getBorderingIds(menuModel) {
         }
     });
 
+
+
+    //Maybe go to the Back button
+    const nextOption = currentPage[index+1];
+    let nextOptionId = nextOption ? nextOption.optionId : null;
+    if (!nextOptionId && menuKey != "root") {
+        nextOptionId = "back"
+    }
+
+
+    //Maybe go up from back
+    const prevOption = currentPage[index-1];
+    let prevOptionId = prevOption ? prevOption.optionId : null;
+
+    if (selectedOptionId == "back") {
+        nextOptionId = "back"; //Don't let DOWN go to the top of the list
+        prevOptionId = currentPage[currentPage.length-1].optionId
+    }
+
+
+
     return {
-        prevOptionId: currentPage[index-1] ? currentPage[index-1].optionId : null,
-        nextOptionId: currentPage[index+1] ? currentPage[index+1].optionId : null,
+        prevOptionId: prevOptionId,
+        nextOptionId: nextOptionId
     }
 }
 

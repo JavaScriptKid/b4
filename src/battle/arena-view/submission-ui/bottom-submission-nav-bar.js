@@ -23,6 +23,7 @@ class BottomSubmissionNavBar extends React.Component {
 
 
         const backModel = {
+            optionId: "back",
             labelText: "BACK",
             customClasses: "back-button",
             handleEnter() {
