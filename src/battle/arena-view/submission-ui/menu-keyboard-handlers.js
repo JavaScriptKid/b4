@@ -1,5 +1,6 @@
 import store from '../../../init/store'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
+import {getPagesFromArray} from '../../../helpers/array-to-pages'
 
 /////////////
 /* Up & Down *//////////////////////////////////////////////////////////////////
@@ -39,7 +40,7 @@ export function handleMenuUp(menuModel={}) {
 function getBorderingIds(menuModel) {
     const menuKey = store.getState().battle.menuKey;
     const selectedOptionId = store.getState().battle.selectedOptionId;
-    const currentPage = menuModel[menuKey];
+    const currentPage = getPagesFromArray( menuModel[menuKey] )[store.getState().battle.menuPageIndex];
 
     let index = -1;
     currentPage.forEach((option, i) => {
@@ -59,7 +60,6 @@ function getBorderingIds(menuModel) {
 ////////////
 
 export function handleMenuEnter(menuModel={}) {
-    console.log('en')
     const menuKey = store.getState().battle.menuKey;
     const selectedOptionId = store.getState().battle.selectedOptionId;
     const currentPage = menuModel[menuKey];
