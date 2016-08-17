@@ -17,7 +17,7 @@ import {vW} from '../../../helpers/vw'
 
 //Keyboard
 import {addKeyboardSinglePress, removeKeyboardSinglePress} from '../../../helpers/single-keypress-binding'
-import {handleMenuUp, handleMenuDown} from './menu-keyboard-handlers'
+import {handleMenuUp, handleMenuDown, handleMenuEnter} from './menu-keyboard-handlers'
 
 @connect((state, props) => {
     return {
@@ -40,12 +40,14 @@ class SubmissionMenu extends React.Component {
         const selectedOptionId = this.props.selectedOptionId;
         addKeyboardSinglePress(38, handleMenuUp.bind(this, this.menuModel), "battle-submission-ui-handle-up");
         addKeyboardSinglePress(40, handleMenuDown.bind(this, this.menuModel), "battle-submission-ui-handle-down");
+        addKeyboardSinglePress(13, handleMenuEnter.bind(this, this.menuModel), "battle-submission-ui-handle-enter");
 
     }
     unbindKeyboard() {
         //console.log('UNBIND');
         removeKeyboardSinglePress("battle-submission-ui-handle-up");
         removeKeyboardSinglePress("battle-submission-ui-handle-down");
+        removeKeyboardSinglePress("battle-submission-ui-handle-enter");
     }
 
     componentWillMount() {

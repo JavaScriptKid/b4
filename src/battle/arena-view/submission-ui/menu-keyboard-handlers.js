@@ -1,9 +1,12 @@
 import store from '../../../init/store'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 
+/////////////
+/* Up & Down *//////////////////////////////////////////////////////////////////
+////////////
 
 export function handleMenuDown(menuModel) {
-    console.log( getBorderingIds(menuModel).nextOptionId )
+    //console.log( getBorderingIds(menuModel).nextOptionId )
 
     const next = getBorderingIds(menuModel).nextOptionId;
     if (next) {
@@ -49,4 +52,21 @@ function getBorderingIds(menuModel) {
         prevOptionId: currentPage[index-1] ? currentPage[index-1].optionId : null,
         nextOptionId: currentPage[index+1] ? currentPage[index+1].optionId : null,
     }
+}
+
+/////////////
+/* Enter */ /////////////////////////////////////////////////////////////////
+////////////
+
+export function handleMenuEnter(menuModel={}) {
+    console.log('en')
+    const menuKey = store.getState().battle.menuKey;
+    const selectedOptionId = store.getState().battle.selectedOptionId;
+    const currentPage = menuModel[menuKey];
+
+    const selectedOptionModel = currentPage.find( (option) => option.optionId == selectedOptionId);
+
+    //Fire the Enter handler of the model
+    selectedOptionModel.handleEnter();
+
 }
