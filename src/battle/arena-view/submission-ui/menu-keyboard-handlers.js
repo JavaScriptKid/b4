@@ -1,6 +1,7 @@
 import store from '../../../init/store'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import {getPagesFromArray} from '../../../helpers/array-to-pages'
+import {changeMenuPage} from './change-menu-page'
 
 /////////////
 /* Up & Down *//////////////////////////////////////////////////////////////////
@@ -63,8 +64,8 @@ function getBorderingIds(menuModel) {
     const prevOption = currentPage[index-1];
     let prevOptionId = prevOption ? prevOption.optionId : null;
 
-    if (selectedOptionId == "back") {
-        nextOptionId = "back"; //Don't let DOWN go to the top of the list
+    if (["back", "prev-page", "next-page"].indexOf(selectedOptionId) > -1) {
+        nextOptionId = selectedOptionId; //Don't let DOWN go to the top of the list
         prevOptionId = currentPage[currentPage.length-1].optionId
     }
 
@@ -75,6 +76,42 @@ function getBorderingIds(menuModel) {
         nextOptionId: nextOptionId
     }
 }
+
+
+/////////////
+/* Left & Right */ /////////////////////////////////////////////////////////////////
+////////////
+
+export function handleMenuLeft() {
+    const selectedOptionId = store.getState().battle.selectedOptionId;
+
+    if (selectedOptionId == "next-page") {
+        setBattleValue({
+            selectedOptionId: "prev-page"
+        })
+    }
+    if (selectedOptionId == "prev-page") {
+        setBattleValue({
+            selectedOptionId: "back"
+        })
+    }
+}
+
+export function handleMenuRight() {
+    const selectedOptionId = store.getState().battle.selectedOptionId;
+
+    if (selectedOptionId == "back") {
+        setBattleValue({
+            selectedOptionId: "prev-page"
+        })
+    }
+    if (selectedOptionId == "prev-page") {
+        setBattleValue({
+            selectedOptionId: "next-page"
+        })
+    }
+}
+
 
 /////////////
 /* Enter */ /////////////////////////////////////////////////////////////////
@@ -88,6 +125,24 @@ export function handleMenuEnter(menuModel={}) {
     const selectedOptionModel = currentPage.find( (option) => option.optionId == selectedOptionId);
 
     //Fire the Enter handler of the model
-    selectedOptionModel.handleEnter();
+    if (selectedOptionModel) {
+        selectedOptionModel.handleEnter();
+    } else {
+        // It's [probably] a BACK or ARROW button
+
+        if (selectedOptionId == "back") {
+            console.log('handle back');
+            changeMenuPage("root");
+        }
+
+        if (selectedOptionId == "prev-page") {
+            console.log('handle prev-page')
+        }
+
+        if (selectedOptionId == "next-page") {
+            console.log('handle next-page')
+        }
+
+    }
 
 }

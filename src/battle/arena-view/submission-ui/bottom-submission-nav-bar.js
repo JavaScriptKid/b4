@@ -49,6 +49,7 @@ class BottomSubmissionNavBar extends React.Component {
         const nextPage = menuPageIndex < this.props.lastPage ? menuPageIndex + 1 : this.props.lastPage;
 
         const pageLeftModel = {
+            optionId: "prev-page",
             labelText: null,
             customClasses: "",
             handleEnter() {
@@ -59,6 +60,7 @@ class BottomSubmissionNavBar extends React.Component {
         };
 
         const pageRightModel = {
+            optionId: "next-page",
             labelText: null,
             customClasses: "",
             handleEnter() {
