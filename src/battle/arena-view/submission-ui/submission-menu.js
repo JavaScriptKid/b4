@@ -40,13 +40,10 @@ class SubmissionMenu extends React.Component {
 
 
     bindKeyboard() {
-        //console.log('BIND');
-        const selectedOptionId = this.props.selectedOptionId;
         addKeyboardSinglePress(38, handleMenuUp.bind(this, this.menuModel), "battle-submission-ui-handle-up");
         addKeyboardSinglePress(40, handleMenuDown.bind(this, this.menuModel), "battle-submission-ui-handle-down");
         addKeyboardSinglePress(37, handleMenuLeft.bind(this, this.menuModel), "battle-submission-ui-handle-left");
         addKeyboardSinglePress(39, handleMenuRight.bind(this, this.menuModel), "battle-submission-ui-handle-right");
-
         addKeyboardSinglePress(13, handleMenuEnter.bind(this, this.menuModel), "battle-submission-ui-handle-enter");
 
     }
@@ -70,8 +67,8 @@ class SubmissionMenu extends React.Component {
     componentWillUpdate(newProps) {
         if (!newProps.hide && this.props.hide) {
             //NOW SHOWING
-
             this.menuModel = getMenuModel(newProps.casterModel).structure; //Update the menu model
+
             this.bindKeyboard();
         }
         if (newProps.hide && !this.props.hide) {

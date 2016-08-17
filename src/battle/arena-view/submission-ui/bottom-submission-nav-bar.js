@@ -7,7 +7,6 @@ import {setBattleValue} from '../../../redux-action-creators/battle-action-creat
 
 @connect((state, props) => {
     return {
-        //isVisible: (["attacks", "special"].indexOf(state.battle.menuKey) > -1)
         isHidden: state.battle.menuKey == "root",
         menuPageIndex: state.battle.menuPageIndex,
         cW: state.map.cW //know when to update vW size

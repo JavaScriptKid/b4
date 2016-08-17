@@ -1,7 +1,8 @@
 import store from '../../../init/store'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import {getPagesFromArray} from '../../../helpers/array-to-pages'
-import {changeMenuPage} from './change-menu-page'
+import {goToNextSubPage, goToPrevSubPage} from './change-options-subpage'
+
 
 /////////////
 /* Up & Down *//////////////////////////////////////////////////////////////////
@@ -132,15 +133,20 @@ export function handleMenuEnter(menuModel={}) {
 
         if (selectedOptionId == "back") {
             console.log('handle back');
-            changeMenuPage("root");
+            setBattleValue({
+                menuKey: "root",
+                menuPageIndex: 0
+            })
         }
 
         if (selectedOptionId == "prev-page") {
-            console.log('handle prev-page')
+            console.log('handle prev-page');
+            goToPrevSubPage(menuModel)
         }
 
         if (selectedOptionId == "next-page") {
             console.log('handle next-page')
+            goToNextSubPage(menuModel)
         }
 
     }
