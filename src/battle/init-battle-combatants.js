@@ -38,8 +38,8 @@ export default function(c1, c2) {
          //hp: initialComb1.hp || stats1.maxHp,
          //pp: initialComb1.pp || stats1.maxPp
         hp: stats1.maxHp,
-        //pp: stats1.maxPp,
-        pp: 4,
+        pp: stats1.maxPp,
+        //pp: 4,
         dangerMeter: 99
     };
     combatants[id2] = {

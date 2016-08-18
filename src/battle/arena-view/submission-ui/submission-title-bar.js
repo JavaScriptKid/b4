@@ -35,7 +35,9 @@ class SubmissionTitleBar extends React.Component {
         const titleStyle = {
             float: "left",
             fontSize: vW(2.5),
-            padding: `${vW(0)}px ${vW(1)}px`
+            padding: `${vW(0)}px ${vW(1)}px`,
+            position: "relative",
+            top: vW(-0.3)
         };
         const ppStyle = {
             float: "right",
