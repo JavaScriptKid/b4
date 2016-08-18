@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import SubmissionMenuOption from './submission-menu-option'
 import {vW} from '../../../helpers/vw'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
-
+import {goToPrevSubPage, goToNextSubPage} from './change-options-subpage'
 
 @connect((state, props) => {
     return {
@@ -47,14 +47,14 @@ class BottomSubmissionNavBar extends React.Component {
         const prevPage = menuPageIndex > 0 ? menuPageIndex - 1 : 0;
         const nextPage = menuPageIndex < this.props.lastPage ? menuPageIndex + 1 : this.props.lastPage;
 
+        const menuModel = this.props.menuModel;
+
         const pageLeftModel = {
             optionId: "prev-page",
             labelText: null,
             customClasses: "",
             handleEnter() {
-                setBattleValue({
-                    menuPageIndex: prevPage
-                })
+                goToPrevSubPage(menuModel);
             }
         };
 
@@ -63,9 +63,7 @@ class BottomSubmissionNavBar extends React.Component {
             labelText: null,
             customClasses: "",
             handleEnter() {
-                setBattleValue({
-                    menuPageIndex: nextPage
-                })
+                goToNextSubPage(menuModel);
             }
         };
 

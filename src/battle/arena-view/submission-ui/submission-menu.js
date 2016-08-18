@@ -130,7 +130,7 @@ class SubmissionMenu extends React.Component {
                    currentIndex={this.props.menuPageIndex}
                />
 
-               <BottomSubmissionNavBar vW={this.props.vW} lastPage={pages.length-1} />
+               <BottomSubmissionNavBar menuModel={this.menuModel} vW={this.props.vW} lastPage={pages.length-1} />
            </div>
         );
     }

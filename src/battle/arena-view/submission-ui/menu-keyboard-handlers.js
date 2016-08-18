@@ -132,7 +132,6 @@ export function handleMenuEnter(menuModel={}) {
         // It's [probably] a BACK or ARROW button
 
         if (selectedOptionId == "back") {
-            console.log('handle back');
             setBattleValue({
                 menuKey: "root",
                 menuPageIndex: 0
@@ -140,12 +139,10 @@ export function handleMenuEnter(menuModel={}) {
         }
 
         if (selectedOptionId == "prev-page") {
-            console.log('handle prev-page');
             goToPrevSubPage(menuModel)
         }
 
         if (selectedOptionId == "next-page") {
-            console.log('handle next-page')
             goToNextSubPage(menuModel)
         }
 
