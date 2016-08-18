@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 //New way!
 import {getMenuModel} from './get-menu-model'
 import {getPagesFromArray} from '../../../helpers/array-to-pages'
+import {updateDescriptionText} from './update-description-text'
 
-//import { getSubmissionMenuStructure } from './get-submission-menu-structure'
+
 import SubmissionMenuOption from './submission-menu-option'
 import SubmissionTitleBar from './submission-title-bar'
 import BottomSubmissionNavBar from './bottom-submission-nav-bar'
@@ -31,6 +32,7 @@ import {
         menuKey: state.battle.menuKey,
         menuPageIndex: state.battle.menuPageIndex,
 
+        selectedOptionId: state.battle.selectedOptionId
     }
 })
 
@@ -58,6 +60,7 @@ class SubmissionMenu extends React.Component {
 
     componentWillMount() {
         this.menuModel = getMenuModel(this.props.casterModel).structure;
+        updateDescriptionText(this.props.selectedOptionId, this.menuModel);
     }
 
     componentDidMount() {
@@ -75,6 +78,11 @@ class SubmissionMenu extends React.Component {
             //NO LONGER SHOWING
             this.unbindKeyboard();
         }
+
+        if (newProps.selectedOptionId != this.props.selectedOptionId) {
+            updateDescriptionText(newProps.selectedOptionId, this.menuModel);
+        }
+
     }
 
     render() {

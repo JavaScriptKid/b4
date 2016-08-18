@@ -26,6 +26,7 @@ var getTopLevelMenu = function(casterModel) {
         ...MenuOptionSchema,
         optionId: "root_super",
         labelText: "SUPER CHARGE",
+        descriptionBarText: "SUPER CHARGE > Unleash Danger Meter in a powerful blow",
         supportText: "...",
         customClasses: "",
         handleEnter() {
@@ -36,6 +37,7 @@ var getTopLevelMenu = function(casterModel) {
         ...MenuOptionSchema,
         optionId: "root_attack",
         labelText: "ATTACK",
+        descriptionBarText: "ATTACK > Offensive hacking commands",
         supportText: "...",
         customClasses: "",
         handleEnter() {
@@ -46,6 +48,7 @@ var getTopLevelMenu = function(casterModel) {
         ...MenuOptionSchema,
         optionId: "root_special",
         labelText: "SPECIAL",
+        descriptionBarText: "SPECIAL > Wizardy magic in computer science",
         supportText: "...",
         customClasses: "",
         handleEnter() {
@@ -56,6 +59,7 @@ var getTopLevelMenu = function(casterModel) {
         ...MenuOptionSchema,
         optionId: "root_item",
         labelText: "ITEM",
+        descriptionBarText: "ITEM > Usable utilities in your bag",
         supportText: "...",
         customClasses: "",
         handleEnter() {
@@ -82,13 +86,23 @@ var filterActionsByType = function(actionList, type="", currentPp) {
 /* Utility for generating config for specific action */
 var generateOptionFromActionId = function(actionId, optionId, casterModel) {
     const model = Actions[actionId];
+
+
+    let descriptionBarText = `${model.name.toUpperCase()} > ${model.description}`;
+
+    const isDeactivated = model.ppCost > casterModel.pp;
+    if (isDeactivated) {
+        descriptionBarText = `NOT AVAILABLE! INSUFFICIENT PP`
+    }
+
     return {
         ...MenuOptionSchema,
         optionId: optionId,
         labelText: model.name,
         supportText: model.ppCost > 0 ? `PP ${model.ppCost}` : "",
         customClasses: "",
-        isDeactivated: model.ppCost > casterModel.pp,
+        descriptionBarText: descriptionBarText,
+        isDeactivated: isDeactivated,
         handleEnter() {
             if (!this.isDeactivated) {
                 const submissionModel = getSubmission(actionId, null);
