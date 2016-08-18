@@ -70,20 +70,13 @@ class SubmissionMenuOption extends React.Component {
 
         const style = {
             ...this.props.baseStyle
-            //opacity: this.props.isDeactivated ? "0.3" : "1"
         };
-
-        //const optionClasses = `
-        //    submission-menu_option
-        //    ${model.customClasses || ""}
-        //    ${this.props.isSelected ? "is-selected" : ""}
-        //    `.trim();
 
         const optionClasses = [
             'submission-menu_option',
             model.customClasses || "",
             this.props.isSelected ? "is-selected" : "",
-            this.props.isDeactivated ? "is-deactivated" : ""
+            (this.props.isDeactivated || model.isDeactivated) ? "is-deactivated" : ""
         ].join(' ');
 
         return (

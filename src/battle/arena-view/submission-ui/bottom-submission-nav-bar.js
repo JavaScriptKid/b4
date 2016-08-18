@@ -44,7 +44,7 @@ class BottomSubmissionNavBar extends React.Component {
 
 
         const menuPageIndex = this.props.menuPageIndex;
-        const prevPage = menuPageIndex > 0 ? menuPageIndex - 1 : 0;
+        //const prevPage = menuPageIndex > 0 ? menuPageIndex - 1 : 0;
         const nextPage = menuPageIndex < this.props.lastPage ? menuPageIndex + 1 : this.props.lastPage;
 
         const menuModel = this.props.menuModel;

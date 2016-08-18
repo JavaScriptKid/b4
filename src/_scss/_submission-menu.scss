@@ -34,12 +34,15 @@
         &.is-selected {
             background: rgba(#fff, 1);
             &.is-deactivated {
-                opacity: 0.6;
-                //border-color: #666;
+                opacity: 0.5;
+                color: red;
+                border-color: red !important;
             }
         }
         &.is-deactivated {
             opacity: 0.3;
+            color: #444;
+            border-color:#444 !important;
         }
 
         &.invisible {

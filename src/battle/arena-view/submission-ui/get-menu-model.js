@@ -6,16 +6,16 @@ import {addSubmission} from '../../submissions/add-submission'
 
 export function getMenuModel(casterModel) {
 
-    const attack = filterActionsByType(casterModel.attacks, "Normal", casterModel.pp);
+    const attack = filterActionsByType(casterModel.getAllAttacks(), "Normal", casterModel.pp);
     const special = filterActionsByType(casterModel.attacks, "Special", casterModel.pp);
 
     return {
         structure: {
             root: getTopLevelMenu(casterModel),
             superCharge: [],
-            attack: attack.map((a,i) => generateOptionFromActionId(a, `attack_${a}_${i}`)),
-            special: special.map((a,i) => generateOptionFromActionId(a, `special_${a}_${i}`)),
-            items: [...casterModel.items].map((a,i) => generateOptionFromActionId(a, `item_${a}_${i}`))
+            attack: attack.map((a,i) => generateOptionFromActionId(a, `attack_${a}_${i}`, casterModel)),
+            special: special.map((a,i) => generateOptionFromActionId(a, `special_${a}_${i}`, casterModel)),
+            items: [...casterModel.items].map((a,i) => generateOptionFromActionId(a, `item_${a}_${i}`, casterModel))
         }
     }
 }
@@ -75,12 +75,12 @@ var getTopLevelMenu = function(casterModel) {
 var filterActionsByType = function(actionList, type="", currentPp) {
     return actionList.filter(aId => {
         const model = Actions[aId];
-        return model.type === type && currentPp >= model.ppCost;
+        return model.type === type
     });
 };
 
 /* Utility for generating config for specific action */
-var generateOptionFromActionId = function(actionId, optionId) {
+var generateOptionFromActionId = function(actionId, optionId, casterModel) {
     const model = Actions[actionId];
     return {
         ...MenuOptionSchema,
@@ -88,10 +88,12 @@ var generateOptionFromActionId = function(actionId, optionId) {
         labelText: model.name,
         supportText: model.ppCost > 0 ? `PP ${model.ppCost}` : "",
         customClasses: "",
+        isDeactivated: model.ppCost > casterModel.pp,
         handleEnter() {
-            //console.log('SUBMIT!')
-            const submissionModel = getSubmission(actionId, null);
-            addSubmission(submissionModel);
+            if (!this.isDeactivated) {
+                const submissionModel = getSubmission(actionId, null);
+                addSubmission(submissionModel);
+            }
         }
     }
 };

@@ -17,6 +17,14 @@ export function CombatantModel(combatantState={}) {
         /* Attacks */
         attacks: getAvailableAttacks(combatantState),
 
+
+        getAllAttacks() {
+            //Regardless of available PP, get a list of all attacks I know
+            return [...combatantState.attacks]
+        },
+
+
+
         /* Rolls */
         speedRoll(externalSpeedModification=0) {
             const base = combatantState.speedStatPoints + combatantState.speedModifier + externalSpeedModification;
