@@ -6,6 +6,7 @@ import {getMenuModel} from './get-menu-model'
 import {getPagesFromArray} from '../../../helpers/array-to-pages'
 import {updateDescriptionText} from './update-description-text'
 
+import {updateSelectedId} from './update-selected-id'
 
 import SubmissionMenuOption from './submission-menu-option'
 import SubmissionTitleBar from './submission-title-bar'
@@ -81,6 +82,10 @@ class SubmissionMenu extends React.Component {
 
         if (newProps.selectedOptionId != this.props.selectedOptionId) {
             updateDescriptionText(newProps.selectedOptionId, this.menuModel);
+        }
+
+        if (newProps.menuKey != this.props.menuKey) {
+            updateSelectedId(newProps.menuKey, this.props.menuKey);
         }
 
     }
