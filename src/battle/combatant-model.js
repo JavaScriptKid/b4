@@ -23,6 +23,22 @@ export function CombatantModel(combatantState={}) {
             return [...combatantState.attacks]
         },
 
+        isOutOfUsablePp() {
+            //Is the combatant down to just "Insult" ?
+            const available = combatantState.attacks.filter(attackId => {
+                const model = Actions[attackId];
+                return combatantState.pp >= model.ppCost;
+            });
+
+            //Don't include "Commit"
+            if (available.length == 1 && available[0] == "attack-special-011-a") {
+                return true;
+            }
+
+
+            return available.length == 0;
+        },
+
 
 
         /* Rolls */

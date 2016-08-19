@@ -6,8 +6,14 @@ import {addSubmission} from '../../submissions/add-submission'
 
 export function getMenuModel(casterModel) {
 
-    const attack = filterActionsByType(casterModel.getAllAttacks(), "Normal", casterModel.pp);
-    const special = filterActionsByType(casterModel.attacks, "Special", casterModel.pp);
+
+    const allAttacks = casterModel.isOutOfUsablePp()
+        ? ["attack-000-a", ...casterModel.getAllAttacks()]  //Maybe include Insult in UI
+        : casterModel.getAllAttacks();
+
+
+    const attack = filterActionsByType(allAttacks, "Normal");
+    const special = filterActionsByType(casterModel.attacks, "Special");
 
     return {
         structure: {
@@ -76,7 +82,7 @@ var getTopLevelMenu = function(casterModel) {
 };
 
 /* Utility for getting Type of actions */
-var filterActionsByType = function(actionList, type="", currentPp) {
+var filterActionsByType = function(actionList, type="") {
     return actionList.filter(aId => {
         const model = Actions[aId];
         return model.type === type
