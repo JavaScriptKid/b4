@@ -15,10 +15,13 @@ export function getMenuModel(casterModel) {
     const attack = filterActionsByType(allAttacks, "Normal");
     const special = filterActionsByType(casterModel.attacks, "Special");
 
+
+    const superChargedAttacks = ["attack-001-a"]; //TODO? Make separate attacks for the Framework names?
+
     return {
         structure: {
             root: getTopLevelMenu(casterModel),
-            superCharge: [],
+            superCharge: superChargedAttacks.map((a,i) => generateOptionFromActionId(a, `super_${a}_${i}`, casterModel)),
             attack: attack.map((a,i) => generateOptionFromActionId(a, `attack_${a}_${i}`, casterModel)),
             special: special.map((a,i) => generateOptionFromActionId(a, `special_${a}_${i}`, casterModel)),
             items: [...casterModel.items].map((a,i) => generateOptionFromActionId(a, `item_${a}_${i}`, casterModel))

@@ -16,7 +16,7 @@ export function updateSelectedId(newMenuKey, oldMenuKey) {
 
 
     /* If going BACK, put to appropriate option */
-    console.log(oldMenuKey)
+    //console.log(oldMenuKey)
 
     if (oldMenuKey == "attack" && newMenuKey == "root") {
         setBattleValue({

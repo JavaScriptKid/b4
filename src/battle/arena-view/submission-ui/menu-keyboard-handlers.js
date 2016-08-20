@@ -149,3 +149,17 @@ export function handleMenuEnter(menuModel={}) {
     }
 
 }
+
+/////////////
+/* Esc */ /////////////////////////////////////////////////////////////////
+////////////
+export function handleMenuEsc(menuModel={}) {
+    const menuKey = store.getState().battle.menuKey;
+
+    if (menuKey != "root") {
+        setBattleValue({
+            menuKey: "root",
+            menuPageIndex: 0
+        })
+    }
+}

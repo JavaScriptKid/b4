@@ -22,7 +22,7 @@ import {addKeyboardSinglePress, removeKeyboardSinglePress} from '../../../helper
 import {
     handleMenuUp, handleMenuDown,
     handleMenuLeft, handleMenuRight,
-    handleMenuEnter
+    handleMenuEnter, handleMenuEsc
 } from './menu-keyboard-handlers'
 
 @connect((state, props) => {
@@ -48,6 +48,7 @@ class SubmissionMenu extends React.Component {
         addKeyboardSinglePress(37, handleMenuLeft.bind(this, this.menuModel), "battle-submission-ui-handle-left");
         addKeyboardSinglePress(39, handleMenuRight.bind(this, this.menuModel), "battle-submission-ui-handle-right");
         addKeyboardSinglePress(13, handleMenuEnter.bind(this, this.menuModel), "battle-submission-ui-handle-enter");
+        addKeyboardSinglePress(27, handleMenuEsc.bind(this, this.menuModel), "battle-submission-ui-handle-esc");
 
     }
     unbindKeyboard() {
@@ -57,6 +58,8 @@ class SubmissionMenu extends React.Component {
         removeKeyboardSinglePress("battle-submission-ui-handle-left");
         removeKeyboardSinglePress("battle-submission-ui-handle-right");
         removeKeyboardSinglePress("battle-submission-ui-handle-enter");
+        removeKeyboardSinglePress("battle-submission-ui-handle-esc");
+
     }
 
     componentWillMount() {
