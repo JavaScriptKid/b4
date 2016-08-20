@@ -4,6 +4,7 @@ import Fury from '../battle/arena-view/animations/animation-fury'
 import Zen from '../battle/arena-view/animations/animation-zen'
 import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-down'
 import Die from '../battle/arena-view/animations/animation-die'
+import Iterate from '../battle/arena-view/animations/animation-iterate'
 
 
 //import SlideOutDown from '../animations/animation-slide-out-down'
@@ -27,6 +28,12 @@ export default {
                 isPlayer={!actionDescription.isCasterComputerControlled} />
         )
     },
+
+    iterate(actionDescription) {
+        console.log(actionDescription);
+        return <Iterate casterId={actionDescription.casterId} repetitionsCount={actionDescription.repetitionsCount} />
+    },
+
     die(actionDescription) { //caster is the person who ran out of HP
         return <Die casterId={actionDescription.casterId} />
     }
@@ -35,7 +42,4 @@ export default {
     //shootingStar(event) {
     //    return <ShootingStar event={event} />
     //},
-    //forEach1(event) {
-    //    return <ForEach1 event={event} />
-    //}
 }

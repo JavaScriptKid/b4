@@ -113,7 +113,7 @@ export default {
     "attack-003-a": {
         ...attackSchema,
         name: "ForEach",
-        animation: "tada", //"iterate",
+        animation: "iterate", //"iterate",
         description: "Hits the enemy 2 to 4 times with wildcard damage",
         affectTargetHpPoints: [1,2,3], //one of these
         repetitions: [2,4],
@@ -143,7 +143,7 @@ export default {
     "attack-003-c": {
         ...attackSchema,
         name: "ForEach Mk III",
-        animation: "tada", //"iterate",
+        animation: "iterate", //"iterate",
         description: "Hits the enemy 4 to 6 times with stronger wildcard damage",
         affectTargetHpPoints: [1,2,3,4], //one of these,,
         repetitions: [4,6],
@@ -159,7 +159,7 @@ export default {
     "attack-004-a": {
         ...attackSchema,
         name: "Map",
-        animation: "tada", // "iterate",
+        animation: "iterate", // "iterate",
         description: "Hits the enemy 2 to 4 times with consistent damage",
         affectTargetHpPoints: [1,2,3], //one of these,
         repetitions: [2,4],
@@ -172,7 +172,7 @@ export default {
     "attack-004-b": {
         ...attackSchema,
         name: "Map Mk II",
-        animation: "tada", // "iterate",
+        animation: "iterate", // "iterate",
         description: "Hits the enemy 3 to 5 times with consistent damage",
         affectTargetHpPoints: [1,2,3], //one of these,
         repetitions: [3,5],
@@ -185,7 +185,7 @@ export default {
     "attack-004-c": {
         ...attackSchema,
         name: "Map Mk III",
-        animation: "tada", // "iterate",
+        animation: "iterate", // "iterate",
         description: "Hits the enemy 4 to 6 times with consistent damage",
         affectTargetHpPoints: [1,2,3,4], //one of these,
         repetitions: [4,6],
@@ -200,7 +200,7 @@ export default {
     "attack-005-a": {
         ...attackSchema,
         name: "Reduce",
-        animation: "tada", //: "iterate",
+        animation: "iterate", //: "iterate",
         description: "Hits the enemy 2 to 4 times with increasing damage",
         affectTargetHpPoints: [1,2,3], //one of these,
         repetitions: [2,4],
@@ -213,7 +213,7 @@ export default {
     "attack-005-b": {
         ...attackSchema,
         name: "Reduce Mk II",
-        animation: "tada", //: "iterate",
+        animation: "iterate", //: "iterate",
         description: "Hits the enemy 3 to 5 times with increasing damage",
         affectTargetHpPoints: [1,2,3], //one of these,
         repetitions: [3,5],
@@ -226,7 +226,7 @@ export default {
     "attack-005-c": {
         ...attackSchema,
         name: "Reduce Mk III",
-        animation: "tada", //: "iterate",
+        animation: "iterate", //: "iterate",
         description: "Hits the enemy 3 to 6 times with increasing damage",
         affectTargetHpPoints: [1,2,3,4], //one of these,
         repetitions: [3,6],

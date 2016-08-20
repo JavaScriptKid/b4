@@ -16,3 +16,8 @@ export const sfxSubmitAction = new Howl({
     src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/submit.mp3'],
     volume: 0.5
 });
+
+export const sfxIterate = new Howl({
+    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/iterator.mp3'],
+    volume: 0.5
+});

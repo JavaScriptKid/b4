@@ -122,7 +122,7 @@ var handleEndOfBattle = function(nextState) {
     setBattleValue({
         isBattleOver: true,
         textMessageContent: [
-            `${winnerProperties.name} is the winner`
+            `${winnerProperties.name} is the winner!`
         ]
     });
     setCombatantValue(winnerId, {
