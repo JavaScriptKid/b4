@@ -58,7 +58,7 @@ var getTopLevelMenu = function(casterModel) {
         ...MenuOptionSchema,
         optionId: "root_special",
         labelText: "SPECIAL",
-        descriptionBarText: "SPECIAL > Wizardy magic in computer science",
+        descriptionBarText: "SPECIAL > Wizardy computer science magic",
         supportText: "...",
         customClasses: "",
         handleEnter() {

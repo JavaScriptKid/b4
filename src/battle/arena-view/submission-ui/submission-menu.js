@@ -40,9 +40,8 @@ import {
 class SubmissionMenu extends React.Component {
 
 
-
-
     bindKeyboard() {
+        this.unbindKeyboard(); //unbind in case these bindings are already here
         addKeyboardSinglePress(38, handleMenuUp.bind(this, this.menuModel), "battle-submission-ui-handle-up");
         addKeyboardSinglePress(40, handleMenuDown.bind(this, this.menuModel), "battle-submission-ui-handle-down");
         addKeyboardSinglePress(37, handleMenuLeft.bind(this, this.menuModel), "battle-submission-ui-handle-left");
@@ -52,7 +51,6 @@ class SubmissionMenu extends React.Component {
 
     }
     unbindKeyboard() {
-        //console.log('UNBIND');
         removeKeyboardSinglePress("battle-submission-ui-handle-up");
         removeKeyboardSinglePress("battle-submission-ui-handle-down");
         removeKeyboardSinglePress("battle-submission-ui-handle-left");
