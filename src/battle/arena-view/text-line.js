@@ -21,6 +21,7 @@ class TextLine extends React.Component {
 
         this.state = {
             characterIndex: 0,
+            showBlinker: false
         };
     }
 
@@ -44,6 +45,9 @@ class TextLine extends React.Component {
 
     promptHandler() {
 
+        this.setState({
+            showBlinker: false
+        });
 
         this.acceptClick = false;
         removeKeyboardSinglePress("battle-text-line");
@@ -54,6 +58,11 @@ class TextLine extends React.Component {
     }
 
     handleDone() {
+
+
+        this.setState({
+            showBlinker: true
+        });
 
         var handler = () => {
             this.promptHandler()
@@ -82,6 +91,10 @@ class TextLine extends React.Component {
                 if (self.state.characterIndex < self.props.content.length) {
                     self.timeout = setTimeout(increase, node.delayBefore);
                 } else {
+
+
+
+
                     self.handleDone();
                 }
             })
@@ -90,6 +103,19 @@ class TextLine extends React.Component {
     }
 
     render() {
+
+        const baseUnit = this.props.vW;
+        const blinkerStyle = {
+            width: baseUnit * 1.2,
+            height: baseUnit * 1.2,
+            background: "#000",
+            position: "absolute",
+            right: baseUnit * 1.2,
+            bottom: baseUnit * 1.2,
+            animation: "blink 1.1s steps(2, start) infinite"
+        };
+
+
         var spans = this.props.content.map((d,i) => {
             const style = {
                 visibility: (i < this.state.characterIndex) ? "visible" : "hidden"
@@ -101,9 +127,12 @@ class TextLine extends React.Component {
             height:"100%"
         };
 
+
+
         return (
             <div onClick={::this.handleClick} style={style}>
                 {spans}
+                {this.state.showBlinker ? <div style={blinkerStyle}></div> : null}
             </div>
         )
     }

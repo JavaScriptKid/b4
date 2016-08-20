@@ -20,11 +20,6 @@ import store from '../../init/store'
 
 class DescriptionBar extends React.Component {
 
-    //componentWillUpdate(newProps) {
-    //    //if (newProps.textMessageContent.length != this.props.textMessageContent.length) {
-    //    //    console.log('update', newProps.textMessageContent)
-    //    //}
-    //}
 
     handleEnterKey() {
         doStep();
@@ -37,7 +32,7 @@ class DescriptionBar extends React.Component {
         }
 
         const textContent = convertText(this.props.textMessageContent);
-        return <TextLine content={textContent} needsUserPrompt={true} handleUserPrompt={this.handleEnterKey} />
+        return <TextLine vW={this.props.vW} content={textContent} needsUserPrompt={true} handleUserPrompt={this.handleEnterKey} />
     }
 
     render() {
@@ -51,6 +46,8 @@ class DescriptionBar extends React.Component {
             fontSize: this.props.isRollout ? baseUnit * 2.5 : baseUnit * 2,
             height: this.props.isRollout ? baseUnit * 13 : baseUnit * 5,
         };
+
+
 
 
         const content = this.props.isRollout
