@@ -14,6 +14,12 @@ import Icons from './submission-icons'
 class SubmissionMenuOption extends React.Component {
 
 
+    handleHover() {
+        setBattleValue({
+            selectedOptionId: this.props.model.optionId
+        });
+    }
+
     handleClick() {
         setBattleValue({
             selectedOptionId: this.props.model.optionId
@@ -82,7 +88,7 @@ class SubmissionMenuOption extends React.Component {
         ].join(' ');
 
         return (
-            <div onClick={::this.handleClick} style={style} className={optionClasses}>
+            <div onMouseOver={::this.handleHover} onClick={::this.handleClick} style={style} className={optionClasses}>
                 {model.labelText ? <span>{backArrow}{model.labelText}</span> : null}
                 {model.supportText ? <span style={metaStyle}>{model.supportText}</span> : null}
                 { this.props.isLeftArrow ? this.renderLeftArrow() : null }
