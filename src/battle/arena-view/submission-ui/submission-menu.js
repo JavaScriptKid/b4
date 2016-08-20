@@ -76,6 +76,14 @@ class SubmissionMenu extends React.Component {
             //NOW SHOWING
             this.menuModel = getMenuModel(newProps.casterModel).structure; //Update the menu model
 
+
+            //Reset menu to be on the root page
+            setBattleValue({
+                menuKey: "root",
+                menuPageIndex: 0
+            });
+            updateSelectedId("root", this.props.menuKey);
+
             this.bindKeyboard();
         }
         if (newProps.hide && !this.props.hide) {

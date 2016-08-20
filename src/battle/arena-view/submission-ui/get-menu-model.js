@@ -3,6 +3,7 @@ import MenuOptionSchema from './menu-option-schema'
 import {changeMenuPage} from './change-menu-page'
 import {getSubmission} from '../../submissions/get-submission'
 import {addSubmission} from '../../submissions/add-submission'
+import {sfxSubmitAction} from '../../../_data/_sfx'
 
 export function getMenuModel(casterModel) {
 
@@ -114,6 +115,8 @@ var generateOptionFromActionId = function(actionId, optionId, casterModel) {
         isDeactivated: isDeactivated,
         handleEnter() {
             if (!this.isDeactivated) {
+
+                sfxSubmitAction.play(); //Play submission sound effect
                 const submissionModel = getSubmission(actionId, null);
                 addSubmission(submissionModel);
             }

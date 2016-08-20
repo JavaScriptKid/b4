@@ -3,16 +3,16 @@ import {setBattleValue} from '../../../redux-action-creators/battle-action-creat
 import {getPagesFromArray} from '../../../helpers/array-to-pages'
 import {goToNextSubPage, goToPrevSubPage} from './change-options-subpage'
 
+import {sfxCursorMove} from '../../../_data/_sfx'
 
 /////////////
 /* Up & Down *//////////////////////////////////////////////////////////////////
 ////////////
 
 export function handleMenuDown(menuModel) {
-    //console.log( getBorderingIds(menuModel).nextOptionId )
-
     const next = getBorderingIds(menuModel).nextOptionId;
     if (next) {
+        sfxCursorMove.play();
         setBattleValue({
             selectedOptionId: getBorderingIds(menuModel).nextOptionId
         })
@@ -25,6 +25,7 @@ export function handleMenuUp(menuModel={}) {
     const prev = getBorderingIds(menuModel).prevOptionId;
 
     if (prev) {
+        sfxCursorMove.play();
         setBattleValue({
             selectedOptionId: getBorderingIds(menuModel).prevOptionId
         })
