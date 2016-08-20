@@ -23,4 +23,21 @@
 
     }
 
+
+    .ending-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: -1;
+        opacity:0;
+        transition: opacity 0.5s;
+
+        &.is-active {
+            opacity:1;
+            z-index: 999;
+        }
+    }
 }

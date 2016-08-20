@@ -7,6 +7,8 @@ import SubmissionMenu from './submission-ui/submission-menu'
 import ArenaCombatant from './arena-combatant'
 import AutoSubmitter from './auto-submitter'
 import ArenaBackground from './arena-background'
+import EndingOverlay from './ending-overlay'
+
 import { CombatantModel } from '../combatant-model'
 import {turnCombatantsForSubmissions} from './turn-combatants'
 
@@ -66,6 +68,7 @@ class BattleArenaView extends React.Component {
                <DescriptionBar isRollout={this.props.isRollout} />
 
                <AutoSubmitter />
+               <EndingOverlay />
            </div>
         );
     }
