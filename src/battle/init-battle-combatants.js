@@ -79,5 +79,8 @@ export default function(c1, c2) {
 
         submissions: [],
         devTimeTravelTurn: 0,
+        showEndingOverlay: false,
+        isBattleOver: false
+
     })
 }

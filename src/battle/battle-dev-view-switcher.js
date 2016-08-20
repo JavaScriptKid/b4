@@ -40,6 +40,13 @@ class BattleDevViewSwitcher extends React.Component {
     }
 
     render() {
+
+        //Cant use this while Report is running
+        if (this.props.isReportRunning) {
+            return null;
+        }
+
+
         const activeStyle = {
             background: "#4A90E2",
             color:"#fff",
@@ -64,6 +71,7 @@ export default connect((state, props) => {
     const combatantIds = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants);
 
     return {
+        isReportRunning: state.battle.isReportRunning,
         viewMode: state.battle.viewMode,
         isRollout: state.battle.submissions.length == combatantIds.length
     }

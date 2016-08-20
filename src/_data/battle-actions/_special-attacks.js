@@ -13,6 +13,7 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
         type: "message",
         content: [
             `${casterModel.name} used `,
+            "@@pause_400@@",
             `[FAST]${action.name}!`
         ]
     }
@@ -313,7 +314,7 @@ export default {
         name: "Headphones",
         animation: "zen",
         ppCost: 5,
-        description: "Enters temporary state of zen",
+        description: "Enters temporary state of focus",
         affectCasterStatus: ["normal", "zen"],
         getFail: function(action, casterState, targetState, actionDescription) {
             return casterState.status != "normal"
@@ -334,7 +335,7 @@ export default {
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} has entered a state of Zen`
+                        `${casterState.name} has entered a state of Focus`
                     ]
                 }
             ]

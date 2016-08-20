@@ -14,7 +14,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`${casterModel.name} has run out of battery life`]
+                    content: [`${casterModel.name} has run out of battery life!`]
                 }
             ]
         }
@@ -33,7 +33,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`${casterModel.name} is hurt by the memory leak`]
+                    content: [`${casterModel.name} is hurt by the memory leak!`]
                 }
             ]
         }
@@ -52,7 +52,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`[FAST]${casterModel.name}'s laptop is burning in fire`]
+                    content: [`[FAST]${casterModel.name}'s laptop is burning in fire!!!`]
                 }
             ]
         }
@@ -64,7 +64,7 @@ export default {
             return [
                 {
                     type: "message",
-                    content: [`${casterModel.name} is lagging too much to attack`]
+                    content: [`${casterModel.name} is lagging too much to attack!`]
                 }
             ]
         }
@@ -106,7 +106,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`${casterModel.name} has calmed down from fury`]
+                    content: [`${casterModel.name} has calmed down from fury.`]
                 }
             ]
         }
@@ -127,7 +127,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`${casterModel.name} has returned from zen meditation`]
+                    content: [`${casterModel.name}'s focus has broken!`]
                 }
             ]
         }
@@ -148,7 +148,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`${casterModel.name}'s deadline has passed`]
+                    content: [`${casterModel.name}'s deadline has passed.`]
                 }
             ]
         }

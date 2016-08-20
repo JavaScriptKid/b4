@@ -4,8 +4,7 @@ const getItemUseMessage = function(action, casterModel, targetModel, actionDescr
     return {
         type: "message",
         content: [
-            `${casterModel.name} used a `,
-            `[FAST]${action.name}!`
+            `${casterModel.name} used a ${action.name}!`
         ]
     }
 };
@@ -61,7 +60,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`${casterModel.name} recovered ${actionDescription.affectCasterHp} hp`]
+                    content: [`[FAST]${casterModel.name} recovered ${actionDescription.affectCasterHp} hp!`]
                 }
             ]
         }

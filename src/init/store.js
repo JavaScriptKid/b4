@@ -42,7 +42,12 @@ const store = createStore({
         viewMode: viewMode, //"console" || "battle" || "reporting"
 
         //Arena
-        backgroundStyle: null
+        backgroundStyle: null,
+        isBattleOver: false,
+        showEndingOverlay: true, //false
+
+        //Reporting
+        isReportRunning: false
     },
     map: {
         viewportWidth: 0

@@ -34,11 +34,10 @@ export function doStep() {
             textMessageContent: []
         });
 
-        //setTimeout(function() {
-            setBattleValue({
-                textMessageContent: nowStep.content
-            })
-        //}, 10)
+        setBattleValue({
+            textMessageContent: nowStep.content
+        })
+
     }
 
     if (nowStep.type == "animation") {
@@ -91,7 +90,16 @@ var handleEndOfTurn = function() {
     //Is the battle over?
     if ( getDeadCombatantId(result.nextState) ) {
         //Yes.
-        handleEndOfBattle(result.nextState)
+
+        const isBattleOver = store.getState().battle.isBattleOver;
+
+        if (isBattleOver) {
+            //"So and So is the winner"
+            handleExitBattle()
+        } else {
+            //"So and So is the winner"
+            handleEndOfBattle(result.nextState)
+        }
 
     } else {
         //No.
@@ -112,6 +120,7 @@ var handleEndOfBattle = function(nextState) {
     const winnerProperties = nextState.combatants[winnerId];
 
     setBattleValue({
+        isBattleOver: true,
         textMessageContent: [
             `${winnerProperties.name} is the winner`
         ]
@@ -120,5 +129,10 @@ var handleEndOfBattle = function(nextState) {
         animation: "celebrate 2s infinite"
     });
 
+};
 
+var handleExitBattle = function() {
+        setBattleValue({
+            showEndingOverlay: true
+        })
 };

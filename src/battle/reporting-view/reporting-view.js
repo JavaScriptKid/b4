@@ -4,12 +4,14 @@ import Table from './table.js'
 import {modelsFromObject} from '../../helpers/models-from-object'
 import Combatants, {getGeneratedCharacters} from '../../_data/reporting-combatants'
 import calculateRows from './calculate-row'
-
+import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 
 
 
 @connect((state, props) => {
-    return {}
+    return {
+        isReportRunning: state.battle.isReportRunning
+    }
 })
 
 class ReportingView extends React.Component {
@@ -30,6 +32,11 @@ class ReportingView extends React.Component {
         this.setState({
             rowData: {}
         }, () => {
+
+            setBattleValue({
+                isReportRunning: true
+            });
+
             const participantIds = Object.keys(this.GeneratedCombatants);
             calculateRows(participantIds, this.handleNewMatchupResult.bind(this), this.GeneratedCombatants)
         });
@@ -60,7 +67,7 @@ class ReportingView extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={::this.handleRunReportButton}>Run Report</button>
+                <button disabled={this.props.isReportRunning} onClick={::this.handleRunReportButton}>Run Report</button>
                 <Table columns={this.state.columns} rowData={this.state.rowData}/>
             </div>
         );
