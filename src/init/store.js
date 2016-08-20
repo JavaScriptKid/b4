@@ -45,6 +45,10 @@ const store = createStore({
         backgroundStyle: null,
         isBattleOver: false,
         showEndingOverlay: true, //false
+        isAllowingMusic: true,
+
+        //CodePen demo:
+        isShowingIntroScreen: true,
 
         //Reporting
         isReportRunning: false

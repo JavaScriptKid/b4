@@ -43,10 +43,42 @@
         &.is-active {
             opacity:0.94;
             z-index: 999;
+
+            &.half {
+                opacity: 0.7;
+            }
         }
     }
 
-    .ending-restart-link {
+    .ending-overlay-link {
         color: #4A90E2;
+    }
+
+}
+
+.start-overlay {
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(#fff, 0.7);
+    z-index: 999;
+
+    .start-overlay-link {
+        background: #4A90E2;
+        border-bottom: 0.3em solid darken(#4A90E2, 9%);
+        text-decoration:none;
+        color:#fff;
+        padding:1em 2em;
+        border-radius: 0.5em;
+        &:hover {
+            background: darken(#4A90E2, 9%);
+        }
     }
 }

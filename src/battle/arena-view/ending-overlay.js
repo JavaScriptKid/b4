@@ -44,7 +44,7 @@ class EndingOverlay extends React.Component {
 
         return (
            <div className={`ending-overlay ${activeClass}`}>
-                <a href="#" onClick={::this.handleClick} className="ending-restart-link" style={linkStyle} >
+                <a href="#" onClick={::this.handleClick} className="ending-overlay-link" style={linkStyle} >
                     Restart?
                 </a>
            </div>

@@ -9,6 +9,8 @@ import BattleDevViewSwitcher from './battle/battle-dev-view-switcher'
 
 import Combatants from './_data/reporting-combatants'
 
+import AudioOption from './music-switcher'
+
 var RootComponent = React.createClass({
 
     componentWillMount() {
@@ -26,6 +28,7 @@ var RootComponent = React.createClass({
         return (
             <Provider store={ this.props.store }>
                 <div>
+                    <AudioOption />
                     <BattleDevViewSwitcher />
                     <Viewport />
                 </div>
