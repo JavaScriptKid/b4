@@ -1,5 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
+import Icons from './submission-icons'
+
+
+@connect((state, props) => {
+    return {
+        isSelected: (state.battle.selectedOptionId == props.model.optionId)
+    }
+})
 
 class SubmissionMenuOption extends React.Component {
 
@@ -8,40 +18,30 @@ class SubmissionMenuOption extends React.Component {
         setBattleValue({
             selectedOptionId: this.props.model.optionId
         });
-        this.props.model.handleEnter();
+        setTimeout(()=> {
+            this.props.model.handleEnter();
+        }, 100)
     }
 
 
     renderLeftArrow() {
         const baseUnit = this.props.vW;
-        const upArrowStyle = {
-            width: 0,
-            height: 0,
-            position: "relative",
-            left: baseUnit,
-            top: -baseUnit * 0.2,
-            borderTop: `${baseUnit * 1.2}px solid transparent`,
-            borderBottom: `${baseUnit * 1.2}px solid transparent`,
-            borderRight: `${baseUnit * 1.5}px solid #000`
+        const style = {
+            paddingLeft: baseUnit * 1.5,
+            paddingRight: baseUnit * 1.5,
         };
         return (
-            <span style={upArrowStyle} />
+            <span style={style}>{Icons.leftArrow(baseUnit*2)}</span>
         )
     }
     renderRightArrow() {
         const baseUnit = this.props.vW;
-        const upArrowStyle = {
-            width: 0,
-            height: 0,
-            position: "relative",
-            left: baseUnit*1.45,
-            top: -baseUnit * 0.2,
-            borderTop: `${baseUnit * 1.2}px solid transparent`,
-            borderBottom: `${baseUnit * 1.2}px solid transparent`,
-            borderLeft: `${baseUnit * 1.5}px solid #000`
+        const style = {
+            paddingLeft: baseUnit * 1.5,
+            paddingRight: baseUnit * 1.5,
         };
         return (
-            <span style={upArrowStyle} />
+            <span style={style}>{Icons.rightArrow(baseUnit*2)}</span>
         )
     }
 
@@ -70,9 +70,19 @@ class SubmissionMenuOption extends React.Component {
             fontSize: this.props.vW * 2
         };
 
+        const style = {
+            ...this.props.baseStyle
+        };
+
+        const optionClasses = [
+            'submission-menu_option',
+            model.customClasses || "",
+            this.props.isSelected ? "is-selected" : "",
+            (this.props.isDeactivated || model.isDeactivated) ? "is-deactivated" : ""
+        ].join(' ');
 
         return (
-            <div onClick={::this.handleClick} style={this.props.baseStyle} className={`submission-menu_option ${model.customClasses || ""}`}>
+            <div onClick={::this.handleClick} style={style} className={optionClasses}>
                 {model.labelText ? <span>{backArrow}{model.labelText}</span> : null}
                 {model.supportText ? <span style={metaStyle}>{model.supportText}</span> : null}
                 { this.props.isLeftArrow ? this.renderLeftArrow() : null }

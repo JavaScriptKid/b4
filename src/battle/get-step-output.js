@@ -15,7 +15,7 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
         type: "message",
         content: [
             `${casterModel.name} used `,
-            "@@pause_300@@",
+            "@@pause_400@@",
             `[FAST]${action.name}!`
         ]
     }

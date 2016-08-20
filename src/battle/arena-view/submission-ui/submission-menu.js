@@ -1,114 +1,119 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSubmissionMenuStructure } from './get-submission-menu-structure'
+
+//New way!
+import {getMenuModel} from './get-menu-model'
+import {getPagesFromArray} from '../../../helpers/array-to-pages'
+import {updateDescriptionText} from './update-description-text'
+
+import {updateSelectedId} from './update-selected-id'
+
 import SubmissionMenuOption from './submission-menu-option'
+import SubmissionTitleBar from './submission-title-bar'
+import BottomSubmissionNavBar from './bottom-submission-nav-bar'
+
+
 import PagingIndicators from './paging-indicators'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 import {vW} from '../../../helpers/vw'
+
+//Keyboard
+import {addKeyboardSinglePress, removeKeyboardSinglePress} from '../../../helpers/single-keypress-binding'
+import {
+    handleMenuUp, handleMenuDown,
+    handleMenuLeft, handleMenuRight,
+    handleMenuEnter, handleMenuEsc
+} from './menu-keyboard-handlers'
 
 @connect((state, props) => {
     return {
         cW: state.map.cW,
         vW: Math.round(state.map.viewportWidth / 100),
-        menuLevel: state.battle.menuLevel,
-        menuOptionIndex: state.battle.menuOptionIndex,
-        showPP: (["attacks", "special"].indexOf(state.battle.menuLevel) > -1)
+
+        menuKey: state.battle.menuKey,
+        menuPageIndex: state.battle.menuPageIndex,
+
+        selectedOptionId: state.battle.selectedOptionId
     }
 })
 
 class SubmissionMenu extends React.Component {
 
-    renderMoreContainer(menuOptions, baseOptionStyles, baseUnit) {
 
-        /* Do not show unless on one of these menuLevels: */
-        if (["attacks", "special", "items"].indexOf(this.props.menuLevel) == -1) {
-            return null
+    bindKeyboard() {
+        this.unbindKeyboard(); //unbind in case these bindings are already here
+        addKeyboardSinglePress(38, handleMenuUp.bind(this, this.menuModel), "battle-submission-ui-handle-up");
+        addKeyboardSinglePress(40, handleMenuDown.bind(this, this.menuModel), "battle-submission-ui-handle-down");
+        addKeyboardSinglePress(37, handleMenuLeft.bind(this, this.menuModel), "battle-submission-ui-handle-left");
+        addKeyboardSinglePress(39, handleMenuRight.bind(this, this.menuModel), "battle-submission-ui-handle-right");
+        addKeyboardSinglePress(13, handleMenuEnter.bind(this, this.menuModel), "battle-submission-ui-handle-enter");
+        addKeyboardSinglePress(27, handleMenuEsc.bind(this, this.menuModel), "battle-submission-ui-handle-esc");
+
+    }
+    unbindKeyboard() {
+        removeKeyboardSinglePress("battle-submission-ui-handle-up");
+        removeKeyboardSinglePress("battle-submission-ui-handle-down");
+        removeKeyboardSinglePress("battle-submission-ui-handle-left");
+        removeKeyboardSinglePress("battle-submission-ui-handle-right");
+        removeKeyboardSinglePress("battle-submission-ui-handle-enter");
+        removeKeyboardSinglePress("battle-submission-ui-handle-esc");
+
+    }
+
+    componentWillMount() {
+        this.menuModel = getMenuModel(this.props.casterModel).structure;
+        updateDescriptionText(this.props.selectedOptionId, this.menuModel);
+    }
+
+    componentDidMount() {
+        this.bindKeyboard();
+    }
+
+    componentWillUpdate(newProps) {
+        if (!newProps.hide && this.props.hide) {
+            //NOW SHOWING
+            this.menuModel = getMenuModel(newProps.casterModel).structure; //Update the menu model
+
+
+            //Reset menu to be on the root page
+            setBattleValue({
+                menuKey: "root",
+                menuPageIndex: 0
+            });
+            updateSelectedId("root", this.props.menuKey);
+
+            this.bindKeyboard();
+        }
+        if (newProps.hide && !this.props.hide) {
+            //NO LONGER SHOWING
+            this.unbindKeyboard();
         }
 
-        const backStyle = {
-            ...baseOptionStyles,
-            width: 'initial',
-            //flex: "1",
-            marginTop: 0,
-            textAlign: "center",
-            display:"block"
-        };
-        
-        const containerStyle = {
-            width: baseUnit * 37,
-            display: "flex",
-            justifyContent: "space-between"
-        };
-        const pageStyle = {
-            ...baseOptionStyles,
-            width: baseUnit * 8,
-            marginLeft: baseUnit * 1.5,
-            marginTop: 0
-        };
+        if (newProps.selectedOptionId != this.props.selectedOptionId) {
+            updateDescriptionText(newProps.selectedOptionId, this.menuModel);
+        }
 
-        const backModel = {
-            labelText: "BACK",
-            customClasses: "back-button",
-            handleEnter() {
-                setBattleValue({
-                    menuLevel: ""
-                })
-            }
-        };
+        if (newProps.menuKey != this.props.menuKey) {
+            updateSelectedId(newProps.menuKey, this.props.menuKey);
+        }
 
-        const menuOptionIndex = this.props.menuOptionIndex;
-        const hidePrevPageBtn = this.props.menuOptionIndex == 1;
-        const pageLeftModel = {
-            labelText: null,
-            supportText: null,
-            customClasses: hidePrevPageBtn ? "invisible" : "",
-            handleEnter() {
-                setBattleValue({
-                    menuOptionIndex: menuOptionIndex - 4
-                })
-            }
-        };
-
-        const isLastPage = menuOptions.totalItemCount <= 4 * this.props.menuOptionIndex;
-        const pageRightModel = {
-            labelText: null,
-            supportText: null,
-            customClasses: "", //isLastPage ? "invisible" : "",
-            handleEnter() {
-                setBattleValue({
-                    menuOptionIndex: menuOptionIndex + 4
-                })
-            }
-        };
-
-
-
-        return (
-            <div className="submission-menu_more-container" style={containerStyle}>
-                <div>
-                    <SubmissionMenuOption vW={this.props.vW} useBackArrowIcon={false} baseStyle={backStyle} model={backModel} />
-                </div>
-                <div style={{display:"flex"}}>
-                    <SubmissionMenuOption vW={this.props.vW} isLeftArrow={true} baseStyle={pageStyle} model={pageLeftModel} />
-                    <SubmissionMenuOption vW={this.props.vW} isRightArrow={true} baseStyle={pageStyle} model={pageRightModel} />
-                </div>
-            </div>
-        )
     }
 
     render() {
         const baseUnit = this.props.vW;
         const menuStyle = {
-            left: (baseUnit * 4),
+            width: baseUnit * 37,
+            left: (baseUnit * 2),
             bottom: this.props.hide ? (baseUnit * - 43) : (baseUnit * 7),
             fontSize: baseUnit * 3
         };
         const optionStyle = {
             padding: vW(1.2),
-            width: vW(37),
+            // width: vW(37),
+            width: "100%",
             border: `${vW(0.5)}px solid #000`,
             borderRadius: vW(1),
-            marginTop: vW(1.5)
+            marginTop: vW(1)
         };
         const ppStyle = {
             float: "right",
@@ -123,29 +128,31 @@ class SubmissionMenu extends React.Component {
         };
 
 
-        const menuOptions = getSubmissionMenuStructure(
-            this.props.casterModel,
-            this.props.menuLevel,
-            this.props.menuOptionIndex
-        );
+        //const menu = getMenuModel(this.props.casterModel).structure;
+        //console.log(menu)
+        const pages = getPagesFromArray( this.menuModel[this.props.menuKey] );
 
-        const optionComponents = menuOptions.items.map((optionModel, i) => {
+        const optionComponents = pages[this.props.menuPageIndex].map((optionModel, i) => {
             return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />
         });
 
         return (
            <div style={menuStyle} className="submission-menu">
                {this.props.showPP ? <div style={ppStyle}>PP {this.props.casterModel.pp}/{this.props.casterModel.maxPp}</div> : null}
+
+               <SubmissionTitleBar pp={this.props.casterModel.pp} maxPp={this.props.casterModel.maxPp}  />
+
                <div>
                 {optionComponents}
                </div>
 
                <PagingIndicators
                    vW={this.props.vW}
-                   totalItems={menuOptions.totalItemCount}
-                   currentIndex={this.props.menuOptionIndex}
+                   totalItems={pages.length}
+                   currentIndex={this.props.menuPageIndex}
                />
-               {this.renderMoreContainer(menuOptions, optionStyle, baseUnit)}
+
+               <BottomSubmissionNavBar menuModel={this.menuModel} vW={this.props.vW} lastPage={pages.length-1} />
            </div>
         );
     }

@@ -13,6 +13,7 @@ const getItemUseMessage = function(action, casterModel, targetModel, actionDescr
 const itemSchema = {
     ...actionSchema,
     type: "Item",
+    ppCost: 0,
     animation: "slideOutDown", //animation: "slideDown",
     speedModifier: 900,
     increaseDangerMeter: 0

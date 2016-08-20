@@ -17,6 +17,30 @@ export function CombatantModel(combatantState={}) {
         /* Attacks */
         attacks: getAvailableAttacks(combatantState),
 
+
+        getAllAttacks() {
+            //Regardless of available PP, get a list of all attacks I know
+            return [...combatantState.attacks]
+        },
+
+        isOutOfUsablePp() {
+            //Is the combatant down to just "Insult" ?
+            const available = combatantState.attacks.filter(attackId => {
+                const model = Actions[attackId];
+                return combatantState.pp >= model.ppCost;
+            });
+
+            //Don't include "Commit"
+            if (available.length == 1 && available[0] == "attack-special-011-a") {
+                return true;
+            }
+
+
+            return available.length == 0;
+        },
+
+
+
         /* Rolls */
         speedRoll(externalSpeedModification=0) {
             const base = combatantState.speedStatPoints + combatantState.speedModifier + externalSpeedModification;
