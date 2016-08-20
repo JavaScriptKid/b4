@@ -147,7 +147,7 @@ export default {
                 {
                     type: "message",
                     content: [
-                        `${targetState.name}'s laptop is getting uncomfortably warm`
+                        `${targetState.name}'s laptop is getting uncomfortably warm...`
                     ]
                 }
             ]
@@ -335,7 +335,7 @@ export default {
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} has entered a state of Focus`
+                        `${casterState.name} has entered a state of Focus!`
                     ]
                 }
             ]
@@ -374,7 +374,7 @@ export default {
                 {
                     type: "message",
                     content: [
-                        `${casterState.name}'s speed is greatly increased`
+                        `${casterState.name}'s speed is greatly increased!`
                     ]
                 }
             ]

@@ -12,7 +12,7 @@ export default {
 
     name: "MeatSim",
     simName: "meatsim",
-    level: 4,
+    level: 3,
     class: "captain",
     skin: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/drew-pink.svg",
 
