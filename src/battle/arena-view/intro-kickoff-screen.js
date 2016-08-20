@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 
+import {songEnergeticBattle} from '../../_data/_sfx'
 
 @connect((state, props) => {
     return {
@@ -15,6 +16,8 @@ class IntroKickoffScreen extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
+
+        songEnergeticBattle.play();
 
         setBattleValue({
             isShowingIntroScreen: false
