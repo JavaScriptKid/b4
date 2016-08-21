@@ -22,6 +22,7 @@ export default {
     bypassCasterAttackStats: false, //Don't let move use the Attack stat, like "Insult"
 
     affectCasterHpPoints: 0,
+    affectCasterPpPoints: 0,
     affectCasterHpPointsByPercent: 0,
     affectCasterAttackPoints: 0,
     affectCasterDefensePoints: 0,

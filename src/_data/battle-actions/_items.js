@@ -87,5 +87,28 @@ export default {
                 }
             ]
         }
-    }
+    },
+    "item_004": {
+        ...itemSchema,
+        name: "Mini PP Pack",
+        description: "Recovers 15 PP",
+        affectCasterPpPoints: 15,
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.pp == casterState.maxPp;
+        },
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                getItemUseMessage(action, casterModel, targetModel, actionDescription),
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`[FAST]${casterModel.name} recovered ${actionDescription.affectCasterPp} pp!`]
+                }
+            ]
+        }
+    },
 }
