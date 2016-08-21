@@ -41,7 +41,7 @@ export default function(c1, c2) {
         pp: stats1.maxPp,
         //pp: 2,
         //dangerMeter: 99,
-        speedModifier: 999
+        speedModifier: 999,
     };
     combatants[id2] = {
         ...initialCombatantProperties,

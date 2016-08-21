@@ -111,4 +111,27 @@ export default {
             ]
         }
     },
+    "item_005": {
+        ...itemSchema,
+        name: "Extinguisher",
+        description: "Removes burning flames from a laptop",
+        affectCasterStatus: ["fire", "normal"],
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.status != "fire"
+        },
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                getItemUseMessage(action, casterModel, targetModel, actionDescription),
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name} put out the laptop fire!`]
+                }
+            ]
+        }
+    },
 }
