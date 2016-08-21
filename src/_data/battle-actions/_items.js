@@ -134,4 +134,24 @@ export default {
             ]
         }
     },
+    "item_006": {
+        ...itemSchema,
+        name: "Honeypot Mine",
+        description: "WARNING! It's a trap! Explodes in your face.",
+        affectCasterHpPointsByPercent: -0.33,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                getItemUseMessage(action, casterModel, targetModel, actionDescription),
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`The Honeypot Mine blew up!!!`]
+                }
+            ]
+        }
+    },
 }

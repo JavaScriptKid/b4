@@ -78,6 +78,10 @@ export function getRegularAttackChanges(action, casterModel, targetModel, curren
         }
     }
 
+    if (action.affectCasterHpPointsByPercent != 0) { /* EX: Honeypot */
+        changes["affectCasterHp"] = Math.round(action.affectCasterHpPointsByPercent * casterModel.maxHp);
+    }
+
 
     /* Super Charge augmentation */
     if (changes["affectTargetHp"] < 0 && currentChanges.isSuperCharged) {
