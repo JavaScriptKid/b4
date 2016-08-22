@@ -1,10 +1,15 @@
 import actionSchema from './battle-action-schema'
+import articleHelper from '../../helpers/articles-helper'
+
 
 const getItemUseMessage = function(action, casterModel, targetModel, actionDescription) {
+
+    const article = articleHelper(action.name);
+
     return {
         type: "message",
         content: [
-            `${casterModel.name} used a ${action.name}!`
+            `${casterModel.name} used ${article} ${action.name}!`
         ]
     }
 };
