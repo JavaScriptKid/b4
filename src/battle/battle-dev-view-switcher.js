@@ -54,7 +54,8 @@ class BattleDevViewSwitcher extends React.Component {
         };
         const containerStyle = {
             opacity: this.props.isRollout ? "0.5" : "1",
-            marginBottom: "1em"
+            marginBottom: "1em",
+            marginLeft: "1em"
         };
 
         return (

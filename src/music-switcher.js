@@ -21,13 +21,13 @@ export default class AudioOption extends React.Component {
 
         /* Interact with music player. This is the only interaction with Howler for this feature */
         if (newValue == true) {
-            window.Howler.mute();
+            Howler.mute(false);
 
             this.refs.link.blur();
             return;
         }
 
-        Howler.mute();
+        Howler.mute(true);
         this.refs.link.blur();
     }
 

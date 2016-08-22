@@ -153,5 +153,6 @@ export default {
                 }
             ]
         }
-    },
+    }
+    //TODO: Attack Sticker, etc
 }
