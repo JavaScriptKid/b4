@@ -21,7 +21,6 @@ var RootComponent = React.createClass({
             Combatants["player"],
             Combatants["meatsim"]
         );
-
     },
 
     render() {

@@ -26,8 +26,11 @@ const store = createStore({
         ],
         currentAnimation: null,
 
-        submissions: [],
-        textMessageContent: [],
+        submissions: [
+        ],
+        textMessageContent: [
+            `AHH BATTLE!`
+        ],
 
         result: {}, //"result" from executeTurn preserved during rollout
 

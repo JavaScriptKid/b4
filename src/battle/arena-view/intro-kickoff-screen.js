@@ -32,7 +32,7 @@ class IntroKickoffScreen extends React.Component {
 
         return (
            <div className="start-overlay half is-active">
-               <a href="#" onClick={::this.handleClick} className="start-overlay-link">BEGIN</a>
+               <a href="#" onClick={::this.handleClick} className="start-overlay-link">BEGIN BATTLE</a>
            </div>
         );
     }

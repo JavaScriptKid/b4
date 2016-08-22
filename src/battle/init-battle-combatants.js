@@ -74,11 +74,11 @@ export default function(c1, c2) {
             { turnId: 0, steps: [] }
         ],
         rollout: [
-            //{type:"message", content: ["Begin Hack Battle"]}
         ],
         currentAnimation: null,
 
-        submissions: [],
+        submissions: [
+        ],
         devTimeTravelTurn: 0,
         showEndingOverlay: false,
         isBattleOver: false
