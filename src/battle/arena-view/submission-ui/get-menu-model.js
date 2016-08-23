@@ -5,6 +5,7 @@ import {getSubmission} from '../../submissions/get-submission'
 import {addSubmission} from '../../submissions/add-submission'
 import {sfxSubmitAction} from '../../../_data/_sfx'
 import store from '../../../init/store'
+import {removeKeyboardSinglePress} from '../../../helpers/single-keypress-binding'
 
 
 export function getMenuModel(casterModel) {
@@ -124,6 +125,9 @@ var generateOptionFromActionId = function(actionId, optionId, casterModel) {
             //} This did not work...
 
             if (!this.isDeactivated) {
+
+                /* protect against keyboard spam */
+                removeKeyboardSinglePress("battle-submission-ui-handle-enter");
 
                 sfxSubmitAction.play(); //Play submission sound effect
                 const submissionModel = getSubmission(actionId, null);
