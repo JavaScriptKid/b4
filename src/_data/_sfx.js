@@ -1,10 +1,22 @@
 //SONG
-export const songEnergeticBattle = new Howl({
-    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/energetic-battle-under-minut.mp3'],
+const battleBody = new Howl({
+    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/163669/energetic-battle-body.mp3'],
     volume: 0.4,
-    loop: true
+    sprite: {
+        trimmed: [0, 56195.102040816324006, true]
+    }  
 });
 
+export const songEnergeticBattle = new Howl({
+    src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/163669/energetic-battle-intro.mp3'],
+    volume: 0.4,
+    sprite: {
+        trimmed: [0, 5853, false]
+    },
+    onend: function() {
+        battleBody.play('trimmed');
+    }  
+});
 
 //SFXs
 export const sfxBabum = new Howl({

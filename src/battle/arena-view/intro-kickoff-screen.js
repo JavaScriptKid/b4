@@ -17,7 +17,7 @@ class IntroKickoffScreen extends React.Component {
     handleClick(e) {
         e.preventDefault();
 
-        songEnergeticBattle.play();
+        songEnergeticBattle.play('trimmed');
 
         setBattleValue({
             isShowingIntroScreen: false
