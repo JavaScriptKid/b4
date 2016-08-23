@@ -30,7 +30,6 @@ export default {
     },
 
     iterate(actionDescription) {
-        console.log(actionDescription);
         return <Iterate casterId={actionDescription.casterId} repetitionsCount={actionDescription.repetitionsCount} />
     },
 

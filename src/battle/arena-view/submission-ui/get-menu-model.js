@@ -4,6 +4,8 @@ import {changeMenuPage} from './change-menu-page'
 import {getSubmission} from '../../submissions/get-submission'
 import {addSubmission} from '../../submissions/add-submission'
 import {sfxSubmitAction} from '../../../_data/_sfx'
+import store from '../../../init/store'
+
 
 export function getMenuModel(casterModel) {
 
@@ -114,6 +116,13 @@ var generateOptionFromActionId = function(actionId, optionId, casterModel) {
         descriptionBarText: descriptionBarText,
         isDeactivated: isDeactivated,
         handleEnter() {
+
+            //if (store.getState().battle.submissions.length >= 2) {
+            //    //prevent Enter spam
+            //    console.log('prevented!', store.getState().battle.submissions.length)
+            //    return false;
+            //} This did not work...
+
             if (!this.isDeactivated) {
 
                 sfxSubmitAction.play(); //Play submission sound effect
