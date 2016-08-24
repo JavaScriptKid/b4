@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
-
+import {doStep} from '../do-step'
 import {songEnergeticBattle} from '../../_data/_sfx'
 
 @connect((state, props) => {
@@ -19,12 +19,12 @@ class IntroKickoffScreen extends React.Component {
 
         songEnergeticBattle.play();
 
-        setBattleValue({
-            isShowingIntroScreen: false
-        })
+        doStep();
     }
 
     render() {
+
+        //return null; //temp
 
         if (!this.props.isShowingIntroScreen) {
             return null

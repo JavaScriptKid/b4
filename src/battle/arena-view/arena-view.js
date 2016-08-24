@@ -12,27 +12,41 @@ import IntroKickoffScreen from './intro-kickoff-screen' //CodePen only
 import EndingOverlay from './ending-overlay'
 
 import { CombatantModel } from '../combatant-model'
-import {turnCombatantsForSubmissions} from './turn-combatants'
+import {turnCombatantsForRollout} from './turn-combatants'
+import {getCombatantsByQuery} from '../query-current-combatants'
 
 @connect((state, props) => {
 
-    const combatantIds = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants);
+    const combatants = state.battle.history[state.battle.devTimeTravelTurn].combatants;
+    const combatantIds = Object.keys(combatants);
     const playerProperties = state.battle.history[state.battle.devTimeTravelTurn].combatants[combatantIds[0]];
 
+
+    //Get Challenger and Challengee
+    const challenger = getCombatantsByQuery(combatants, function(combatantModel) {
+        return combatantModel.isChallenger;
+    })[0];
+    const challengee = getCombatantsByQuery(combatants, function(combatantModel) {
+        return !combatantModel.isChallenger;
+    })[0];
+
     return {
+        challengerModel: challenger,
+        challengeeModel: challengee,
         playerModel: new CombatantModel(playerProperties),
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
         vW: Math.round(state.map.viewportWidth / 100),
-        currentAnimation: state.battle.currentAnimation
+        currentAnimation: state.battle.currentAnimation,
+        isIntro: state.battle.isShowingIntroScreen
     }
 })
 
 class BattleArenaView extends React.Component {
 
     componentDidMount() {
-        //This may be temporary
-        turnCombatantsForSubmissions();
+        //Face towards each other for intro
+        turnCombatantsForRollout();
     }
 
     renderAnimation() {
@@ -51,6 +65,7 @@ class BattleArenaView extends React.Component {
 
         const rolloutClass = this.props.isRollout ? "is-rollout" : "";
 
+        const isBigMessageBoard = (this.props.isRollout || this.props.isIntro);
         return (
            <div className={`battle-arena ${rolloutClass}`}>
                <ArenaBackground />
@@ -66,8 +81,13 @@ class BattleArenaView extends React.Component {
 
                {this.renderAnimation()}
 
-               <SubmissionMenu casterModel={this.props.playerModel} hide={this.props.isRollout} />
-               <DescriptionBar isRollout={this.props.isRollout} />
+               <SubmissionMenu casterModel={this.props.playerModel} hide={isBigMessageBoard} />
+               <DescriptionBar
+                   isRollout={this.props.isRollout}
+                   isIntro={this.props.isIntro}
+                   challengerModel={this.props.challengerModel}
+                   challengeeModel={this.props.challengeeModel}
+               />
 
                <AutoSubmitter />
 

@@ -52,6 +52,7 @@ export default function(c1, c2) {
         hp: stats2.maxHp,
         pp: stats2.maxPp,
 
+        isChallenger: true
         //dangerMeter: 99
     };
 

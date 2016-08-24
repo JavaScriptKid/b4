@@ -9,5 +9,4 @@ export function getDeadCombatantId(newState) {
         return Boolean(d)
     });
     return death ? death : null;
-
 }
