@@ -11,24 +11,20 @@
     }
 
 
-
-
-
     .arena-combatant {
         position: absolute;
         background-size: 400%;
         z-index: 5;
-        transition: left 0.3s ease-out;
+        transition: left 0.5s ease-out;
         &.is-player {
             z-index:6;
             background-position: 33.33% 33.33%;
-            //animation: turnForwards 0.2s steps(2, end) forwards;
         }
         &:not(.is-player) {
             background-position: 100% 100%;
-            //animation: turnBackwards 0.2s steps(2, end) forwards;
         }
 
+        //Shadow
         &:before {
             content: '';
             position:absolute;

@@ -37,7 +37,7 @@ class DescriptionBar extends React.Component {
 
     getContent() {
         if (this.props.isIntro) {
-            const textContent = convertText(["AHH INTRO MESSAGE OMG"]);
+            const textContent = convertText(["[FAST]SOMEBODY challenges SOMEBODY to a HACK BATTLE!"]);
             return <TextLine vW={this.props.vW} content={textContent} needsUserPrompt={true} handleUserPrompt={this.handleEnterKey} />
         }
 
