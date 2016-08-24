@@ -50,7 +50,7 @@ const store = createStore({
         isAllowingMusic: true,
 
         //CodePen demo:
-        isShowingIntroScreen: true, //false, //true,
+        isShowingIntroScreen: true, //true,
 
         //Reporting
         isReportRunning: false

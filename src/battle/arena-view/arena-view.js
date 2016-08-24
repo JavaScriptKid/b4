@@ -12,7 +12,7 @@ import IntroKickoffScreen from './intro-kickoff-screen' //CodePen only
 import EndingOverlay from './ending-overlay'
 
 import { CombatantModel } from '../combatant-model'
-import {turnCombatantsForSubmissions} from './turn-combatants'
+import {turnCombatantsForRollout} from './turn-combatants'
 
 @connect((state, props) => {
 
@@ -24,15 +24,16 @@ import {turnCombatantsForSubmissions} from './turn-combatants'
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
         vW: Math.round(state.map.viewportWidth / 100),
-        currentAnimation: state.battle.currentAnimation
+        currentAnimation: state.battle.currentAnimation,
+        isIntro: state.battle.isShowingIntroScreen
     }
 })
 
 class BattleArenaView extends React.Component {
 
     componentDidMount() {
-        //This may be temporary
-        turnCombatantsForSubmissions();
+        //Face towards each other for intro
+        turnCombatantsForRollout();
     }
 
     renderAnimation() {
@@ -51,6 +52,7 @@ class BattleArenaView extends React.Component {
 
         const rolloutClass = this.props.isRollout ? "is-rollout" : "";
 
+        const isBigMessageBoard = (this.props.isRollout || this.props.isIntro);
         return (
            <div className={`battle-arena ${rolloutClass}`}>
                <ArenaBackground />
@@ -66,8 +68,8 @@ class BattleArenaView extends React.Component {
 
                {this.renderAnimation()}
 
-               <SubmissionMenu casterModel={this.props.playerModel} hide={this.props.isRollout} />
-               <DescriptionBar isRollout={this.props.isRollout} />
+               <SubmissionMenu casterModel={this.props.playerModel} hide={isBigMessageBoard} />
+               <DescriptionBar isRollout={this.props.isRollout} isIntro={this.props.isIntro} />
 
                <AutoSubmitter />
 

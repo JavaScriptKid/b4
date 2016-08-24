@@ -10,10 +10,21 @@ import {getWinningCombatantId} from './get-winning-combatant-id'
 export function doStep() {
     const rollout = store.getState().battle.rollout;
 
-    //console.log('RUN');
 
+    /* Handle acknowleding the battle intro  */
+    if (store.getState().battle.isShowingIntroScreen) {
+        setBattleValue({
+            isShowingIntroScreen: false
+        });
+
+        //Face away from each other
+        turnCombatantsForSubmissions();
+        return;
+    }
+
+
+    /* Rollout queue is empty -> go to end of turn */
     if (rollout.length == 0) {
-        /* Rollout queue is empty -> go to end of turn */
         handleEndOfTurn();
         return;
     }
