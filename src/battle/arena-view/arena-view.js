@@ -13,13 +13,26 @@ import EndingOverlay from './ending-overlay'
 
 import { CombatantModel } from '../combatant-model'
 import {turnCombatantsForRollout} from './turn-combatants'
+import {getCombatantsByQuery} from '../query-current-combatants'
 
 @connect((state, props) => {
 
-    const combatantIds = Object.keys(state.battle.history[state.battle.devTimeTravelTurn].combatants);
+    const combatants = state.battle.history[state.battle.devTimeTravelTurn].combatants;
+    const combatantIds = Object.keys(combatants);
     const playerProperties = state.battle.history[state.battle.devTimeTravelTurn].combatants[combatantIds[0]];
 
+
+    //Get Challenger and Challengee
+    const challenger = getCombatantsByQuery(combatants, function(combatantModel) {
+        return combatantModel.isChallenger;
+    })[0];
+    const challengee = getCombatantsByQuery(combatants, function(combatantModel) {
+        return !combatantModel.isChallenger;
+    })[0];
+
     return {
+        challengerModel: challenger,
+        challengeeModel: challengee,
         playerModel: new CombatantModel(playerProperties),
         isRollout: state.battle.submissions.length == combatantIds.length,
         combatantIds: combatantIds,
@@ -69,7 +82,12 @@ class BattleArenaView extends React.Component {
                {this.renderAnimation()}
 
                <SubmissionMenu casterModel={this.props.playerModel} hide={isBigMessageBoard} />
-               <DescriptionBar isRollout={this.props.isRollout} isIntro={this.props.isIntro} />
+               <DescriptionBar
+                   isRollout={this.props.isRollout}
+                   isIntro={this.props.isIntro}
+                   challengerModel={this.props.challengerModel}
+                   challengeeModel={this.props.challengeeModel}
+               />
 
                <AutoSubmitter />
 
