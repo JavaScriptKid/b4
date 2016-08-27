@@ -35,24 +35,39 @@ class DescriptionBar extends React.Component {
         return <TextLine vW={this.props.vW} content={textContent} needsUserPrompt={true} handleUserPrompt={this.handleEnterKey} />
     }
 
+    getContent() {
+        if (this.props.isIntro) {
+            const challengerName = this.props.challengerModel.name;
+            const challengeeName = this.props.challengeeModel.name;
+            const textContent = convertText([`[FAST]${challengerName} challenges ${challengeeName} to a HACK BATTLE!`]);
+            return <TextLine vW={this.props.vW} content={textContent} needsUserPrompt={true} handleUserPrompt={this.handleEnterKey} />
+        }
+
+        if (this.props.isRollout) {
+            return this.getTextLine();
+        }
+
+        return this.props.descriptionBarText;
+    }
+
     render() {
         const baseUnit = this.props.vW;
+        const isBig = (this.props.isRollout || this.props.isIntro);
+
 
         const barStyle = {
-            padding: this.props.isRollout ? baseUnit * 2 : baseUnit,
+            padding: isBig ? baseUnit * 2 : baseUnit,
             paddingLeft: baseUnit * 3,
             borderTop: `${baseUnit * 0.5}px solid #000`,
             borderBottom: `${baseUnit * 0.5}px solid #000`,
-            fontSize: this.props.isRollout ? baseUnit * 2.5 : baseUnit * 2,
-            height: this.props.isRollout ? baseUnit * 13 : baseUnit * 5,
+            fontSize: isBig ? baseUnit * 2.5 : baseUnit * 2,
+            height: isBig ? baseUnit * 13 : baseUnit * 5,
         };
 
 
 
+        const content = this.getContent();
 
-        const content = this.props.isRollout
-            ? this.getTextLine()
-            : this.props.descriptionBarText;
         return (
            <div style={barStyle} className="bottom-bar">
                {content}

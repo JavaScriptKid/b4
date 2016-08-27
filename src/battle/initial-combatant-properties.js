@@ -41,6 +41,8 @@ export default {
     accuracyModifier: 0,
 
     isComputerControlled: false,
+    isChallenger: false,
+
     computerAiTraits: {
         vicious: 1,
         protective: 1,

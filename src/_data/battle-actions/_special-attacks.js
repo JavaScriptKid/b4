@@ -1,5 +1,6 @@
 import actionSchema from './battle-action-schema'
 import listingTextHelper from '../../helpers/listing-text-helper'
+import getArticle from '../../helpers/articles-helper'
 
 const specialAttackSchema = {
     ...actionSchema,
@@ -232,12 +233,13 @@ export default {
             return targetState.items.length == 0
         },
         customSuccessStep(action, casterState, targetState, currentChanges) {
+            const itemName = currentChanges.stolenItemNames[0];
             return [
                 getUseMessage(action, casterState, targetState, currentChanges),
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} stole a ${currentChanges.stolenItemNames[0]} from ${targetState.name}!`
+                        `[FAST]${casterState.name} stole ${getArticle(itemName)} ${itemName} from ${targetState.name}!`
                     ]
                 }
             ]
