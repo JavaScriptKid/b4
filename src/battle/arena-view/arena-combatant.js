@@ -45,14 +45,24 @@ class ArenaCombatant extends React.Component {
         const style = {
             backgroundImage: `url(${me.skin})`,
             animation: me.animation,
-            ...this.getPositionStyles(baseUnit)
+            width: "100%",
+            height: "100%",
+            //...this.getPositionStyles(baseUnit)
         };
 
         const playerClass = this.props.isPlayer ? "is-player" : "";
+        const containerStyle = {
+            position: "absolute",
+            ...this.getPositionStyles(baseUnit)
+        };
+
 
         return (
-           <div style={style} className={`arena-combatant ${playerClass}`}>
-           </div>
+            <div style={containerStyle} className="single-combatant-container">
+                <div style={style} className={`arena-combatant-image ${playerClass}`}>
+                </div>
+                <div className="arena-combatant-shadow"></div>
+            </div>
         );
     }
 }

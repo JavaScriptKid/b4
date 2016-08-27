@@ -76,8 +76,8 @@ class BattleArenaView extends React.Component {
                    <CombatantScoreboard combatantId={this.props.combatantIds[1]} />
                </div>
 
-               <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
                <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
+               <ArenaCombatant isRollout={this.props.isRollout} vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
 
                {this.renderAnimation()}
 
