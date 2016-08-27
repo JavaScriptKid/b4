@@ -15,13 +15,11 @@ class ArenaCombatant extends React.Component {
 
         if (this.props.isPlayer) {
             //Player
-
             const rolloutLeftValue = baseUnit * 8;
             const submittingLeftValue = baseUnit * 41;
 
-
             return {
-                left: this.props.isRollout ? rolloutLeftValue : submittingLeftValue,
+                left: this.props.isBigMessageBoard ? rolloutLeftValue : submittingLeftValue,
                 top: baseUnit * 28,
                 width: baseUnit * 29,
                 height: baseUnit * 29,
