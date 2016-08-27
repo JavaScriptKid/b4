@@ -26,7 +26,7 @@ class SubmissionMenuOption extends React.Component {
         });
         setTimeout(()=> {
             this.props.model.handleEnter();
-        }, 100)
+        }, 50)
     }
 
 
