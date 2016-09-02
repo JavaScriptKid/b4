@@ -1,6 +1,15 @@
 import React from 'react';
 
 class Laptop extends React.Component {
+
+    getLeftStyle() {
+        const {vW, isPlayer, isBigMessageBoard } = this.props;
+        if (isPlayer) {
+            return isBigMessageBoard ? 30 * vW : 43 * vW;
+        }
+        return 54 * vW;
+    }
+
     render() {
 
         const {vW, isPlayer, extraStyle} = this.props;
@@ -12,9 +21,10 @@ class Laptop extends React.Component {
         const style = {
             zIndex: isPlayer ? 1 : 5,
             position: "absolute",
-            left: isPlayer ? 28 * vW : 52 * vW,
-            top: isPlayer ? 38 * vW : 25 * vW,
+            left: this.getLeftStyle(), //isPlayer ? 28 * vW : 52 * vW,
+            top: isPlayer ? 40 * vW : 25 * vW,
             width: isPlayer ? 14 * vW : 9 * vW,
+            transition: "left 0.4s ease-out",
             ...extraStyle
         };
 
@@ -31,7 +41,7 @@ class Laptop extends React.Component {
         return (
             <div style={style}>
                 <img src={src} style={{display:"block",width:"100%"}} />
-                { isPlayer ? <div style={shadowStyle} /> : null}
+                {/* isPlayer ? <div style={shadowStyle} /> : null */}
             </div>
         )
     }
