@@ -29,8 +29,7 @@ export default function(c1, c2) {
     var combatants = {};
     const stats1 = getCombatantStats(initialComb1);
     const stats2 = getCombatantStats(initialComb2);
-
-
+    
     combatants[id1] = {
         ...initialCombatantProperties,
         ...initialComb1,
@@ -49,7 +48,7 @@ export default function(c1, c2) {
         ...stats2,
         // hp: initialComb2.hp || stats2.maxHp,
         // pp: initialComb2.pp || stats2.maxPp
-        hp: 1,//stats2.maxHp,
+        hp: stats2.maxHp,
         pp: stats2.maxPp,
 
         isChallenger: true
