@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {CombatantModel} from '../combatant-model'
+import Laptop from './Laptop'
 
 @connect((state, props) => {
     return {
@@ -62,6 +63,9 @@ class ArenaCombatant extends React.Component {
 
         return (
             <div style={containerStyle} className="single-combatant-container">
+
+                <Laptop vW={this.props.vW} isPlayer={this.props.isPlayer} />
+
                 <div style={style} className={`arena-combatant-image ${playerClass}`}>
                 </div>
                 <div style={shadowStyle} className="arena-combatant-shadow"></div>
