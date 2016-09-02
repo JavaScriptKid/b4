@@ -54,12 +54,17 @@ class ArenaCombatant extends React.Component {
             ...this.getPositionStyles(baseUnit)
         };
 
+        const shadowStyle = {
+            //Piggypack off character die and also apply to shadow
+            animation: style.animation.match(/die/) ? style.animation : "none"
+        };
+
 
         return (
             <div style={containerStyle} className="single-combatant-container">
                 <div style={style} className={`arena-combatant-image ${playerClass}`}>
                 </div>
-                <div className="arena-combatant-shadow"></div>
+                <div style={shadowStyle} className="arena-combatant-shadow"></div>
             </div>
         );
     }
