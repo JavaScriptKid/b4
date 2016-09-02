@@ -27,9 +27,9 @@ var RootComponent = React.createClass({
         return (
             <Provider store={ this.props.store }>
                 <div>
-                    <AudioOption />
                     <BattleDevViewSwitcher />
                     <Viewport />
+                    <AudioOption />
                 </div>
             </Provider>
         );

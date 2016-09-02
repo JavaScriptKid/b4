@@ -15,13 +15,11 @@ class ArenaCombatant extends React.Component {
 
         if (this.props.isPlayer) {
             //Player
-
             const rolloutLeftValue = baseUnit * 8;
             const submittingLeftValue = baseUnit * 41;
 
-
             return {
-                left: this.props.isRollout ? rolloutLeftValue : submittingLeftValue,
+                left: this.props.isBigMessageBoard ? rolloutLeftValue : submittingLeftValue,
                 top: baseUnit * 28,
                 width: baseUnit * 29,
                 height: baseUnit * 29,
@@ -45,14 +43,29 @@ class ArenaCombatant extends React.Component {
         const style = {
             backgroundImage: `url(${me.skin})`,
             animation: me.animation,
-            ...this.getPositionStyles(baseUnit)
+            width: "100%",
+            height: "100%",
+            //...this.getPositionStyles(baseUnit)
         };
 
         const playerClass = this.props.isPlayer ? "is-player" : "";
+        const containerStyle = {
+            position: "absolute",
+            ...this.getPositionStyles(baseUnit)
+        };
+
+        const shadowStyle = {
+            //Piggypack off character die and also apply to shadow
+            animation: style.animation.match(/die/) ? style.animation : "none"
+        };
+
 
         return (
-           <div style={style} className={`arena-combatant ${playerClass}`}>
-           </div>
+            <div style={containerStyle} className="single-combatant-container">
+                <div style={style} className={`arena-combatant-image ${playerClass}`}>
+                </div>
+                <div style={shadowStyle} className="arena-combatant-shadow"></div>
+            </div>
         );
     }
 }
