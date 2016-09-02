@@ -12,8 +12,8 @@ class Laptop extends React.Component {
         const style = {
             zIndex: isPlayer ? 1 : 5,
             position: "absolute",
-            left: isPlayer ? 17 * vW : 4 * vW,
-            top: isPlayer ? 10 * vW : 12 * vW,
+            left: isPlayer ? 28 * vW : 52 * vW,
+            top: isPlayer ? 38 * vW : 25 * vW,
             width: isPlayer ? 14 * vW : 9 * vW,
             ...extraStyle
         };

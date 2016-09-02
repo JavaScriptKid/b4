@@ -24,7 +24,7 @@ class IntroKickoffScreen extends React.Component {
 
     render() {
 
-        //return null; //temp
+        return null; //temp
 
         if (!this.props.isShowingIntroScreen) {
             return null

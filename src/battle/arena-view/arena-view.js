@@ -7,6 +7,7 @@ import SubmissionMenu from './submission-ui/submission-menu'
 import ArenaCombatant from './arena-combatant'
 import AutoSubmitter from './auto-submitter'
 import ArenaBackground from './arena-background'
+import Laptop from './Laptop'
 
 import IntroKickoffScreen from './intro-kickoff-screen' //CodePen only
 import EndingOverlay from './ending-overlay'
@@ -77,6 +78,9 @@ class BattleArenaView extends React.Component {
                </div>
 
                <ArenaCombatant isBigMessageBoard={isBigMessageBoard} vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
+               <Laptop vW={this.props.vW} isPlayer={false} isBigMessageBoard={isBigMessageBoard}/>
+
+               <Laptop vW={this.props.vW} isPlayer={true} isBigMessageBoard={isBigMessageBoard}/>
                <ArenaCombatant isBigMessageBoard={isBigMessageBoard} vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
 
                {this.renderAnimation()}

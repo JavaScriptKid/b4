@@ -17,7 +17,7 @@ class ArenaCombatant extends React.Component {
         if (this.props.isPlayer) {
             //Player
             const rolloutLeftValue = baseUnit * 8;
-            const submittingLeftValue = baseUnit * 41;
+            const submittingLeftValue = baseUnit * 34;
 
             return {
                 left: this.props.isBigMessageBoard ? rolloutLeftValue : submittingLeftValue,
@@ -63,12 +63,6 @@ class ArenaCombatant extends React.Component {
 
         return (
             <div style={containerStyle} className="single-combatant-container">
-
-                <Laptop
-                    vW={this.props.vW}
-                    isPlayer={this.props.isPlayer}
-                    extraStyle={detailStyle}
-                />
 
                 <div style={style} className={`arena-combatant-image ${playerClass}`}>
                 </div>
