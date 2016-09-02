@@ -49,7 +49,7 @@ export default function(c1, c2) {
         ...stats2,
         // hp: initialComb2.hp || stats2.maxHp,
         // pp: initialComb2.pp || stats2.maxPp
-        hp: stats2.maxHp,
+        hp: 1,//stats2.maxHp,
         pp: stats2.maxPp,
 
         isChallenger: true
