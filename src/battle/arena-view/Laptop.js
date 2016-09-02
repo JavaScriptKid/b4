@@ -33,7 +33,7 @@ class Laptop extends React.Component {
             left: 4 * vW,
             right: 4 * vW,
             height: 2 * vW,
-            top: 15 * vW,
+            top: 13 * vW,
             background: "rgba(0,0,0,0.2)",
             borderRadius: "50%"
         };
@@ -41,7 +41,7 @@ class Laptop extends React.Component {
         return (
             <div style={style}>
                 <img src={src} style={{display:"block",width:"100%"}} />
-                {/* isPlayer ? <div style={shadowStyle} /> : null */}
+                {isPlayer ? <div style={shadowStyle} /> : null}
             </div>
         )
     }
