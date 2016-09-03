@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {CombatantModel} from '../combatant-model'
+import Laptop from './Laptop'
 
 @connect((state, props) => {
     return {
@@ -16,7 +17,7 @@ class ArenaCombatant extends React.Component {
         if (this.props.isPlayer) {
             //Player
             const rolloutLeftValue = baseUnit * 8;
-            const submittingLeftValue = baseUnit * 41;
+            const submittingLeftValue = baseUnit * 34;
 
             return {
                 left: this.props.isBigMessageBoard ? rolloutLeftValue : submittingLeftValue,
@@ -54,7 +55,7 @@ class ArenaCombatant extends React.Component {
             ...this.getPositionStyles(baseUnit)
         };
 
-        const shadowStyle = {
+        const detailStyle = {
             //Piggypack off character die and also apply to shadow
             animation: style.animation.match(/die/) ? style.animation : "none"
         };
@@ -62,9 +63,10 @@ class ArenaCombatant extends React.Component {
 
         return (
             <div style={containerStyle} className="single-combatant-container">
+
                 <div style={style} className={`arena-combatant-image ${playerClass}`}>
                 </div>
-                <div style={shadowStyle} className="arena-combatant-shadow"></div>
+                <div style={detailStyle} className="arena-combatant-shadow"></div>
             </div>
         );
     }

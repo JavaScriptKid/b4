@@ -96,8 +96,8 @@ export default {
     "item_004": {
         ...itemSchema,
         name: "Mini PP Pack",
-        description: "Recovers 15 PP",
-        affectCasterPpPoints: 15,
+        description: "Recovers 20 PP",
+        affectCasterPpPoints: 20,
         getFail: function(action, casterState, targetState, currentChanges) {
             return casterState.pp == casterState.maxPp;
         },

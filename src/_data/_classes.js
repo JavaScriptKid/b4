@@ -41,7 +41,7 @@ export default {
     "ninja": {
         ...ClassSchema,
         hpGrowthPattern: grow(20, Presets.standardHp),
-        ppGrowthPattern: grow(15, Presets.standardHp),
+        ppGrowthPattern: grow(20, Presets.standardHp),
         atkGrowthPattern: grow(10, Presets.fastStat),
         defGrowthPattern: grow(10, Presets.slowStat),
         specGrowthPattern: grow(10, Presets.standardStat),
@@ -50,7 +50,7 @@ export default {
     "monk": {
         ...ClassSchema,
         hpGrowthPattern: grow(20, Presets.standardHp),
-        ppGrowthPattern: grow(15, Presets.fastHp),
+        ppGrowthPattern: grow(20, Presets.fastHp),
         atkGrowthPattern: grow(10, Presets.slowStat),
         defGrowthPattern: grow(10, Presets.fastStat),
         specGrowthPattern: grow(10, Presets.fastStat),
@@ -59,7 +59,7 @@ export default {
     "captain": {
         ...ClassSchema,
         hpGrowthPattern: grow(20, Presets.fastHp),
-        ppGrowthPattern: grow(15, Presets.standardHp),
+        ppGrowthPattern: grow(20, Presets.standardHp),
         atkGrowthPattern: grow(10, Presets.slowStat),
         defGrowthPattern: grow(10, Presets.fastStat),
         specGrowthPattern: grow(10, Presets.standardStat),
