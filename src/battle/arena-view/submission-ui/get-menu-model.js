@@ -19,8 +19,15 @@ export function getMenuModel(casterModel) {
     const attack = filterActionsByType(allAttacks, "Normal");
     const special = filterActionsByType(casterModel.attacks, "Special");
 
+    /* Get dynamic list of SUPER attacks based on alignments */
+    const {f1Alignment, f2Alignment, f3Alignment, f4Alignment} = casterModel;
+    const superChargedAttacks = [
+        f1Alignment > 0 ? "super-001-a" : null,
+        f2Alignment > 0 ? "super-002-a" : null,
+        f3Alignment > 0 ? "super-003-a" : null,
+        f4Alignment > 0 ? "super-004-a" : null,
+    ].filter(d => { return typeof d === "string" });
 
-    const superChargedAttacks = ["attack-001-a"]; //TODO? Make separate attacks for the Framework names?
 
     return {
         structure: {
@@ -108,6 +115,10 @@ var generateOptionFromActionId = function(actionId, optionId, casterModel) {
         descriptionBarText = `NOT AVAILABLE! INSUFFICIENT PP`
     }
 
+    const frameworkId = (typeof model.useFrameworkId === "string")
+        ? model.useFrameworkId
+        : null;
+
     return {
         ...MenuOptionSchema,
         optionId: optionId,
@@ -118,19 +129,13 @@ var generateOptionFromActionId = function(actionId, optionId, casterModel) {
         isDeactivated: isDeactivated,
         handleEnter() {
 
-            //if (store.getState().battle.submissions.length >= 2) {
-            //    //prevent Enter spam
-            //    console.log('prevented!', store.getState().battle.submissions.length)
-            //    return false;
-            //} This did not work...
-
             if (!this.isDeactivated) {
 
                 /* protect against keyboard spam */
                 removeKeyboardSinglePress("battle-submission-ui-handle-enter");
 
                 sfxSubmitAction.play(); //Play submission sound effect
-                const submissionModel = getSubmission(actionId, null);
+                const submissionModel = getSubmission(actionId, frameworkId); //frameworkId will be `null` or a string Id
                 addSubmission(submissionModel);
             }
         }

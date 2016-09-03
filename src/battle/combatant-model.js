@@ -71,6 +71,13 @@ export function CombatantModel(combatantState={}) {
         isDangerMeterUsable() {
 
 
+            /* Automatic NO if no alignment points are equipped. */
+            const upgrades = getAlignmentByUpgrades(combatantState.laptopUpgrades);
+            if (upgrades.f1Alignment + upgrades.f2Alignment + upgrades.f3Alignment + upgrades.f4Alignment === 0) {
+                return false;
+            }
+
+
             const firstDangerMeterUpgrade = hasUpgrade("character-upgrade-005-i", combatantState.characterUpgrades);
             const secondDangerMeterUpgrade = hasUpgrade("character-upgrade-005-ii", combatantState.characterUpgrades);
 
