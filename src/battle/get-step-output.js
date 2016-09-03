@@ -4,8 +4,8 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
         return {
             type: "message",
             content: [
-                `${casterModel.name} SUPER CHARGED ${action.name} with the power of `,
-                `[FAST]${actionDescription.frameworkName.toUpperCase()}`
+                `${casterModel.name} SUPER CHARGES the power of `,
+                `[FAST]${actionDescription.frameworkName.toUpperCase()}!`
             ]
         }
     }

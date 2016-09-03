@@ -65,6 +65,9 @@ export default {
     useCasterCommittedData: false,
 
 
+    //Framework
+    useFrameworkId: null,
+
     getFail: function() {
         return false
     },
