@@ -50,7 +50,7 @@ export default {
     "attack-001-a": {
         ...attackSchema,
         name: "Slice",
-        animation: "tada", //"shootingStar",
+        animation: "slice",
         description: "Chops the enemy to bits.",
         affectTargetHpPoints: -4,
         ppCost: 3
@@ -60,6 +60,7 @@ export default {
     "attack-001-b": {
         ...attackSchema,
         name: "Slice mk II",
+        animation: "slice",
         description: "Deep cuts than the original Slice",
         affectTargetHpPoints: -6,
         ppCost: 5
@@ -69,6 +70,7 @@ export default {
     "attack-001-c": {
         ...attackSchema,
         name: "Slice mk III",
+        animation: "slice",
         description: "Chops the enemy to bits. May lower enemy defense on impact.",
         affectTargetHpPoints: -8,
         ppCost: 6,
@@ -81,6 +83,7 @@ export default {
     "attack-002-a": {
         ...attackSchema,
         name: "Preloaded",
+        animation: "preloaded",
         description: "Extremely fast attack",
         affectTargetHpPoints: -5,
         speedModifier: 6,
@@ -91,6 +94,7 @@ export default {
     "attack-002-b": {
         ...attackSchema,
         name: "Preloaded mk II",
+        animation: "preloaded",
         description: "Even faster version of Preloaded",
         affectTargetHpPoints: -6,
         speedModifier: 8,
@@ -101,6 +105,7 @@ export default {
     "attack-002-c": {
         ...attackSchema,
         name: "Preloaded mk II",
+        animation: "preloaded",
         description: "Fastest loader of them all. Reduces enemy speed.",
         affectTargetHpPoints: -7,
         //TODO

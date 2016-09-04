@@ -1,15 +1,15 @@
 import React from 'react'
 import Tada from '../battle/arena-view/animations/animation-tada'
 import Fury from '../battle/arena-view/animations/animation-fury'
+import Slice from '../battle/arena-view/animations/animation-slice'
+import Preloaded from '../battle/arena-view/animations/animation-preloaded'
+import Commit from '../battle/arena-view/animations/animation-commit'
 import Zen from '../battle/arena-view/animations/animation-zen'
 import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-down'
 import Die from '../battle/arena-view/animations/animation-die'
 import Iterate from '../battle/arena-view/animations/animation-iterate'
 
 
-//import SlideOutDown from '../animations/animation-slide-out-down'
-//import ShootingStar from '../animations/animation-shooting-star'
-//import ForEach1 from '../animations/animation-forEach1'
 
 export default {
     tada(actionDescription) {
@@ -31,6 +31,23 @@ export default {
 
     iterate(actionDescription) {
         return <Iterate casterId={actionDescription.casterId} repetitionsCount={actionDescription.repetitionsCount} />
+    },
+
+    slice(actionDescription) {
+        return (
+            <Slice
+                casterId={actionDescription.casterId}
+                isPlayer={!actionDescription.isCasterComputerControlled}
+            />
+        );
+    },
+
+    preloaded(actionDescription) {
+        return <Preloaded casterId={actionDescription.casterId} />
+    },
+
+    commit(actionDescription) {
+        return <Commit casterId={actionDescription.casterId} />
     },
 
     die(actionDescription) { //caster is the person who ran out of HP

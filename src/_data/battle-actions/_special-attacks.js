@@ -423,16 +423,22 @@ export default {
     "attack-special-011-a": {
         ...specialAttackSchema,
         name: "Commit",
+        animation: "commit",
         ppCost: 1,
         description: "Bookmarks health and statuses of all combatants",
         speedModifier: 950, /* Should be faster than Items */
         changeCasterCommittedData: true,
-        getFail: function(action, casterState, targetState, currentChanges) {
+        getFail: function(action, casterState, targetState, actionDescription) {
             return false; //TODO
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
                 {
                     type: "message",
                     content: [
