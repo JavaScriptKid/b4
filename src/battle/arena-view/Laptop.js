@@ -4,10 +4,14 @@ class Laptop extends React.Component {
 
     getLeftStyle() {
         const {vW, isPlayer, isBigMessageBoard } = this.props;
+
         if (isPlayer) {
+            //Player value
             return isBigMessageBoard ? 30 * vW : 43 * vW;
         }
-        return 54 * vW;
+
+        //Enemy value
+        return isBigMessageBoard ? 54 * vW : 53 * vW;
     }
 
     render() {

@@ -14,13 +14,15 @@ class ArenaCombatant extends React.Component {
 
     getPositionStyles(baseUnit) {
 
-        if (this.props.isPlayer) {
+        const {isPlayer, isBigMessageBoard} = this.props;
+
+        if (isPlayer) {
             //Player
             const rolloutLeftValue = baseUnit * 8;
             const submittingLeftValue = baseUnit * 34;
 
             return {
-                left: this.props.isBigMessageBoard ? rolloutLeftValue : submittingLeftValue,
+                left: isBigMessageBoard ? rolloutLeftValue : submittingLeftValue,
                 top: baseUnit * 28,
                 width: baseUnit * 29,
                 height: baseUnit * 29,
@@ -29,7 +31,7 @@ class ArenaCombatant extends React.Component {
 
         //Enemy
         return {
-            left: baseUnit * 50,
+            left: isBigMessageBoard ? baseUnit * 50 : baseUnit * 45,
             top: baseUnit * 13,
             width: baseUnit * 20,
             height: baseUnit * 20,
