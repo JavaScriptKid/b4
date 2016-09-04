@@ -126,3 +126,14 @@
         opacity:0;
     }
 }
+
+/* SLICE */
+@keyframes slice {
+    //SPRITESHEET ANIMATION FOR THIS:
+    //background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/slice.svg);
+    //background-repeat: no-repeat;
+    //background-size: 1000%;
+    //background-position: 100% 0;
+    from {background-position: 0% 0%;}
+    to {background-position: 100% 0;}
+}

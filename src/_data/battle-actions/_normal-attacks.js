@@ -50,7 +50,7 @@ export default {
     "attack-001-a": {
         ...attackSchema,
         name: "Slice",
-        animation: "tada", //"shootingStar",
+        animation: "slice",
         description: "Chops the enemy to bits.",
         affectTargetHpPoints: -4,
         ppCost: 3

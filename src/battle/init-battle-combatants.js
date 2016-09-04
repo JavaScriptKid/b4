@@ -36,7 +36,7 @@ export default function(c1, c2) {
         ...stats1,
          //hp: initialComb1.hp || stats1.maxHp,
          //pp: initialComb1.pp || stats1.maxPp
-        hp: stats1.maxHp,
+        hp: 20, //stats1.maxHp,
         pp: stats1.maxPp,
         //pp: 2,
         dangerMeter: 99,

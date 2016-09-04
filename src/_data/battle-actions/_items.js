@@ -55,13 +55,16 @@ export default {
         getFail: function(action, casterState, targetState, currentChanges) {
             return casterState.hp == casterState.maxHp;
         },
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return [
                 getItemUseMessage(action, casterModel, targetModel, actionDescription),
                 {
                     type: "animation",
                     animationName: action.animation,
                     actionDescription: actionDescription
+                },
+                {
+                    type: "stateChange", newState: nextState
                 },
                 {
                     type: "message",
