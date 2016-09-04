@@ -2,6 +2,7 @@ import React from 'react'
 import Tada from '../battle/arena-view/animations/animation-tada'
 import Fury from '../battle/arena-view/animations/animation-fury'
 import Slice from '../battle/arena-view/animations/animation-slice'
+import Preloaded from '../battle/arena-view/animations/animation-preloaded'
 import Zen from '../battle/arena-view/animations/animation-zen'
 import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-down'
 import Die from '../battle/arena-view/animations/animation-die'
@@ -38,6 +39,10 @@ export default {
                 isPlayer={!actionDescription.isCasterComputerControlled}
             />
         );
+    },
+
+    preloaded(actionDescription) {
+        return <Preloaded casterId={actionDescription.casterId} />
     },
 
     die(actionDescription) { //caster is the person who ran out of HP

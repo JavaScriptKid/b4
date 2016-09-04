@@ -34,7 +34,7 @@ class AnimationIterate extends React.Component {
                     doStep();
                 }
 
-            }, 530);
+            }, 502);
         }
 
         doIteration();
