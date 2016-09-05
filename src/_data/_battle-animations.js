@@ -9,6 +9,7 @@ import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-do
 import Die from '../battle/arena-view/animations/animation-die'
 import Iterate from '../battle/arena-view/animations/animation-iterate'
 import Ouch from '../battle/arena-view/animations/animation-ouch'
+import DDoS from '../battle/arena-view/animations/animation-ddos'
 
 
 export default {
@@ -52,6 +53,16 @@ export default {
 
     ouch(actionDescription) {
         return <Ouch casterId={actionDescription.casterId} />
+    },
+
+    ddos(actionDescription) {
+        return (
+            <DDoS
+                casterId={actionDescription.casterId}
+                targetId={actionDescription.targetId}
+                isPlayer={!actionDescription.isCasterComputerControlled}
+            />
+        );
     },
 
     die(actionDescription) { //caster is the person who ran out of HP

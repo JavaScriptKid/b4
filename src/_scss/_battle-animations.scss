@@ -169,3 +169,13 @@
         opacity: 1;
     }
 }
+
+/* FLASHBOX (DDoS */
+@keyframes flashbox {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.4;
+    }
+}

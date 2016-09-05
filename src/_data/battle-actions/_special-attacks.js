@@ -68,6 +68,7 @@ export default {
     "attack-special-001-a": {
         ...specialAttackSchema,
         name: "DDoS",
+        animation: "ddos",
         description: "Causes lagging for 2 to 5 turns",
         ppCost: 6,
         affectTargetStatus: ["normal", "lag"],
