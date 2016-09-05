@@ -19,8 +19,12 @@ Takes in submission models (which have Speed attached)
 Builds up the `descriptionObject`, which allows us to create a 
 human readable Rollout Step. The changes object is piped through many functions that
 will return added or edited values. EX: `affectTargetHpPoints: -4`
-Each function has access to `action, casterModel, targetModel`
+Each function has access to `action, casterModel, targetModel`, and more.
+The function starts a few required default properties in the `changes` object.
 
+
+If an action is determined to Miss, the flow will return early to avoid checking for misses in every single
+operation afterwards.
 
 # Missing
 
