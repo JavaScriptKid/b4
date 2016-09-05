@@ -38,9 +38,9 @@ export function CombatantModel(combatantState={}) {
 
             const result = percentChance(percentChanceOfMissing);
             if (result == true) {
-                console.log("MISS with % chance: ", percentChanceOfMissing)
+                console.log("MISS with % chance: ", percentChanceOfMissing);
             }
-            
+
             return result;
 
         },

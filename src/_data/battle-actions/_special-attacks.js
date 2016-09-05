@@ -245,10 +245,11 @@ export default {
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.items.length == 0
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
-            const itemName = currentChanges.stolenItemNames[0];
+        customSuccessStep(action, casterState, targetState, actionDescription) {
+            const itemName = actionDescription.stolenItemNames[0];
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [
@@ -323,7 +324,7 @@ export default {
         }
     },
 
-    /* Zen */
+    /* Headphones */
     "attack-special-008-a": {
         ...specialAttackSchema,
         name: "Headphones",
