@@ -1,7 +1,7 @@
 import Actions from '../_data/battle-actions'
 import {hasUpgrade} from './get-combatant-stats'
 import {getAlignmentByUpgrades} from './get-alignment-by-upgrades'
-
+import {percentChance} from '../helpers/numbers-helper'
 
 export function CombatantModel(combatantState={}) {
     return {
@@ -16,6 +16,17 @@ export function CombatantModel(combatantState={}) {
 
         /* Attacks */
         attacks: getAvailableAttacks(combatantState),
+
+
+        getMiss( actionAccuracyModifier = 0) {
+            /* Return true or false for if the attack should miss */
+            let percentChanceOfMissing = 2; //2% for starting
+            percentChanceOfMissing -= actionAccuracyModifier; //Subtract action's resistance to missing
+
+            //console.log(percentChanceOfMissing);
+
+            return percentChance(percentChanceOfMissing);
+        },
 
 
         getAllAttacks() {

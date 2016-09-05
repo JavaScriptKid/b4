@@ -19,6 +19,7 @@ const itemSchema = {
     type: "Item",
     ppCost: 0,
     animation: "slideOutDown", //animation: "slideDown",
+    accuracyModifier: 999, //Never miss
     speedModifier: 900,
     increaseDangerMeter: 0
 };

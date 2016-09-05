@@ -1,8 +1,9 @@
-export function getMiss(action, casterState, targetState, currentChanges) {
+export function getMiss(action, casterModel, targetModel, currentChanges) {
 
     let changes = {};
 
-    changes["didActionMiss"] = false; /* TODO: add real missing logic. This property should always exist. true or false */
+    /* This property should always exist. true or false */
+    changes["didActionMiss"] = casterModel.getMiss( action.accuracyModifier );
 
     return {
         ...currentChanges,

@@ -1,10 +1,11 @@
 import actionSchema from './battle-action-schema'
 
-const attackSchema = {
+const superAttackSchema = {
     ...actionSchema,
     levelRequirement: 0,
     type: "Normal",
-    dependentOnAttack: null //"action_attack_whatever_001"
+    accuracyModifier: 999, //Don't let these miss
+    dependentOnAttack: null
 };
 
 /* NOTE: These special attacks include `useFrameworkId` property which is a string of the framework to use */
@@ -12,7 +13,7 @@ const attackSchema = {
 
 export default {
     "super-001-a": {
-        ...attackSchema,
+        ...superAttackSchema,
         name: "SUPER Palm",
         useFrameworkId: "framework_001",
         animation: "tada",
@@ -21,7 +22,7 @@ export default {
         ppCost: 0
     },
     "super-002-a": {
-        ...attackSchema,
+        ...superAttackSchema,
         name: "SUPER EndGame",
         useFrameworkId: "framework_002",
         animation: "tada",
@@ -30,7 +31,7 @@ export default {
         ppCost: 0
     },
     "super-003-a": {
-        ...attackSchema,
+        ...superAttackSchema,
         name: "SUPER edjKase",
         useFrameworkId: "framework_003",
         animation: "tada",
@@ -39,7 +40,7 @@ export default {
         ppCost: 0
     },
     "super-004-a": {
-        ...attackSchema,
+        ...superAttackSchema,
         name: "SUPER Vector",
         useFrameworkId: "framework_004",
         animation: "tada",

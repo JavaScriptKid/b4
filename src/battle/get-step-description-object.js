@@ -16,6 +16,7 @@ export function getStepDescriptionObject(action, casterModel, targetModel) {
     let changes = {
         casterId: casterModel.id,
         targetId: targetModel.id,
+        addActionToCloudQueue: [], //required. May be overwritten by `getExtraActionAdds`
         isCasterComputerControlled: casterModel.isComputerControlled //animations like to know this
     };
 
@@ -23,14 +24,20 @@ export function getStepDescriptionObject(action, casterModel, targetModel) {
     changes = getSuperCharged(action, casterModel, targetModel, changes);
     changes = getPpChanges(action, casterModel, targetModel, changes);
     changes = getMiss(action, casterModel, targetModel, changes);
+
+    //Stop here if the attack missed!
+    if (changes.didActionMiss) {
+        return {
+            ...changes
+        }
+    }
+
     changes = getRegularAttackChanges(action, casterModel, targetModel, changes);
     changes = getStatusChanges(action, casterModel, targetModel, changes);
     changes = getExtraActionAdds(action, casterModel, targetModel, changes);
     changes = getUpdatedItemsList(action, casterModel, targetModel, changes);
     changes = getDangerMeter(action, casterModel, targetModel, changes);
     changes = getRevertChanges(action, casterModel, targetModel, changes);
-
-
 
     return {
         ...changes

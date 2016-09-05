@@ -74,6 +74,6 @@ TODO: Scope Bomb (normal, but stronger against Deadline status)
  // DONE fire
  // TODO: zen (++accuracy, --defense)
  // TODO: fury (++attack, --accuracy)
- // TODO: deadline  (++speed, weak to Scope Bomb)
+ // deadline  (++speed, weak to Scope Bomb)
 
  */

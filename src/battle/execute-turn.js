@@ -19,18 +19,14 @@ export function executeTurn(submissionModels=[]) {
         ...getOrderedActionsFromSubmissions(submissionModels)
     ];
 
+    /* Make version of state with updated Queue to use as initialState in processActions */
     const historyWithUpdatedQueue = {
         cloudQueue: removeQueueSlot( lastHistoryEntry.cloudQueue ),
         combatants: {...lastHistoryEntry.combatants },
         currentTurnIndex: history.length
-    }; /* Make version of state with updated Queue to use as initialState in processActions */
+    };
 
-
-    //console.log(lastHistoryEntry)
-    //console.log(historyWithUpdatedQueue)
-
-
-    /* 2. processActions() ? */
+    /* 2. processActions() */
     //------------------------
     const result = processActions(actionQueue, historyWithUpdatedQueue);
 

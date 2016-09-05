@@ -437,6 +437,7 @@ export default {
         animation: "commit",
         ppCost: 1,
         description: "Bookmarks health and statuses of all combatants",
+        accuracyModifier: 999, //Don't miss
         speedModifier: 950, /* Should be faster than Items */
         changeCasterCommittedData: true,
         getFail: function(action, casterState, targetState, actionDescription) {
@@ -466,6 +467,7 @@ export default {
         name: "Revert",
         ppCost: 10,
         description: "Reverts battle status to saved Commit",
+        accuracyModifier: 999, //Don't miss
         useCasterCommittedData: true,
         getFail: function(action, casterState, targetState, currentChanges) {
             return casterState.committedTurnData === null
@@ -489,6 +491,7 @@ export default {
         name: "Stash",
         ppCost: 7,
         description: "Destroys opponent's Commit",
+        accuracyModifier: 999, //Don't miss
         clearTargetCommittedData: true,
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.committedTurnData === null

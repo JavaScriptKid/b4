@@ -1,9 +1,14 @@
 import actionSchema from './battle-action-schema'
 
+const naturalSchema = {
+    ...actionSchema,
+    accuracyModifier: 999 //No way these can miss
+};
+
 export default {
     /* Death */
     "natural-death-a": {
-        ...actionSchema,
+        ...naturalSchema,
         animation: "die",
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
@@ -20,7 +25,7 @@ export default {
         }
     },
     "natural-memory-leak-a": {
-        ...actionSchema,
+        ...naturalSchema,
         animation: "ouch",
         dependentOnCasterStatus: "memory-leak",
         affectTargetHpPointsByPercent: -0.15,
@@ -42,7 +47,7 @@ export default {
         }
     },
     "natural-fire-a": {
-        ...actionSchema,
+        ...naturalSchema,
         animation: "tada", //"sick-shake",
         dependentOnCasterStatus: "fire",
         affectTargetHpPointsByPercent: -0.25,
@@ -61,7 +66,7 @@ export default {
         }
     },
     "natural-lag-a": {
-        ...actionSchema,
+        ...naturalSchema,
         ppCost: 0,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
@@ -74,7 +79,7 @@ export default {
     },
 
     "natural-recover-lag": {
-        ...actionSchema,
+        ...naturalSchema,
         ppCost: 0,
         animation: "tada",
         dependentOnCasterStatus: "lag",
@@ -95,7 +100,7 @@ export default {
     },
 
     "natural-recover-fury": {
-        ...actionSchema,
+        ...naturalSchema,
         ppCost: 0,
         animation: "tada",
         dependentOnCasterStatus: "fury",
@@ -116,7 +121,7 @@ export default {
     },
 
     "natural-recover-zen": {
-        ...actionSchema,
+        ...naturalSchema,
         ppCost: 0,
         animation: "tada",
         dependentOnCasterStatus: "zen",
@@ -137,7 +142,7 @@ export default {
     },
 
     "natural-recover-deadline": {
-        ...actionSchema,
+        ...naturalSchema,
         ppCost: 0,
         animation: "tada",
         dependentOnCasterStatus: "deadline",
