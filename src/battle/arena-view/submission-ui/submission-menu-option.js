@@ -24,9 +24,9 @@ class SubmissionMenuOption extends React.Component {
         setBattleValue({
             selectedOptionId: this.props.model.optionId
         });
-        setTimeout(()=> {
+       setTimeout(()=> {
             this.props.model.handleEnter();
-        }, 50)
+        }, 100)
     }
 
 

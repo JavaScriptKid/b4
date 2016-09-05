@@ -21,7 +21,7 @@ export default {
     },
     "natural-memory-leak-a": {
         ...actionSchema,
-        animation: "tada", //animation: "sick-shake",
+        animation: "ouch",
         dependentOnCasterStatus: "memory-leak",
         affectTargetHpPointsByPercent: -0.15,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {

@@ -8,7 +8,7 @@ import Zen from '../battle/arena-view/animations/animation-zen'
 import SlideOutDown from '../battle/arena-view/animations/animation-slide-out-down'
 import Die from '../battle/arena-view/animations/animation-die'
 import Iterate from '../battle/arena-view/animations/animation-iterate'
-
+import Ouch from '../battle/arena-view/animations/animation-ouch'
 
 
 export default {
@@ -48,6 +48,10 @@ export default {
 
     commit(actionDescription) {
         return <Commit casterId={actionDescription.casterId} />
+    },
+
+    ouch(actionDescription) {
+        return <Ouch casterId={actionDescription.casterId} />
     },
 
     die(actionDescription) { //caster is the person who ran out of HP

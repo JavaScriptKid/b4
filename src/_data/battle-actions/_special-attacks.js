@@ -20,6 +20,13 @@ const getUseMessage = function(action, casterModel, targetModel, actionDescripti
     }
 };
 
+const getAnimationEntry = function (action, casterModel, targetModel, actionDescription) {
+    return {
+        type: "animation",
+        animationName: action.animation,
+        actionDescription: actionDescription
+    }
+};
 
 export default {
     /* Throttle */
@@ -32,21 +39,22 @@ export default {
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.status != "normal"
         },
-        getFollowupActions: function (action, casterState, targetState, currentChanges) {
+        getFollowupActions: function (action, casterState, targetState, actionDescription) {
             return [
                 {
                     action: {
-                        targetId: currentChanges.targetId,
-                        casterId: currentChanges.targetId,
+                        targetId: actionDescription.targetId,
+                        casterId: actionDescription.targetId,
                         actionId: "natural-recover-lag"
                     },
                     turnRange: [1, 2]
                 }
             ]
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [
@@ -78,9 +86,10 @@ export default {
                 }
             ]
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [
@@ -101,9 +110,10 @@ export default {
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.status != "normal"
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [

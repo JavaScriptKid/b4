@@ -70,8 +70,8 @@
     }
 }
 
-/* CELEBRATE */
-@keyframes celebrate {
+/* CELEBRATE and OUCH*/
+@keyframes celebrate { //"ouch" is the same, but used with a faster speed
     from {
         transform: scale3d(1, 1, 1) translate3d(0,0,0);
     }
