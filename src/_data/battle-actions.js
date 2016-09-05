@@ -72,8 +72,8 @@ TODO: Scope Bomb (normal, but stronger against Deadline status)
  // DONE lag
  // DONE memory-leak
  // DONE fire
- // TODO: zen (++accuracy, --defense)
- // TODO: fury (++attack, --accuracy)
+ // TODO: zen (++accuracy, -defense) +50%, -25%
+ // TODO: fury (++attack, -accuracy) +50%, -25%
  // deadline  (++speed, weak to Scope Bomb)
 
  */

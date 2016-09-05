@@ -21,10 +21,20 @@ export function CombatantModel(combatantState={}) {
         getMiss( actionAccuracyModifier = 0) {
             /* Return true or false for if the attack should miss */
             let percentChanceOfMissing = 2; //2% for starting
+
+            /* If "zen" status, make MORE accurate */
+            /** status:"zen" */
+            if (combatantState.status === "zen") {
+                percentChanceOfMissing -= 20;
+            }
+
+            /* If "fury" status, make LESS accurate */
+            /** status:"fury" */
+            if (combatantState.status === "fury") {
+                percentChanceOfMissing += 10;
+            }
+
             percentChanceOfMissing -= actionAccuracyModifier; //Subtract action's resistance to missing
-
-            //console.log(percentChanceOfMissing);
-
             return percentChance(percentChanceOfMissing);
         },
 
@@ -62,19 +72,28 @@ export function CombatantModel(combatantState={}) {
 
         attackRoll(actionDamageCount, targetDefenseRating, targetStatus, actionModel, targetModel) {
             //targetStatus, actionModel are in here for you to use later for specific variations
-            const attackDamage = (this.attackRating * -1) + actionDamageCount;
-            const defenseOffset = Math.round(targetDefenseRating / 2);
+            let attackDamage = (this.attackRating * -1) + actionDamageCount;
+            let defenseOffset = Math.round(targetDefenseRating / 2);
+
+            /* If Target has "zen" status, INCREASE the defenseOffset */
+            /** status:"zen" */
+            if (targetStatus === "zen") {
+                defenseOffset = Math.round(defenseOffset *= 1.33); //33% defenseOffset back in
+            }
+
+            /* If Caster has "fury" status, DECREASE `attackDamage` effect value (which does MORE damage) */
+            /** status:"fury" */
+            if (combatantState.status === "fury") {
+                attackDamage = Math.round( attackDamage *= 1.33 ); //EX: -100 would be -133
+            }
 
             let result = attackDamage + defenseOffset; //attack Damage is a negative number
-
             /* Reduce result be decreased by Char upgrades */
             /* 1. Oathbreaker upgrade */
             if (actionModel.actionId == "attack-008-a-resolve") {
                 result = applyOathbreakerUpgrades(result, targetModel.characterUpgrades);
             }
-
-
-
+            
             return (result < -1) ? result : -1; //Should be a negative number
         },
 
