@@ -32,6 +32,7 @@ import {getCombatantsByQuery} from '../query-current-combatants'
     })[0];
 
     return {
+        combatants: combatants,
         challengerModel: challenger,
         challengeeModel: challengee,
         playerModel: new CombatantModel(playerProperties),
@@ -60,35 +61,58 @@ class BattleArenaView extends React.Component {
 
     render() {
 
+        const {combatants, combatantIds, vW, isRollout, isIntro} = this.props;
+
         const scoreboardContainerStyle = {
-            padding: this.props.vW * 1
+            padding: vW * 1
         };
 
-        const rolloutClass = this.props.isRollout ? "is-rollout" : "";
 
-        const isBigMessageBoard = (this.props.isRollout || this.props.isIntro);
+        const rolloutClass = isRollout ? "is-rollout" : "";
+
+        const isBigMessageBoard = (isRollout || isIntro);
         return (
            <div className={`battle-arena ${rolloutClass}`}>
                <ArenaBackground />
 
 
                <div style={scoreboardContainerStyle} className="scoreboards">
-                   <CombatantScoreboard combatantId={this.props.combatantIds[0]} />
-                   <CombatantScoreboard combatantId={this.props.combatantIds[1]} />
+                   <CombatantScoreboard combatantId={combatantIds[0]} />
+                   <CombatantScoreboard combatantId={combatantIds[1]} />
                </div>
 
-               <ArenaCombatant isBigMessageBoard={isBigMessageBoard} vW={this.props.vW} isPlayer={false} combatantId={this.props.combatantIds[1]} />
-               <Laptop vW={this.props.vW} isPlayer={false} isBigMessageBoard={isBigMessageBoard}/>
+               <ArenaCombatant
+                   isBigMessageBoard={isBigMessageBoard}
+                   vW={vW}
+                   isPlayer={false}
+                   combatantId={combatantIds[1]}
+               />
+               <Laptop
+                   vW={vW}
+                   isPlayer={false}
+                   isBigMessageBoard={isBigMessageBoard}
+                   hp={ combatants[combatantIds[1]].hp }
+               />
 
-               <Laptop vW={this.props.vW} isPlayer={true} isBigMessageBoard={isBigMessageBoard}/>
-               <ArenaCombatant isBigMessageBoard={isBigMessageBoard} vW={this.props.vW} isPlayer={true} combatantId={this.props.combatantIds[0]} />
+               <Laptop
+                   vW={vW}
+                   isPlayer={true}
+                   isBigMessageBoard={isBigMessageBoard}
+                   hp={ combatants[combatantIds[0]].hp }
+               />
+               <ArenaCombatant
+                   isBigMessageBoard={isBigMessageBoard}
+                   vW={vW}
+                   isPlayer={true}
+                   combatantId={combatantIds[0]}
+               />
 
                {this.renderAnimation()}
 
                <SubmissionMenu casterModel={this.props.playerModel} hide={isBigMessageBoard} />
                <DescriptionBar
-                   isRollout={this.props.isRollout}
-                   isIntro={this.props.isIntro}
+                   isRollout={isRollout}
+                   isIntro={isIntro}
                    challengerModel={this.props.challengerModel}
                    challengeeModel={this.props.challengeeModel}
                />

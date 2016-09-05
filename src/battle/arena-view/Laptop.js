@@ -3,7 +3,7 @@ import React from 'react';
 class Laptop extends React.Component {
 
     getLeftStyle() {
-        const {vW, isPlayer, isBigMessageBoard } = this.props;
+        const {vW, isPlayer, isBigMessageBoard} = this.props;
 
         if (isPlayer) {
             //Player value
@@ -16,7 +16,11 @@ class Laptop extends React.Component {
 
     render() {
 
-        const {vW, isPlayer, extraStyle} = this.props;
+        const {vW, isPlayer, extraStyle, hp} = this.props;
+
+        if (hp <= 0) {
+            return null; /* Make laptop go away when hp is 0 */
+        }
 
         const src = isPlayer
             ? "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/laptop-screen-view.svg"
@@ -41,6 +45,7 @@ class Laptop extends React.Component {
             background: "rgba(0,0,0,0.2)",
             borderRadius: "50%"
         };
+
 
         return (
             <div style={style}>
