@@ -61,7 +61,7 @@ class CombatantScoreboard extends React.Component {
                 ...baseBadgeStyle,
                 background: "#FF5303"
             };
-            return <span style={style}>MEMORYLEAK</span>
+            return <span style={style}>LEAK</span>
         }
 
         if (me.status == "fire") {

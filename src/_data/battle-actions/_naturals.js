@@ -24,12 +24,15 @@ export default {
         animation: "ouch",
         dependentOnCasterStatus: "memory-leak",
         affectTargetHpPointsByPercent: -0.15,
-        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
             return [
                 {
                     type: "animation",
                     animationName: action.animation,
                     actionDescription: actionDescription
+                },
+                {
+                    type: "stateChange", newState: nextState
                 },
                 {
                     type: "message",
