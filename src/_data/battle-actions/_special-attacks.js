@@ -198,13 +198,14 @@ export default {
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.items.length == 0
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} stole ${listingTextHelper(currentChanges.stolenItemNames)} from ${targetState.name}!`
+                        `${casterState.name} stole ${listingTextHelper(actionDescription.stolenItemNames)} from ${targetState.name}!`
                     ]
                 }
             ]
@@ -219,13 +220,14 @@ export default {
         getFail: function(action, casterState, targetState, currentChanges) {
             return targetState.items.length == 0
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [
-                        `${casterState.name} stole ${listingTextHelper(currentChanges.stolenItemNames)} from ${targetState.name}!`
+                        `${casterState.name} stole ${listingTextHelper(actionDescription.stolenItemNames)} from ${targetState.name}!`
                     ]
                 }
             ]

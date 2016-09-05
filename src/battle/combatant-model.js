@@ -35,7 +35,14 @@ export function CombatantModel(combatantState={}) {
             }
 
             percentChanceOfMissing -= actionAccuracyModifier; //Subtract action's resistance to missing
-            return percentChance(percentChanceOfMissing);
+
+            const result = percentChance(percentChanceOfMissing);
+            if (result == true) {
+                console.log("MISS with % chance: ", percentChanceOfMissing)
+            }
+            
+            return result;
+
         },
 
 
@@ -93,13 +100,12 @@ export function CombatantModel(combatantState={}) {
             if (actionModel.actionId == "attack-008-a-resolve") {
                 result = applyOathbreakerUpgrades(result, targetModel.characterUpgrades);
             }
-            
+
             return (result < -1) ? result : -1; //Should be a negative number
         },
 
         /* Danger */
         isDangerMeterUsable() {
-
 
             /* Automatic NO if no alignment points are equipped. */
             const upgrades = getAlignmentByUpgrades(combatantState.laptopUpgrades);
