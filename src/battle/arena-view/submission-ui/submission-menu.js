@@ -132,7 +132,8 @@ class SubmissionMenu extends React.Component {
         //console.log(menu)
         const pages = getPagesFromArray( this.menuModel[this.props.menuKey] );
 
-        const optionComponents = pages[this.props.menuPageIndex].map((optionModel, i) => {
+        const currentPage = pages[this.props.menuPageIndex] || [];
+        const optionComponents = currentPage.map((optionModel, i) => {
             return <SubmissionMenuOption vW={baseUnit} baseStyle={optionStyle} key={i} model={optionModel} />
         });
 

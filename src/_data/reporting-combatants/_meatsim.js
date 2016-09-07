@@ -10,7 +10,7 @@ export default {
         klepto: 1
     },
 
-    name: "MeatSim",
+    name: "Willy",
     simName: "meatsim",
     level: 3,
     class: "captain",
