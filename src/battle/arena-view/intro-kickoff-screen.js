@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import {setBattleValue} from '../../redux-action-creators/battle-action-creators'
 import {doStep} from '../do-step'
 import {songEnergeticBattle} from '../../_data/_sfx'
+import {addKeyboardSinglePress, removeKeyboardSinglePress} from '../../helpers/single-keypress-binding'
+
 
 @connect((state, props) => {
     return {
@@ -14,25 +16,47 @@ import {songEnergeticBattle} from '../../_data/_sfx'
 /* This is purely for codepen. We don't want to load the Pen with music playing */
 class IntroKickoffScreen extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            isShowing: true
+        }
+    }
+
+    kickoff() {
+        songEnergeticBattle.play('trimmed');
+        this.setState({
+            isShowing: false
+        })
+        removeKeyboardSinglePress("intro-overlay-screen")
+    }
+
+    componentDidMount() {
+        addKeyboardSinglePress(13, () => {
+
+            this.kickoff();
+
+        }, "intro-overlay-screen")
+    }
+
+
+
     handleClick(e) {
         e.preventDefault();
-
-        songEnergeticBattle.play('trimmed');
-
-        doStep();
+        this.kickoff();
     }
 
     render() {
 
         //return null; //temp
 
-        if (!this.props.isShowingIntroScreen) {
+        if (!this.state.isShowing) {
             return null
         }
 
         return (
            <div className="start-overlay half is-active">
-               <a href="#" onClick={::this.handleClick} className="start-overlay-link">BEGIN BATTLE</a>
+               <a href="#" onClick={::this.handleClick} className="start-overlay-link">PRESS `ENTER` TO BATTLE</a>
            </div>
         );
     }
