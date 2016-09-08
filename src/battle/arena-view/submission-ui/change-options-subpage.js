@@ -3,15 +3,41 @@ import {getPagesFromArray} from '../../../helpers/array-to-pages'
 import {setBattleValue} from '../../../redux-action-creators/battle-action-creators'
 
 /* Change the attacks and items paging, marked with the slider circles */
-export function goToNextSubPage(menuModel={}) {
+export function goToNextSubPage(menuModel={}, changeSelectedOptionId=false) {
+
+    const nextPage = getBorderingPages(menuModel).nextPage;
     setBattleValue({
-        menuPageIndex: getBorderingPages(menuModel).nextPage
-    })
+        menuPageIndex: nextPage
+    });
+
+    if (changeSelectedOptionId) {
+        const menuKey = store.getState().battle.menuKey;
+        const pages = getPagesFromArray( menuModel[menuKey] );
+        const nextSelectedId = pages[nextPage][0].optionId;
+
+        setBattleValue({
+            selectedOptionId: nextSelectedId
+        });
+    }
+
+
 }
-export function goToPrevSubPage(menuModel={}) {
+export function goToPrevSubPage(menuModel={}, changeSelectedOptionId=false) {
+
+    const prevPage = getBorderingPages(menuModel).prevPage;
     setBattleValue({
-        menuPageIndex: getBorderingPages(menuModel).prevPage
-    })
+        menuPageIndex: prevPage
+    });
+
+    if (changeSelectedOptionId) {
+        const menuKey = store.getState().battle.menuKey;
+        const pages = getPagesFromArray( menuModel[menuKey] );
+        const nextSelectedId = pages[prevPage][0].optionId;
+
+        setBattleValue({
+            selectedOptionId: nextSelectedId
+        });
+    }
 }
 
 

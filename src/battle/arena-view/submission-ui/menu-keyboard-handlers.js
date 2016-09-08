@@ -107,7 +107,7 @@ export function handleMenuLeft(menuModel) {
                 })
             } else {
                 //Go backwards from deeper results page
-                goToPrevSubPage(menuModel)
+                goToPrevSubPage(menuModel, true)
             }
         }
     }
@@ -159,7 +159,8 @@ export function handleMenuRight(menuModel={}) {
     }
 
     //If on a results page, go to the next result page
-    goToNextSubPage(menuModel)
+    goToNextSubPage(menuModel, true)
+
 }
 
 
