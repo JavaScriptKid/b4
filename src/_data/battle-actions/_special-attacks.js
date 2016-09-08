@@ -33,7 +33,7 @@ export default {
     "attack-special-000-a": {
         ...specialAttackSchema,
         name: "Throttle",
-        description: "Causes opponent to lag out for 1 or 2 turns",
+        description: "Causes opponent to lag out for 2 turns",
         ppCost: 4,
         affectTargetStatus: ["normal", "lag"],
         getFail: function(action, casterState, targetState, currentChanges) {
@@ -47,7 +47,7 @@ export default {
                         casterId: actionDescription.targetId,
                         actionId: "natural-recover-lag"
                     },
-                    turnRange: [1, 2]
+                    turnRange: [2, 2]
                 }
             ]
         },
@@ -147,9 +147,10 @@ export default {
                 }
             ]
         },
-        customSuccessStep(action, casterState, targetState, currentChanges) {
+        customSuccessStep(action, casterState, targetState, actionDescription) {
             return [
-                getUseMessage(action, casterState, targetState, currentChanges),
+                getUseMessage(action, casterState, targetState, actionDescription),
+                getAnimationEntry(action, casterState, targetState, actionDescription),
                 {
                     type: "message",
                     content: [
