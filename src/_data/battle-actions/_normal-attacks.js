@@ -340,7 +340,7 @@ export default {
             if (actionDescription.wasSuperEffective) {
                 queue.push({
                         type: "message",
-                        content: [`It was extra painful!`]
+                        content: [`It was extra painful for ${targetModel.name}!`]
                     })
             }
 

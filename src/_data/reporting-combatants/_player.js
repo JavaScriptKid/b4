@@ -20,7 +20,9 @@ export default {
     ],
 
     laptopUpgrades: [
-        {libraryId: "laptop-upgrade_002"}
+        {libraryId: "laptop-upgrade_001"},
+        {libraryId: "laptop-upgrade_001"},
+        {libraryId: "laptop-upgrade_001"},
     ],
     characterUpgrades: [
         {libraryId: "character-upgrade-005-i"},
