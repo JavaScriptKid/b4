@@ -84,8 +84,35 @@ function getBorderingIds(menuModel) {
 /* Left & Right */ /////////////////////////////////////////////////////////////////
 ////////////
 
-export function handleMenuLeft() {
-    const selectedOptionId = store.getState().battle.selectedOptionId;
+export function handleMenuLeft(menuModel) {
+
+    const {
+        menuKey,
+        menuPageIndex,
+        selectedOptionId
+    } = store.getState().battle;
+
+    //Move back to Root if on First page of results;
+    if (menuKey != "root") {
+
+        const reservedOptions = ["next-page", "prev-page", "back"];
+        if ( reservedOptions.indexOf(selectedOptionId) === -1) {
+
+            //Go from first results page back to root
+            if (menuPageIndex == 0) {
+                //Same as ESC
+                setBattleValue({
+                    menuKey: "root",
+                    menuPageIndex: 0
+                })
+            } else {
+                //Go backwards from deeper results page
+                goToPrevSubPage(menuModel, true)
+            }
+        }
+    }
+
+
 
     if (selectedOptionId == "next-page") {
         setBattleValue({
@@ -99,19 +126,41 @@ export function handleMenuLeft() {
     }
 }
 
-export function handleMenuRight() {
+export function handleMenuRight(menuModel={}) {
+    const menuKey = store.getState().battle.menuKey;
     const selectedOptionId = store.getState().battle.selectedOptionId;
+    const currentPage = menuModel[menuKey];
+    const selectedOptionModel = currentPage.find( (option) => option.optionId == selectedOptionId);
 
+    //Right is the same as Enter on "Attack"
+    const rootOptions = [
+        "root_super",
+        "root_attack",
+        "root_special",
+        "root_item"
+    ];
+    if ( rootOptions.indexOf(selectedOptionId) > -1) {
+        selectedOptionModel.handleEnter();
+        return
+    }
+
+    //Move from Back and Previous
     if (selectedOptionId == "back") {
         setBattleValue({
             selectedOptionId: "prev-page"
-        })
+        });
+        return
     }
     if (selectedOptionId == "prev-page") {
         setBattleValue({
             selectedOptionId: "next-page"
-        })
+        });
+        return
     }
+
+    //If on a results page, go to the next result page
+    goToNextSubPage(menuModel, true)
+
 }
 
 

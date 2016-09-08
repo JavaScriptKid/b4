@@ -145,12 +145,15 @@ export default {
     },
     "item_006": {
         ...itemSchema,
-        name: "Honeypot Mine",
-        description: "WARNING! It's a trap! Explodes in your face.",
+        name: "Honeypot Trap",
+        description: "WARNING: It's a trap!! Explodes in your face.",
         affectCasterHpPointsByPercent: -0.33,
         customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
             return [
-                getItemUseMessage(action, casterModel, targetModel, actionDescription),
+                {
+                    type: "message",
+                    content: [`${casterModel.name} opened a Honeypot Trap!`]
+                },
                 {
                     type: "animation",
                     animationName: action.animation,
@@ -158,7 +161,7 @@ export default {
                 },
                 {
                     type: "message",
-                    content: [`The Honeypot Mine blew up!!!`]
+                    content: [`The Honeypot Trap blew up in ${casterModel.name}'s face!!!`]
                 }
             ]
         }
