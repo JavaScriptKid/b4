@@ -16,15 +16,19 @@ import {addKeyboardSinglePress, removeKeyboardSinglePress} from '../../helpers/s
 /* This is purely for codepen. We don't want to load the Pen with music playing */
 class IntroKickoffScreen extends React.Component {
 
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
-            isShowing: true
+            isShowing: props.isShowingIntroScreen //dont let it revert back
         }
     }
 
     kickoff() {
+
+        songEnergeticBattle.stop();
         songEnergeticBattle.play('trimmed');
+
+
         this.setState({
             isShowing: false
         })
@@ -44,6 +48,8 @@ class IntroKickoffScreen extends React.Component {
     handleClick(e) {
         e.preventDefault();
         this.kickoff();
+
+        $(".js-textline-autoclick-target").click();
     }
 
     render() {

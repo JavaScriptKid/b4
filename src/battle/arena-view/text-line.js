@@ -122,8 +122,9 @@ class TextLine extends React.Component {
 
 
 
+        //TODO: remove the autoclick-target when not in b4 codepen demo
         return (
-            <div onClick={::this.handleClick} style={style}>
+            <div onClick={::this.handleClick} style={style} className="js-textline-autoclick-target">
                 {spans}
                 {this.state.showBlinker ? <div style={blinkerStyle}></div> : null}
             </div>
