@@ -11,7 +11,7 @@ class Laptop extends React.Component {
         }
 
         //Enemy value
-        return isBigMessageBoard ? 54 * vW : 53 * vW;
+        return isBigMessageBoard ? 53 * vW : 53 * vW;
     }
 
     render() {
@@ -23,14 +23,14 @@ class Laptop extends React.Component {
         }
 
         const src = isPlayer
-            ? "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/laptop-screen-view.svg"
-            : "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/laptop-back-view.svg";
+            ? "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/danger-laptop-screen-view.svg"
+            : "https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/danger-laptop-back-view.svg";
 
         const style = {
             zIndex: isPlayer ? 1 : 5,
             position: "absolute",
             left: this.getLeftStyle(), //isPlayer ? 28 * vW : 52 * vW,
-            top: isPlayer ? 40 * vW : 25 * vW,
+            top: isPlayer ? 40 * vW : 26 * vW,
             width: isPlayer ? 14 * vW : 9 * vW,
             transition: "left 0.4s ease-out",
             ...extraStyle
