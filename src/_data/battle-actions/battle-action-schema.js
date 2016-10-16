@@ -20,18 +20,29 @@ export default {
     // affectTargetSpecialPoints: 0,
     //affectTargetAccuracyPoints: 0,
 
+    affectTargetAttackModifier: 0,
+    affectTargetDefenseModifier: 0,
+    affectTargetSpeedModifier: 0,
+
+
     bypassCasterAttackStats: false, //Don't let move use the Attack stat, like "Insult"
 
     affectCasterHpPoints: 0,
     affectCasterPpPoints: 0,
     affectCasterHpPointsByPercent: 0,
 
-    
+
     // affectCasterAttackPoints: 0,
     // affectCasterDefensePoints: 0,
     // affectCasterSpeedPoints: 0,
     // affectCasterSpecialPoints: 0,
     // affectCasterAccuracyPoints: 0,
+    affectCasterAttackModifier: 0,
+    affectCasterDefenseModifier: 0,
+    affectCasterSpeedModifier: 0,
+
+
+
 
     //Status multiplier
     statusMultiplier: null, //[status, rate] EX: ["deadline", 1.5]
