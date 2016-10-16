@@ -7,6 +7,8 @@ export function getDangerMeter(action, casterState, targetState, currentChanges)
         /* Add action's increase to caster's danger meter */
         const actionDangerIncrease = action.increaseDangerMeter;
         /* TODO: wrap this value in a Caster Model `dangerIncreaseRoll` method that will augment the % increase (for char upgrades) */
+        //TODO: Update to the previous TODO ^^. We already reduce the threshold with Dangerous I and II, I don't know that we need a quicker increasing DM.
+        //TODO: I mean, aren't those the same thing?
 
         const dmTotal = casterState.maxDangerMeter; // 100
         const updatedCasterDangerMeter = casterState.dangerMeter + (dmTotal * actionDangerIncrease);

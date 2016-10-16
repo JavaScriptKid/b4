@@ -238,6 +238,53 @@ export default {
                 }
             ]
         }
+    },
+
+    "item_010": {
+        ...itemSchema,
+        name: "Jumbo Danger Boost",
+        description: "Increases Danger Meter by 75%",
+        increaseDangerMeter: 0.75,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} used a Jumbo Danger Boost!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s Danger Meter is increased!`]
+                }
+            ]
+        }
+    },
+    "item_011": {
+        ...itemSchema,
+        name: "Elite Danger Boost",
+        description: "Increases Danger Meter to 100%",
+        increaseDangerMeter: 1,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} used an Elite Danger Boost!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s Danger Meter is maxed out!`]
+                }
+            ]
+        }
     }
 
 
