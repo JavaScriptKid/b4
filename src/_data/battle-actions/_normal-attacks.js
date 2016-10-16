@@ -346,6 +346,32 @@ export default {
 
             return [...queue]
         }
-    }
+    },
+
+
+    /* ********************* CHARACTER SPECIFIC ATTACKS *********************** */
+
+    /* Suit Attack */
+    "attack-charspecific-001": {
+        ...attackSchema,
+        name: "BlackBerry",
+        animation: "tada",
+        description: "Throws an old BlackBerry smartphone at the enemy.",
+        affectTargetHpPoints: -6,
+        ppCost: 1,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription, nextState) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} threw an old BlackBerry at ${targetModel.name}!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                }
+            ]
+        }
+    },
 
 }

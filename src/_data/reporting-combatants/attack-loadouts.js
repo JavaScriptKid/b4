@@ -71,6 +71,11 @@ export const allAttacks = [
     "attack-special-011-b",
 
     //Stash
-    "attack-special-011-c"
+    "attack-special-011-c",
+
+
+    //CHAR SPECIFIC
+    "attack-charspecific-001", //BlackBerry
+    "attack-special-charspecific-001"
 
 ];

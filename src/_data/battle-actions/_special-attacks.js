@@ -511,6 +511,32 @@ export default {
                 }
             ]
         }
+    },
+
+
+    //**********************************************************************************//
+    /* Character Specific Special Attacks */
+    "attack-special-charspecific-001": {
+        ...specialAttackSchema,
+        name: "Retrospective",
+        ppCost: 5,
+        description: "Recovers 50 HP",
+        affectCasterHpPoints: 50,
+        accuracyModifier: 999, //Don't miss
+        getFail: function(action, casterState, targetState, currentChanges) {
+            return casterState.maxHp === casterState.hp; //HP is full
+        },
+        customSuccessStep(action, casterState, targetState, currentChanges) {
+            return [
+                getUseMessage(action, casterState, targetState, currentChanges),
+                {
+                    type: "message",
+                    content: [
+                        `${casterState.name} recovered lost HP!`
+                    ]
+                }
+            ]
+        }
     }
 
 
