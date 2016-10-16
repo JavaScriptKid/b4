@@ -13,22 +13,25 @@ export default {
     //Combatant Stats
     affectTargetHpPoints: 0,
     affectTargetHpPointsByPercent: 0,
-    affectTargetAttackPoints: 0,
-    affectTargetDefensePoints: 0,
-    affectTargetSpeedPoints: 0,
-    affectTargetSpecialPoints: 0,
-    affectTargetAccuracyPoints: 0,
+
+    // affectTargetAttackPoints: 0,
+    // affectTargetDefensePoints: 0,
+    // affectTargetSpeedPoints: 0,
+    // affectTargetSpecialPoints: 0,
+    //affectTargetAccuracyPoints: 0,
 
     bypassCasterAttackStats: false, //Don't let move use the Attack stat, like "Insult"
 
     affectCasterHpPoints: 0,
     affectCasterPpPoints: 0,
     affectCasterHpPointsByPercent: 0,
-    affectCasterAttackPoints: 0,
-    affectCasterDefensePoints: 0,
-    affectCasterSpeedPoints: 0,
-    affectCasterSpecialPoints: 0,
-    affectCasterAccuracyPoints: 0,
+
+    
+    // affectCasterAttackPoints: 0,
+    // affectCasterDefensePoints: 0,
+    // affectCasterSpeedPoints: 0,
+    // affectCasterSpecialPoints: 0,
+    // affectCasterAccuracyPoints: 0,
 
     //Status multiplier
     statusMultiplier: null, //[status, rate] EX: ["deadline", 1.5]

@@ -27,6 +27,12 @@ export default {
     characterUpgrades: [
         {libraryId: "character-upgrade-005-i"},
         {libraryId: "character-upgrade-005-ii"}
-    ]
+    ],
+
+
+    //Modifiers
+    attackModifier: 0,
+    defenseModifier: 0,
+    speedModifier: 0,
 
 }
