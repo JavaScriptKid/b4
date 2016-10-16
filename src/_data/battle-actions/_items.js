@@ -165,6 +165,81 @@ export default {
                 }
             ]
         }
+    },
+
+
+    "item_007": {
+        ...itemSchema,
+        name: "Mini Attack Sticker",
+        description: "Increases outgoing damage for the rest of the battle",
+        affectCasterAttackModifier: 3,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} slapped on a Mini Attack Sticker!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s Attack skill increased!`]
+                }
+            ]
+        }
+    },
+
+    "item_008": {
+        ...itemSchema,
+        name: "Mini Defense Sticker",
+        description: "Reduces incoming damage for the rest of the battle",
+        affectCasterDefenseModifier: 3,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} slapped on a Mini Defense Sticker!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s Defense skill increased!`]
+                }
+            ]
+        }
+    },
+
+    "item_009": {
+        ...itemSchema,
+        name: "Mini Speed Sticker",
+        description: "Increases attacking speed for the rest of the battle",
+        affectCasterSpeedModifier: 3,
+        customSuccessStep: function(action, casterModel, targetModel, actionDescription) {
+            return [
+                {
+                    type: "message",
+                    content: [`${casterModel.name} slapped on a Mini Speed Sticker!`]
+                },
+                {
+                    type: "animation",
+                    animationName: action.animation,
+                    actionDescription: actionDescription
+                },
+                {
+                    type: "message",
+                    content: [`${casterModel.name}'s Speed skill increased!`]
+                }
+            ]
+        }
     }
-    //TODO: Attack Sticker, etc
+
+
+
 }

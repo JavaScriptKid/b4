@@ -22,6 +22,11 @@ export function getStateChangesFromDescription(dObj, currentState) {
         {forId: dObj["casterId"], descriptionProp: "blanketSetCasterHp", stateProp: "hp", addToOld: false},
         {forId: dObj["targetId"], descriptionProp: "blanketSetTargetHp", stateProp: "hp", addToOld: false},
 
+        //Stats
+        {forId: dObj["casterId"], descriptionProp: "affectCasterAttackModifier", stateProp: "attackModifier", addToOld: true},
+        {forId: dObj["casterId"], descriptionProp: "affectCasterDefenseModifier", stateProp: "defenseModifier", addToOld: true},
+        {forId: dObj["casterId"], descriptionProp: "affectCasterSpeedModifier", stateProp: "speedModifier", addToOld: true},
+
         //Status
         {forId: dObj["casterId"], descriptionProp: "affectCasterStatus", stateProp: "status", addToOld: false},
         {forId: dObj["targetId"], descriptionProp: "affectTargetStatus", stateProp: "status", addToOld: false},

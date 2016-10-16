@@ -5,6 +5,7 @@
 import {getRegularAttackChanges} from './calculations/regular-attack'
 import {getStatusChanges} from './calculations/change-status'
 import {getPpChanges} from './calculations/change-pp'
+import {getStatChanges} from './calculations/change-stat'
 import {getMiss} from './calculations/miss'
 import {getSuperCharged} from './calculations/super-charge'
 import {getExtraActionAdds} from './calculations/extra-action-adds'
@@ -23,6 +24,7 @@ export function getStepDescriptionObject(action, casterModel, targetModel) {
     /* Build up an object full of descriptive properties */
     changes = getSuperCharged(action, casterModel, targetModel, changes);
     changes = getPpChanges(action, casterModel, targetModel, changes);
+    changes = getStatChanges(action, casterModel, targetModel, changes);
     changes = getMiss(action, casterModel, targetModel, changes);
 
     //Stop here if the attack missed!
