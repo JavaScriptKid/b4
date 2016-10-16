@@ -9,7 +9,7 @@ import BattleDevViewSwitcher from './battle/battle-dev-view-switcher'
 
 import Combatants from './_data/reporting-combatants'
 
-import AudioOption from './music-switcher'
+//import AudioOption from './music-switcher'
 
 var RootComponent = React.createClass({
 
@@ -29,7 +29,6 @@ var RootComponent = React.createClass({
                 <div>
                     <BattleDevViewSwitcher />
                     <Viewport />
-                    <AudioOption />
                 </div>
             </Provider>
         );

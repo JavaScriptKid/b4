@@ -8,8 +8,6 @@ import ArenaCombatant from './arena-combatant'
 import AutoSubmitter from './auto-submitter'
 import ArenaBackground from './arena-background'
 import Laptop from './Laptop'
-
-import IntroKickoffScreen from './intro-kickoff-screen' //CodePen only
 import EndingOverlay from './ending-overlay'
 
 import { CombatantModel } from '../combatant-model'
@@ -116,11 +114,7 @@ class BattleArenaView extends React.Component {
                    challengerModel={this.props.challengerModel}
                    challengeeModel={this.props.challengeeModel}
                />
-
                <AutoSubmitter />
-
-               <IntroKickoffScreen />
-               <EndingOverlay />
            </div>
         );
     }
